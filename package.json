@@ -1,0 +1,46 @@
+{
+  "name": "seed",
+  "version": "0.0.1",
+  "description": "Starter skeleton for frontend projects",
+  "private": true,
+  "author": "pocotan001",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "start": "npm run build && npm run serve",
+    "test": "karma start --singleRun",
+    "clean": "rm -rf dist/*",
+    "serve": "browser-sync start --server --no-notify --no-reload-on-restart",
+    "build": "npm run clean && npm run css && npm run js",
+    "css": "cssnext -c src/css/index.css dist/app.css",
+    "js": "browserify src/js -t babelify -s app | uglifyjs -m -c drop_console=true -o dist/app.js",
+    "lint": "eslint src/js test",
+    "watch": "npm run watch:css & npm run watch:js & npm run watch:test & npm run watch:serve",
+    "watch:css": "cssnext -s -w src/css/index.css dist/app.css",
+    "watch:js": "watchify src/js -t babelify -s app -d -o dist/app.js -v",
+    "watch:test": "karma start",
+    "watch:serve": "browser-sync start --server --files 'src'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^2.0.2",
+    "babelify": "^5.0.4",
+    "browser-sync": "^2.3.1",
+    "browserify": "^9.0.3",
+    "cssnext": "git://github.com/cssnext/cssnext#watch-imported",
+    "eslint": "^0.17.1",
+    "espowerify": "^0.10.0",
+    "karma": "^0.12.31",
+    "karma-browserify": "^4.0.0",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-cli": "0.0.4",
+    "karma-mocha": "^0.1.10",
+    "mocha": "^2.2.1",
+    "power-assert": "^0.10.2",
+    "sinon": "^1.13.0",
+    "uglify-js": "^2.4.16",
+    "watchify": "^2.4.0"
+  }
+}

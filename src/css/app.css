@@ -1,0 +1,7 @@
+:root {
+    --color-rebeccapurple: rebeccapurple;
+}
+
+#app {
+    color: var(--color-rebeccapurple);
+}
