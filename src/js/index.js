@@ -1,12 +1,6 @@
 'use strict';
 
-// Polyfills
 // import 'babelify/polyfill';
+import greeting from './greeting';
 
-import App from './app';
-
-let app = new App();
-
-app.sayGreeting();
-
-export default app;
+alert( greeting() );

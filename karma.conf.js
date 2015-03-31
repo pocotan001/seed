@@ -1,22 +1,34 @@
 'use strict';
 
+var istanbul = require('browserify-istanbul');
+var isparta = require('isparta');
+
 module.exports = function(config) {
     config.set({
-        frameworks: ['mocha', 'browserify'],
+        frameworks: ['browserify', 'mocha'],
+
         files: [
-            // 'src/**/*.js',
+            'src/js/**/*.js',
             'test/**/*.js'
         ],
+
         preprocessors: {
+            'src/js/**/*.js': 'browserify',
             'test/**/*.js': 'browserify'
         },
+
         browserify: {
-            debug: true,
-            files: ['test/**/*.js'],
-            transform: ['babelify', 'espowerify']
+            transform: ['babelify', istanbul({ instrumenter: isparta }), 'espowerify']
         },
-        reporters: ['dots'],
+
+        browsers: ['Chrome'],
+
+        reporters: ['dots', 'coverage'],
+
         autoWatch: true,
-        browsers: ['Chrome']
+
+        coverageReporter: {
+            type: 'text'
+        }
     });
 };
