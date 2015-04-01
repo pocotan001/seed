@@ -23,12 +23,24 @@ module.exports = function(config) {
 
         browsers: ['Chrome'],
 
-        reporters: ['dots', 'coverage'],
+        customLaunchers: {
+            chromeTravisCI: {
+                base: 'Chrome',
+                flags: ['--no-sandbox']
+            }
+        },
 
         autoWatch: true,
+
+        reporters: ['dots', 'coverage'],
 
         coverageReporter: {
             type: 'text'
         }
     });
+
+    // Custom configuration for Travis-CI
+    if (process.env.TRAVIS) {
+        config.browsers = ['chromeTravisCI'];
+    }
 };
