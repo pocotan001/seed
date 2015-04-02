@@ -14,14 +14,16 @@
     "clean": "rm -rf dist/*",
     "serve": "browser-sync start --server --no-notify --no-reload-on-restart",
     "lint": "eslint src/js test",
+    "styleguide": "styleguide --kss-source src/css/*.css --style-source dist/app.css --output styleguide --title 'Seed Style Guide' --appRoot /styleguide",
     "build": "npm run clean && npm run build:css && npm run build:js",
     "build:css": "cssnext -c src/css/index.css dist/app.css",
     "build:js": "browserify src/js -t babelify -s app | uglifyjs -m -c drop_console=true -o dist/app.js",
-    "watch": "npm run watch:css & npm run watch:js & npm run watch:test & npm run watch:serve",
+    "watch": "npm run watch:css & npm run watch:styleguide & npm run watch:js & npm run watch:test & npm run watch:serve",
     "watch:css": "cssnext -s -w src/css/index.css dist/app.css",
+    "watch:styleguide": "npm run styleguide -- --watch",
     "watch:js": "watchify src/js -t babelify -s app -d -o dist/app.js -v",
     "watch:test": "karma start",
-    "watch:serve": "browser-sync start --server --files 'src/**'"
+    "watch:serve": "browser-sync start --server --files src/**"
   },
   "dependencies": {},
   "devDependencies": {
@@ -42,6 +44,7 @@
     "karma-mocha": "^0.1.10",
     "mocha": "^2.2.1",
     "power-assert": "^0.10.2",
+    "sc5-styleguide": "^0.3.8",
     "uglify-js": "^2.4.16",
     "watchify": "^2.4.0"
   }
