@@ -1,0 +1,51 @@
+/**
+ * List
+ *
+ * default - Default
+ * .-styled - Styled
+ * .-inline - Inline-level
+ *
+ * Markup:
+ * <ol class="list {$modifiers}">
+ *     <li>遁げた山羊
+ *         <!-- <ul class="list {$modifiers}">
+ *             <li>すきとおった風</li>
+ *             <li>青いそら</li>
+ *         </ul> -->
+ *     </li>
+ *     <li>つめくさのあかり</li>
+ *     <li>ポラーノの広場</li>
+ * </ol>
+ *
+ * Styleguide 2.5
+ */
+
+.list {
+    font-size: 1rem;
+}
+
+/* Basic list styles */
+
+ul.list.-styled {
+    list-style: disc inside;
+}
+
+ol.list.-styled {
+    list-style: decimal inside;
+}
+
+.list.-styled .list.-styled {
+    margin-left: 2em;
+}
+
+/* Inline-level */
+
+.list.-inline {
+    overflow: hidden;
+    margin-left: -10px;
+}
+
+.list.-inline > li {
+    float: left;
+    padding-left: 10px;
+}

@@ -1,0 +1,142 @@
+/**
+ * Grid
+ *
+ * default - Default
+ * .-gutters - With gutters
+ * .-center - Center
+ * .-right - Right
+ * .-middle - Middle
+ * .-bottom - Bottom
+ * .-fill - Fill height
+ *
+ * Markup:
+ * <div class="grid {$modifiers}">
+ *     <div class="grid__cell -half">
+ *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">1/2</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -half">
+ *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">1/2</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -fourth">
+ *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">1/4</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -fourth">
+ *         <p style="padding: 2em 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">1/4</p>
+ *     </div><!-- /.grid__cell -->
+ * </div><!-- /.grid -->
+ *
+ * Styleguide 3.1
+ */
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* With gutters */
+
+.grid.-gutters {
+    margin-top: -20px;
+    margin-left: -20px;
+}
+
+.grid.-gutters > .grid__cell {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+/* Justify per row */
+
+.grid.-center {
+    justify-content: center;
+}
+
+.grid.-right {
+    justify-content: flex-end;
+}
+
+/* Alignment per row */
+
+.grid.-middle {
+    align-items: center;
+}
+
+.grid.-bottom {
+    align-items: flex-end;
+}
+
+/* Fill height */
+
+.grid.-fill > .grid__cell {
+    display: flex;
+}
+
+/**
+ * Grid cell
+ *
+ * default - Default
+ * .-fit - Auto-fit
+ * .-fifth - 1/5
+ * .-fourth - 1/4
+ * .-third - 1/3
+ * .-half - 1/2
+ * .-full - 1/1
+ * .-first - Reorder to first
+ * .-last - Reorder to last
+ *
+ * Markup:
+ * <div class="grid -gutters">
+ *     <div class="grid__cell">
+ *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center; opacity: .6;">default</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell {$modifiers}">
+ *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">{$modifiers}</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell">
+ *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center; opacity: .6;">default</p>
+ *     </div><!-- /.grid__cell -->
+ * </div><!-- /.grid -->
+ *
+ * Styleguide 3.2
+ */
+
+.grid__cell {
+    flex: 1;
+    min-width: 1px; /* for multiple lines */
+}
+
+/* Intrinsic width */
+
+.grid__cell.-fit {
+    flex: none;
+}
+
+.grid__cell.-fifth {
+    flex: 0 0 20%;
+}
+
+.grid__cell.-fourth {
+    flex: 0 0 25%;
+}
+
+.grid__cell.-third {
+    flex: 0 0 33.333%;
+}
+
+.grid__cell.-half {
+    flex: 0 0 50%;
+}
+
+.grid__cell.-full {
+    flex: 0 0 100%;
+}
+
+/* Reorder */
+
+.grid__cell.-first {
+    order: -1;
+}
+
+.grid__cell.-last {
+    order: 1;
+}

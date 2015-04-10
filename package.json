@@ -14,7 +14,7 @@
     "clean": "rm -rf dist/*",
     "serve": "browser-sync start --server --no-notify --no-reload-on-restart",
     "lint": "eslint src/js test",
-    "styleguide": "styleguide --kss-source src/css/*.css --style-source dist/app.css --output styleguide --title 'Seed Style Guide' --appRoot /styleguide",
+    "styleguide": "styleguide --kss-source 'src/css/**/*.css' --style-source 'dist/app.css' --output styleguide --title 'Seed Style Guide' --commonClass 'styleguide' --appRoot /styleguide",
     "build": "npm run clean && npm run build:css && npm run build:js",
     "build:css": "cssnext -c src/css/index.css dist/app.css",
     "build:js": "browserify src/js -t babelify -s app | uglifyjs -m -c drop_console=true -o dist/app.js",
@@ -25,14 +25,16 @@
     "watch:test": "karma start",
     "watch:serve": "browser-sync start --server --files src/**"
   },
-  "dependencies": {},
+  "dependencies": {
+    "suitcss-base": "^0.8.0"
+  },
   "devDependencies": {
     "babel-eslint": "^2.0.2",
     "babelify": "^5.0.4",
     "browser-sync": "^2.3.1",
     "browserify": "^9.0.3",
     "browserify-istanbul": "^0.2.1",
-    "cssnext": "git://github.com/cssnext/cssnext#watch-imported",
+    "cssnext": "^1.2.1",
     "eslint": "^0.17.1",
     "espowerify": "^0.10.0",
     "isparta": "^2.2.0",

@@ -1,0 +1,22 @@
+/**
+ * HTML & Styleguide common class
+ *
+ * Markup:
+ * <html>...</html>
+ */
+
+html,
+.styleguide {
+    font-family: var(--font-family-sans-serif);
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    word-break: break-all;
+    color: var(--gray-darker);
+    background: var(--gray-lighter);
+}
+
+.styleguide {
+    padding: 20px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

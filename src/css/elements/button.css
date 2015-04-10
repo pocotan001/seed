@@ -1,0 +1,80 @@
+/**
+ * Button
+ *
+ * default - Default
+ * .-red - Red
+ * .-sm - Small
+ * .-lg - Large
+ * .-xl - X-Large
+ * .-block - Block-level
+ * .is-disabled - Disabled
+ *
+ * Markup:
+ * <a class="button {$modifiers}" href="javascript:;">Link</a>
+ * <button class="button {$modifiers}">Button</button>
+ * <input class="button {$modifiers}" type="submit" value="Submit">
+ *
+ * Styleguide 2.3
+ */
+
+.button {
+    position: relative;
+    display: inline-block;
+    padding: .65em 1em;
+    border: 1px solid var(--gray-light);
+    border-radius: 3px;
+    background: var(--white);
+    color: var(--gray-darker);
+    vertical-align: middle;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1;
+    user-select: none;
+}
+
+/* Colors */
+
+.button.-red {
+    border: none;
+    background: var(--brand-red);
+    color: var(--white);
+}
+
+/* Sizes */
+
+.button.-sm {
+    font-size: .8rem;
+}
+
+.button.-lg {
+    font-size: 1.2rem;
+}
+
+.button.-xl {
+    font-size: 1.4rem;
+}
+
+/* Block-level */
+
+.button.-block {
+    display: block;
+    padding-right: 0;
+    padding-left: 0;
+    width: 100%;
+}
+
+/* States */
+
+.button:hover,
+.button:focus,
+.button:active {
+    text-decoration: none;
+    opacity: .8;
+}
+
+.button:disabled,
+.button.is-disabled {
+    opacity: .6;
+    cursor: default;
+    pointer-events: none;
+}

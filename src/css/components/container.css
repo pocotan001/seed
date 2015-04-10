@@ -1,0 +1,13 @@
+/**
+ * Container
+ *
+ * Markup:
+ * <div class="container">
+ *     ...
+ * </div><!-- /.container -->
+ */
+
+.container {
+    margin: 0 auto;
+    width: 960px;
+}

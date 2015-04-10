@@ -1,0 +1,13 @@
+/**
+ * Clearfix
+ */
+
+.u-cf::before,
+.u-cf::after {
+    display: table;
+    content: "";
+}
+
+.u-cf::after {
+    clear: both;
+}
