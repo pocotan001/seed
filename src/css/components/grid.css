@@ -7,7 +7,7 @@
  * .-right - Right
  * .-middle - Middle
  * .-bottom - Bottom
- * .-fill - Fill height
+ * .-stretch - Fill the height
  *
  * Markup:
  * <div class="grid {$modifiers}">
@@ -65,9 +65,9 @@
     align-items: flex-end;
 }
 
-/* Fill height */
+/* Fill the height */
 
-.grid.-fill > .grid__cell {
+.grid.-stretch > .grid__cell {
     display: flex;
 }
 
@@ -102,7 +102,6 @@
 
 .grid__cell {
     flex: 1;
-    min-width: 1px; /* for multiple lines */
 }
 
 /* Intrinsic width */
