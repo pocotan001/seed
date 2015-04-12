@@ -12,16 +12,16 @@
  * Markup:
  * <div class="grid {$modifiers}">
  *     <div class="grid__cell -half">
- *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">1/2</p>
+ *         <p class="sg-gridDemo">1/2</p>
  *     </div><!-- /.grid__cell -->
  *     <div class="grid__cell -half">
- *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">1/2</p>
+ *         <p class="sg-gridDemo">1/2</p>
  *     </div><!-- /.grid__cell -->
  *     <div class="grid__cell -fourth">
- *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">1/4</p>
+ *         <p class="sg-gridDemo">1/4</p>
  *     </div><!-- /.grid__cell -->
  *     <div class="grid__cell -fourth">
- *         <p style="padding: 2em 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">1/4</p>
+ *         <p class="sg-gridDemo -tall">1/4</p>
  *     </div><!-- /.grid__cell -->
  * </div><!-- /.grid -->
  *
@@ -87,13 +87,13 @@
  * Markup:
  * <div class="grid -gutters">
  *     <div class="grid__cell">
- *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center; opacity: .6;">default</p>
+ *         <p class="sg-gridDemo -transparent">default</p>
  *     </div><!-- /.grid__cell -->
  *     <div class="grid__cell {$modifiers}">
- *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center;">{$modifiers}</p>
+ *         <p class="sg-gridDemo">{$modifiers}</p>
  *     </div><!-- /.grid__cell -->
  *     <div class="grid__cell">
- *         <p style="padding: 1em; width: 100%; border: 1px solid #ccc; background: #fff; text-align: center; opacity: .6;">default</p>
+ *         <p class="sg-gridDemo -transparent">default</p>
  *     </div><!-- /.grid__cell -->
  * </div><!-- /.grid -->
  *

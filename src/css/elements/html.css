@@ -1,12 +1,11 @@
 /**
- * HTML & Styleguide common class
+ * HTML
  *
  * Markup:
  * <html>...</html>
  */
 
-html,
-.styleguide {
+html {
     font-family: var(--font-family-sans-serif);
     font-size: 14px;
     line-height: 1.5;
@@ -14,9 +13,4 @@ html,
     word-break: break-all;
     color: var(--gray-darker);
     background: var(--gray-lighter);
-}
-
-.styleguide {
-    padding: 20px;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

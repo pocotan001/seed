@@ -121,6 +121,7 @@
             "box-decoration-break",
             "box-shadow",
             "color",
+            "-webkit-tap-highlight-color",
 
             "table-layout",
             "caption-side",
