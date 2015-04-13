@@ -23,7 +23,7 @@
     "watch:styleguide": "npm run styleguide -- --watch",
     "watch:js": "watchify src/js -t babelify -s app -d -o dist/app.js -v",
     "watch:test": "karma start",
-    "watch:serve": "browser-sync start --server --files src/**"
+    "watch:serve": "browser-sync start --server --files dist/**"
   },
   "dependencies": {
     "suitcss-base": "^0.8.0"
