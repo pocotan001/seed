@@ -2,20 +2,16 @@
  * List
  *
  * default - Default
- * .-styled - Styled
+ * .-unordered - Unordered list
+ * .-ordered - Ordered list
  * .-inline - Inline-level
  *
  * Markup:
- * <ol class="list {$modifiers}">
- *     <li>遁げた山羊
- *         <!-- <ul class="list {$modifiers}">
- *             <li>すきとおった風</li>
- *             <li>青いそら</li>
- *         </ul> -->
- *     </li>
+ * <ul class="list {$modifiers}">
+ *     <li>遁げた山羊</li>
  *     <li>つめくさのあかり</li>
  *     <li>ポラーノの広場</li>
- * </ol>
+ * </ul>
  *
  * Styleguide 2.5
  */
@@ -24,28 +20,34 @@
     font-size: 1rem;
 }
 
-/* Basic list styles */
+/* Unordered list */
 
-ul.list.-styled {
-    list-style: disc inside;
+.list.-unordered > li::before {
+    margin-right: .5em;
+    color: var(--gray);
+    content: "•";
 }
 
-ol.list.-styled {
-    list-style: decimal inside;
+/* Ordered list */
+
+.list.-ordered {
+    counter-reset: ordered-list-counter;
 }
 
-.list.-styled .list.-styled {
-    margin-left: 2em;
+.list.-ordered > li::before {
+    margin-right: .5em;
+    color: var(--gray);
+    content: counter(ordered-list-counter)".";
+    counter-increment: ordered-list-counter;
 }
 
 /* Inline-level */
 
 .list.-inline {
-    overflow: hidden;
-    margin-left: -10px;
+    margin-left: -20px;
 }
 
 .list.-inline > li {
-    float: left;
-    padding-left: 10px;
+    display: inline-block;
+    padding-left: 20px;
 }
