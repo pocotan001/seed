@@ -45,7 +45,8 @@ html {
 /* Styleguide Grid */
 
 .sg.section ::shadow .sg-gridDemo {
-    padding: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
     width: 100%;
     border: 1px solid #ccc;
     background: #fff;

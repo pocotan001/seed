@@ -112,22 +112,27 @@
 
 .grid__cell.-fifth {
     flex: 0 0 20%;
+    max-width: 20%;
 }
 
 .grid__cell.-fourth {
     flex: 0 0 25%;
+    max-width: 25%;
 }
 
 .grid__cell.-third {
     flex: 0 0 33.333%;
+    max-width: 33.333%;
 }
 
 .grid__cell.-half {
     flex: 0 0 50%;
+    max-width: 50%;
 }
 
 .grid__cell.-full {
     flex: 0 0 100%;
+    max-width: 100%;
 }
 
 /* Reorder */
