@@ -1,0 +1,15 @@
+{
+    "libs": [
+        "browser",
+        "ecma5",
+        "ecma6"
+    ],
+    "loadEagerly": [
+        "src/js/**/*.js"
+    ],
+    "plugins": {
+        "doc_comment": {
+            "fullDocs": true
+        }
+    }
+}
