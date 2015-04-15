@@ -1,10 +1,13 @@
 'use strict';
 
 /**
+ * Alo, Alo!
+ *
  * @param {String} [greeting]
+ * @return {String}
  */
-let greeting = (greeting='Alo') => {
+function greeting(greeting = 'Alo') {
     return `${greeting}\, ${greeting}!`;
-};
+}
 
 export default greeting;

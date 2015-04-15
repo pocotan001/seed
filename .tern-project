@@ -8,6 +8,7 @@
         "src/js/**/*.js"
     ],
     "plugins": {
+        "node": {},
         "doc_comment": {
             "fullDocs": true
         }
