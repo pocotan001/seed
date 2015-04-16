@@ -13,8 +13,12 @@
  * <a class="button {$modifiers}" href="javascript:;">Link</a>
  * <button class="button {$modifiers}">Button</button>
  * <input class="button {$modifiers}" type="submit" value="Submit">
+ * <a class="button {$modifiers}" href="javascript:;">
+ *     <svg class="icon {$modifiers}"><use xlink:href="/dist/icon.svg#hipster"></use></svg>
+ *     <span class="button__text -middle">With icon</span>
+ * </a>
  *
- * Styleguide 2.3
+ * Styleguide 2.4
  */
 
 .button {
@@ -77,4 +81,21 @@
     opacity: .6;
     cursor: default;
     pointer-events: none;
+}
+
+/**
+ * Button text
+ */
+
+.button__text {
+    display: inline;
+    vertical-align: top;
+}
+
+.button__text.-middle {
+    vertical-align: middle;
+}
+
+.button__text.-bottom {
+    vertical-align: bottom;
 }

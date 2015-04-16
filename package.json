@@ -14,16 +14,18 @@
     "clean": "rm -rf dist/*",
     "serve": "browser-sync start --server --no-notify --no-reload-on-restart",
     "lint": "eslint src/js test",
-    "styleguide": "styleguide --kss-source 'src/css/**/*.css' --style-source 'dist/app.css' --output styleguide --title 'Seed Style Guide' --extraHead '<link rel=\"stylesheet\" href=\"/fixtures/styleguide.css\">' --commonClass 'sg-root' --appRoot /styleguide",
-    "build": "npm run clean && npm run build:css && npm run build:js",
+    "styleguide": "styleguide --kss-source 'src/css/**/*.css' --style-source 'dist/app.css' --output styleguide --title 'Seed Style Guide' --extraHead '<link rel=\"stylesheet\" href=\"/fixtures/styleguide/sg.css\">' --commonClass 'sg-root' --appRoot /styleguide",
+    "icon": "svg-sprite src/svg/icon/*.svg -sc --symbol-dest dist --ss icon.svg --cs --ccss --css-render-css-template fixtures/svg-sprite/icons.css.mustache --css-dest src/css/settings --css-render-css-dest icons.css",
+    "posticon": "rm -f src/css/settings/*.svg",
+    "build": "npm run clean && npm run icon && npm run build:css && npm run build:js",
     "build:css": "cssnext -c src/css/index.css dist/app.css",
     "build:js": "browserify src/js -t babelify -s app | uglifyjs -m -c drop_console=true -o dist/app.js",
     "watch": "npm run watch:css & npm run watch:styleguide & npm run watch:js & npm run watch:test & npm run watch:serve",
-    "watch:css": "cssnext -s -w src/css/index.css dist/app.css",
+    "watch:css": "cssnext -sw src/css/index.css dist/app.css",
     "watch:styleguide": "npm run styleguide -- --watch",
-    "watch:js": "watchify src/js -t babelify -s app -d -o dist/app.js -v",
+    "watch:js": "watchify src/js -dv -t babelify -s app -o dist/app.js",
     "watch:test": "karma start",
-    "watch:serve": "browser-sync start --server --files dist/**"
+    "watch:serve": "browser-sync start --server --files 'dist/app.css, dist/app.js'"
   },
   "dependencies": {
     "suitcss-base": "^0.8.0"
@@ -44,6 +46,7 @@
     "mocha": "^2.2.4",
     "power-assert": "^0.10.2",
     "sc5-styleguide": "^0.3.10",
+    "svg-sprite": "^1.1.0",
     "uglify-js": "^2.4.19",
     "watchify": "^3.1.0"
   }
