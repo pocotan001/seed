@@ -28,7 +28,8 @@
     "watch:serve": "browser-sync start --server --files 'dist/app.css, dist/app.js'"
   },
   "dependencies": {
-    "suitcss-base": "^0.8.0"
+    "suitcss-base": "^0.8.0",
+    "svg4everybody": "0.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^2.0.2",
