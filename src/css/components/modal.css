@@ -12,18 +12,18 @@
 
 .modal {
     position: fixed;
+    z-index: var(--zindex-modal);
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: var(--zindex-modal);
     text-align: center;
 }
 
 .modal::after {
     display: inline-block;
-    margin-right: -.25em; /* Adjusts for spacing */
     height: 100%;
+    margin-right: -.25em; /* Adjusts for spacing */
     content: "";
     vertical-align: middle;
 }
@@ -35,8 +35,8 @@
 }
 
 .modal.is-invisible > .modal__body {
-    opacity: 0;
     transform: scale(.7);
+    opacity: 0;
 }
 
 /**
@@ -57,12 +57,12 @@
 .modal__body {
     position: relative;
     display: inline-block;
-    padding: 30px;
     max-width: 80%;
-    border-radius: 3px;
-    background: var(--gray-dark);
-    color: var(--white);
-    vertical-align: middle;
+    padding: 30px;
     transition: all .15s;
     transform: scale(1);
+    vertical-align: middle;
+    color: var(--white);
+    border-radius: 3px;
+    background: var(--gray-dark);
 }

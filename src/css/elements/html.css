@@ -8,11 +8,11 @@
  */
 
 html {
-    font-family: var(--font-family-sans-serif);
-    font-size: 14px;
-    line-height: 1.5;
     word-wrap: break-word;
     word-break: break-all;
     color: var(--gray-darker);
     background: var(--gray-lighter);
+    font-family: var(--font-family-sans-serif);
+    font-size: 14px;
+    line-height: 1.5;
 }

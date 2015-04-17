@@ -6,6 +6,6 @@
     display: block;
     overflow: hidden !important;
     max-width: 100%;
-    text-overflow: ellipsis !important;
     white-space: nowrap !important;
+    text-overflow: ellipsis !important;
 }

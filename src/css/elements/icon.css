@@ -18,8 +18,8 @@
     display: inline-block;
     width: 1rem;
     height: 1rem;
-    fill: currentColor;
     vertical-align: middle;
+    fill: currentColor;
 }
 
 /* Colors */

@@ -12,9 +12,9 @@
 
 a,
 .link {
-    color: inherit;
-    text-decoration: none;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 }
 
 /* Block-level */

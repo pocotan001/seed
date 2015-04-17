@@ -24,8 +24,8 @@
 
 .list.-unordered > li::before {
     margin-right: .5em;
-    color: var(--gray);
     content: "•";
+    color: var(--gray);
 }
 
 /* Ordered list */
@@ -36,9 +36,9 @@
 
 .list.-ordered > li::before {
     margin-right: .5em;
-    color: var(--gray);
     content: counter(ordered-list-counter)".";
     counter-increment: ordered-list-counter;
+    color: var(--gray);
 }
 
 /* Inline-level */

@@ -10,8 +10,8 @@
 h1,
 .heading {
     text-rendering: optimizeLegibility;
-    font-weight: normal;
     font-size: 2rem;
+    font-weight: normal;
     font-feature-settings: "kern" 1;
     font-kerning: normal;
     line-height: 1.2;

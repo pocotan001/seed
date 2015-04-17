@@ -25,23 +25,23 @@
     position: relative;
     display: inline-block;
     padding: .65em 1em;
+    user-select: none;
+    text-align: center;
+    vertical-align: middle;
+    color: var(--gray-darker);
     border: 1px solid var(--gray-light);
     border-radius: 3px;
     background: var(--white);
-    color: var(--gray-darker);
-    vertical-align: middle;
-    text-align: center;
     font-size: 1rem;
     line-height: 1;
-    user-select: none;
 }
 
 /* Colors */
 
 .button.-red {
+    color: var(--white);
     border: none;
     background: var(--brand-red);
-    color: var(--white);
 }
 
 /* Sizes */
@@ -62,9 +62,9 @@
 
 .button.-block {
     display: block;
+    width: 100%;
     padding-right: 0;
     padding-left: 0;
-    width: 100%;
 }
 
 /* States */
@@ -78,9 +78,9 @@
 
 .button:disabled,
 .button.is-disabled {
-    opacity: .6;
     cursor: default;
     pointer-events: none;
+    opacity: .6;
 }
 
 /**
