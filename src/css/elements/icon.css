@@ -2,7 +2,7 @@
  * Icon
  *
  * default - Default
- * .-red - Red
+ * .-green - Red
  * .-xs - X-Small
  * .-sm - Small
  * .-lg - Large
@@ -24,8 +24,8 @@
 
 /* Colors */
 
-.icon.-red {
-    fill: var(--brand-red);
+.icon.-green {
+    fill: var(--brand-green);
 }
 
 /* Sizes */

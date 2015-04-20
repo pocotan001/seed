@@ -2,7 +2,7 @@
  * Button
  *
  * default - Default
- * .-red - Red
+ * .-green - Red
  * .-sm - Small
  * .-lg - Large
  * .-xl - X-Large
@@ -14,7 +14,7 @@
  * <button class="button {$modifiers}">Button</button>
  * <input class="button {$modifiers}" type="submit" value="Submit">
  * <a class="button {$modifiers}" href="javascript:;">
- *     <svg class="icon {$modifiers}"><use xlink:href="/dist/icon.svg#hipster"></use></svg>
+ *     <svg class="icon"><use xlink:href="/dist/icon.svg#hipster"></use></svg>
  *     <span class="button__text -middle">With icon</span>
  * </a>
  *
@@ -38,10 +38,10 @@
 
 /* Colors */
 
-.button.-red {
+.button.-green {
     color: var(--white);
     border: none;
-    background: var(--brand-red);
+    background: var(--brand-green);
 }
 
 /* Sizes */

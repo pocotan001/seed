@@ -3,11 +3,11 @@
 /**
  * Alo, Alo!
  *
- * @param {String} [greeting]
+ * @param {String} [message]
  * @return {String}
  */
-function greeting(greeting = 'Alo') {
-    return `${greeting}\, ${greeting}!`;
+function greeting(message = 'Alo') {
+    return `${message}\, ${message}!`;
 }
 
 export default greeting;

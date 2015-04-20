@@ -6,4 +6,4 @@ import 'svg4everybody';
 
 import greeting from './greeting';
 
-alert( greeting() );
+console.log(greeting());

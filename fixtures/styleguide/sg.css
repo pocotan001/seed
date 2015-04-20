@@ -1,63 +1,68 @@
 html {
-    font-size: 14px;
+    background: #fff;
 }
-
-/* Designer tool */
 
 .sg.design {
     display: none;
 }
 
-/* Styleguide Root */
+/* Styleguide Common class */
 
-.sg.section ::shadow .sg-root {
+.sg-common {
     padding: 20px;
     background: #f0f0f0;
-    color: #333;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    word-wrap: break-word;
-    word-break: break-all;
-    font-size: 14px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    line-height: 1.5;
 }
 
-/* Styleguide Colors */
+/* Works well with Colors */
 
-.sg.section ::shadow .sg-swatches {
+.sg-swatches {
     overflow: hidden;
     margin-top: -1em;
     margin-left: -1em;
 }
 
-.sg.section ::shadow .sg-swatches > li {
+.sg-swatches > li {
     float: left;
+    width: 100px;
+    height: 100px;
     margin-top: 1em;
     margin-bottom: 25px;
     margin-left: 1em;
-    width: 100px;
-    height: 100px;
-    border-radius: 3px;
     text-align: center;
+    border-radius: 3px;
     line-height: 230px;
 }
 
-/* Styleguide Grid */
+/* Works well with SVG icons */
 
-.sg.section ::shadow .sg-gridDemo {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    width: 100%;
-    border: 1px solid #ccc;
-    background: #fff;
-    text-align: center;
+.sg-icons {
+    margin-top: -.5em;
+    margin-left: -.5em;
 }
 
-.sg.section ::shadow .sg-gridDemo.-tall {
+.sg-icons > .icon {
+    width: 2rem;
+    height: 2rem;
+    margin-top: .5em;
+    margin-left: .5em;
+}
+
+/* Works well with Grid */
+
+.sg-gridDemo {
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    text-align: center;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.sg-gridDemo.-tall {
     padding-top: 2em;
     padding-bottom: 2em;
 }
 
-.sg.section ::shadow .sg-gridDemo.-transparent {
+.sg-gridDemo.-transparent {
     opacity: .6;
 }
