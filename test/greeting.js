@@ -1,8 +1,6 @@
 'use strict';
 
-// it doesn't seem to work with `import`
-// import assert from 'power-assert';
-let assert = require('power-assert');
+import assert from 'power-assert';
 
 import greeting from '../src/js/greeting';
 

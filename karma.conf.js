@@ -11,7 +11,7 @@ module.exports = function(config) {
         },
 
         browserify: {
-            transform: ['babelify', 'espowerify']
+            transform: ['babelify', {plugins: ['babel-plugin-espower']}]
         },
 
         browsers: ['Chrome'],
