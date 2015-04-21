@@ -7,9 +7,7 @@ var config      = require('../config');
 gulp.task('default', function() {
     if (config.env === 'production') {
         runSequence('lint', 'test', 'clean', 'build');
-    }
-
-    if (config.env === 'development') {
+    } else {
         runSequence('lint', 'test', 'build', 'serve');
     }
 });
