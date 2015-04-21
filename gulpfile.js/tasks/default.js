@@ -10,6 +10,6 @@ gulp.task('default', function() {
     }
 
     if (config.env === 'development') {
-        runSequence('lint', 'build', 'serve', 'test');
+        runSequence('lint', 'test', 'build', 'serve');
     }
 });
