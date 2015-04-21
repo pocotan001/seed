@@ -1,7 +1,6 @@
 'use strict';
 
 import assert from 'power-assert';
-
 import greeting from '../src/js/greeting';
 
 describe('Greeting', () => {
