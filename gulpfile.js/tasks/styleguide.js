@@ -12,30 +12,31 @@ gulp.task('styleguide', function() {
         watched = true;
     }
 
-    gulp.start(['styleguide:generate', 'styleguide:apply-styles']);
+    gulp.start(['styleguide:generate', 'styleguide:app-css', 'styleguide:sg-css']);
 });
 
 gulp.task('styleguide:generate', function() {
     return gulp.src(config.dirs.src + '/css/**/*.css')
         .pipe(styleguide.generate({
             title: 'Seed Style Guide',
-            extraHead: '<link rel="stylesheet" href="/fixtures/styleguide/sg.css">',
             overviewPath: 'README.md',
+            extraHead: '<link rel="stylesheet" href="sg.css"><script src="/app.js"></script>',
             commonClass: 'sg-common',
             rootPath: '.',
             appRoot: '/styleguide',
             disableEncapsulation: true,
-            disableHtml5Mode: true,
-            filesConfig: [{
-                name: config.name,
-                files: ['/dist/app.js']
-            }]
+            disableHtml5Mode: true
         }))
         .pipe(gulp.dest(config.dirs.styleguide));
 });
 
-gulp.task('styleguide:apply-styles', function() {
+gulp.task('styleguide:app-css', function() {
     return gulp.src(config.dirs.dest + '/app.css')
         .pipe(styleguide.applyStyles())
+        .pipe(gulp.dest(config.dirs.styleguide));
+});
+
+gulp.task('styleguide:sg-css', function() {
+    return gulp.src('gulpfile.js/fixtures/styleguide/sg.css')
         .pipe(gulp.dest(config.dirs.styleguide));
 });

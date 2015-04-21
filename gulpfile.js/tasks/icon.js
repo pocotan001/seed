@@ -40,7 +40,7 @@ gulp.task('icon:css', function() {
                     render: {
                         css: {
                             dest: 'icons.css',
-                            template: 'fixtures/svg-sprite/icons.css.mustache'
+                            template: 'gulpfile.js/fixtures/svg-sprite/icons.css.mustache'
                         }
                     }
                 }

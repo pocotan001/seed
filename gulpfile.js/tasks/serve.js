@@ -12,7 +12,7 @@ var watchFiles = [
 
 gulp.task('serve', function(done) {
     browserSync.init({
-        server: { baseDir: './' },
+        server: { baseDir: config.dirs.dest },
         open: 'ui',
         files: config.watch && watchFiles
     }, done);
@@ -20,7 +20,7 @@ gulp.task('serve', function(done) {
 
 gulp.task('serve:tunnel', function(done) {
     browserSync.init({
-        server: { baseDir: './' },
+        server: { baseDir: config.dirs.dest },
         tunnel: true,
         open: 'tunnel',
         ghostMode: false,

@@ -8,9 +8,8 @@
     "doc": "doc",
     "test": "test",
     "src": "src",
-    "dest": "dist",
-    "fixtures": "fixtures",
-    "styleguide": "styleguide"
+    "dest": "public",
+    "styleguide": "public/styleguide"
   },
   "scripts": {
     "start": "gulp build && gulp serve",
