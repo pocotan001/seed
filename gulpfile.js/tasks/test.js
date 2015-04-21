@@ -8,10 +8,7 @@ gulp.task('test', function(done) {
     karma.start({
         configFile: process.cwd() + '/karma.conf.js',
         singleRun: !config.watch
-    }, function(exitCode) {
-        done();
-        process.exit(exitCode);
-    });
+    }, done);
 
     // `done` callback not being called
     // https://github.com/karma-runner/gulp-karma/issues/10

@@ -15,7 +15,7 @@
   "scripts": {
     "start": "gulp build && gulp serve",
     "test": "gulp test",
-    "production": "gulp -p",
+    "production": "NODE_ENV=production gulp",
     "watch": "gulp -w",
     "gulp": "gulp"
   },
