@@ -2,6 +2,5 @@
  * Utilities
  */
 
-@import "./clearfix";
-@import "./space";
-@import "./text-truncate";
+@import "./layout";
+@import "./text";
