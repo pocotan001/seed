@@ -156,57 +156,57 @@
 
 .grid__cell.\-1of12 {
     flex: 0 0 calc(100% * 1 / 12);
-    max-width: calc(100% * 1 / 12); /* for multi-lines of IE */
+    width: calc(100% * 1 / 12); /* for multi-lines of IE */
 }
 
 .grid__cell.\-2of12 {
     flex: 0 0 calc(100% * 2 / 12);
-    max-width: calc(100% * 2 / 12);
+    width: calc(100% * 2 / 12);
 }
 
 .grid__cell.\-3of12 {
     flex: 0 0 calc(100% * 3 / 12);
-    max-width: calc(100% * 3 / 12);
+    width: calc(100% * 3 / 12);
 }
 
 .grid__cell.\-4of12 {
     flex: 0 0 calc(100% * 4 / 12);
-    max-width: calc(100% * 4 / 12);
+    width: calc(100% * 4 / 12);
 }
 
 .grid__cell.\-5of12 {
     flex: 0 0 calc(100% * 5 / 12);
-    max-width: calc(100% * 5 / 12);
+    width: calc(100% * 5 / 12);
 }
 
 .grid__cell.\-6of12 {
     flex: 0 0 calc(100% * 6 / 12);
-    max-width: calc(100% * 6 / 12);
+    width: calc(100% * 6 / 12);
 }
 
 .grid__cell.\-7of12 {
     flex: 0 0 calc(100% * 7 / 12);
-    max-width: calc(100% * 7 / 12);
+    width: calc(100% * 7 / 12);
 }
 
 .grid__cell.\-8of12 {
     flex: 0 0 calc(100% * 8 / 12);
-    max-width: calc(100% * 8 / 12);
+    width: calc(100% * 8 / 12);
 }
 
 .grid__cell.\-9of12 {
     flex: 0 0 calc(100% * 9 / 12);
-    max-width: calc(100% * 9 / 12);
+    width: calc(100% * 9 / 12);
 }
 
 .grid__cell.\-10of12 {
     flex: 0 0 calc(100% * 10 / 12);
-    max-width: calc(100% * 10 / 12);
+    width: calc(100% * 10 / 12);
 }
 
 .grid__cell.\-11of12 {
     flex: 0 0 calc(100% * 11 / 12);
-    max-width: calc(100% * 11 / 12);
+    width: calc(100% * 11 / 12);
 }
 
 /* Reorder */
