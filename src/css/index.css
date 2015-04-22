@@ -1,3 +1,11 @@
+/**
+ * Settings ....... global variables and settings
+ * Base ........... foundations (e.g. normalize.css, resets)
+ * Elements ....... single elements (e.g. button, icon)
+ * Components ..... designed, complete components
+ * Utils .......... utilities and overrides
+ */
+
 @import "./settings";
 @import "./base";
 @import "./elements";
