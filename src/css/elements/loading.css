@@ -1,0 +1,55 @@
+/**
+ * Loading
+ *
+ * default - Default
+ * .-green - Green
+ * .-sm - Small
+ * .-lg - Large
+ * .-xl - X-Large
+ *
+ * Markup:
+ * <span class="loading {$modifiers}"></span>
+ *
+ * Styleguide 2.4
+ */
+
+.loading {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    animation: loading linear 1s infinite;
+    border: 1px solid currentColor;
+    border-top-color: transparent !important;
+    border-right-color: transparent !important;
+    border-radius: 50%;
+}
+
+@keyframes loading {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Colors */
+
+.loading.-green {
+    border-color: var(--brand-green);
+}
+
+/* Sizes */
+
+.loading.-sm {
+    width: .8rem;
+    height: .8rem;
+}
+
+.loading.-lg {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-width: 2px;
+}
+
+.loading.-xl {
+    width: 1.4rem;
+    height: 1.4rem;
+    border-width: 2px;
+}

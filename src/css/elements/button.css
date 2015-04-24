@@ -2,7 +2,7 @@
  * Button
  *
  * default - Default
- * .-green - Red
+ * .-green - Green
  * .-sm - Small
  * .-lg - Large
  * .-xl - X-Large
@@ -18,7 +18,7 @@
  *     <span class="button__text -middle">With icon</span>
  * </a>
  *
- * Styleguide 2.4
+ * Styleguide 2.5
  */
 
 .button {
