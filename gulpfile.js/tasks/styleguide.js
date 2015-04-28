@@ -23,6 +23,7 @@ gulp.task('styleguide:generate', function() {
             extraHead: '<link rel="stylesheet" href="/sg.css"><script src="/app.js"></script>',
             commonClass: 'sg-common',
             rootPath: '.',
+            appRoot: '/styleguide',
             disableEncapsulation: true,
             disableHtml5Mode: true
         }))
