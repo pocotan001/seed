@@ -9,7 +9,7 @@
     "test": "test",
     "src": "src",
     "dest": "public",
-    "styleguide": "public/styleguide"
+    "styleguide": "styleguide"
   },
   "scripts": {
     "start": "gulp build && gulp serve",
