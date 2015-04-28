@@ -1,9 +1,0 @@
-/**
- * Z-index master list
- *
- * https://css-tricks.com/handling-z-index/
- */
-
-:root {
-    --zindex-modal: 10000;
-}
