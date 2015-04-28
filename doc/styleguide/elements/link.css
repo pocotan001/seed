@@ -1,0 +1,36 @@
+/**
+ * Link
+ *
+ * default - Default
+ * .-block - Block-level
+ *
+ * Markup:
+ * <a class="link {$modifiers}" href="javascript:;">Link</a>
+ *
+ * Styleguide 2.2
+ */
+
+a,
+.link {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Block-level */
+
+.link.-block {
+    display: block;
+    width: 100%;
+}
+
+/* States */
+
+a:hover,
+a:focus,
+a:active,
+.link:hover,
+.link:focus,
+.link:active {
+    opacity: .8;
+}

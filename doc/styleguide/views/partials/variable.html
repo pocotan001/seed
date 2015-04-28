@@ -1,0 +1,12 @@
+<div>
+  <label>
+    <a class="sg" ui-sref="app.index.variable({ variableName: variable.name })" title="find where {{ variable.name }} is used">
+      {{ variable.name }}
+      <i class="fa fa-eye"></i>
+    </a>
+    <i ng-if="variable.dirty" class="fa fa-asterisk" title="this variable value has changed"></i>
+    <span class="sg variable-source">{{variable.file}}</span>
+  </label>
+  <input class="sg" type="color" ng-if="hasColor(variable.value)" ng-model="color.value" value="{{color.value}}">
+  <input class="sg" type="text" ng-model="variable.value" value="{{variable.value}}">
+</div>

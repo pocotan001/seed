@@ -1,0 +1,53 @@
+/**
+ * List
+ *
+ * default - Default
+ * .-unordered - Unordered list
+ * .-ordered - Ordered list
+ * .-inline - Inline-level
+ *
+ * Markup:
+ * <ul class="list {$modifiers}">
+ *     <li>遁げた山羊</li>
+ *     <li>つめくさのあかり</li>
+ *     <li>ポラーノの広場</li>
+ * </ul>
+ *
+ * Styleguide 2.7
+ */
+
+.list {
+    font-size: 1rem;
+}
+
+/* Unordered list */
+
+.list.-unordered > li::before {
+    margin-right: .5em;
+    content: "•";
+    color: var(--gray);
+}
+
+/* Ordered list */
+
+.list.-ordered {
+    counter-reset: ordered-list-counter;
+}
+
+.list.-ordered > li::before {
+    margin-right: .5em;
+    content: counter(ordered-list-counter)".";
+    counter-increment: ordered-list-counter;
+    color: var(--gray);
+}
+
+/* Inline-level */
+
+.list.-inline {
+    margin-left: -20px;
+}
+
+.list.-inline > li {
+    display: inline-block;
+    padding-left: 20px;
+}

@@ -1,0 +1,68 @@
+html {
+    background: #fff;
+}
+
+.sg.design {
+    display: none;
+}
+
+/* Styleguide Common class */
+
+.sg-common {
+    padding: 20px;
+    background: #f0f0f0;
+}
+
+/* Works well with Colors */
+
+.sg-swatches {
+    overflow: hidden;
+    margin-top: -1em;
+    margin-left: -1em;
+}
+
+.sg-swatches > li {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin-top: 1em;
+    margin-bottom: 25px;
+    margin-left: 1em;
+    text-align: center;
+    border-radius: 3px;
+    line-height: 230px;
+}
+
+/* Works well with SVG icons */
+
+.sg-icons {
+    margin-top: -.5em;
+    margin-left: -.5em;
+}
+
+.sg-icons > .icon {
+    width: 2rem;
+    height: 2rem;
+    margin-top: .5em;
+    margin-left: .5em;
+}
+
+/* Works well with Grid */
+
+.sg-gridDemo {
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    text-align: center;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.sg-gridDemo.-tall {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.sg-gridDemo.-transparent {
+    opacity: .6;
+}

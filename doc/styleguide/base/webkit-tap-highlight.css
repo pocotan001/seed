@@ -1,0 +1,16 @@
+/**
+ * Webkit tap highlight
+ */
+
+html {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a,
+button,
+input,
+select,
+textarea,
+label {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, .3);
+}

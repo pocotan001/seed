@@ -1,0 +1,32 @@
+/**
+ * Table
+ *
+ * default - Default
+ *
+ * Markup:
+ * <table class="table {$modifiers}">
+ *     <tr>
+ *         <th>Heading</th>
+ *         <th>Heading</th>
+ *         <th>Heading</th>
+ *         <th>Heading</th>
+ *     </tr>
+ *     <tr>
+ *         <td>Cell</td>
+ *         <td>Cell</td>
+ *         <td>Cell</td>
+ *         <td>Cell</td>
+ *     </tr>
+ * </table>
+ *
+ * Styleguide 2.8
+ */
+
+table {
+    width: 100%;
+    max-width: 100%;
+}
+
+th {
+    text-align: left;
+}

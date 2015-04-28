@@ -1,0 +1,41 @@
+/**
+ * Colors
+ *
+ * Markup:
+ * <h1 class="u-mb15">Gray colors</h1>
+ * <ul class="sg-swatches">
+ *     <li style="background: #000;">black</li>
+ *     <li style="background: #333;">gray-darker</li>
+ *     <li style="background: #555;">gray-dark</li>
+ *     <li style="background: #999;">gray</li>
+ *     <li style="background: #ccc;">gray-light</li>
+ *     <li style="background: #f0f0f0;">gray-lighter</li>
+ *     <li style="background: #fff;">white</li>
+ * </ul>
+ * <h1 class="u-mt15 u-mb15">Brand colors</h1>
+ * <ul class="sg-swatches">
+ *     <li style="background: #d9534f;">brand-red</li>
+ *     <li style="background: #5cb85c;">brand-green</li>
+ *     <li style="background: #f0ad4e;">brand-yellow</li>
+ * </ul>
+ *
+ * Styleguide 1.1
+ */
+
+:root {
+    /* Gray colors */
+
+    --black: #000;
+    --gray-darker: #333;
+    --gray-dark: #555;
+    --gray: #999;
+    --gray-light: #ccc;
+    --gray-lighter: #f0f0f0;
+    --white: #fff;
+
+    /* Brand colors */
+
+    --brand-red: #d9534f;
+    --brand-green: #9a3;
+    --brand-yellow: #f0ad4e;
+}

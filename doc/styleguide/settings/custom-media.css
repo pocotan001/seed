@@ -1,0 +1,7 @@
+/**
+ * Media queries breakpoints
+ */
+
+/* Tablets and Desktops */
+
+@custom-media --break-desktop (min-width: 768px);

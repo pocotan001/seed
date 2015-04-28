@@ -27,13 +27,13 @@ gulp.task('styleguide:generate', function() {
             disableEncapsulation: true,
             disableHtml5Mode: true
         }))
-        .pipe(gulp.dest(config.dirs.styleguide));
+        .pipe(gulp.dest(config.dirs.doc + '/styleguide'));
 });
 
 gulp.task('styleguide:applystyles', function() {
     return gulp.src(config.dirs.dest + '/app.css')
         .pipe(styleguide.applyStyles())
-        .pipe(gulp.dest(config.dirs.styleguide));
+        .pipe(gulp.dest(config.dirs.doc + '/styleguide'));
 });
 
 gulp.task('styleguide:copy', function() {
@@ -41,5 +41,5 @@ gulp.task('styleguide:copy', function() {
         'gulpfile.js/fixtures/styleguide/sg.css',
         config.dirs.dest + '/app.js'
     ])
-        .pipe(gulp.dest(config.dirs.styleguide));
+        .pipe(gulp.dest(config.dirs.doc + '/styleguide'));
 });

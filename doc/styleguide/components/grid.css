@@ -1,0 +1,220 @@
+/**
+ * Grid
+ *
+ * default - Default
+ * .-gutter - With gutter
+ * .-center - Center align
+ * .-right - Right align
+ * .-middle - Middle align
+ * .-bottom - Bottom align
+ * .-stretch - Fill the height
+ *
+ * Markup:
+ * <div class="grid {$modifiers}">
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -1of12">
+ *         <p class="sg-gridDemo">1/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -2of12">
+ *         <p class="sg-gridDemo">2/12</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell -2of12">
+ *         <p class="sg-gridDemo -tall">2/12</p>
+ *     </div><!-- /.grid__cell -->
+ * </div><!-- /.grid -->
+ *
+ * Styleguide 3.1
+ */
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* With gutter */
+
+.grid.-gutter {
+    margin-top: -20px;
+    margin-left: -20px;
+}
+
+.grid.-gutter > .grid__cell {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+/* Justify per row */
+
+.grid.-center {
+    justify-content: center;
+}
+
+.grid.-right {
+    justify-content: flex-end;
+}
+
+/* Alignment per row */
+
+.grid.-middle {
+    align-items: center;
+}
+
+.grid.-bottom {
+    align-items: flex-end;
+}
+
+/* Fill the height */
+
+.grid.-stretch > .grid__cell {
+    display: flex;
+}
+
+/**
+ * Grid cell
+ *
+ * default - Default
+ * .-fit - Auto-fit
+ * .-full - Full
+ * .-1of12 - 1/12
+ * .-2of12 - 2/12
+ * .-3of12 - 3/12
+ * .-4of12 - 4/12
+ * .-5of12 - 5/12
+ * .-6of12 - 6/12
+ * .-7of12 - 7/12
+ * .-8of12 - 8/12
+ * .-9of12 - 9/12
+ * .-10of12 - 10/12
+ * .-11of12 - 11/12
+ * .-first - Reorder to first
+ * .-last - Reorder to last
+ *
+ * Markup:
+ * <div class="grid -gutter">
+ *     <div class="grid__cell">
+ *         <p class="sg-gridDemo -transparent">default</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell {$modifiers}">
+ *         <p class="sg-gridDemo">{$modifiers}</p>
+ *     </div><!-- /.grid__cell -->
+ *     <div class="grid__cell">
+ *         <p class="sg-gridDemo -transparent">default</p>
+ *     </div><!-- /.grid__cell -->
+ * </div><!-- /.grid -->
+ *
+ * Styleguide 3.2
+ */
+
+.grid__cell {
+    flex: 1;
+    min-width: 1px; /* for multi-lines */
+}
+
+/* Intrinsic widths */
+
+.grid__cell.-fit {
+    flex: none;
+}
+
+.grid__cell.-full {
+    flex: 0 0 100%;
+}
+
+/* Proportional widths */
+
+.grid__cell.\-1of12 {
+    flex: 0 0 calc(100% * 1 / 12);
+    width: calc(100% * 1 / 12); /* for multi-lines of IE */
+}
+
+.grid__cell.\-2of12 {
+    flex: 0 0 calc(100% * 2 / 12);
+    width: calc(100% * 2 / 12);
+}
+
+.grid__cell.\-3of12 {
+    flex: 0 0 calc(100% * 3 / 12);
+    width: calc(100% * 3 / 12);
+}
+
+.grid__cell.\-4of12 {
+    flex: 0 0 calc(100% * 4 / 12);
+    width: calc(100% * 4 / 12);
+}
+
+.grid__cell.\-5of12 {
+    flex: 0 0 calc(100% * 5 / 12);
+    width: calc(100% * 5 / 12);
+}
+
+.grid__cell.\-6of12 {
+    flex: 0 0 calc(100% * 6 / 12);
+    width: calc(100% * 6 / 12);
+}
+
+.grid__cell.\-7of12 {
+    flex: 0 0 calc(100% * 7 / 12);
+    width: calc(100% * 7 / 12);
+}
+
+.grid__cell.\-8of12 {
+    flex: 0 0 calc(100% * 8 / 12);
+    width: calc(100% * 8 / 12);
+}
+
+.grid__cell.\-9of12 {
+    flex: 0 0 calc(100% * 9 / 12);
+    width: calc(100% * 9 / 12);
+}
+
+.grid__cell.\-10of12 {
+    flex: 0 0 calc(100% * 10 / 12);
+    width: calc(100% * 10 / 12);
+}
+
+.grid__cell.\-11of12 {
+    flex: 0 0 calc(100% * 11 / 12);
+    width: calc(100% * 11 / 12);
+}
+
+/* Reorder */
+
+.grid__cell.-first {
+    order: -1;
+}
+
+.grid__cell.-last {
+    order: 1;
+}

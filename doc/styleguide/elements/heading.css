@@ -1,0 +1,18 @@
+/**
+ * Heading
+ *
+ * Markup:
+ * <h1 class="heading {$modifiers}">ポラーノの広場</h1>
+ *
+ * Styleguide 2.1
+ */
+
+h1,
+.heading {
+    text-rendering: optimizeLegibility;
+    font-size: 2rem;
+    font-weight: normal;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+    line-height: 1.2;
+}
