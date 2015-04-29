@@ -10,4 +10,6 @@ deployment:
     styleguide:
         branch: master
         commands:
+            - git config user.name 'circle'
+            - git config user.email 'circle@example.com'
             - npm run ghpages
