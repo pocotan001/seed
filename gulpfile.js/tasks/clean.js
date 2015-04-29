@@ -9,6 +9,6 @@ gulp.task('clean', function (done) {
         config.dirs.dest + '/app.css',
         config.dirs.dest + '/app.js',
         config.dirs.dest + '/icon.svg',
-        config.dirs.styleguide
+        config.dirs.ghpages
     ], done);
 });

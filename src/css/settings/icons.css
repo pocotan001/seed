@@ -5,9 +5,9 @@
  *
  * Markup:
  * <div class="sg-icons">
- *     <svg class="icon"><use xlink:href="/icon.svg#heart"></use></svg>
- *     <svg class="icon"><use xlink:href="/icon.svg#hipster"></use></svg>
- *     <svg class="icon"><use xlink:href="/icon.svg#star"></use></svg>
+ *     <svg class="icon"><use xlink:href="icon.svg#heart"></use></svg>
+ *     <svg class="icon"><use xlink:href="icon.svg#hipster"></use></svg>
+ *     <svg class="icon"><use xlink:href="icon.svg#star"></use></svg>
  * </div><!-- /.sg-icons -->
  *
  * Styleguide 1.3

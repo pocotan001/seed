@@ -9,7 +9,7 @@
  * .-xl - X-Large
  *
  * Markup:
- * <svg class="icon {$modifiers}"><use xlink:href="/icon.svg#hipster"></use></svg>
+ * <svg class="icon {$modifiers}"><use xlink:href="icon.svg#hipster"></use></svg>
  *
  * Styleguide 2.3
  */

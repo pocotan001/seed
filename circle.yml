@@ -1,0 +1,15 @@
+general:
+    branches:
+        ignore:
+            - gh-pages
+
+machine:
+    timezone: Asia/Tokyo
+    node:
+        version: 0.10
+
+deployment:
+    styleguide:
+        branch: master
+        commands:
+            - npm run ghpages

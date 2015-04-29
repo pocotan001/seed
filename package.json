@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "seed",
   "version": "0.0.1",
   "description": "Starter skeleton for frontend projects",
   "private": true,
@@ -8,13 +8,15 @@
     "doc": "doc",
     "test": "test",
     "src": "src",
-    "dest": "public"
+    "dest": "public",
+    "ghpages": "gh-pages"
   },
   "scripts": {
     "start": "gulp build && gulp serve",
     "test": "gulp test",
     "production": "NODE_ENV=production gulp",
     "watch": "gulp -w",
+    "ghpages": "gulp ghpages",
     "gulp": "gulp"
   },
   "dependencies": {
@@ -34,6 +36,7 @@
     "gulp-cssnext": "^1.0.0",
     "gulp-eslint": "^0.9.0",
     "gulp-filter": "^2.0.2",
+    "gulp-gh-pages": "^0.5.1",
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.3",

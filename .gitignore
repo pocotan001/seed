@@ -1,3 +1,5 @@
+.publish
+gh-pages
 node_modules
 public/app.css
 public/app.js

@@ -14,7 +14,7 @@
  * <button class="button {$modifiers}">Button</button>
  * <input class="button {$modifiers}" type="submit" value="Submit">
  * <a class="button {$modifiers}" href="javascript:;">
- *     <svg class="icon"><use xlink:href="/icon.svg#hipster"></use></svg>
+ *     <svg class="icon"><use xlink:href="icon.svg#hipster"></use></svg>
  *     <span class="button__text -middle">With icon</span>
  * </a>
  *
