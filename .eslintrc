@@ -32,6 +32,18 @@ rules:
     max-len: [1, 100, 4]
     max-params: [1, 3]
 
+    # React
+    react/jsx-quotes: [1, "double"]
+    react/jsx-no-undef: 2
+    react/jsx-uses-vars: 2
+    react/no-did-mount-set-state: 2
+    react/no-did-update-set-state: 2
+    react/no-multi-comp: 2
+    react/no-unknown-property: 2
+    react/react-in-jsx-scope: 2
+    react/self-closing-comp: 2
+    react/wrap-multilines: 1
+
 env:
     browser: true
     node: true

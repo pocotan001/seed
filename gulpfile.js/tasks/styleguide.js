@@ -5,6 +5,11 @@ var styleguide  = require('sc5-styleguide');
 var runSequence = require('run-sequence');
 var config      = require('../config');
 
+var root = '/seed/styleguide';
+var extraHead = [
+    '<link rel="stylesheet" href="' + root + '/sg.css">',
+    '<script src="' + root + '/app.js"></script>'
+].join('');
 var watched = false;
 
 gulp.task('styleguide', function(done) {
@@ -17,14 +22,14 @@ gulp.task('styleguide', function(done) {
 });
 
 gulp.task('styleguide:generate', function() {
-    return gulp.src(config.dirs.src + '/css/**/*.css')
+    return gulp.src(config.dirs.src + '/**/*.css')
         .pipe(styleguide.generate({
             title: 'Seed Style Guide',
             overviewPath: 'README.md',
-            extraHead: '<link rel="stylesheet" href="sg.css"><script src="app.js"></script>',
+            extraHead: extraHead,
             commonClass: 'sg-common',
             rootPath: '.',
-            appRoot: '/' + config.name + '/styleguide',
+            appRoot: root,
             disableEncapsulation: true,
             disableHtml5Mode: true
         }))

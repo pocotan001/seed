@@ -7,7 +7,7 @@ machine:
     timezone: Asia/Tokyo
 
 deployment:
-    styleguide:
+    ghpages:
         branch: master
         commands:
             - git config --global user.name 'circleci'

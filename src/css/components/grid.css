@@ -3,8 +3,10 @@
  *
  * default - Default
  * .-gutter - With gutter
+ * .-left - Left align
  * .-center - Center align
  * .-right - Right align
+ * .-top - Top align
  * .-middle - Middle align
  * .-bottom - Bottom align
  * .-stretch - Fill the height
@@ -77,6 +79,10 @@
 
 /* Justify per row */
 
+.Grid--left {
+  justify-content: flex-start;
+}
+
 .grid.-center {
     justify-content: center;
 }
@@ -86,6 +92,10 @@
 }
 
 /* Alignment per row */
+
+.Grid.-top {
+  align-items: flex-start;
+}
 
 .grid.-middle {
     align-items: center;
