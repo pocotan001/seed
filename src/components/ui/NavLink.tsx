@@ -9,26 +9,21 @@ interface INavLinkProps extends ILinkProps {
   path?: string;
   exact?: boolean;
   strict?: boolean;
+  store?: RootStore;
 }
 
-interface IInjectedProps extends INavLinkProps {
-  store: RootStore;
-}
-
-const NavLink: React.SFC<INavLinkProps> = props => {
-  const {
-    href,
-    activeClassName,
-    className,
-    path,
-    exact,
-    strict,
-    store,
-    ...rest
-  } = props as IInjectedProps;
-
+const NavLink: React.SFC<INavLinkProps> = ({
+  href,
+  activeClassName,
+  className,
+  path,
+  exact,
+  strict,
+  store,
+  ...rest
+}) => {
   const isActive = Boolean(
-    matchPath(store.state.history.location.pathname, {
+    matchPath(store!.state.history.location.pathname, {
       path: path || href,
       exact,
       strict
@@ -39,7 +34,9 @@ const NavLink: React.SFC<INavLinkProps> = props => {
     ? [className, activeClassName].filter(Boolean).join(" ")
     : className;
 
-  return <Link href={href} className={computedClassName} {...rest} />;
+  return (
+    <Link href={href} className={computedClassName} store={store} {...rest} />
+  );
 };
 
 export default inject("store")(observer(NavLink));

@@ -22,12 +22,6 @@ export default class Observer extends React.PureComponent<
   IObserverProps,
   IObserverState
 > {
-  static defaultProps: Partial<IObserverProps> = {
-    onChange: () => undefined,
-    onEnter: () => undefined,
-    onLeave: () => undefined
-  };
-
   state = {
     intersecting: false
   };
@@ -45,16 +39,20 @@ export default class Observer extends React.PureComponent<
       return;
     }
 
-    onChange!(entry);
+    if (onChange) {
+      onChange(entry);
+    }
 
     if (intersecting) {
-      onEnter!(entry);
+      if (onEnter) {
+        onEnter(entry);
+      }
 
       if (once) {
         this.observer!.unobserve(this.el.current!);
       }
-    } else {
-      onLeave!(entry);
+    } else if (onLeave) {
+      onLeave(entry);
     }
 
     this.setState({ intersecting });

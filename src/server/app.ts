@@ -27,7 +27,7 @@ app.use(session());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
-  config.apiPath,
+  "/api",
   api.csrf(),
   api.cache(),
   api.context(),

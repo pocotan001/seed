@@ -8,7 +8,6 @@ import { ServerStyleSheet } from "styled-components";
 import App from "~/components/App";
 import Head from "~/components/modules/Head";
 import Scripts from "~/components/modules/Scripts";
-import config from "~/config";
 import createLogger from "~/infrastructure/logger";
 import createRequest from "~/infrastructure/request";
 import createRouter from "~/infrastructure/router";
@@ -37,7 +36,7 @@ const render = (): RequestHandler => async (req, res, next) => {
   try {
     const history = createHistory({ initialEntries: [req.originalUrl] });
     const api = createRequest({
-      baseURL: config.apiPath,
+      baseURL: "/api",
       proxy: {
         host: "127.0.0.1",
         port: Number(process.env.PORT)

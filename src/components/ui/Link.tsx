@@ -10,9 +10,6 @@ export interface ILinkProps
   href: string;
   children: React.ReactNode;
   block?: boolean;
-}
-
-interface IInjectedProps extends ILinkProps {
   store?: RootStore;
 }
 
@@ -21,7 +18,7 @@ const isModifiedEvent = (e: IMouseEvent): boolean =>
   Boolean(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
 
 @inject("store")
-export class Link extends React.PureComponent<IInjectedProps> {
+export class Link extends React.PureComponent<ILinkProps> {
   store = this.props.store!;
 
   handleClick = (e: IMouseEvent) => {

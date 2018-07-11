@@ -17,7 +17,7 @@ const { __STATE }: { __STATE: State } = window as any;
 
 const log = createLogger("[app]");
 const history = createHistory();
-const api = createRequest({ baseURL: config.apiPath });
+const api = createRequest({ baseURL: "/api" });
 const state = createState(__STATE);
 const store = createStore(state, { history, api });
 const router = createRouter(routes, { store, onError: onRouteError });
