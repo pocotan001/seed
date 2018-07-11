@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from "axios";
-import { ErrorCode, normalizeError } from "~/infrastructure/error";
+import { normalizeError } from "~/infrastructure/error";
 
 const CODE_ECONNABORTED = "ECONNABORTED";
 
@@ -24,7 +24,6 @@ export const onRejected = (e: any): Promise<never> => {
     }
   } else if (axiosErr.code === CODE_ECONNABORTED) {
     err.status = 408;
-    err.code = ErrorCode.INTERNAL;
   } else {
     err.status = 500;
   }

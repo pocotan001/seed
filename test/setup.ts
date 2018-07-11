@@ -1,5 +1,5 @@
 import "../tools/env";
 
-import MockIntersectionObserver from "./__mocks__/MockIntersectionObserver";
+import MockIntersectionObserver from "./mocks/MockIntersectionObserver";
 
 (global as any).IntersectionObserver = MockIntersectionObserver;

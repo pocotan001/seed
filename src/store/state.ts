@@ -3,7 +3,7 @@ import { extendObservable, observable } from "mobx";
 import config from "~/config";
 import { IApiResponse, INormalizedEntities } from "~/domain/entities";
 
-export const defaultState: State = {
+export const defaultState: State = Object.freeze({
   history: {
     location: createLocation(""),
     visited: {}
@@ -26,7 +26,7 @@ export const defaultState: State = {
   cats: {
     totalCount: 0
   }
-};
+});
 
 export class State {
   history!: {

@@ -25,7 +25,16 @@ app.use(logger());
 app.use(security.nonce(), security.headers());
 app.use(session());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(config.apiPath, api.csrf(), api.context(), api.routes(), api.catcher());
+
+app.use(
+  config.apiPath,
+  api.csrf(),
+  api.cache(),
+  api.context(),
+  api.routes(),
+  api.catcher()
+);
+
 app.use(routes);
 app.use(render());
 app.use(catcher());
