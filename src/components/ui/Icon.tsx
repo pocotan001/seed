@@ -13,11 +13,7 @@ interface IIconProps extends IMarginProps {
 }
 
 const Icon: React.SFC<IIconProps> = ({ src, className }) => (
-  <span
-    className={className}
-    dangerouslySetInnerHTML={{ __html: src }}
-    role="img"
-  />
+  <span className={className} dangerouslySetInnerHTML={{ __html: src }} />
 );
 
 const StyledIcon = styled(Icon)`
