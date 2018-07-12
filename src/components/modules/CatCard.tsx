@@ -4,7 +4,7 @@ import { Grid, GridCell } from "~/components/ui/Grid";
 import Heading from "~/components/ui/Heading";
 import Image from "~/components/ui/Image";
 import Paragraph from "~/components/ui/Paragraph";
-import { ICat } from "~/domain/entities";
+import { ICat } from "~/domain/Cat";
 
 interface ICatCardProps {
   cat: ICat;

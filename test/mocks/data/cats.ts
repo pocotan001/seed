@@ -1,4 +1,4 @@
-import { INormalizedEntities } from "~/domain/entities/Normalized";
+import { INormalizedEntities } from "~/domain/Normalized";
 
 const cats: INormalizedEntities["cats"] = Object.freeze({
   "0": {

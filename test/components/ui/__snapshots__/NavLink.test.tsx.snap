@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavLink> changes the class name when actived 1`] = `
+<a
+  className="a sc-bdVaJa lcNCvQ"
+  href="/a"
+  onClick={[Function]}
+>
+  alo
+</a>
+`;
+
+exports[`<NavLink> renders correctly 1`] = `
+<a
+  className="sc-bdVaJa lcNCvQ"
+  href="/a"
+  onClick={[Function]}
+>
+  alo
+</a>
+`;

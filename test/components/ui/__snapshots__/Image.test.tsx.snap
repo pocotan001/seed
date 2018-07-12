@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Image> renders as it is when data uri is set 1`] = `
+<img
+  alt=""
+  className="sc-bdVaJa eFtYDj"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs="
+/>
+`;
+
+exports[`<Image> renders correctly 1`] = `
+<img
+  alt=""
+  className="sc-bdVaJa eFtYDj"
+  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+/>
+`;

@@ -1,5 +1,5 @@
 import { RequestHandler } from "express-serve-static-core";
-import { IApiResponse } from "~/domain/entities";
+import { IApiResponse } from "~/domain/Api";
 
 export const login: RequestHandler = async (req, res, next) => {
   const service = req.ctx.service!;

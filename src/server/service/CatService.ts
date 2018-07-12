@@ -1,4 +1,4 @@
-import { ICat } from "~/domain/entities";
+import { ICat } from "~/domain/Cat";
 import Service from "./Service";
 
 interface IGetCatsParams {
@@ -16,7 +16,7 @@ export default class CatService extends Service {
   }
 
   async getCats({ page, per }: IGetCatsParams): Promise<ICat[]> {
-    const offset = Math.min((page - 1) * per, TOTAL_COUNT);
+    const offset = Math.min(Math.max(page - 1, 0) * per, TOTAL_COUNT);
     const limit = Math.min(per, TOTAL_COUNT - offset);
 
     return Array.from(Array(limit).keys()).map(i => {

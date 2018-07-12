@@ -23,6 +23,8 @@ if (config.isProd) {
     process.exit(1);
   });
 
+  log.debug("Booting in %o mode", config.env);
+
   app.listen(PORT, () => {
     log.info(`Listening on ${PORT}`);
   });

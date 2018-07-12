@@ -1,7 +1,7 @@
 import { AxiosPromise, AxiosRequestConfig } from "axios";
 import * as express from "express-serve-static-core";
 import { History } from "history";
-import { IApiResponse } from "~/domain/entities";
+import { IApiResponse } from "~/domain/Api";
 import { Request } from "~/infrastructure/request";
 import { RootStore } from ".";
 

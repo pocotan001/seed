@@ -1,7 +1,8 @@
 import { createLocation, Location } from "history";
 import { extendObservable, observable } from "mobx";
 import config from "~/config";
-import { IApiResponse, INormalizedEntities } from "~/domain/entities";
+import { IApiResponse } from "~/domain/Api";
+import { INormalizedEntities } from "~/domain/Normalized";
 
 export const defaultState: State = Object.freeze({
   history: {

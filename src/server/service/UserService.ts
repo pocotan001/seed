@@ -1,4 +1,4 @@
-import { IUser } from "~/domain/entities";
+import { IUser } from "~/domain/User";
 import Service from "./Service";
 
 interface ILoginParams {

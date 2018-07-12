@@ -1,7 +1,7 @@
 import { RequestHandler } from "express-serve-static-core";
 import { normalize } from "normalizr";
-import { IApiResponse } from "~/domain/entities";
-import { catSchema } from "~/domain/schemas";
+import { IApiResponse } from "~/domain/Api";
+import catSchema from "~/domain/catSchema";
 
 export const getCats: RequestHandler = async (req, res, next) => {
   const service = req.ctx.service!;

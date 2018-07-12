@@ -1,7 +1,7 @@
 import { action } from "mobx";
 import { denormalize } from "normalizr";
-import { ICat } from "~/domain/entities";
-import { catSchema } from "~/domain/schemas";
+import { ICat } from "~/domain/Cat";
+import catSchema from "~/domain/catSchema";
 import { serializeParams } from "~/infrastructure/utils";
 import Store from "./Store";
 

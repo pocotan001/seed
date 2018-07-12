@@ -14,7 +14,7 @@
     "lint": "tslint '{src,tools}/!(typings)/**/*.{ts,tsx}'",
     "prettier": "prettier --parser typescript --write '{src,tools}/!(typings)/**/*.{ts,tsx}'",
     "precommit": "lint-staged",
-    "deploy": "NODE_ENV=production npm run build && gcloud app deploy --project [PROJECT_ID]"
+    "deploy": "NODE_ENV=production npm run build && gcloud app deploy --project pocotan001-seed"
   },
   "browserslist": [
     "> 1%",
@@ -55,6 +55,7 @@
     "express": "4.16.3",
     "helmet": "3.12.1",
     "history": "4.7.2",
+    "intersection-observer": "0.5.0",
     "lodash": "4.17.10",
     "marked": "0.4.0",
     "mobx": "5.0.3",

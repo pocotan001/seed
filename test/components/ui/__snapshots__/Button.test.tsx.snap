@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button> renders correctly 1`] = `
+<button
+  className="sc-bdVaJa bqithI"
+  theme={
+    Object {
+      "breakpoints": Object {
+        "phone": 376,
+        "tablet": 768,
+      },
+      "colors": Object {
+        "black": "#000",
+        "grey100": "#f5f5f5",
+        "grey200": "#eeeeee",
+        "grey300": "#e0e0e0",
+        "grey400": "#bdbdbd",
+        "grey50": "#fafafa",
+        "grey500": "#9e9e9e",
+        "grey600": "#757575",
+        "grey700": "#616161",
+        "grey800": "#424242",
+        "grey900": "#212121",
+        "pink100": "#f8bbd0",
+        "pink200": "#f48fb1",
+        "pink300": "#f06292",
+        "pink400": "#ec407a",
+        "pink50": "#fce4ec",
+        "pink500": "#e91e63",
+        "pink600": "#d81b60",
+        "pink700": "#c2185b",
+        "pink800": "#ad1457",
+        "pink900": "#880e4f",
+        "white": "#fff",
+      },
+      "dimensions": Object {
+        "sidebarWidth": 280,
+      },
+      "fonts": Object {
+        "sans": "\\"Helvetica Neue\\", Helvetica, Arial, sans-serif",
+      },
+      "zIndex": Object {
+        "loading": 100,
+      },
+    }
+  }
+  type="button"
+>
+  alo
+</button>
+`;

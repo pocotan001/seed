@@ -77,6 +77,7 @@ const onLocationChange: LocationListener = async (location, action) => {
   }
 };
 
+log.debug("Booting in %o mode", config.env);
 head(state);
 history.listen(onLocationChange);
 hydrate();

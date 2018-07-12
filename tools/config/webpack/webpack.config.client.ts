@@ -10,7 +10,7 @@ import baseConfig, { isDev } from "./webpack.config.base";
 const clientConfig = merge(baseConfig, {
   name: "Client",
   target: "web",
-  entry: ["@babel/polyfill", "./src/client/index.tsx"],
+  entry: ["@babel/polyfill", "intersection-observer", "./src/client/index.tsx"],
   output: {
     path: `${DIST_DIR}/public`,
     filename: isDev ? "main.js" : "main.[hash].js",

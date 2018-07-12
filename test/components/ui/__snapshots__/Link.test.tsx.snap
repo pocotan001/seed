@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Link> renders correctly 1`] = `
+<a
+  className="sc-bdVaJa lcNCvQ"
+  href="/a"
+  onClick={[Function]}
+>
+  alo
+</a>
+`;
+
+exports[`<Link> should call \`history.push\` if clicked 1`] = `
+<a
+  className="sc-bdVaJa lcNCvQ"
+  href="/a"
+  onClick={[Function]}
+>
+  alo
+</a>
+`;

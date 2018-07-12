@@ -1,6 +1,6 @@
 import { ErrorRequestHandler } from "express-serve-static-core";
 import { pick } from "lodash";
-import { IApiErrorResponse } from "~/domain/entities";
+import { IApiErrorResponse } from "~/domain/Api";
 import { normalizeError } from "~/infrastructure/error";
 import createLogger from "~/infrastructure/logger";
 

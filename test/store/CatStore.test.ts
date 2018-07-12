@@ -3,7 +3,7 @@ import { RootStore } from "~/store";
 import CatStore from "~/store/CatStore";
 import { defaultState } from "~/store/state";
 import { IStoreContext } from "~/store/Store";
-import cats from "../mocks/entities/cats";
+import cats from "../mocks/data/cats";
 
 let rootStore: RootStore;
 
