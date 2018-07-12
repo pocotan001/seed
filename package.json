@@ -14,7 +14,7 @@
     "lint": "tslint '{src,tools}/!(typings)/**/*.{ts,tsx}'",
     "prettier": "prettier --parser typescript --write '{src,tools}/!(typings)/**/*.{ts,tsx}'",
     "precommit": "lint-staged",
-    "deploy": "NODE_ENV=production npm run build && gcloud app deploy --project pocotan001-seed"
+    "deploy": "NODE_ENV=production npm run build && gcloud app deploy --project [PROJECT_ID]"
   },
   "browserslist": [
     "> 1%",
