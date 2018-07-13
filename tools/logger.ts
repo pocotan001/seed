@@ -1,6 +1,6 @@
 import chalk from "chalk";
 
-export const log = {
+const logger = {
   info: (message: string) => process.stdout.write(`${message}\n`),
   wait: (message: string) =>
     process.stdout.write(`${chalk.black.bgBlue(" WAIT ")} ${message}\n`),
@@ -12,3 +12,5 @@ export const log = {
     process.stderr.write(`${chalk.black.bgRed(" ERROR ")} ${message}\n`),
   clear: () => process.stdout.write("\x1Bc")
 };
+
+export default logger;

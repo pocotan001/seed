@@ -4,7 +4,7 @@ import "./env";
 import chalk from "chalk";
 import * as debug from "debug";
 import { SCRIPTS_DIR } from "./config/paths";
-import { log } from "./utils";
+import logger from "./logger";
 
 const { humanize } = debug as any;
 
@@ -13,15 +13,15 @@ const { humanize } = debug as any;
     const [, , script] = process.argv;
     const start = Date.now();
 
-    log.wait(`${script} starting...\n`);
+    logger.wait(`${script} starting...\n`);
     await require(`${SCRIPTS_DIR}/${script}`).default();
 
     const end = Date.now();
     const time = chalk.green(`+${humanize(end - start)}`);
 
-    log.done(`${script} finished ${time}\n`);
+    logger.done(`${script} finished ${time}\n`);
   } catch (err) {
-    log.error(err.stack);
+    logger.error(err.stack);
     process.exit(1);
   }
 })();
