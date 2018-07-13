@@ -15,15 +15,21 @@ const PLACEHOLDER_SRC =
   "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 const ROOT_MARGIN = "300px";
 
+const cache: Set<string> = new Set();
+
 const Image: React.SFC<IImageProps> = ({ src, m, mt, mr, mb, ml, ...rest }) =>
-  isDataUri(src) ? (
+  cache.has(src) || isDataUri(src) ? (
     <img src={src} {...rest} />
   ) : (
     // Lazy load
     <Observer rootMargin={ROOT_MARGIN} once>
-      {isIntersecting => (
-        <img src={isIntersecting ? src : PLACEHOLDER_SRC} {...rest} />
-      )}
+      {isIntersecting => {
+        if (isIntersecting) {
+          cache.add(src);
+        }
+
+        return <img src={isIntersecting ? src : PLACEHOLDER_SRC} {...rest} />;
+      }}
     </Observer>
   );
 
