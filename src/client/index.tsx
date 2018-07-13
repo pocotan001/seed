@@ -82,10 +82,10 @@ head(state);
 history.listen(onLocationChange);
 hydrate();
 
-if (config.isProd) {
-  sw.register();
-} else {
+if (config.isLocal) {
   sw.unregister();
+} else {
+  sw.register();
 }
 
 if (module.hot) {

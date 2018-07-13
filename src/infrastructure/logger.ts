@@ -27,7 +27,7 @@ export enum LogLevel {
 
 type ILogLevelKey = keyof typeof LogLevel;
 
-const FORBIDDEN = config.isProd && config.isClient;
+const FORBIDDEN = !config.isLocal && config.isClient;
 
 const Types: Record<ILogType, ILogConfig> = {
   error: {

@@ -3,13 +3,13 @@ import * as webpack from "webpack";
 import * as pkg from "../../../package.json";
 import { SRC_DIR } from "../paths";
 
-export const isDev = process.env.NODE_ENV === "development";
+export const isDebug = process.env.NODE_ENV === "local";
 
 const baseConfig: webpack.Configuration = {
-  mode: isDev ? "development" : "production",
-  bail: !isDev,
-  cache: isDev,
-  devtool: isDev && ("inline-cheap-module-source-map" as any),
+  mode: isDebug ? "development" : "production",
+  bail: !isDebug,
+  cache: isDebug,
+  devtool: isDebug && ("inline-cheap-module-source-map" as any),
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
     alias: { "~": SRC_DIR }
@@ -26,7 +26,7 @@ const baseConfig: webpack.Configuration = {
           {
             loader: "babel-loader",
             options: {
-              cacheDirectory: isDev,
+              cacheDirectory: isDebug,
               babelrc: false,
               presets: [
                 [
@@ -40,7 +40,7 @@ const baseConfig: webpack.Configuration = {
                   }
                 ],
                 ["@babel/preset-stage-2", { decoratorsLegacy: true }],
-                ["@babel/preset-react", { development: isDev }]
+                ["@babel/preset-react", { development: isDebug }]
               ],
               plugins: [
                 ...[
@@ -49,11 +49,11 @@ const baseConfig: webpack.Configuration = {
                     "babel-plugin-styled-components",
                     {
                       ssr: true,
-                      displayName: isDev
+                      displayName: isDebug
                     }
                   ]
                 ],
-                ...(isDev
+                ...(isDebug
                   ? []
                   : [
                       // https://babeljs.io/docs/en/next/babel-plugin-transform-react-constant-elements.html
@@ -87,7 +87,7 @@ const baseConfig: webpack.Configuration = {
           {
             loader: "url-loader",
             options: {
-              name: isDev ? "img/[name].[ext]" : "img/[name].[hash].[ext]",
+              name: isDebug ? "img/[name].[ext]" : "img/[name].[hash].[ext]",
               limit: 1024 // 1KB
             }
           }

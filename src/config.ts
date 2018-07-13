@@ -3,9 +3,9 @@ const config = Object.freeze({
   logLevel: process.env.LOG_LEVEL || "TRACE",
   env: process.env.NODE_ENV,
   isProd: process.env.NODE_ENV === "production",
-  isDev: process.env.NODE_ENV === "development",
-  isServer: process.env.SERVER === "yes",
-  isClient: process.env.CLIENT === "yes"
+  isLocal: process.env.NODE_ENV === "local",
+  isServer: Boolean(process.env.SERVER),
+  isClient: Boolean(process.env.CLIENT)
 });
 
 export default config;

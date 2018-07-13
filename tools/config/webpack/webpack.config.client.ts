@@ -5,7 +5,7 @@ import * as merge from "webpack-merge";
 import { GenerateSW } from "workbox-webpack-plugin";
 import * as pkg from "../../../package.json";
 import { DIST_DIR } from "../paths";
-import baseConfig, { isDev } from "./webpack.config.base";
+import baseConfig, { isDebug } from "./webpack.config.base";
 
 const clientConfig = merge(baseConfig, {
   name: "Client",
@@ -13,14 +13,16 @@ const clientConfig = merge(baseConfig, {
   entry: ["@babel/polyfill", "intersection-observer", "./src/client/index.tsx"],
   output: {
     path: `${DIST_DIR}/public`,
-    filename: isDev ? "main.js" : "main.[hash].js",
-    chunkFilename: isDev ? "chunks/[name].js" : "chunks/[name].[chunkhash].js",
+    filename: isDebug ? "main.js" : "main.[hash].js",
+    chunkFilename: isDebug
+      ? "chunks/[name].js"
+      : "chunks/[name].[chunkhash].js",
     publicPath: "/"
   },
   plugins: [
     ...[
       new webpack.EnvironmentPlugin({
-        ...pick(process.env, ["NODE_ENV", "LOG_LEVEL"]),
+        ...pick(process.env, ["NODE_ENV", "DEBUG", "LOG_LEVEL"]),
         CLIENT: "yes"
       }),
       // https://github.com/danethurber/webpack-manifest-plugin
@@ -38,11 +40,11 @@ const clientConfig = merge(baseConfig, {
         },
         ...({
           serialize: (chunks: any) =>
-            JSON.stringify(chunks, null, isDev ? 2 : 0)
+            JSON.stringify(chunks, null, isDebug ? 2 : 0)
         } as any)
       })
     ],
-    ...(isDev
+    ...(isDebug
       ? []
       : [
           // https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin

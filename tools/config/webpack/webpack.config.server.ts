@@ -1,3 +1,4 @@
+import { pick } from "lodash";
 import * as webpack from "webpack";
 import * as merge from "webpack-merge";
 import * as nodeExternals from "webpack-node-externals";
@@ -16,7 +17,12 @@ const serverConfig = merge(baseConfig, {
     libraryTarget: "commonjs2"
   },
   externals: [nodeExternals(), "./chunk-manifest.json"],
-  plugins: [new webpack.EnvironmentPlugin({ SERVER: "yes" })],
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      ...pick(process.env, ["NODE_ENV", "DEBUG", "LOG_LEVEL"]),
+      SERVER: "yes"
+    })
+  ],
   // Do not replace node globals with polyfills
   // https://webpack.js.org/configuration/node/
   node: {

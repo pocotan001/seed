@@ -25,11 +25,11 @@ declare global {
 
   export namespace NodeJS {
     export interface ProcessEnv {
-      NODE_ENV: "production" | "development" | "test";
+      NODE_ENV: "production" | "development" | "local" | "test";
       DEBUG?: string;
       LOG_LEVEL?: string;
-      SERVER?: "yes" | "no";
-      CLIENT?: "yes" | "no";
+      SERVER?: "yes" | undefined;
+      CLIENT?: "yes" | undefined;
       PORT?: string; // server only
       TRUST_PROXY?: string; // server only
       SESSION_NAME?: string; // server only
