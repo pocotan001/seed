@@ -1,13 +1,12 @@
 import { RequestHandler } from "express-serve-static-core";
 import * as helmet from "helmet";
-import config from "~/config";
 
 const headers = (): RequestHandler =>
   helmet({
     // https://helmetjs.github.io/docs/csp/
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
+        defaultSrc: ["'none'"],
         scriptSrc: [
           "'self'",
           "storage.googleapis.com",
@@ -17,15 +16,20 @@ const headers = (): RequestHandler =>
         imgSrc: ["'self'", "data:", "placekitten.com"],
         connectSrc: ["'self'"],
         fontSrc: ["'self'"],
-        objectSrc: ["'none'"],
-        baseUri: ["'none'"],
-        blockAllMixedContent: config.isProd,
+        blockAllMixedContent: true,
         reportUri: "/csp-report"
       }
     },
 
+    // https://helmetjs.github.io/docs/expect-ct/
+    expectCt: {
+      enforce: true,
+      maxAge: 86400,
+      reportUri: "/ct-report"
+    },
+
     // https://helmetjs.github.io/docs/referrer-policy/
-    referrerPolicy: { policy: "origin" }
+    referrerPolicy: { policy: "same-origin" }
   });
 
 export default headers;

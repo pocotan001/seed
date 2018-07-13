@@ -19,7 +19,11 @@ app.use(logger());
 
 app.use(
   bodyParser.json({
-    type: ["json", "application/csp-report"]
+    type: [
+      "json",
+      "application/csp-report",
+      "application/expect-ct-report+json"
+    ]
   })
 );
 
