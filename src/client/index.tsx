@@ -77,15 +77,15 @@ const onLocationChange: LocationListener = async (location, action) => {
   }
 };
 
-log.debug("Booting in %o mode", config.env);
+log.info("Booting in %o mode", config.env);
 head(state);
 history.listen(onLocationChange);
 hydrate();
 
-if (config.isLocal) {
-  sw.unregister();
-} else {
+if (config.isProd) {
   sw.register();
+} else {
+  sw.unregister();
 }
 
 if (module.hot) {

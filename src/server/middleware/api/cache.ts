@@ -4,7 +4,7 @@ import config from "~/config";
 const CACHEABLE_METHODS = ["GET", "HEAD"];
 
 const cache = (): RequestHandler => (req, res, next) => {
-  if (!config.isLocal && CACHEABLE_METHODS.includes(req.method)) {
+  if (config.isProd && CACHEABLE_METHODS.includes(req.method)) {
     // https://cloud.google.com/appengine/docs/standard/nodejs/reference/request-response-headers#cache-control_expires_and_vary
     res.header("Cache-Control", "public, max-age=10");
   }

@@ -11,7 +11,7 @@ const session = (): RequestHandler =>
       process.env.SESSION_SECRET_2 || FAKE_SECRET,
       process.env.SESSION_SECRET_3 || FAKE_SECRET
     ],
-    secure: !config.isLocal
+    secure: config.isProd
   });
 
 export default session;

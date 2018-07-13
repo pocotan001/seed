@@ -4,7 +4,7 @@ import app from "./app";
 
 // HACK: `require.main === module` does not work on webpack...
 // https://nodejs.org/api/modules.html#modules_accessing_the_main_module
-if (!config.isLocal) {
+if (config.isProd) {
   const PORT = Number(process.env.PORT) || 3000;
   const log = createLogger("[app]");
 
@@ -23,7 +23,7 @@ if (!config.isLocal) {
     process.exit(1);
   });
 
-  log.debug("Booting in %o mode", config.env);
+  log.info("Booting in %o mode", config.env);
 
   app.listen(PORT, () => {
     log.info(`Listening on ${PORT}`);

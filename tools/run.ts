@@ -13,7 +13,9 @@ const { humanize } = debug as any;
     const [, , script] = process.argv;
     const start = Date.now();
 
-    logger.wait(`${script} starting...\n`);
+    logger.wait(
+      `${script} starting with env ${chalk.green(`"${process.env.ENV}"`)}\n`
+    );
     await require(`${SCRIPTS_DIR}/${script}`).default();
 
     const end = Date.now();

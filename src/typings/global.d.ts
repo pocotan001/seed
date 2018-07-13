@@ -25,7 +25,7 @@ declare global {
 
   export namespace NodeJS {
     export interface ProcessEnv {
-      NODE_ENV: "production" | "development" | "local" | "test";
+      NODE_ENV: "test" | "development" | "production";
       DEBUG?: string;
       LOG_LEVEL?: string;
       SERVER?: "yes" | undefined;

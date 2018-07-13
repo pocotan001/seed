@@ -5,7 +5,7 @@ import * as merge from "webpack-merge";
 import { GenerateSW } from "workbox-webpack-plugin";
 import * as pkg from "../../../package.json";
 import { DIST_DIR } from "../paths";
-import baseConfig, { isDebug } from "./webpack.config.base";
+import baseConfig, { ENV_EXPORTS, isDebug } from "./webpack.config.base";
 
 const clientConfig = merge(baseConfig, {
   name: "Client",
@@ -22,7 +22,7 @@ const clientConfig = merge(baseConfig, {
   plugins: [
     ...[
       new webpack.EnvironmentPlugin({
-        ...pick(process.env, ["NODE_ENV", "DEBUG", "LOG_LEVEL"]),
+        ...pick(process.env, ENV_EXPORTS),
         CLIENT: "yes"
       }),
       // https://github.com/danethurber/webpack-manifest-plugin

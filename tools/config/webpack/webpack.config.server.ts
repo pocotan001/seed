@@ -3,7 +3,7 @@ import * as webpack from "webpack";
 import * as merge from "webpack-merge";
 import * as nodeExternals from "webpack-node-externals";
 import { DIST_DIR } from "../paths";
-import baseConfig from "./webpack.config.base";
+import baseConfig, { ENV_EXPORTS } from "./webpack.config.base";
 
 const serverConfig = merge(baseConfig, {
   name: "Server",
@@ -19,7 +19,7 @@ const serverConfig = merge(baseConfig, {
   externals: [nodeExternals(), "./chunk-manifest.json"],
   plugins: [
     new webpack.EnvironmentPlugin({
-      ...pick(process.env, ["NODE_ENV", "DEBUG", "LOG_LEVEL"]),
+      ...pick(process.env, ENV_EXPORTS),
       SERVER: "yes"
     })
   ],
