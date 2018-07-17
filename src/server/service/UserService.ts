@@ -23,7 +23,7 @@ const isPasswordValid = (password: string): boolean => {
 export default class UserService extends Service {
   async getToken({ email, password }: ILoginParams): Promise<string> {
     if (!isEmailValid(email) || !isPasswordValid(password)) {
-      const err = new Error("bad credentials");
+      const err = new Error("Bad credentials");
       err.status = 401;
 
       throw err;

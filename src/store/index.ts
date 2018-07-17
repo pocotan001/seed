@@ -1,3 +1,4 @@
+import AppStore from "./AppStore";
 import CatStore from "./CatStore";
 import HeadStore from "./HeadStore";
 import HistoryStore from "./HistoryStore";
@@ -8,6 +9,7 @@ import UserStore from "./UserStore";
 
 export class RootStore {
   state: State;
+  app: AppStore;
   head: HeadStore;
   history: HistoryStore;
   loading: LoadingStore;
@@ -16,6 +18,7 @@ export class RootStore {
 
   constructor(state: State, ctx: IStoreContext) {
     this.state = state;
+    this.app = new AppStore(this, ctx);
     this.head = new HeadStore(this, ctx);
     this.history = new HistoryStore(this, ctx);
     this.loading = new LoadingStore(this, ctx);

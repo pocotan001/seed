@@ -4,7 +4,7 @@ import { State } from "~/store/state";
 
 interface IScriptsProps {
   state: State;
-  srcs: string[];
+  scripts: string[];
   nonce: string;
 }
 
@@ -12,7 +12,7 @@ if (config.isClient) {
   throw new Error("<Scripts> shouldn't be included in the client-side code");
 }
 
-const Scripts: React.SFC<IScriptsProps> = ({ state, srcs, nonce }) => (
+const Scripts: React.SFC<IScriptsProps> = ({ state, scripts, nonce }) => (
   <>
     <script
       nonce={nonce}
@@ -20,7 +20,7 @@ const Scripts: React.SFC<IScriptsProps> = ({ state, srcs, nonce }) => (
         __html: `window.__STATE=${JSON.stringify(state)}`
       }}
     />
-    {srcs.map((src, i) => <script key={i} nonce={nonce} src={src} />)}
+    {scripts.map((src, i) => <script key={i} nonce={nonce} src={src} />)}
   </>
 );
 

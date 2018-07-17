@@ -2,7 +2,7 @@
 
 exports[`<ButtonLink> renders correctly 1`] = `
 <a
-  className="sc-htpNat hecMrc"
+  className="sc-htpNat eeCVLi"
   href="/a"
   onClick={[Function]}
   theme={

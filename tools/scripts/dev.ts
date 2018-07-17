@@ -8,7 +8,7 @@ import * as webpackHotMiddleware from "webpack-hot-middleware";
 import { DIST_DIR, ROOT_DIR } from "../config/paths";
 import clientConfig from "../config/webpack/webpack.config.client";
 import serverConfig from "../config/webpack/webpack.config.server";
-import logger from "../logger";
+import log from "../logger";
 
 const PORT = Number(process.env.PORT) || 3000;
 
@@ -25,23 +25,23 @@ const isAllInitialized = () => initializedCompilers.size === compilers.length;
 
 for (const compiler of compilers) {
   compiler.hooks.compile.tap(compiler.name, () => {
-    logger.clear();
-    logger.wait(`${compiler.name} building...`);
+    log.clear();
+    log.wait(`${compiler.name} building...`);
   });
 
   compiler.hooks.done.tap(compiler.name, stats => {
-    logger.clear();
-    logger.done(`${compiler.name} build completed\n`);
+    log.clear();
+    log.done(`${compiler.name} build completed\n`);
 
     if (stats.hasErrors()) {
-      logger.error(`${stats.toJson().errors}\n`);
+      log.error(`${stats.toJson().errors}\n`);
     }
 
     if (!initializedCompilers.has(compiler.name)) {
       initializedCompilers.add(compiler.name);
 
       if (isAllInitialized()) {
-        logger.info(
+        log.info(
           `Listening on ${chalk.green.underline(`http://localhost:${PORT}\n`)}`
         );
       }
@@ -64,12 +64,12 @@ const watchCopy = () => {
       case "addDir":
       case "change":
         await fs.copy(path, distPath);
-        logger.info(`Copied: ${path} -> ${distPath}`);
+        log.info(`Copied: ${path} -> ${distPath}`);
         break;
       case "unlink":
       case "unlinkDir":
         await fs.remove(distPath);
-        logger.info(`Removed: ${distPath}`);
+        log.info(`Removed: ${distPath}`);
         break;
       default:
         break;
@@ -84,7 +84,7 @@ const watchBuild = () => {
       .filter(id => delete require.cache[id]);
 
     if (deletedIds.length) {
-      logger.info("Server cache cleared");
+      log.info("Server cache cleared");
     }
   });
 };
@@ -108,7 +108,7 @@ const serve = () => {
 
       app(req, res, next);
     } catch (err) {
-      logger.error(err.stack);
+      log.error(err.stack);
     }
   });
 

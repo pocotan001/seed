@@ -1,10 +1,11 @@
 #!include:.gitignore
 
+.circleci/
 .editorconfig
 .env*
 .gcloudignore
-.git
-.git-crypt
+.git/
+.git-crypt/
 .gitattributes
 .gitignore
 .npmrc

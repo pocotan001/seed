@@ -2,14 +2,19 @@ import * as React from "react";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import styled from "~/components/styles/themedStyledComponents";
 
+export interface IButtonStyleProps extends IMarginProps {
+  block?: boolean;
+}
+
 interface IButtonProps
-  extends IMarginProps,
+  extends IButtonStyleProps,
     React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
 const Button: React.SFC<IButtonProps> = ({
   children,
+  block,
   m,
   mt,
   mr,
@@ -22,14 +27,15 @@ Button.defaultProps = {
   type: "button"
 };
 
-export const withButtonStyles = <P extends {}>(
+export const withButtonStyles = <P extends IButtonStyleProps>(
   Component: React.ComponentType<P>
 ) => {
   const StyledComponent = styled(Component)`
     font-size: 1em;
     line-height: normal;
-    display: inline-flex;
+    display: ${({ block }) => (block ? "flex" : "inline-flex")};
     padding: 0.4em 0.75em;
+    ${({ block }) => block && "width: 100%"};
     cursor: pointer;
     text-decoration: none;
     text-align: center;

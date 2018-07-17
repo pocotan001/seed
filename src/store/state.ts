@@ -5,6 +5,9 @@ import { IApiResponse } from "~/domain/Api";
 import { INormalizedEntities } from "~/domain/Normalized";
 
 export const defaultState: State = Object.freeze({
+  app: {
+    hasError: false
+  },
   history: {
     location: createLocation(""),
     visited: {}
@@ -30,6 +33,10 @@ export const defaultState: State = Object.freeze({
 });
 
 export class State {
+  app!: {
+    hasError: boolean;
+  };
+
   history!: {
     location: Location;
     visited: { [key: string]: boolean };

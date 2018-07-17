@@ -8,9 +8,7 @@ interface IErrorPageProps {
 
 const ErrorPage: React.SFC<IErrorPageProps> = ({ error }) => (
   <Page>
-    <Paragraph>
-      {error.status} {error.message}
-    </Paragraph>
+    <Paragraph>{error.message}</Paragraph>
   </Page>
 );
 

@@ -1,11 +1,11 @@
 import * as React from "react";
-import { IMarginProps } from "~/components/styles/extends/margin";
-import { withButtonStyles } from "./Button";
+import { IButtonStyleProps, withButtonStyles } from "./Button";
 import { ILinkProps, Link } from "./Link";
 
-interface IButtonLinkProps extends ILinkProps, IMarginProps {}
+interface IButtonLinkProps extends ILinkProps, IButtonStyleProps {}
 
 const ButtonLink: React.SFC<IButtonLinkProps> = ({
+  block,
   m,
   mt,
   mr,

@@ -15,8 +15,6 @@ const app = express();
 // http://expressjs.com/en/guide/behind-proxies.html
 app.set("trust proxy", Number(process.env.TRUST_PROXY) || "loopback");
 
-app.use(logger());
-
 app.use(
   bodyParser.json({
     type: [
@@ -27,19 +25,11 @@ app.use(
   })
 );
 
+app.use(logger());
 app.use(security.nonce(), security.headers());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session());
-
-app.use(
-  "/api",
-  api.csrf(),
-  api.cache(),
-  api.context(),
-  apiRoutes,
-  api.catcher()
-);
-
+app.use("/api", api.csrf(), api.context(), apiRoutes, api.catcher());
 app.use(routes);
 app.use(render());
 app.use(catcher());

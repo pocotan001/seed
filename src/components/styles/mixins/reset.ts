@@ -42,7 +42,7 @@ export const reset = css`
   progress {
     appearance: none;
     background: transparent;
-    border: none; /* for Firefox */
+    border: 0; /* for Firefox */
 
     &::-webkit-progress-bar {
       background: transparent;

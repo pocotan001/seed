@@ -4,7 +4,7 @@ import * as webpack from "webpack";
 import { DIST_DIR, ROOT_DIR } from "../config/paths";
 import clientConfig from "../config/webpack/webpack.config.client";
 import serverConfig from "../config/webpack/webpack.config.server";
-import logger from "../logger";
+import log from "../logger";
 
 const compiler = webpack([clientConfig, serverConfig]);
 const compile = promisify<webpack.Stats>(compiler.run.bind(compiler));
@@ -18,7 +18,7 @@ const build = async () => {
     fs.copy(`${ROOT_DIR}/static`, `${DIST_DIR}/public`)
   ]);
 
-  logger.info(`${stats.toString(statsOpts)}\n`);
+  log.info(`${stats.toString(statsOpts)}\n`);
 };
 
 export default build;

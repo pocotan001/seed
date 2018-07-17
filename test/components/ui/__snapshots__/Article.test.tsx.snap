@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Article> renders correctly 1`] = `
+<article
+  className="sc-bdVaJa iTpXYV"
+>
+  alo
+</article>
+`;

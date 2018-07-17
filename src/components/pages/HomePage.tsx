@@ -82,6 +82,9 @@ export default class HomePage extends React.Component<IHomePageProps> {
           <Button ml={8}>
             <Icon src="~/assets/icons/star.svg" mr={4} />With icon
           </Button>
+          <Button block mt={8}>
+            Block
+          </Button>
         </Section>
 
         <Section mb={24}>

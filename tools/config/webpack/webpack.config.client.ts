@@ -49,7 +49,7 @@ const clientConfig = merge(baseConfig, {
       : [
           // https://developers.google.com/web/tools/workbox/modules/workbox-webpack-plugin
           new GenerateSW({
-            swDest: `${DIST_DIR}/public/service-worker.js`,
+            swDest: `${DIST_DIR}/public/sw.js`,
             cacheId: pkg.name,
             runtimeCaching: []
           })

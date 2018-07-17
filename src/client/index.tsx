@@ -11,7 +11,7 @@ import routes, { onRouteError } from "~/routes";
 import createStore from "~/store";
 import createState, { State } from "~/store/state";
 import head from "./reactions/head";
-import * as sw from "./sw";
+import * as serviceWorker from "./serviceWorker";
 
 const { __STATE }: { __STATE: State } = window as any;
 
@@ -52,12 +52,17 @@ const render = async (
       }
     );
   } catch (err) {
+    // Probably fatal error
     log.error(err);
   }
 };
 
 const hydrate = async () => {
-  await render(history.location, { hydrate: true });
+  await render(history.location, {
+    hydrate: true,
+    skipFetch: !state.app.hasError
+  });
+
   log.debug("Hydrated with state: %o", __STATE);
 };
 
@@ -83,9 +88,9 @@ history.listen(onLocationChange);
 hydrate();
 
 if (config.isProd) {
-  sw.register();
+  serviceWorker.register();
 } else {
-  sw.unregister();
+  serviceWorker.unregister();
 }
 
 if (module.hot) {

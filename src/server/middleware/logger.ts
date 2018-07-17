@@ -10,7 +10,7 @@ const getUrlToken = (req: Request) =>
 
 class OutputStream {
   write(message: string) {
-    log.info(message.replace(/\n$/, ""));
+    log.debug(message.replace(/\n$/, ""));
   }
 }
 

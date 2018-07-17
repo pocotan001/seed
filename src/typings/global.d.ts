@@ -18,8 +18,8 @@ declare global {
   export type Overwrite<T, U> = Omit<T, keyof T & keyof U> & U;
 
   export interface Error {
-    status: number; // HTTP status code
-    code: ErrorCode; // Number that indicates the error type that occurred
+    status?: number; // HTTP status code
+    code?: ErrorCode; // Number that indicates the error type that occurred
     data?: any; // Additional information about the error
   }
 

@@ -14,7 +14,7 @@ const catcher = (): ErrorRequestHandler => (err: Error, _, res, __) => {
   };
 
   log.error(err.stack);
-  res.status(err.status).json(resp);
+  res.status(err.status!).json(resp);
 };
 
 export default catcher;

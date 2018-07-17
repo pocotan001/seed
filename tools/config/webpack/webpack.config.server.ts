@@ -3,12 +3,15 @@ import * as webpack from "webpack";
 import * as merge from "webpack-merge";
 import * as nodeExternals from "webpack-node-externals";
 import { DIST_DIR } from "../paths";
-import baseConfig, { ENV_EXPORTS } from "./webpack.config.base";
+import baseConfig, { ENV_EXPORTS, isDebug } from "./webpack.config.base";
 
 const serverConfig = merge(baseConfig, {
   name: "Server",
   target: "node",
-  entry: ["@babel/polyfill", "./src/server/index.ts"],
+  entry: [
+    ...(isDebug ? ["source-map-support/register"] : []),
+    ...["@babel/polyfill", "./src/server/index.ts"]
+  ],
   output: {
     path: DIST_DIR,
     filename: "server.js",
