@@ -42,7 +42,8 @@ const theme = {
   },
 
   zIndex: {
-    loading: 100
+    modal: 100,
+    loading: 101
   }
 };
 

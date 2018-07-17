@@ -11,6 +11,7 @@ import App from "~/components/App";
 import Head from "~/components/modules/Head";
 import Scripts from "~/components/modules/Scripts";
 import config from "~/config";
+import { ElementId } from "~/enums/Dom";
 import createLogger from "~/infrastructure/logger";
 import createRequest from "~/infrastructure/request";
 import createRouter from "~/infrastructure/router";
@@ -122,7 +123,9 @@ const render = (): RequestHandler => async (req, res, next) => {
       />
     );
 
-    renderStream.write(`<!DOCTYPE html><html>${head}<body><div id="app">`);
+    renderStream.write(
+      `<!DOCTYPE html><html>${head}<body><div id="${ElementId.APP}">`
+    );
 
     const sheet = new ServerStyleSheet();
     const app = sheet.collectStyles(<App store={store}>{route.component}</App>);
@@ -141,7 +144,11 @@ const render = (): RequestHandler => async (req, res, next) => {
         />
       );
 
-      renderStream.end(`</div>${scripts}</body></html>`);
+      renderStream.end(
+        `</div><div id="${
+          ElementId.MODAL_CONTAINER
+        }"></div>${scripts}</body></html>`
+      );
     });
   } catch (err) {
     next(err);

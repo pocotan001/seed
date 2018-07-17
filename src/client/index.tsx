@@ -4,6 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import App from "~/components/App";
 import config from "~/config";
+import { ElementId } from "~/enums/Dom";
 import createLogger from "~/infrastructure/logger";
 import createRequest from "~/infrastructure/request";
 import createRouter from "~/infrastructure/router";
@@ -21,7 +22,7 @@ const api = createRequest({ baseURL: "/api" });
 const state = createState(__STATE);
 const store = createStore(state, { history, api });
 const router = createRouter(routes, { store, onError: onRouteError });
-const container = document.getElementById("app");
+const container = document.getElementById(ElementId.APP);
 
 const render = async (
   location: Location,
@@ -54,6 +55,10 @@ const render = async (
   } catch (err) {
     // Probably fatal error
     log.error(err);
+
+    if (!hydrate && location.key === history.location.key) {
+      window.location.reload();
+    }
   }
 };
 

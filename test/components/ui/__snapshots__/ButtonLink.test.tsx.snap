@@ -42,7 +42,8 @@ exports[`<ButtonLink> renders correctly 1`] = `
         "sans": "\\"Helvetica Neue\\", Helvetica, Arial, sans-serif",
       },
       "zIndex": Object {
-        "loading": 100,
+        "loading": 101,
+        "modal": 100,
       },
     }
   }

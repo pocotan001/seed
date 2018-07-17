@@ -12,7 +12,7 @@ interface IObserverProps extends IntersectionObserverInit {
 }
 
 interface IObserverState {
-  intersecting: boolean;
+  isIntersecting: boolean;
 }
 
 /**
@@ -23,17 +23,17 @@ export default class Observer extends React.PureComponent<
   IObserverState
 > {
   state = {
-    intersecting: false
+    isIntersecting: false
   };
 
-  observer?: IntersectionObserver;
   el = React.createRef<Element>();
+  observer!: IntersectionObserver;
 
   handleIntersection: IntersectionObserverCallback = entries => {
     const { once, onChange, onEnter, onLeave } = this.props;
     const [entry] = entries;
-    const intersecting = entry.isIntersecting;
-    const hasChange = this.state.intersecting !== intersecting;
+    const { isIntersecting } = entry;
+    const hasChange = this.state.isIntersecting !== isIntersecting;
 
     if (!hasChange) {
       return;
@@ -43,7 +43,7 @@ export default class Observer extends React.PureComponent<
       onChange(entry);
     }
 
-    if (intersecting) {
+    if (isIntersecting) {
       if (onEnter) {
         onEnter(entry);
       }
@@ -55,7 +55,7 @@ export default class Observer extends React.PureComponent<
       onLeave(entry);
     }
 
-    this.setState({ intersecting });
+    this.setState({ isIntersecting });
   };
 
   componentDidMount() {
@@ -70,14 +70,14 @@ export default class Observer extends React.PureComponent<
   }
 
   componentWillUnmount() {
-    this.observer!.unobserve(this.el.current!);
+    this.observer.unobserve(this.el.current!);
   }
 
   render() {
     const { children } = this.props;
     const el =
       typeof children === "function"
-        ? children(this.state.intersecting)
+        ? children(this.state.isIntersecting)
         : children;
 
     return React.cloneElement(React.Children.only(el), {
