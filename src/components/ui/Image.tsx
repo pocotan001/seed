@@ -13,7 +13,7 @@ interface IImageProps
 // Transparent GIF
 const PLACEHOLDER_SRC =
   "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-const ROOT_MARGIN = "300px";
+const ROOT_MARGIN = "200px 0px";
 
 const cache: Set<string> = new Set();
 

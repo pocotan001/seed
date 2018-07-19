@@ -49,7 +49,7 @@ export default class Observer extends React.PureComponent<
       }
 
       if (once) {
-        this.observer!.unobserve(this.el.current!);
+        this.observer.unobserve(this.el.current!);
       }
     } else if (onLeave) {
       onLeave(entry);

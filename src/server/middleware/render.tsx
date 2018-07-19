@@ -28,7 +28,7 @@ const log = createLogger("[render]");
 // app's capability of handling high traffic
 // https://www.nginx.com/blog/benefits-of-microcaching-nginx/
 const cache: LRU.Cache<string, Buffer> = new LRU({
-  max: 100,
+  max: 100, // Maximum number of items
   maxAge: 1000 // Expires after 1 second
 });
 
@@ -45,8 +45,12 @@ const createCacheStream = (url: string): Transform => {
     },
 
     flush(cb) {
-      cache.set(url, Buffer.concat(buffered));
-      log.info("Cached: %o", url);
+      const isCached = cache.set(url, Buffer.concat(buffered));
+
+      if (isCached) {
+        log.info("Cached: %o", url);
+      }
+
       cb();
     }
   });

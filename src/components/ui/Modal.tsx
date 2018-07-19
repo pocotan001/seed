@@ -75,7 +75,7 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
     } = this.props;
 
     const computedClassName = this.state.isActive
-      ? [className, "-actived"].filter(Boolean).join(" ")
+      ? `${className} -actived`
       : className;
 
     return ReactDOM.createPortal(
@@ -124,9 +124,8 @@ export default styled(Modal)`
     position: relative;
     overflow: auto;
     width: 640px;
-    max-width: calc(100% - 24px);
-    max-height: calc(100% - 24px);
-    margin: 24px;
+    max-width: calc(100% - 48px);
+    max-height: calc(100% - 48px);
     background: ${({ theme }) => theme.colors.white};
     border-radius: 5px;
     opacity: 0;
