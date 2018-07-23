@@ -76,7 +76,7 @@ const Content = styled<IContentProps, "div">("div")`
 
   hr {
     height: 4px;
-    border: none;
+    border: 0;
     background: ${({ theme }) => theme.colors.grey300};
   }
 
@@ -126,7 +126,7 @@ const Content = styled<IContentProps, "div">("div")`
 
   pre code {
     white-space: pre;
-    border: none;
+    border: 0;
     background: transparent;
     margin: 0;
   }

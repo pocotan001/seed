@@ -7,16 +7,6 @@ declare global {
   declare module "*.gif";
   declare module "*.svg";
 
-  /**
-   * From T omit a set of properties K
-   */
-  export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-
-  /**
-   * Overwrite from T those types that are assignable to U
-   */
-  export type Overwrite<T, U> = Omit<T, keyof T & keyof U> & U;
-
   export interface Error {
     status?: number; // HTTP status code
     code?: ErrorCode; // Number that indicates the error type that occurred

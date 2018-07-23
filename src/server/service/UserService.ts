@@ -1,7 +1,7 @@
 import { IUser } from "~/domain/User";
 import Service from "./Service";
 
-interface ILoginParams {
+interface ISignInParams {
   email: string;
   password: string;
 }
@@ -21,7 +21,7 @@ const isPasswordValid = (password: string): boolean => {
 };
 
 export default class UserService extends Service {
-  async getToken({ email, password }: ILoginParams): Promise<string> {
+  async getToken({ email, password }: ISignInParams): Promise<string> {
     if (!isEmailValid(email) || !isPasswordValid(password)) {
       const err = new Error("Bad credentials");
       err.status = 401;

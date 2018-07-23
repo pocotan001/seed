@@ -1,4 +1,4 @@
-import { em, isDataUri, px, serializeParams } from "~/infrastructure/utils";
+import { em, px, serializeParams } from "~/infrastructure/utils";
 
 describe("sleep(ms)", () => {
   it("should sleep", () => {
@@ -9,18 +9,6 @@ describe("sleep(ms)", () => {
 
     expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 1000);
-  });
-});
-
-describe("isDataUri(uri)", () => {
-  it("should return true for valid data uri", () => {
-    expect(isDataUri("data:,")).toBe(true);
-    expect(isDataUri("data:text/plain;base64,YWxv")).toBe(true);
-  });
-
-  it("should return false for invalid strings", () => {
-    expect(isDataUri("")).toBe(false);
-    expect(isDataUri("http://example.com/")).toBe(false);
   });
 });
 

@@ -1,7 +1,7 @@
 import { RequestHandler } from "express-serve-static-core";
 import { IApiResponse } from "~/domain/Api";
 
-export const login: RequestHandler = async (req, res, next) => {
+export const signIn: RequestHandler = async (req, res, next) => {
   const service = req.ctx.service!;
   const { email, password } = req.body;
 
@@ -24,7 +24,7 @@ export const login: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const logout: RequestHandler = (req, res) => {
+export const signOut: RequestHandler = (req, res) => {
   delete req.session.accessToken;
   delete req.session.user;
   res.json({});

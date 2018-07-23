@@ -1,7 +1,7 @@
 import * as React from "react";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import styled from "~/components/styles/themedStyledComponents";
-import { isDataUri } from "~/infrastructure/utils";
+import { isDataUri } from "~/domain/validators";
 import Observer from "./Observer";
 
 interface IImageProps

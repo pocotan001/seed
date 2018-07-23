@@ -7,6 +7,7 @@ import { ElementId } from "~/enums/Dom";
 
 interface IModalProps {
   children: React.ReactNode;
+  padded?: boolean;
   labelledBy?: string;
   describedBy?: string;
   className?: string;
@@ -124,6 +125,7 @@ export default styled(Modal)`
     position: relative;
     overflow: auto;
     width: 640px;
+    ${({ padded }) => padded && "padding: 24px"};
     max-width: calc(100% - 48px);
     max-height: calc(100% - 48px);
     background: ${({ theme }) => theme.colors.white};

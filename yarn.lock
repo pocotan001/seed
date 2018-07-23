@@ -2193,8 +2193,8 @@ cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
     cssom "0.3.x"
 
 csstype@^2.2.0:
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.5.tgz#4125484a3d42189a863943f23b9e4b80fedfa106"
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.5.6.tgz#2ae1db2319642d8b80a668d2d025c6196071e788"
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -2700,8 +2700,8 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
     is-extendable "^1.0.1"
 
 extend@~3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
 
 extglob@^0.3.1:
   version "0.3.2"
@@ -2807,6 +2807,14 @@ fill-range@^4.0.0:
     is-number "^3.0.0"
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
+
+final-form-focus@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/final-form-focus/-/final-form-focus-1.0.0.tgz#51b7652ea6aac9774234a2c871e9f9a434b2b983"
+
+final-form@4.8.3:
+  version "4.8.3"
+  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.8.3.tgz#86a03da6cd6459ed8fe3737dbd9dc87ed40c11d7"
 
 finalhandler@1.1.1:
   version "1.1.1"
@@ -3224,6 +3232,12 @@ hmac-drbg@^1.0.0:
 hoek@4.x.x:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
+
+hoist-non-react-statics@3.0.0-rc.1:
+  version "3.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.0.0-rc.1.tgz#71896dbb85721986815be70734c8d5e5cc1c54a9"
+  dependencies:
+    react-is "^16.3.2"
 
 hoist-non-react-statics@^2.5.0:
   version "2.5.5"
@@ -4853,8 +4867,8 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
 nwsapi@^2.0.0:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.6.tgz#5fb7f5b828b97fe1de47eb2a6f8703036b6cb71a"
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.0.7.tgz#6fc54c254621f10cac5225b76e81c74120139b78"
 
 oauth-sign@~0.8.2:
   version "0.8.2"
@@ -5363,7 +5377,11 @@ react-dom@16.4.1:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-is@^16.3.1, react-is@^16.4.1:
+react-final-form@3.6.5:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/react-final-form/-/react-final-form-3.6.5.tgz#191324bc686b20e9e49c929a79949f34b38ba8e5"
+
+react-is@^16.3.1, react-is@^16.3.2, react-is@^16.4.1:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
 

@@ -4,11 +4,16 @@ import * as React from "react";
 type IRenderNode = (isIntersecting: boolean) => React.ReactNode;
 
 interface IObserverProps extends IntersectionObserverInit {
-  children: React.ReactNode | IRenderNode;
+  children: IRenderNode | React.ReactNode;
   once?: boolean;
-  onChange?: (entry: IntersectionObserverEntry) => void;
-  onEnter?: (entry: IntersectionObserverEntry) => void;
-  onLeave?: (entry: IntersectionObserverEntry) => void;
+  onEnter?: (
+    entry: IntersectionObserverEntry,
+    observer: IntersectionObserver
+  ) => void;
+  onLeave?: (
+    entry: IntersectionObserverEntry,
+    observer: IntersectionObserver
+  ) => void;
 }
 
 interface IObserverState {
@@ -29,8 +34,8 @@ export default class Observer extends React.PureComponent<
   el = React.createRef<Element>();
   observer!: IntersectionObserver;
 
-  handleIntersection: IntersectionObserverCallback = entries => {
-    const { once, onChange, onEnter, onLeave } = this.props;
+  handleIntersection: IntersectionObserverCallback = (entries, observer) => {
+    const { once, onEnter, onLeave } = this.props;
     const [entry] = entries;
     const { isIntersecting } = entry;
     const hasChange = this.state.isIntersecting !== isIntersecting;
@@ -39,20 +44,16 @@ export default class Observer extends React.PureComponent<
       return;
     }
 
-    if (onChange) {
-      onChange(entry);
-    }
-
     if (isIntersecting) {
       if (onEnter) {
-        onEnter(entry);
+        onEnter(entry, observer);
       }
 
       if (once) {
         this.observer.unobserve(this.el.current!);
       }
     } else if (onLeave) {
-      onLeave(entry);
+      onLeave(entry, observer);
     }
 
     this.setState({ isIntersecting });

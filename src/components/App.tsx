@@ -27,7 +27,7 @@ injectGlobal`
     font-size: 16px;
     line-height: 1.5;
     box-sizing: border-box;
-    color: ${theme.colors.grey700};
+    color: ${theme.colors.grey800};
     background: ${theme.colors.white};
   }
 
@@ -37,8 +37,12 @@ injectGlobal`
     box-sizing: inherit;
   }
 
+  /**
+   * Suppress the focus outline on elements that cannot be accessed via keyboard
+   * https://github.com/suitcss/base/blob/master/lib/base.css
+   */
   [tabindex="-1"]:focus {
-    outline: none !important;
+    outline: 0 !important;
   }
 `;
 

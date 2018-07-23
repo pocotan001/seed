@@ -40,7 +40,7 @@ export const withButtonStyles = <P extends IButtonStyleProps>(
     text-decoration: none;
     text-align: center;
     vertical-align: middle;
-    color: ${({ theme }) => theme.colors.grey700};
+    color: ${({ theme }) => theme.colors.grey800};
     border: 1px solid ${({ theme }) => theme.colors.grey400};
     border-radius: 3px;
     background: ${({ theme }) => theme.colors.white};
@@ -48,7 +48,7 @@ export const withButtonStyles = <P extends IButtonStyleProps>(
     justify-content: center;
 
     &:hover {
-      border-color: ${({ theme }) => theme.colors.grey600};
+      border-color: ${({ theme }) => theme.colors.grey500};
     }
 
     &:disabled {
@@ -61,7 +61,7 @@ export const withButtonStyles = <P extends IButtonStyleProps>(
   `;
 
   StyledComponent.displayName = `withButtonStyles(${Component.displayName ||
-    Component.name}`;
+    Component.name})`;
 
   return StyledComponent;
 };
