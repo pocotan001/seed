@@ -41,7 +41,7 @@
   "lint-staged": {
     "{src,tools}/!(typings)/**/*.{ts,tsx}": [
       "prettier --parser typescript --write",
-      "git add"
+      "tslint"
     ]
   },
   "dependencies": {
