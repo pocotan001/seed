@@ -92,11 +92,13 @@ head(state);
 history.listen(onLocationChange);
 hydrate();
 
-if (config.isProd) {
-  serviceWorker.register();
-} else {
-  serviceWorker.unregister();
-}
+window.addEventListener("load", () => {
+  if (config.isProd) {
+    serviceWorker.register();
+  } else {
+    serviceWorker.unregister();
+  }
+});
 
 if (module.hot) {
   module.hot.accept(["../components/App", "../routes"], () => {

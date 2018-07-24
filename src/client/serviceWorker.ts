@@ -1,9 +1,7 @@
 export const register = () => {
   if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      // Will generate by workbox-webpack-plugin
-      navigator.serviceWorker.register("/sw.js");
-    });
+    // Will generate by workbox-webpack-plugin
+    navigator.serviceWorker.register("/sw.js");
   }
 };
 
