@@ -29,6 +29,7 @@ export default class LoadingStore extends Store {
       !this.state.loading.hidden &&
       this.state.loading.percent < PROGRESS_MAX
     ) {
+      // tslint:disable-next-line:insecure-random
       this.increase(CUT * Math.random());
       await sleep(200);
     }

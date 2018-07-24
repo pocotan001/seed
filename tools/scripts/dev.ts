@@ -104,7 +104,7 @@ const serve = () => {
   // Include app routes as a middleware
   server.use((req, res, next) => {
     try {
-      const app = require(`${DIST_DIR}/server`).default;
+      const app = require("../../dist/server").default;
 
       app(req, res, next);
     } catch (err) {

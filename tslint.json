@@ -1,10 +1,59 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rulesDirectory": ["tslint-microsoft-contrib"],
   "rules": {
     "member-access": false,
     "no-empty": [true, "allow-empty-catch"],
     "no-unused-expression": [true, "allow-tagged-template"],
     "object-literal-sort-keys": false,
+
+    // Security rules
+    "insecure-random": true,
+    "no-banned-terms": true,
+    "no-cookies": false,
+    "no-delete-expression": true,
+    "no-disable-auto-sanitization": true,
+    "no-document-domain": true,
+    "no-document-write": true,
+    "no-eval": true,
+    "no-exec-script": true,
+    "no-function-constructor-with-string-args": true,
+    "no-http-string": [
+      true,
+      "http://www.example.com/?.*",
+      "http://localhost:?.*"
+    ],
+    "no-inner-html": true,
+    "no-octal-literal": true,
+    "no-reserved-keywords": false,
+    "no-string-based-set-immediate": true,
+    "no-string-based-set-interval": true,
+    "no-string-based-set-timeout": true,
+    "non-literal-require": true,
+    "possible-timing-attack": true,
+    "react-anchor-blank-noopener": true,
+    "react-iframe-missing-sandbox": true,
+    "react-no-dangerous-html": false,
+
+    // a11y rules
+    // https://github.com/Microsoft/tslint-microsoft-contrib/wiki
+    "react-a11y-anchors": true,
+    "react-a11y-aria-unsupported-elements": true,
+    "react-a11y-event-has-role": true,
+    "react-a11y-image-button-has-alt": true,
+    "react-a11y-img-has-alt": true,
+    "react-a11y-lang": true,
+    "react-a11y-meta": true,
+    "react-a11y-props": true,
+    "react-a11y-proptypes": false, // Conflict with `jsx-boolean-value`
+    "react-a11y-role": true,
+    "react-a11y-role-has-required-aria-props": true,
+    "react-a11y-role-supports-aria-props": true,
+    "react-a11y-tabindex-no-positive": true,
+    "react-a11y-titles": true,
+
+    // tslint-react rules
+    // https://github.com/palantir/tslint-react
     "jsx-alignment": true,
     "jsx-boolean-value": [true, "never"],
     "jsx-curly-spacing": [true, "never"],

@@ -17,6 +17,7 @@ const isEmailValid = (email: string): boolean => {
 };
 
 const isPasswordValid = (password: string): boolean => {
+  // tslint:disable-next-line:possible-timing-attack
   return password === FAKE_USER.password;
 };
 

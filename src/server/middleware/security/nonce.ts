@@ -1,10 +1,12 @@
 import * as crypto from "crypto";
 import { RequestHandler } from "express-serve-static-core";
+import { promisify } from "util";
 
-const generateNonce = () => crypto.pseudoRandomBytes(36).toString("base64");
+const randomBytes = promisify(crypto.randomBytes);
+const generateNonce = () => randomBytes(16).then(buf => buf.toString("base64"));
 
-const nonce = (): RequestHandler => (_, res, next) => {
-  res.locals.nonce = generateNonce();
+const nonce = (): RequestHandler => async (_, res, next) => {
+  res.locals.nonce = await generateNonce();
   next();
 };
 
