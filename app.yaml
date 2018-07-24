@@ -6,5 +6,3 @@ handlers:
   script: auto
 - url: /
   static_dir: dist/public
-includes:
-- app.env.yaml

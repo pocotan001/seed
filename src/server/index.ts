@@ -2,9 +2,10 @@ import config from "~/config";
 import createLogger from "~/infrastructure/logger";
 import app from "./app";
 
-// HACK: `require.main === module` does not work on webpack...
-// https://nodejs.org/api/modules.html#modules_accessing_the_main_module
-if (config.isProd) {
+const [, , script] = process.argv;
+const inDevServer = script === "dev"; // `npm run dev` is running
+
+if (!inDevServer) {
   const PORT = Number(process.env.PORT) || 3000;
   const log = createLogger("[app]");
 
@@ -26,7 +27,7 @@ if (config.isProd) {
   log.info("Booting in %o mode", config.env);
 
   app.listen(PORT, () => {
-    log.info(`Listening on ${PORT}`);
+    log.info(`Listening on %o`, PORT);
   });
 }
 

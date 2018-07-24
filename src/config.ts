@@ -4,8 +4,8 @@ const config = Object.freeze({
   env: process.env.NODE_ENV,
   isDev: process.env.NODE_ENV === "development",
   isProd: process.env.NODE_ENV === "production",
-  isServer: Boolean(process.env.SERVER),
-  isClient: Boolean(process.env.CLIENT)
+  isServer: process.env.CLIENT !== "yes",
+  isClient: process.env.CLIENT === "yes"
 });
 
 export default config;

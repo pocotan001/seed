@@ -5,7 +5,9 @@ import * as merge from "webpack-merge";
 import { GenerateSW } from "workbox-webpack-plugin";
 import * as pkg from "../../../package.json";
 import { DIST_DIR } from "../paths";
-import baseConfig, { ENV_EXPORTS, isDebug } from "./webpack.config.base";
+import baseConfig, { isDebug } from "./webpack.config.base";
+
+const ENV_EXPORTS = ["ENV", "NODE_ENV", "DEBUG", "LOG_LEVEL"];
 
 const clientConfig = merge(baseConfig, {
   name: "Client",

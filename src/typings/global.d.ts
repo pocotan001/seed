@@ -18,8 +18,7 @@ declare global {
       NODE_ENV: "test" | "development" | "production";
       DEBUG?: string;
       LOG_LEVEL?: string;
-      SERVER?: "yes" | undefined;
-      CLIENT?: "yes" | undefined;
+      CLIENT?: "yes";
       PORT?: string; // server only
       TRUST_PROXY?: string; // server only
       SESSION_NAME?: string; // server only

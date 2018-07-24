@@ -3,7 +3,6 @@ import * as webpack from "webpack";
 import * as pkg from "../../../package.json";
 import { SRC_DIR } from "../paths";
 
-export const ENV_EXPORTS = ["NODE_ENV", "DEBUG", "LOG_LEVEL"];
 export const isDebug = process.env.NODE_ENV !== "production";
 
 const baseConfig: webpack.Configuration = {

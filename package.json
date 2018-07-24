@@ -11,10 +11,13 @@
     "test": "ENV=test jest",
     "dev": "ts-node tools/run dev",
     "build": "ts-node tools/run build",
+    "build:development": "ENV=development npm run build",
+    "build:staging": "ENV=staging npm run build",
+    "build:production": "ENV=production npm run build",
     "lint": "tslint '{src,tools}/!(typings)/**/*.{ts,tsx}'",
     "prettier": "prettier --parser typescript --write '{src,tools}/!(typings)/**/*.{ts,tsx}'",
     "precommit": "lint-staged",
-    "deploy": "ENV=production npm run build && gcloud app deploy --project [PROJECT_ID]"
+    "deploy": "gcloud app deploy --project [PROJECT_ID]"
   },
   "browserslist": [
     "> 1%",

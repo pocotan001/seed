@@ -3,7 +3,6 @@ import "./env";
 
 import chalk from "chalk";
 import * as debug from "debug";
-import { SCRIPTS_DIR } from "./config/paths";
 import log from "./logger";
 
 const { humanize } = debug as any;
@@ -16,7 +15,9 @@ const { humanize } = debug as any;
     log.wait(
       `${script} starting... ${chalk.green(`(${process.env.NODE_ENV})`)}\n`
     );
-    await require(`${SCRIPTS_DIR}/${script}`).default();
+
+    // tslint:disable-next-line:non-literal-require
+    await require(`./scripts/${script}`).default();
 
     const end = Date.now();
     const time = chalk.green(`+${humanize(end - start)}`);
