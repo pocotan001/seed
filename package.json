@@ -14,8 +14,8 @@
     "build:development": "ENV=development npm run build",
     "build:staging": "ENV=staging npm run build",
     "build:production": "ENV=production npm run build",
-    "lint": "tslint '{src,tools}/!(typings)/**/*.{ts,tsx}'",
-    "prettier": "prettier --parser typescript --write '{src,tools}/!(typings)/**/*.{ts,tsx}'",
+    "lint": "tslint '{src,tools}/!(assets|typings)/**/*.{ts,tsx}'",
+    "prettier": "prettier --parser typescript --write '{src,tools}/!(assets|typings)/**/*.{ts,tsx}'",
     "precommit": "lint-staged",
     "deploy": "gcloud app deploy --project [PROJECT_ID]"
   },
@@ -42,7 +42,7 @@
     ]
   },
   "lint-staged": {
-    "{src,tools}/!(typings)/**/*.{ts,tsx}": [
+    "{src,tools}/!(assets|typings)/**/*.{ts,tsx}": [
       "prettier --parser typescript --write",
       "git add",
       "tslint"
