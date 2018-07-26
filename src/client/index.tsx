@@ -12,14 +12,23 @@ import routes, { onRouteError } from "~/routes";
 import createStore from "~/store";
 import createState, { State } from "~/store/state";
 import head from "./reactions/head";
+import session from "./reactions/session";
 import * as serviceWorker from "./serviceWorker";
 
-const { __STATE }: { __STATE: State } = window as any;
+const initialState: State = (window as any).__STATE;
+const sessionState = window.sessionStorage.getItem("session");
+
+if (sessionState) {
+  initialState.session = {
+    ...initialState.session,
+    ...JSON.parse(sessionState)
+  };
+}
 
 const log = createLogger("[app]");
 const history = createHistory();
 const api = createRequest({ baseURL: "/api" });
-const state = createState(__STATE);
+const state = createState(initialState);
 const store = createStore(state, { history, api });
 const router = createRouter(routes, { store, onError: onRouteError });
 const container = document.getElementById(ElementId.APP);
@@ -48,8 +57,8 @@ const render = async (
       <App store={store}>{route.component}</App>,
       container,
       () => {
-        store.head.updateTitle(route.title);
-        store.head.updateMeta(route.meta);
+        store.head.setTitle(route.title);
+        store.head.setMeta(route.meta);
       }
     );
   } catch (err) {
@@ -68,7 +77,7 @@ const hydrate = async () => {
     skipFetch: !state.app.hasError
   });
 
-  log.debug("Hydrated with state: %o", __STATE);
+  log.debug("Hydrated with state: %o", initialState);
 };
 
 const onLocationChange: LocationListener = async (location, action) => {
@@ -89,6 +98,7 @@ const onLocationChange: LocationListener = async (location, action) => {
 
 log.info("Booting in %o mode", config.env);
 head(state);
+session(state);
 history.listen(onLocationChange);
 hydrate();
 

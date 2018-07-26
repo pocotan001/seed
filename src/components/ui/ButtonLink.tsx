@@ -1,5 +1,6 @@
 import * as React from "react";
-import { IButtonStyleProps, withButtonStyles } from "./Button";
+import styled from "~/components/styles/themedStyledComponents";
+import { buttonStyles, IButtonStyleProps } from "./Button";
 import { ILinkProps, Link } from "./Link";
 
 interface IButtonLinkProps extends ILinkProps, IButtonStyleProps {}
@@ -14,4 +15,6 @@ const ButtonLink: React.SFC<IButtonLinkProps> = ({
   ...rest
 }) => <Link {...rest} />;
 
-export default withButtonStyles<IButtonLinkProps>(ButtonLink);
+export default styled(ButtonLink)`
+  ${buttonStyles};
+`;

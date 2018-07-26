@@ -7,7 +7,9 @@
     "no-unused-expression": [true, "allow-tagged-template"],
     "object-literal-sort-keys": false,
 
-    // Security rules
+    /**
+     * Security rules
+     */
     "insecure-random": true,
     "no-banned-terms": true,
     "no-cookies": false,
@@ -35,8 +37,10 @@
     "react-iframe-missing-sandbox": true,
     "react-no-dangerous-html": false,
 
-    // a11y rules
-    // https://github.com/Microsoft/tslint-microsoft-contrib/wiki
+    /**
+     * a11y rules
+     * https://github.com/Microsoft/tslint-microsoft-contrib/wiki
+     */
     "react-a11y-anchors": true,
     "react-a11y-aria-unsupported-elements": true,
     "react-a11y-event-has-role": true,
@@ -45,15 +49,20 @@
     "react-a11y-lang": true,
     "react-a11y-meta": true,
     "react-a11y-props": true,
-    "react-a11y-proptypes": false, // Conflict with `jsx-boolean-value`
+    // Conflict with `jsx-boolean-value`
+    "react-a11y-proptypes": false,
     "react-a11y-role": true,
-    "react-a11y-role-has-required-aria-props": true,
+    // Form elements incorrectly flagged
+    // https://github.com/Microsoft/tslint-microsoft-contrib/issues/409
+    "react-a11y-role-has-required-aria-props": false,
     "react-a11y-role-supports-aria-props": true,
     "react-a11y-tabindex-no-positive": true,
     "react-a11y-titles": true,
 
-    // tslint-react rules
-    // https://github.com/palantir/tslint-react
+    /**
+     * tslint-react rules
+     * https://github.com/palantir/tslint-react
+     */
     "jsx-alignment": true,
     "jsx-boolean-value": [true, "never"],
     "jsx-curly-spacing": [true, "never"],

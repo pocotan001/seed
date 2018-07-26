@@ -115,8 +115,8 @@ const render = (): RequestHandler => async (req, res, next) => {
     }
 
     store.history.updateLocation(history.location);
-    store.head.updateTitle(route.title);
-    store.head.updateMeta(route.meta);
+    store.head.setTitle(route.title);
+    store.head.setMeta(route.meta);
 
     const availableChunks = getAvailableChunks(route.chunks);
     const head = ReactDOM.renderToStaticMarkup(
@@ -137,7 +137,11 @@ const render = (): RequestHandler => async (req, res, next) => {
       ReactDOM.renderToNodeStream(app)
     );
 
-    appStream.pipe(renderStream, { end: false });
+    appStream.pipe(
+      renderStream,
+      { end: false }
+    );
+
     appStream.on("error", next);
     appStream.on("end", () => {
       const scripts = ReactDOM.renderToStaticMarkup(

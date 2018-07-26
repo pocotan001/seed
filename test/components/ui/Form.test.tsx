@@ -2,15 +2,21 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import theme from "~/components/styles/theme";
 import {
+  AutoSave,
+  CheckBox,
   composeFormValidators,
   createFormValidator,
   Form,
+  Radio,
+  Select,
   SubmitError,
+  TextArea,
   TextField,
   ValidationError
 } from "~/components/ui/Form";
 
 const handleSubmit = () => undefined;
+const save = () => undefined;
 
 describe("<Form>", () => {
   it("renders correctly", () => {
@@ -27,7 +33,91 @@ describe("<TextField>", () => {
     const tree = renderer
       .create(
         <Form onSubmit={handleSubmit}>
-          {() => <TextField name="a" theme={theme} />}
+          {() => <TextField name="textfield" theme={theme} />}
+        </Form>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+});
+
+describe("<TextArea>", () => {
+  it("renders correctly", () => {
+    const tree = renderer
+      .create(
+        <Form onSubmit={handleSubmit}>
+          {() => <TextArea name="textarea" theme={theme} />}
+        </Form>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+});
+
+describe("<Select>", () => {
+  it("renders correctly", () => {
+    const tree = renderer
+      .create(
+        <Form onSubmit={handleSubmit}>
+          {() => (
+            <Select name="select" theme={theme}>
+              <option value="a">A</option>
+              <option value="b">B</option>
+              <option value="c">C</option>
+            </Select>
+          )}
+        </Form>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+});
+
+describe("<CheckBox>", () => {
+  it("renders correctly", () => {
+    const tree = renderer
+      .create(
+        <Form onSubmit={handleSubmit}>
+          {() => (
+            <CheckBox name="checkbox" value="a" theme={theme}>
+              A
+            </CheckBox>
+          )}
+        </Form>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+});
+
+describe("<Radio>", () => {
+  it("renders correctly", () => {
+    const tree = renderer
+      .create(
+        <Form onSubmit={handleSubmit}>
+          {() => (
+            <Radio name="radio" value="a" theme={theme}>
+              A
+            </Radio>
+          )}
+        </Form>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+});
+
+describe("<AutoSave>", () => {
+  it("renders correctly", () => {
+    const tree = renderer
+      .create(
+        <Form onSubmit={handleSubmit}>
+          {() => <AutoSave onRequestSave={save} />}
         </Form>
       )
       .toJSON();

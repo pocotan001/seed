@@ -53,4 +53,9 @@ export default styled(InjectedLoading)`
     background: ${({ theme }) => theme.colors.pink300};
     transition: width 0.2s;
   }
+
+  &::-ms-fill {
+    background: ${({ theme }) => theme.colors.pink300};
+    transition: width 0.2s;
+  }
 `;

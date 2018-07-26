@@ -6,6 +6,7 @@ import {
   createFormValidator,
   Form,
   FORM_ERROR,
+  IFormOnSubmit,
   SubmitError,
   TextField,
   ValidationError
@@ -36,7 +37,7 @@ const email = composeFormValidators(
 export default class SignInForm extends React.Component<ISignInFormProps> {
   store: RootStore = (this.props as any).store;
 
-  handleSubmit = async (values: IValues): Promise<any> => {
+  handleSubmit: IFormOnSubmit = async (values: IValues): Promise<any> => {
     const { onSuccess } = this.props;
 
     try {

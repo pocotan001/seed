@@ -70,7 +70,7 @@ const baseConfig: webpack.Configuration = {
             loader: "ts-loader",
             options: { configFile: "tsconfig.esnext.json" }
           },
-          // `<img src="~/assets/xxx" />` -> `<img src={require("~/assets/xxx")} />`
+          // e.g. `<img src="~/assets/xxx" />` -> `<img src={require("~/assets/xxx")} />`
           {
             loader: "string-replace-loader",
             options: {

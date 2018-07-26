@@ -9,16 +9,17 @@ interface ISubmitErrors {
   [name: string]: string;
 }
 
+export type IFormOnSubmit = (
+  values: IFormValues,
+  form: FormApi
+) => Promise<ISubmitErrors | void> | ISubmitErrors | void;
+
 interface IFormProps
   extends Overwrite<
       FormProps,
       {
         initialValues?: IFormValues;
-        onSubmit: (
-          values: IFormValues,
-          form: FormApi,
-          callback?: (errors?: ISubmitErrors) => void
-        ) => Promise<ISubmitErrors | void> | ISubmitErrors | void;
+        onSubmit: IFormOnSubmit;
       }
     > {}
 

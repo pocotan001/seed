@@ -3,6 +3,7 @@ import CatStore from "./CatStore";
 import HeadStore from "./HeadStore";
 import HistoryStore from "./HistoryStore";
 import LoadingStore from "./LoadingStore";
+import SessionStore from "./SessionStore";
 import { State } from "./state";
 import { IStoreContext } from "./Store";
 import UserStore from "./UserStore";
@@ -13,6 +14,7 @@ export class RootStore {
   head: HeadStore;
   history: HistoryStore;
   loading: LoadingStore;
+  session: SessionStore;
   user: UserStore;
   cat: CatStore;
 
@@ -22,6 +24,7 @@ export class RootStore {
     this.head = new HeadStore(this, ctx);
     this.history = new HistoryStore(this, ctx);
     this.loading = new LoadingStore(this, ctx);
+    this.session = new SessionStore(this, ctx);
     this.user = new UserStore(this, ctx);
     this.cat = new CatStore(this, ctx);
   }

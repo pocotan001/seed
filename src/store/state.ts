@@ -4,6 +4,10 @@ import config from "~/config";
 import { IApiResponse } from "~/domain/Api";
 import { INormalizedEntities } from "~/domain/Normalized";
 
+export enum SessionKey {
+  EXAMPLE_FORM = "EXAMPLE_FORM"
+}
+
 export const defaultState: State = Object.freeze({
   app: {
     hasError: false
@@ -20,6 +24,7 @@ export const defaultState: State = Object.freeze({
     percent: 0,
     hidden: true
   },
+  session: {},
   entities: {
     user: null,
     cats: {}
@@ -51,6 +56,8 @@ export class State {
     percent: number;
     hidden: boolean;
   };
+
+  session!: { [K in SessionKey]?: any };
 
   entities!: INormalizedEntities;
 

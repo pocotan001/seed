@@ -1,5 +1,6 @@
 import * as React from "react";
 import Page from "~/components/layouts/Page";
+import ExampleForm from "~/components/modules/ExampleForm";
 import Button from "~/components/ui/Button";
 import ButtonLink from "~/components/ui/ButtonLink";
 import Heading from "~/components/ui/Heading";
@@ -113,6 +114,13 @@ export default class HomePage extends React.Component<
               <Button ml={12}>OK</Button>
             </Modal>
           )}
+        </Section>
+
+        <Section mb={24}>
+          <Heading fz={18} mb={16}>
+            Form with auto save
+          </Heading>
+          <ExampleForm />
         </Section>
       </Page>
     );

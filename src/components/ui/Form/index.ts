@@ -1,6 +1,11 @@
 export { FORM_ERROR } from "final-form";
-export { default as Form } from "./Form";
+export { default as Form, IFormOnSubmit } from "./Form";
 export { default as TextField } from "./TextField";
+export { default as TextArea } from "./TextArea";
+export { default as Select } from "./Select";
+export { default as CheckBox } from "./CheckBox";
+export { default as Radio } from "./Radio";
+export { default as AutoSave } from "./AutoSave";
 export { default as ValidationError } from "./ValidationError";
 export { default as SubmitError } from "./SubmitError";
 export * from "./validators";

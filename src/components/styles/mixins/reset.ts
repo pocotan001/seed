@@ -55,6 +55,10 @@ export const reset = css`
     &::-moz-progress-bar {
       background: transparent;
     }
+
+    &::-ms-fill {
+      background: transparent;
+    }
   }
 `;
 

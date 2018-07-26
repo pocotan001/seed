@@ -17,7 +17,7 @@
     "lint": "tslint '{src,tools}/!(assets|typings)/**/*.{ts,tsx}'",
     "prettier": "prettier --parser typescript --write '{src,tools}/!(assets|typings)/**/*.{ts,tsx}'",
     "precommit": "lint-staged",
-    "deploy": "gcloud app deploy --project [PROJECT_ID]"
+    "deploy": "npm run build:production && gcloud app deploy --project [PROJECT_ID]"
   },
   "browserslist": [
     "> 1%",

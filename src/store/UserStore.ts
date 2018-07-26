@@ -22,8 +22,8 @@ export default class UserStore extends Store {
   }
 
   @action
-  async signIn(payload: ISignInParams): Promise<void> {
-    const resp = await this.ctx.api.post("/signin", payload);
+  async signIn(params: ISignInParams): Promise<void> {
+    const resp = await this.ctx.api.post("/signin", params);
 
     this.state.entities.user = resp.data.entities.user!;
   }
@@ -32,5 +32,6 @@ export default class UserStore extends Store {
   async signOut(): Promise<void> {
     await this.ctx.api.delete("/signout");
     this.state.entities.user = null;
+    this.store.session.clear();
   }
 }

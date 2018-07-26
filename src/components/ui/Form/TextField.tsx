@@ -1,31 +1,27 @@
 import * as React from "react";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import { ITheme } from "~/components/styles/theme";
-import styled from "~/components/styles/themedStyledComponents";
-import withField, { IFieldRenderProps } from "./withField";
+import styled, { css } from "~/components/styles/themedStyledComponents";
+import { Field, IFieldProps, IFieldRenderProps } from "./Field";
 
-interface ITextFieldStyleProps extends IMarginProps {
+type IInputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
+export type ITextFieldStyleProps = IMarginProps;
+
+interface IAdditionalProps extends ITextFieldStyleProps {
   theme?: ITheme;
 }
 
-interface ITextFieldProps extends IFieldRenderProps, ITextFieldStyleProps {}
-
-const TextField: React.SFC<ITextFieldProps> = ({
-  input,
-  meta,
-  m,
-  mt,
-  mr,
-  mb,
-  ml,
-  ...rest
-}) => {
+const TextField: React.SFC<
+  IFieldRenderProps<IInputAttributes> & IAdditionalProps
+> = ({ input, meta, m, mt, mr, mb, ml, ...rest }) => {
   const isInvalid = Boolean(meta.touched && meta.error);
 
   return <input {...input} {...rest} aria-invalid={isInvalid} />;
 };
 
-const StyledTextField = styled(TextField)`
+export const textFieldStyles = css<ITextFieldStyleProps>`
+  font-size: 1rem;
+  line-height: 1.5;
   display: block;
   padding: 0.4em 0.75em;
   width: 100%;
@@ -34,7 +30,6 @@ const StyledTextField = styled(TextField)`
   border: 1px solid ${({ theme }) => theme.colors.grey400};
   border-radius: 3px;
   background: ${({ theme }) => theme.colors.white};
-  ${margin};
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.grey500};
@@ -50,17 +45,27 @@ const StyledTextField = styled(TextField)`
     border-color: ${({ theme }) => theme.colors.pink500};
   }
 
-  ::-webkit-input-placeholder {
+  &::-webkit-input-placeholder {
     color: ${({ theme }) => theme.colors.grey400};
   }
 
-  ::-moz-placeholder {
+  &::-moz-placeholder {
     color: ${({ theme }) => theme.colors.grey400};
   }
+
+  ${margin};
 `;
 
-StyledTextField.defaultProps = {
+const StyledTextField = styled(TextField)`
+  ${textFieldStyles};
+`;
+
+const AdaptedTextField: React.SFC<
+  IFieldProps<IInputAttributes> & IAdditionalProps
+> = props => <Field {...props} component={StyledTextField} />;
+
+AdaptedTextField.defaultProps = {
   type: "text"
 };
 
-export default withField<ITextFieldStyleProps>(StyledTextField);
+export default AdaptedTextField;

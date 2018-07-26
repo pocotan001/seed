@@ -2,7 +2,7 @@
 
 exports[`<Button> renders correctly 1`] = `
 <button
-  className="sc-bdVaJa hHoCtk"
+  className="sc-bdVaJa dEWpKO"
   theme={
     Object {
       "breakpoints": Object {

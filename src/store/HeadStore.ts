@@ -10,12 +10,12 @@ const createTitle = (title?: string) =>
 
 export default class HeadStore extends Store {
   @action
-  updateTitle(title?: IHead["title"]) {
+  setTitle(title?: string): void {
     this.state.head.title = createTitle(title);
   }
 
   @action
-  updateMeta(meta: IHead["meta"] = []) {
+  setMeta(meta: IHead["meta"] = []): void {
     this.state.head.meta = meta;
   }
 }

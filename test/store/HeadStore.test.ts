@@ -15,7 +15,7 @@ describe("HeadStore", () => {
   it("#updateTitle(title)", () => {
     const store = new HeadStore(rootStore, {} as any);
 
-    store.updateTitle("alo");
+    store.setTitle("alo");
 
     expect(rootStore).toHaveProperty(
       "state.head.title",
@@ -26,7 +26,7 @@ describe("HeadStore", () => {
   it("#updateMeta(meta)", () => {
     const store = new HeadStore(rootStore, {} as any);
 
-    store.updateMeta([{ charSet: "a" }]);
+    store.setMeta([{ charSet: "a" }]);
 
     expect(rootStore).toHaveProperty("state.head.meta", [{ charSet: "a" }]);
   });
