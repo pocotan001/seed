@@ -71,7 +71,7 @@ export default class ExampleForm extends React.Component<
         initialValues={this.state.initialValues}
         onSubmit={this.handleSubmit}
       >
-        {({ handleSubmit, submitting, form }) => (
+        {({ handleSubmit, pristine, submitting, form }) => (
           <form onSubmit={handleSubmit}>
             <AutoSave onRequestSave={this.save} />
 
@@ -146,8 +146,8 @@ export default class ExampleForm extends React.Component<
             </Space>
 
             <div>
-              <Button type="submit" disabled={submitting}>
-                Submit
+              <Button type="submit" disabled={pristine || submitting}>
+                {submitting ? "Submitting..." : "Submit"}
               </Button>
               <Button ml={12} onClick={form.reset.bind(form, {})}>
                 Reset
