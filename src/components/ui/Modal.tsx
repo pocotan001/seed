@@ -3,7 +3,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import styled from "~/components/styles/themedStyledComponents";
 import config from "~/config";
-import { ElementId } from "~/enums/Dom";
+import * as ElementId from "~/constants/ElementId";
 
 interface IModalProps {
   children: React.ReactNode;

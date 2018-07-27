@@ -1,14 +1,14 @@
 import { reaction, toJS } from "mobx";
+import * as StorageKey from "~/constants/StorageKey";
 import createLogger from "~/infrastructure/logger";
 import { State } from "~/store/state";
 
-const STORAGE_KEY = "session";
 const log = createLogger("[session]");
 
 const save = (state: State["session"]) => {
   const serialized = toJS(state);
 
-  window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(serialized));
+  window.sessionStorage.setItem(StorageKey.SESSION, JSON.stringify(serialized));
   log.debug("Saved: %o", serialized);
 };
 

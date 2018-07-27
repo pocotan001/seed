@@ -1,16 +1,12 @@
 export const register = () => {
-  if ("serviceWorker" in navigator) {
-    // Will generate by workbox-webpack-plugin
-    navigator.serviceWorker.register("/sw.js");
-  }
+  // Will generate by workbox-webpack-plugin
+  navigator.serviceWorker.register("/sw.js");
 };
 
 export const unregister = async () => {
-  if ("serviceWorker" in navigator) {
-    const registrations = await navigator.serviceWorker.getRegistrations();
+  const registrations = await navigator.serviceWorker.getRegistrations();
 
-    for (const registration of registrations) {
-      registration.unregister();
-    }
+  for (const registration of registrations) {
+    registration.unregister();
   }
 };

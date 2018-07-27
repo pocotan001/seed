@@ -11,7 +11,7 @@ import App from "~/components/App";
 import Head from "~/components/modules/Head";
 import Scripts from "~/components/modules/Scripts";
 import config from "~/config";
-import { ElementId } from "~/enums/Dom";
+import * as ElementId from "~/constants/ElementId";
 import createLogger from "~/infrastructure/logger";
 import createRequest from "~/infrastructure/request";
 import createRouter from "~/infrastructure/router";

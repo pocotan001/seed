@@ -4,7 +4,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import App from "~/components/App";
 import config from "~/config";
-import { ElementId } from "~/enums/Dom";
+import * as ElementId from "~/constants/ElementId";
+import * as StorageKey from "~/constants/StorageKey";
 import createLogger from "~/infrastructure/logger";
 import createRequest from "~/infrastructure/request";
 import createRouter from "~/infrastructure/router";
@@ -16,12 +17,12 @@ import session from "./reactions/session";
 import * as serviceWorker from "./serviceWorker";
 
 const initialState: State = (window as any).__STATE;
-const sessionState = window.sessionStorage.getItem("session");
+const sessionStateString = window.sessionStorage.getItem(StorageKey.SESSION);
 
-if (sessionState) {
+if (sessionStateString) {
   initialState.session = {
     ...initialState.session,
-    ...JSON.parse(sessionState)
+    ...JSON.parse(sessionStateString)
   };
 }
 
@@ -102,13 +103,15 @@ session(state);
 history.listen(onLocationChange);
 hydrate();
 
-window.addEventListener("load", () => {
-  if (config.isProd) {
-    serviceWorker.register();
-  } else {
-    serviceWorker.unregister();
-  }
-});
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    if (config.isProd) {
+      serviceWorker.register();
+    } else {
+      serviceWorker.unregister();
+    }
+  });
+}
 
 if (module.hot) {
   module.hot.accept(["../components/App", "../routes"], () => {
