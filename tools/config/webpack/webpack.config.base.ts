@@ -49,7 +49,8 @@ const baseConfig: webpack.Configuration = {
                     "babel-plugin-styled-components",
                     {
                       ssr: true,
-                      displayName: isDebug
+                      displayName: isDebug,
+                      preprocess: !isDebug
                     }
                   ]
                 ],

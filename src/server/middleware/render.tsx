@@ -72,12 +72,13 @@ useStaticRendering(true);
 const render = (): RequestHandler => async (req, res, next) => {
   try {
     const url = req.originalUrl;
+    const { nonce } = res.locals;
 
     if (isCacheable(req) && cache.has(url)) {
       const html = cache
         .get(url)!
         .toString()
-        .replace(reNonceAttrs, ` nonce="${res.locals.nonce}"`);
+        .replace(reNonceAttrs, ` nonce="${nonce}"`);
 
       log.info("Cache hit: %o", url);
       res.send(html);
@@ -145,11 +146,7 @@ const render = (): RequestHandler => async (req, res, next) => {
     appStream.on("error", next);
     appStream.on("end", () => {
       const scripts = ReactDOM.renderToStaticMarkup(
-        <Scripts
-          state={toJS(state)}
-          scripts={availableChunks}
-          nonce={res.locals.nonce}
-        />
+        <Scripts state={toJS(state)} scripts={availableChunks} nonce={nonce} />
       );
 
       renderStream.end(

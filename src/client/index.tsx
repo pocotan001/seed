@@ -17,12 +17,12 @@ import session from "./reactions/session";
 import * as serviceWorker from "./serviceWorker";
 
 const initialState: State = (window as any).__STATE;
-const sessionStateString = window.sessionStorage.getItem(StorageKey.SESSION);
+const sessionString = window.sessionStorage.getItem(StorageKey.SESSION);
 
-if (sessionStateString) {
+if (sessionString) {
   initialState.session = {
     ...initialState.session,
-    ...JSON.parse(sessionStateString)
+    ...JSON.parse(sessionString)
   };
 }
 

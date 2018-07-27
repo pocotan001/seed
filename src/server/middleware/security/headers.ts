@@ -6,18 +6,16 @@ const headers = (): RequestHandler =>
     // https://helmetjs.github.io/docs/csp/
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'none'"],
+        defaultSrc: ["'self'", "https:"],
         scriptSrc: [
           "'self'",
-          "storage.googleapis.com",
+          "https:",
           (_, res) => `'nonce-${res.locals.nonce}'`
         ],
-        styleSrc: ["'self'", "'unsafe-inline'"],
-        imgSrc: ["'self'", "data:", "placekitten.com"],
-        connectSrc: ["'self'"],
-        fontSrc: ["'self'"],
-        blockAllMixedContent: true,
-        reportUri: "/csp-report"
+        styleSrc: ["'self'", "https:", "'unsafe-inline'"],
+        imgSrc: ["'self'", "https:", "data:"],
+        reportUri: "/csp-report",
+        blockAllMixedContent: true
       }
     },
 

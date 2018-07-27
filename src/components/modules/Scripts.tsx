@@ -17,10 +17,10 @@ const Scripts: React.SFC<IScriptsProps> = ({ state, scripts, nonce }) => (
     <script
       nonce={nonce}
       dangerouslySetInnerHTML={{
-        __html: `window.__STATE=${JSON.stringify(state)}`
+        __html: `window.__STATE=${JSON.stringify(state)};`
       }}
     />
-    {scripts.map((src, i) => <script key={i} nonce={nonce} src={src} />)}
+    {scripts.map((src, i) => <script key={i} src={src} />)}
   </>
 );
 
