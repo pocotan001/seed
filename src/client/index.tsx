@@ -12,8 +12,7 @@ import createRouter from "~/infrastructure/router";
 import routes, { onRouteError } from "~/routes";
 import createStore from "~/store";
 import createState, { State } from "~/store/state";
-import head from "./reactions/head";
-import session from "./reactions/session";
+import * as reaction from "./reaction";
 import * as serviceWorker from "./serviceWorker";
 
 const initialState: State = (window as any).__STATE;
@@ -98,9 +97,8 @@ const onLocationChange: LocationListener = async (location, action) => {
 };
 
 log.info("Booting in %o mode", config.env);
-head(state);
-session(state);
 history.listen(onLocationChange);
+reaction.start(state);
 hydrate();
 
 if ("serviceWorker" in navigator) {
