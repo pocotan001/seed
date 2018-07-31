@@ -38,6 +38,7 @@ export interface IRouteActionResult {
   component?: React.ReactNode;
   title?: string;
   meta?: State["head"]["meta"];
+  link?: State["head"]["link"];
 }
 
 export interface IRouterContext {

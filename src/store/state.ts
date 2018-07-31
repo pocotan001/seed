@@ -10,6 +10,7 @@ export enum SessionKey {
 
 export const defaultState: State = Object.freeze({
   app: {
+    locationOrigin: "",
     hasError: false
   },
   history: {
@@ -18,7 +19,8 @@ export const defaultState: State = Object.freeze({
   },
   head: {
     title: config.siteName,
-    meta: []
+    meta: [],
+    link: []
   },
   loading: {
     percent: 0,
@@ -39,6 +41,7 @@ export const defaultState: State = Object.freeze({
 
 export class State {
   app!: {
+    locationOrigin: string;
     hasError: boolean;
   };
 
@@ -50,6 +53,7 @@ export class State {
   head!: {
     title: string;
     meta: Array<React.MetaHTMLAttributes<HTMLMetaElement>>;
+    link: Array<React.LinkHTMLAttributes<HTMLLinkElement>>;
   };
 
   loading!: {

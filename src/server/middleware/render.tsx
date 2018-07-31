@@ -116,14 +116,17 @@ const render = (): RequestHandler => async (req, res, next) => {
     }
 
     store.history.updateLocation(history.location);
+    store.app.setLocationOrigin(`${req.protocol}://${req.get("host")}`);
     store.head.setTitle(route.title);
     store.head.setMeta(route.meta);
+    store.head.setLink(route.link);
 
     const availableChunks = getAvailableChunks(route.chunks);
     const head = ReactDOM.renderToStaticMarkup(
       <Head
         title={state.head.title}
         meta={state.head.meta}
+        link={state.head.link}
         scripts={availableChunks}
       />
     );

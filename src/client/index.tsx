@@ -59,6 +59,7 @@ const render = async (
       () => {
         store.head.setTitle(route.title);
         store.head.setMeta(route.meta);
+        store.head.setLink(route.link);
       }
     );
   } catch (err) {

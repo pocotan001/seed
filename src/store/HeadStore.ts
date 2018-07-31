@@ -18,4 +18,9 @@ export default class HeadStore extends Store {
   setMeta(meta: IHead["meta"] = []): void {
     this.state.head.meta = meta;
   }
+
+  @action
+  setLink(link: IHead["link"] = []): void {
+    this.state.head.link = link;
+  }
 }

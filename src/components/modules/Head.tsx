@@ -1,9 +1,11 @@
 import * as React from "react";
 import config from "~/config";
+import { State } from "~/store/state";
 
 interface IHeadProps {
   title: string;
-  meta: Array<React.MetaHTMLAttributes<HTMLMetaElement>>;
+  meta?: State["head"]["meta"];
+  link?: State["head"]["link"];
   scripts?: string[];
 }
 
@@ -11,7 +13,12 @@ if (config.isClient) {
   throw new Error("<Head> shouldn't be included in the client-side code");
 }
 
-const Head: React.SFC<IHeadProps> = ({ title, meta, scripts = [] }) => (
+const Head: React.SFC<IHeadProps> = ({
+  title,
+  meta = [],
+  link = [],
+  scripts = []
+}) => (
   <head>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -31,6 +38,8 @@ const Head: React.SFC<IHeadProps> = ({ title, meta, scripts = [] }) => (
     {scripts.map((src, i) => (
       <link key={i} rel="preload" href={src} as="script" />
     ))}
+
+    {link.map((props, i) => <link key={i} {...props} data-head />)}
 
     {/* iOS Safari */}
     <link
