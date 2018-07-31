@@ -2,7 +2,7 @@
 
 exports[`<NavLink> changes the class name when actived 1`] = `
 <a
-  className="undefined a sc-bdVaJa lcNCvQ"
+  className="a sc-bdVaJa lcNCvQ"
   href="/a"
   onClick={[Function]}
 >
