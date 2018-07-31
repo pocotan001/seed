@@ -31,7 +31,7 @@ const NavLink: React.SFC<INavLinkProps> = ({
   );
 
   const computedClassName = isActive
-    ? `${className} ${activeClassName}`
+    ? [className, activeClassName].filter(Boolean).join(" ")
     : className;
 
   return (
