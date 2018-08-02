@@ -49,7 +49,7 @@ const Head: React.SFC<IHeadProps> = ({
     />
 
     {/* macOS Safari */}
-    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#ffffff" />
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#000000" />
 
     {/* Android Chrome */}
     <link rel="manifest" href="/manifest.json" />
