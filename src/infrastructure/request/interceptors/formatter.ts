@@ -14,7 +14,7 @@ export const onRejected = (e: any): Promise<never> => {
 
     err.status = axiosErr.response.status;
 
-    // Maybe `IApiErrorResponse`
+    // Maybe client-side error
     if (apiErr) {
       err.message = apiErr.message;
       err.code = apiErr.code;
@@ -22,6 +22,8 @@ export const onRejected = (e: any): Promise<never> => {
       if (apiErr.data) {
         err.data = apiErr.data;
       }
+    } else {
+      err.data = axiosErr.response.data;
     }
   } else if (axiosErr.code === CODE_ECONNABORTED) {
     err.status = 408;
