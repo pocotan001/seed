@@ -27,7 +27,7 @@ export const onRejected = (e: any): Promise<never> => {
     }
   } else if (axiosErr.code === CODE_ECONNABORTED) {
     err.status = 408;
-    err.code = ErrorCode.INTERNAL; // Override `CODE_ECONNABORTED`
+    err.code = ErrorCode.INTERNAL; // Override `ECONNABORTED`
   } else {
     // Network Error
     err.status = 500;

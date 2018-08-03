@@ -1,5 +1,4 @@
 import { RequestHandler } from "express-serve-static-core";
-import { IApiResponse } from "~/domain/Api";
 
 export const signIn: RequestHandler = async (req, res, next) => {
   const service = req.ctx.service!;
@@ -12,7 +11,7 @@ export const signIn: RequestHandler = async (req, res, next) => {
     });
 
     const user = await service.user.getMe();
-    const resp: IApiResponse = {
+    const resp = {
       entities: { user },
       result: [user.id]
     };

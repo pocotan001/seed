@@ -1,8 +1,11 @@
 import { ErrorRequestHandler } from "express-serve-static-core";
 import { pick } from "lodash";
-import { IApiErrorResponse } from "~/domain/Api";
 import { normalizeError } from "~/infrastructure/error";
 import createLogger from "~/infrastructure/logger";
+
+interface IApiErrorResponse {
+  error: Pick<Error, "message" | "code" | "data">;
+}
 
 const log = createLogger("[api]");
 

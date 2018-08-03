@@ -1,7 +1,6 @@
 import { createLocation, Location } from "history";
 import { extendObservable, observable } from "mobx";
 import config from "~/config";
-import { IApiResponse } from "~/domain/Api";
 import { INormalizedEntities } from "~/domain/Normalized";
 
 export enum SessionKey {
@@ -68,7 +67,7 @@ export class State {
   results!: Record<
     "cats",
     {
-      [serializedParams: string]: IApiResponse["result"];
+      [serializedParams: string]: string[];
     }
   >;
 

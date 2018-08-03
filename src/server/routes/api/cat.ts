@@ -1,6 +1,5 @@
 import { RequestHandler } from "express-serve-static-core";
 import { normalize } from "normalizr";
-import { IApiResponse } from "~/domain/Api";
 import catSchema from "~/domain/catSchema";
 
 export const getCats: RequestHandler = async (req, res, next) => {
@@ -18,7 +17,7 @@ export const getCats: RequestHandler = async (req, res, next) => {
 
   try {
     const cats = await service.cat.getCats({ page, per });
-    const resp: IApiResponse = normalize(cats, [catSchema]);
+    const resp = normalize(cats, [catSchema]);
 
     res.header("X-Total-Count", String(service.cat.totalCount));
     res.json(resp);
