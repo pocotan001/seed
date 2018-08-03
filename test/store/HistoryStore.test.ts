@@ -1,17 +1,13 @@
-import { RootStore } from "~/store";
 import HistoryStore from "~/store/HistoryStore";
-import { defaultState } from "~/store/state";
+import { defaultState, State } from "~/store/state";
 import { IStoreContext } from "~/store/Store";
 
-let rootStore: RootStore;
+let state: State;
 let ctx: IStoreContext;
 
 describe("HistoryStore", () => {
   beforeEach(() => {
-    rootStore = {
-      state: { ...defaultState }
-    } as any;
-
+    state = { ...defaultState };
     ctx = {
       history: {
         push: () => undefined,
@@ -24,7 +20,7 @@ describe("HistoryStore", () => {
   });
 
   it("#updateLocation(location)", () => {
-    const store = new HistoryStore(rootStore, ctx);
+    const store = new HistoryStore(state, ctx);
 
     store.updateLocation({
       pathname: "/a",
@@ -34,12 +30,12 @@ describe("HistoryStore", () => {
       key: "abcdef"
     });
 
-    expect(rootStore).toHaveProperty("state.history.location.pathname", "/a");
-    expect(rootStore).toHaveProperty("state.history.location.key", "abcdef");
+    expect(store).toHaveProperty("state.history.location.pathname", "/a");
+    expect(store).toHaveProperty("state.history.location.key", "abcdef");
   });
 
   it("#isVisited(key)", () => {
-    const store = new HistoryStore(rootStore, ctx);
+    const store = new HistoryStore(state, ctx);
 
     expect(store.isVisited("abcdef")).toBe(false);
 

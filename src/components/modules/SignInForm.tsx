@@ -41,7 +41,7 @@ export default class SignInForm extends React.Component<ISignInFormProps> {
     const { onSuccess } = this.props;
 
     try {
-      await this.store.user.signIn(values);
+      await this.store.auth.signIn(values);
 
       if (onSuccess) {
         onSuccess();

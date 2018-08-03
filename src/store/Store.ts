@@ -1,7 +1,7 @@
 import * as express from "express-serve-static-core";
 import { History } from "history";
 import { Request } from "~/infrastructure/request";
-import { RootStore } from ".";
+import { State } from "./state";
 
 export interface IStoreContext {
   history: History;
@@ -11,13 +11,11 @@ export interface IStoreContext {
 }
 
 export default class Store {
-  protected state: RootStore["state"];
-  protected store: Omit<RootStore, "state">;
+  protected state: State;
   protected ctx: IStoreContext;
 
-  constructor({ state, ...store }: RootStore, ctx: IStoreContext) {
+  constructor(state: State, ctx: IStoreContext) {
     this.state = state;
-    this.store = store;
     this.ctx = ctx;
   }
 }

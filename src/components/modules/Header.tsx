@@ -30,7 +30,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
   };
 
   signOut = () => {
-    this.store.user.signOut();
+    this.store.auth.signOut();
   };
 
   openSignInFormModall = () => {
@@ -39,6 +39,11 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
 
   closeSignInFormModal = () => {
     this.setState({ isSignInFormModalShown: false });
+  };
+
+  handleSignInSuccess = () => {
+    this.closeSignInFormModal();
+    window.scrollTo(0, 0);
   };
 
   render() {
@@ -80,7 +85,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
                   </NavLink>
                 </li>
                 <li>
-                  {this.store.user.isSignedIn ? (
+                  {this.store.auth.isSignedIn ? (
                     <Button onClick={this.signOut}>Sign Out</Button>
                   ) : (
                     <Button onClick={this.openSignInFormModall}>Sign In</Button>
@@ -92,7 +97,7 @@ class Header extends React.Component<IHeaderProps, IHeaderState> {
         </Grid>
         {this.state.isSignInFormModalShown && (
           <Modal padded onRequestClose={this.closeSignInFormModal}>
-            <SignInForm onSuccess={this.closeSignInFormModal} />
+            <SignInForm onSuccess={this.handleSignInSuccess} />
           </Modal>
         )}
       </header>

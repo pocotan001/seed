@@ -33,7 +33,7 @@ const cache: LRU.Cache<string, Buffer> = new LRU({
 });
 
 const isCacheable = (req: Request): boolean =>
-  config.isProd && !req.session.accessToken;
+  config.isProd && !req.session.isPopulated;
 
 const createCacheStream = (url: string): Transform => {
   const buffered: Buffer[] = [];
@@ -93,7 +93,11 @@ const render = (): RequestHandler => async (req, res, next) => {
         port: Number(process.env.PORT)
       }
     });
-    const state = createState();
+    const state = createState({
+      auth: {
+        me: req.session.me
+      }
+    });
     const store = createStore(state, { history, api, req, res });
     const router = createRouter(routes, { store, onError: onRouteError });
     const route = await router.resolve(req.path);

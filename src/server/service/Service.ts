@@ -1,6 +1,5 @@
 import * as express from "express-serve-static-core";
 import { Request } from "~/infrastructure/request";
-import { RootService } from ".";
 
 export interface IServiceContext {
   req: express.Request;
@@ -9,11 +8,9 @@ export interface IServiceContext {
 }
 
 export default class Service {
-  protected service: RootService;
   protected ctx: IServiceContext;
 
-  constructor(service: RootService, ctx: IServiceContext) {
-    this.service = service;
+  constructor(ctx: IServiceContext) {
     this.ctx = ctx;
   }
 }

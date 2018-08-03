@@ -1,38 +1,22 @@
 import { serializeParams } from "~/infrastructure/utils";
-import { RootStore } from "~/store";
 import CatStore from "~/store/CatStore";
-import { defaultState } from "~/store/state";
+import { defaultState, State } from "~/store/state";
 import { IStoreContext } from "~/store/Store";
 import cats from "../mocks/data/cats";
 
-let rootStore: RootStore;
+let state: State;
+let ctx: IStoreContext;
 
 describe("CatStore", () => {
   beforeEach(() => {
-    rootStore = {
-      state: {
-        ...defaultState,
-        ...{
-          entities: {
-            ...defaultState.entities,
-            cats
-          },
-          results: {
-            ...defaultState.results,
-            cats: {
-              [serializeParams({ page: 1, per: 3 })]: Object.keys(cats)
-            }
-          },
-          cats: {
-            totalCount: Object.keys(cats).length
-          }
-        }
-      }
-    } as any;
+    state = { ...defaultState };
+    ctx = {} as any;
   });
 
   it("#getCatById(id)", () => {
-    const store = new CatStore(rootStore, {} as any);
+    state.entities.cats = { ...cats };
+
+    const store = new CatStore(state, ctx);
 
     expect(store.getCatById("0")).toEqual(cats["0"]);
     expect(store.getCatById("1")).toEqual(cats["1"]);
@@ -40,7 +24,9 @@ describe("CatStore", () => {
   });
 
   it("#getCatsByIds(ids)", () => {
-    const store = new CatStore(rootStore, {} as any);
+    state.entities.cats = { ...cats };
+
+    const store = new CatStore(state, ctx);
 
     expect(store.getCatsByIds(["0"])).toHaveLength(1);
     expect(store.getCatsByIds(["0"])).toEqual([cats["0"]]);
@@ -50,7 +36,12 @@ describe("CatStore", () => {
   });
 
   it("#getCatsByResult(params)", () => {
-    const store = new CatStore(rootStore, {} as any);
+    state.entities.cats = { ...cats };
+    state.results.cats = {
+      [serializeParams({ page: 1, per: 3 })]: Object.keys(cats)
+    };
+
+    const store = new CatStore(state, ctx);
 
     expect(store.getCatsByResult({ page: 1, per: 3 })).toHaveLength(3);
     expect(store.getCatsByResult({ page: 1, per: 3 })).toEqual([
@@ -62,11 +53,7 @@ describe("CatStore", () => {
   });
 
   it("#fetchCats(payload)", async () => {
-    rootStore.state.entities.cats = {};
-    rootStore.state.results.cats = {};
-    rootStore.state.cats.totalCount = 0;
-
-    const ctx: IStoreContext = {
+    ctx = {
       api: {
         get: jest.fn((url: string) => {
           if (url !== "/cats") {
@@ -88,7 +75,7 @@ describe("CatStore", () => {
       }
     } as any;
 
-    const store = new CatStore(rootStore, ctx);
+    const store = new CatStore(state, ctx);
 
     await store.fetchCats({ page: 1, per: 3 });
 

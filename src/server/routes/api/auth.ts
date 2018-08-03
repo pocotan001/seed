@@ -5,26 +5,22 @@ export const signIn: RequestHandler = async (req, res, next) => {
   const { email, password } = req.body;
 
   try {
-    req.session.accessToken = await service.user.getToken({
+    req.session.token = await service.auth.getToken({
       email,
       password
     });
 
-    const user = await service.user.getMe();
-    const resp = {
-      entities: { user },
-      result: [user.id]
-    };
+    const me = await service.auth.getMe();
 
-    req.session.user = user;
-    res.json(resp);
+    req.session.me = me;
+    res.json({ me });
   } catch (err) {
     next(err);
   }
 };
 
 export const signOut: RequestHandler = (req, res) => {
-  delete req.session.accessToken;
-  delete req.session.user;
+  delete req.session.token;
+  delete req.session.me;
   res.json({});
 };

@@ -2,6 +2,7 @@ import { createLocation, Location } from "history";
 import { extendObservable, observable } from "mobx";
 import config from "~/config";
 import { INormalizedEntities } from "~/domain/Normalized";
+import { IUser } from "~/domain/User";
 
 export enum SessionKey {
   EXAMPLE_FORM = "EXAMPLE_FORM"
@@ -12,6 +13,7 @@ export const defaultState: State = Object.freeze({
     locationOrigin: "",
     hasError: false
   },
+  auth: {},
   history: {
     location: createLocation(""),
     visited: {}
@@ -27,7 +29,6 @@ export const defaultState: State = Object.freeze({
   },
   session: {},
   entities: {
-    user: null,
     cats: {}
   },
   results: {
@@ -42,6 +43,10 @@ export class State {
   app!: {
     locationOrigin: string;
     hasError: boolean;
+  };
+
+  auth!: {
+    me?: IUser;
   };
 
   history!: {

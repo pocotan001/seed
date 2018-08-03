@@ -1,33 +1,33 @@
 import config from "~/config";
-import { RootStore } from "~/store";
 import HeadStore from "~/store/HeadStore";
-import { defaultState } from "~/store/state";
+import { defaultState, State } from "~/store/state";
+import { IStoreContext } from "~/store/Store";
 
-let rootStore: RootStore;
+let state: State;
+let ctx: IStoreContext;
 
 describe("HeadStore", () => {
   beforeEach(() => {
-    rootStore = {
-      state: { ...defaultState }
-    } as any;
+    state = { ...defaultState };
+    ctx = {} as any;
   });
 
   it("#updateTitle(title)", () => {
-    const store = new HeadStore(rootStore, {} as any);
+    const store = new HeadStore(state, ctx);
 
     store.setTitle("alo");
 
-    expect(rootStore).toHaveProperty(
+    expect(store).toHaveProperty(
       "state.head.title",
       `alo - ${config.siteName}`
     );
   });
 
   it("#updateMeta(meta)", () => {
-    const store = new HeadStore(rootStore, {} as any);
+    const store = new HeadStore(state, ctx);
 
     store.setMeta([{ charSet: "a" }]);
 
-    expect(rootStore).toHaveProperty("state.head.meta", [{ charSet: "a" }]);
+    expect(store).toHaveProperty("state.head.meta", [{ charSet: "a" }]);
   });
 });

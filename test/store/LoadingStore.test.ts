@@ -1,31 +1,29 @@
-import { RootStore } from "~/store";
 import LoadingStore from "~/store/LoadingStore";
-import { defaultState } from "~/store/state";
+import { defaultState, State } from "~/store/state";
+import { IStoreContext } from "~/store/Store";
 
-let rootStore: RootStore;
+let state: State;
+let ctx: IStoreContext;
 
 describe("LoadingStore", () => {
   beforeEach(() => {
-    rootStore = {
-      state: { ...defaultState }
-    } as any;
+    state = { ...defaultState };
+    ctx = {} as any;
   });
 
   it("#increase(n)", () => {
-    const store = new LoadingStore(rootStore, {} as any);
+    const store = new LoadingStore(state, ctx);
 
     store.increase(10);
-
-    expect(rootStore).toHaveProperty("state.loading.percent", 10);
+    expect(store).toHaveProperty("state.loading.percent", 10);
 
     store.increase(10);
-
-    expect(rootStore).toHaveProperty("state.loading.percent", 20);
+    expect(store).toHaveProperty("state.loading.percent", 20);
   });
 
   it("#start()", () => {
     jest.useFakeTimers();
-    const store = new (require("~/store/LoadingStore")).default(rootStore, {});
+    const store = new (require("~/store/LoadingStore")).default(state, {});
 
     store.start();
 
@@ -37,7 +35,7 @@ describe("LoadingStore", () => {
 
   it("#finish()", () => {
     jest.useFakeTimers();
-    const store = new (require("~/store/LoadingStore")).default(rootStore, {});
+    const store = new (require("~/store/LoadingStore")).default(state, {});
 
     store.finish();
 
