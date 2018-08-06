@@ -14,7 +14,7 @@ import {
 } from "~/components/ui/Form";
 import Paragraph from "~/components/ui/Paragraph";
 import Space from "~/components/ui/Space";
-import { sleep } from "~/infrastructure/utils";
+import { sleep } from "~/infra/utils";
 import { RootStore } from "~/store";
 import { SessionKey } from "~/store/state";
 

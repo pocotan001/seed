@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from "axios";
-import { ErrorCode, normalizeError } from "~/infrastructure/error";
+import { ErrorCode, normalizeError } from "~/infra/error";
 
 const CODE_ECONNABORTED = "ECONNABORTED";
 

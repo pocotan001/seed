@@ -1,7 +1,7 @@
 import { Interpolation, ThemedStyledProps } from "styled-components";
 import theme, { ITheme } from "~/components/styles/theme";
 import { css } from "~/components/styles/themedStyledComponents";
-import { em } from "~/infrastructure/utils";
+import { em } from "~/infra/utils";
 
 type IMediaKey = keyof ITheme["breakpoints"];
 type IMediaFunction = <P>(

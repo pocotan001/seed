@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IRouteAction, IRouteActionResult } from "~/infrastructure/router";
+import { IRouteAction, IRouteActionResult } from "~/infra/router";
 
 const TITLE = "Cat";
 const CATS_PER_PAGE = 10;

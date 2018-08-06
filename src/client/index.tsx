@@ -6,14 +6,14 @@ import App from "~/components/App";
 import config from "~/config";
 import * as ElementId from "~/constants/ElementId";
 import * as StorageKey from "~/constants/StorageKey";
-import createLogger from "~/infrastructure/logger";
-import createRequest from "~/infrastructure/request";
-import createRouter from "~/infrastructure/router";
+import createLogger from "~/infra/logger";
+import createRequest from "~/infra/request";
+import createRouter from "~/infra/router";
 import routes, { onRouteError } from "~/routes";
 import createStore from "~/store";
 import createState, { State } from "~/store/state";
 import * as reaction from "./reaction";
-import * as serviceWorker from "./serviceWorker";
+import * as sw from "./sw";
 
 const initialState: State = (window as any).__STATE;
 const sessionString = window.sessionStorage.getItem(StorageKey.SESSION);
@@ -105,9 +105,9 @@ hydrate();
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     if (config.isProd) {
-      serviceWorker.register();
+      sw.register();
     } else {
-      serviceWorker.unregister();
+      sw.unregister();
     }
   });
 }

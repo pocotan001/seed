@@ -1,5 +1,5 @@
 import config from "~/config";
-import createLogger from "~/infrastructure/logger";
+import createLogger from "~/infra/logger";
 import app from "./app";
 
 const [, , script] = process.argv;

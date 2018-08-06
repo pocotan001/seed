@@ -1,5 +1,5 @@
 import * as express from "express-serve-static-core";
-import { Request } from "~/infrastructure/request";
+import { Request } from "~/infra/request";
 
 export interface IServiceContext {
   req: express.Request;

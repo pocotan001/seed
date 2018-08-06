@@ -82,7 +82,7 @@ const baseConfig: webpack.Configuration = {
         ]
       },
       {
-        test: /\/assets\/img\/.+\.(png|jpe?g|gif|svg)$/,
+        test: /\/assets\/img\/.+\.(png|jpg|gif|svg)$/,
         use: [
           {
             loader: "url-loader",

@@ -1,7 +1,7 @@
 import * as React from "react";
 import ErrorPage from "~/components/pages/ErrorPage";
-import { normalizeError } from "~/infrastructure/error";
-import { IRouteErrorAction } from "~/infrastructure/router";
+import { normalizeError } from "~/infra/error";
+import { IRouteErrorAction } from "~/infra/router";
 
 const onRouteError: IRouteErrorAction = (err, _, { store }) => {
   if (err.status === 401) {

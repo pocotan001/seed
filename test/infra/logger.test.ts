@@ -3,7 +3,7 @@ import createLogger, {
   enables,
   Logger,
   LogLevel
-} from "~/infrastructure/logger";
+} from "~/infra/logger";
 
 describe("Logger", () => {
   describe("createLogger(namespace, opts)", () => {

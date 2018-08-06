@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import styled from "~/components/styles/themedStyledComponents";
-import { px } from "~/infrastructure/utils";
+import { px } from "~/infra/utils";
 
 interface IGridProps extends IMarginProps {
   children: React.ReactNode;

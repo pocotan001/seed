@@ -2,7 +2,7 @@ import { Location } from "history";
 import { STATUS_CODES } from "http";
 import * as React from "react";
 import { match as IMatch, matchPath } from "react-router";
-import createLogger from "~/infrastructure/logger";
+import createLogger from "~/infra/logger";
 import { RootStore } from "~/store";
 import { State } from "~/store/state";
 

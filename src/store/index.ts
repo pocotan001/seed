@@ -1,5 +1,5 @@
 import AppStore from "./AppStore";
-import AuthenticationStore from "./AuthenticationStore";
+import AuthStore from "./AuthStore";
 import CatStore from "./CatStore";
 import HeadStore from "./HeadStore";
 import HistoryStore from "./HistoryStore";
@@ -11,7 +11,7 @@ import { IStoreContext } from "./Store";
 export class RootStore {
   state: State;
   app: AppStore;
-  auth: AuthenticationStore;
+  auth: AuthStore;
   head: HeadStore;
   history: HistoryStore;
   loading: LoadingStore;
@@ -21,7 +21,7 @@ export class RootStore {
   constructor(state: State, ctx: IStoreContext) {
     this.state = state;
     this.app = new AppStore(state, ctx);
-    this.auth = new AuthenticationStore(state, ctx);
+    this.auth = new AuthStore(state, ctx);
     this.head = new HeadStore(state, ctx);
     this.history = new HistoryStore(state, ctx);
     this.loading = new LoadingStore(state, ctx);

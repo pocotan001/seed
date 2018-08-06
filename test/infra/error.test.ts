@@ -1,4 +1,4 @@
-import { ErrorCode, normalizeError } from "~/infrastructure/error";
+import { ErrorCode, normalizeError } from "~/infra/error";
 
 describe("normalizeError(err)", () => {
   it("should return an original instance", () => {
@@ -35,7 +35,7 @@ describe("normalizeError(err)", () => {
     jest.resetModules();
 
     // tslint:disable-next-line:variable-name
-    const _normalizeError = require("~/infrastructure/error").normalizeError;
+    const _normalizeError = require("~/infra/error").normalizeError;
     const normalizedError = _normalizeError(err);
 
     expect(normalizedError).toHaveProperty("message", "Internal Server Error");

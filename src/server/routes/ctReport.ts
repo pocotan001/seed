@@ -1,5 +1,5 @@
 import { RequestHandler } from "express-serve-static-core";
-import createLogger from "~/infrastructure/logger";
+import createLogger from "~/infra/logger";
 
 const log = createLogger("[security]");
 

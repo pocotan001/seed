@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IRouteAction } from "~/infrastructure/router";
+import { IRouteAction } from "~/infra/router";
 
 const markdown: IRouteAction = () => ({
   components: () => [

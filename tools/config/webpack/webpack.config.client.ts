@@ -53,6 +53,10 @@ const clientConfig = merge(baseConfig, {
           new GenerateSW({
             swDest: `${DIST_DIR}/public/sw.js`,
             cacheId: pkg.name,
+            skipWaiting: true,
+            clientsClaim: true,
+            globDirectory: "./dist/public",
+            globPatterns: ["**/*.{png,jpg,gif,svg}"],
             runtimeCaching: []
           })
         ])

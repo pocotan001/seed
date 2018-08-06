@@ -1,7 +1,7 @@
 import { isEqual } from "lodash";
 import * as React from "react";
 import { FormSpy, FormSpyRenderProps } from "react-final-form";
-import { debounce } from "~/infrastructure/decorators";
+import { debounce } from "~/infra/decorators";
 
 interface IAdditionalProps {
   onRequestSave: (values: any) => void | Promise<void>;

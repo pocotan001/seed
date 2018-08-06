@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import { css } from "~/components/styles/themedStyledComponents";
-import { px } from "~/infrastructure/utils";
+import { px } from "~/infra/utils";
 
 export interface IMarginProps {
   m?: CSSProperties["margin"];

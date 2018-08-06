@@ -3,7 +3,7 @@
 describe("@debounce", () => {
   it("should call debounce", () => {
     jest.useFakeTimers();
-    const { debounce } = require("~/infrastructure/decorators");
+    const { debounce } = require("~/infra/decorators");
 
     class Test {
       @debounce(1000)
@@ -22,7 +22,7 @@ describe("@debounce", () => {
 describe("@throttle", () => {
   it("should call throttle", () => {
     jest.useFakeTimers();
-    const { throttle } = require("~/infrastructure/decorators");
+    const { throttle } = require("~/infra/decorators");
 
     class Test {
       @throttle(1000)

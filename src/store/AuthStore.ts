@@ -6,7 +6,7 @@ interface ISignInParams {
   password: string;
 }
 
-export default class AuthenticationStore extends Store {
+export default class AuthStore extends Store {
   @computed
   get isSignedIn(): boolean {
     return Boolean(this.state.auth.me);

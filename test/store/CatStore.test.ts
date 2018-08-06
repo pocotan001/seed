@@ -1,4 +1,4 @@
-import { serializeParams } from "~/infrastructure/utils";
+import { serializeParams } from "~/infra/utils";
 import CatStore from "~/store/CatStore";
 import { defaultState, State } from "~/store/state";
 import { IStoreContext } from "~/store/Store";

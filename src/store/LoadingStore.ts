@@ -1,5 +1,5 @@
 import { action } from "mobx";
-import { sleep } from "~/infrastructure/utils";
+import { sleep } from "~/infra/utils";
 import Store from "./Store";
 
 const DURATION = 5000;

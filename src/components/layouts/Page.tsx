@@ -5,7 +5,7 @@ import Main from "~/components/modules/Main";
 import Sidebar from "~/components/modules/Sidebar";
 import media from "~/components/styles/mixins/media";
 import styled from "~/components/styles/themedStyledComponents";
-import { px } from "~/infrastructure/utils";
+import { px } from "~/infra/utils";
 
 interface IPageProps {
   children: React.ReactNode;

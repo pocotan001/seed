@@ -1,5 +1,5 @@
 import { RequestHandler } from "express-serve-static-core";
-import createRequest from "~/infrastructure/request";
+import createRequest from "~/infra/request";
 import createService from "~/server/service";
 
 const context = (): RequestHandler => (req, res, next) => {

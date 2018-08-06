@@ -1,4 +1,4 @@
-import { ErrorCode } from "~/infrastructure/error";
+import { ErrorCode } from "~/infra/error";
 
 declare global {
   declare module "*.json";

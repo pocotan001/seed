@@ -1,6 +1,6 @@
 import { reaction, toJS } from "mobx";
 import * as StorageKey from "~/constants/StorageKey";
-import createLogger from "~/infrastructure/logger";
+import createLogger from "~/infra/logger";
 import { State } from "~/store/state";
 
 const log = createLogger("[session]");

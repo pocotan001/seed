@@ -1,9 +1,9 @@
-import { em, px, serializeParams } from "~/infrastructure/utils";
+import { em, px, serializeParams } from "~/infra/utils";
 
 describe("sleep(ms)", () => {
   it("should sleep", () => {
     jest.useFakeTimers();
-    const { sleep } = require("~/infrastructure/utils");
+    const { sleep } = require("~/infra/utils");
 
     sleep(1000);
 

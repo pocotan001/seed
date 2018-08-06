@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { Request, RequestHandler } from "express-serve-static-core";
 import * as morgan from "morgan";
-import createLogger from "~/infrastructure/logger";
+import createLogger from "~/infra/logger";
 
 const log = createLogger("[app]");
 const isProxy = (req: Request) => req.hostname === "null";

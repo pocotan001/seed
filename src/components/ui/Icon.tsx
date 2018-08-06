@@ -2,7 +2,7 @@ import * as React from "react";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import { ITheme } from "~/components/styles/theme";
 import styled from "~/components/styles/themedStyledComponents";
-import { px } from "~/infrastructure/utils";
+import { px } from "~/infra/utils";
 
 interface IIconProps extends IMarginProps {
   src: string;

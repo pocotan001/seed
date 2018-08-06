@@ -1,4 +1,4 @@
-import { IRoute } from "~/infrastructure/router";
+import { IRoute } from "~/infra/router";
 import cat from "./cat";
 import home from "./home";
 import markdown from "./markdown";

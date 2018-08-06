@@ -1,6 +1,6 @@
 import * as express from "express-serve-static-core";
 import { History } from "history";
-import { Request } from "~/infrastructure/request";
+import { Request } from "~/infra/request";
 import { State } from "./state";
 
 export interface IStoreContext {

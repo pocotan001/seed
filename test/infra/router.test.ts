@@ -2,7 +2,7 @@ import createRouter, {
   IRoute,
   IRouterContext,
   Router
-} from "~/infrastructure/router";
+} from "~/infra/router";
 
 describe("Router", () => {
   describe("createRouter(routes, ctx)", () => {
