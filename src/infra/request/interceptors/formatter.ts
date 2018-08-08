@@ -1,5 +1,5 @@
 import { AxiosError, AxiosResponse } from "axios";
-import { ErrorCode, normalizeError } from "~/infra/error";
+import { normalizeError } from "~/domain/Error";
 
 const CODE_ECONNABORTED = "ECONNABORTED";
 
@@ -11,8 +11,6 @@ export const onRejected = (e: any): Promise<never> => {
 
   if (axiosErr.response) {
     const apiErr: Error = axiosErr.response.data.error;
-
-    err.status = axiosErr.response.status;
 
     // Maybe client-side error
     if (apiErr) {
@@ -27,7 +25,7 @@ export const onRejected = (e: any): Promise<never> => {
     }
   } else if (axiosErr.code === CODE_ECONNABORTED) {
     err.status = 408;
-    err.code = ErrorCode.INTERNAL; // Override `ECONNABORTED`
+    delete err.code; // Delete `ECONNABORTED`
   } else {
     // Network Error
     err.status = 500;

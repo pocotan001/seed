@@ -1,6 +1,6 @@
 import * as React from "react";
 import ErrorPage from "~/components/pages/ErrorPage";
-import { normalizeError } from "~/infra/error";
+import { normalizeError } from "~/domain/Error";
 import { IRouteErrorAction } from "~/infra/router";
 
 const onRouteError: IRouteErrorAction = (err, _, { store }) => {

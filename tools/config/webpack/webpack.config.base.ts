@@ -88,7 +88,7 @@ const baseConfig: webpack.Configuration = {
             loader: "url-loader",
             options: {
               name: isDebug ? "img/[name].[ext]" : "img/[name].[hash].[ext]",
-              limit: 1024 // 1KB
+              limit: 4096 // 4kb
             }
           }
         ]

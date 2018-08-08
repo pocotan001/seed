@@ -23,22 +23,21 @@ export enum ErrorCode {
   UNAUTHENTICATED = 16
 }
 
-const ErrorCodes: { [status: number]: ErrorCode | undefined } = {
-  400: ErrorCode.INVALID_ARGUMENT,
-  401: ErrorCode.UNAUTHENTICATED,
-  403: ErrorCode.PERMISSION_DENIED,
-  404: ErrorCode.NOT_FOUND,
-  409: ErrorCode.ALREADY_EXISTS,
-  429: ErrorCode.RESOURCE_EXHAUSTED,
-  499: ErrorCode.CANCELED,
-  500: ErrorCode.INTERNAL,
-  503: ErrorCode.UNAVAILABLE,
-  504: ErrorCode.DEADLINE_EXCEEDED
+const StatusCodes: { [C in ErrorCode]?: number } = {
+  [ErrorCode.INVALID_ARGUMENT]: 400,
+  [ErrorCode.UNAUTHENTICATED]: 401,
+  [ErrorCode.PERMISSION_DENIED]: 403,
+  [ErrorCode.NOT_FOUND]: 404,
+  [ErrorCode.ALREADY_EXISTS]: 409,
+  [ErrorCode.RESOURCE_EXHAUSTED]: 429,
+  [ErrorCode.CANCELED]: 499,
+  [ErrorCode.INTERNAL]: 500,
+  [ErrorCode.UNAVAILABLE]: 503,
+  [ErrorCode.DEADLINE_EXCEEDED]: 504
 };
 
 export const normalizeError = (err: Error): Error => {
-  err.status = err.status || 500;
-  err.code = err.code || ErrorCodes[err.status] || ErrorCodes[500]!;
+  err.status = err.status || StatusCodes[err.code!] || 500;
 
   if (config.isProd) {
     err.message = STATUS_CODES[err.status] || STATUS_CODES[500]!;

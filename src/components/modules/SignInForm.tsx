@@ -13,8 +13,8 @@ import {
 } from "~/components/ui/Form";
 import Paragraph from "~/components/ui/Paragraph";
 import Space from "~/components/ui/Space";
+import { ErrorCode } from "~/domain/Error";
 import { isEmail, isRequired } from "~/domain/validators";
-import { ErrorCode } from "~/infra/error";
 import { RootStore } from "~/store";
 
 interface ISignInFormProps {

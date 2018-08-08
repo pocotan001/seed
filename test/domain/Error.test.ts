@@ -1,4 +1,4 @@
-import { ErrorCode, normalizeError } from "~/infra/error";
+import { normalizeError } from "~/domain/Error";
 
 describe("normalizeError(err)", () => {
   it("should return an original instance", () => {
@@ -16,7 +16,6 @@ describe("normalizeError(err)", () => {
 
     expect(normalizedError).toHaveProperty("message", "oops!");
     expect(normalizedError).toHaveProperty("status", 401);
-    expect(normalizedError).toHaveProperty("code", ErrorCode.UNAUTHENTICATED);
   });
 
   it("should return a 500 error if `status` is undefined", () => {
@@ -25,7 +24,6 @@ describe("normalizeError(err)", () => {
 
     expect(normalizedError).toHaveProperty("message", "oops!");
     expect(normalizedError).toHaveProperty("status", 500);
-    expect(normalizedError).toHaveProperty("code", ErrorCode.INTERNAL);
   });
 
   it("should override error message when production environment", () => {
@@ -35,11 +33,10 @@ describe("normalizeError(err)", () => {
     jest.resetModules();
 
     // tslint:disable-next-line:variable-name
-    const _normalizeError = require("~/infra/error").normalizeError;
+    const _normalizeError = require("~/domain/Error").normalizeError;
     const normalizedError = _normalizeError(err);
 
     expect(normalizedError).toHaveProperty("message", "Internal Server Error");
     expect(normalizedError).toHaveProperty("status", 500);
-    expect(normalizedError).toHaveProperty("code", ErrorCode.INTERNAL);
   });
 });
