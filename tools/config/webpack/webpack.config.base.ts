@@ -91,15 +91,11 @@ const baseConfig: webpack.Configuration = {
       },
       {
         test: /\/assets\/img\/.+\.(png|jpg|gif|svg)$/,
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              name: isDebug ? "img/[name].[ext]" : "img/[name].[hash].[ext]",
-              limit: 4096 // 4kb
-            }
-          }
-        ]
+        loader: "url-loader",
+        options: {
+          name: isDebug ? "img/[name].[ext]" : "img/[name].[hash].[ext]",
+          limit: 4096 // 4kb
+        }
       },
       {
         test: /\/assets\/icons\/.+\.svg$/,
