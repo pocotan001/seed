@@ -60,8 +60,16 @@ const baseConfig: webpack.Configuration = {
                       "@babel/plugin-transform-react-constant-elements",
                       // https://babeljs.io/docs/en/next/babel-plugin-transform-react-inline-elements.html
                       "@babel/plugin-transform-react-inline-elements",
-                      // https://github.com/lodash/babel-plugin-lodash
-                      "babel-plugin-lodash"
+                      // https://bitbucket.org/amctheatres/babel-transform-imports
+                      [
+                        "babel-plugin-transform-imports",
+                        {
+                          lodash: {
+                            transform: "lodash/${member}",
+                            preventFullImport: true
+                          }
+                        }
+                      ]
                     ])
               ]
             }
