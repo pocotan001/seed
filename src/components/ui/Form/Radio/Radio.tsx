@@ -2,7 +2,9 @@ import * as React from "react";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import { ITheme } from "~/components/styles/theme";
 import styled from "~/components/styles/themedStyledComponents";
-import { Field, IFieldProps, IFieldRenderProps } from "./Field";
+import { Field, IFieldProps, IFieldRenderProps } from "../Field";
+import Input from "./Input";
+import Label from "./Label";
 
 type IInputAttributes = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -14,36 +16,27 @@ interface IAdditionalProps extends IMarginProps {
   theme?: ITheme;
 }
 
-const CheckBox: React.SFC<
+const Radio: React.SFC<
   IFieldRenderProps<IInputAttributes> & IAdditionalProps
 > = ({ input, meta, className, children, m, mt, mr, mb, ml, ...rest }) => {
   const isInvalid = Boolean(meta.touched && meta.error);
 
   return (
     <label className={className}>
-      <input {...input} {...rest} aria-invalid={isInvalid} />
-      {children && <span className="label">{children}</span>}
+      <Input {...input} {...rest} aria-invalid={isInvalid} />
+      {children && <Label>{children}</Label>}
     </label>
   );
 };
 
-const StyledCheckBox = styled(CheckBox)`
+const StyledRadio = styled(Radio)`
   display: inline-block;
   vertical-align: middle;
   ${margin};
-
-  > input {
-    vertical-align: middle;
-    margin-right: 8px;
-  }
-
-  > .label {
-    vertical-align: middle;
-  }
 `;
 
-const AdaptedCheckBox: React.SFC<
+const AdaptedRadio: React.SFC<
   IFieldProps<IInputAttributes> & IAdditionalProps
-> = props => <Field {...props} type="checkbox" component={StyledCheckBox} />;
+> = props => <Field {...props} type="radio" component={StyledRadio} />;
 
-export default AdaptedCheckBox;
+export default AdaptedRadio;

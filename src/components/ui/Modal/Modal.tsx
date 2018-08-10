@@ -4,6 +4,8 @@ import * as ReactDOM from "react-dom";
 import styled from "~/components/styles/themedStyledComponents";
 import config from "~/config";
 import * as ElementId from "~/constants/ElementId";
+import Backdrop from "./Backdrop";
+import Content from "./Content";
 
 interface IModalProps {
   children: React.ReactNode;
@@ -69,32 +71,26 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 
     const {
       children,
+      padded,
       labelledBy,
       describedBy,
       className,
       onRequestClose
     } = this.props;
 
-    const computedClassName = this.state.isActive
-      ? `${className} -actived`
-      : className;
-
     return ReactDOM.createPortal(
       <div
-        className={computedClassName}
+        className={className}
         ref={this.el}
         role="dialog"
         aria-modal
         aria-labelledby={labelledBy}
         aria-describedby={describedBy}
       >
-        <div
-          className="backdrop"
-          tabIndex={-1}
-          role="presentation"
-          onClick={onRequestClose}
-        />
-        <div className="content">{children}</div>
+        <Backdrop onClick={onRequestClose} />
+        <Content padded={padded} actived={this.state.isActive}>
+          {children}
+        </Content>
       </div>,
       modalContainer
     );
@@ -111,33 +107,4 @@ export default styled(Modal)`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  > .backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-  }
-
-  > .content {
-    position: relative;
-    overflow: auto;
-    width: 640px;
-    ${({ padded }) => padded && "padding: 24px"};
-    max-width: calc(100% - 48px);
-    max-height: calc(100% - 48px);
-    background: ${({ theme }) => theme.colors.white};
-    border-radius: 5px;
-    opacity: 0;
-    transform: scale(0.85);
-    transition: opacity 0.2s, transform 0.2s;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  &.-actived > .content {
-    opacity: 1;
-    transform: scale(1);
-  }
 `;

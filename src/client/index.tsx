@@ -53,15 +53,19 @@ const render = async (
       return;
     }
 
-    (opts.hydrate ? ReactDOM.hydrate : ReactDOM.render)(
-      <App store={store}>{route.component}</App>,
-      container,
-      () => {
-        store.head.setTitle(route.title);
-        store.head.setMeta(route.meta);
-        store.head.setLink(route.link);
-      }
-    );
+    if (opts.hydrate) {
+      ReactDOM.hydrate(<App store={store}>{route.component}</App>, container);
+    } else {
+      ReactDOM.render(
+        <App store={store}>{route.component}</App>,
+        container,
+        () => {
+          store.head.setTitle(route.title);
+          store.head.setMeta(route.meta);
+          store.head.setLink(route.link);
+        }
+      );
+    }
   } catch (err) {
     // Probably fatal error
     log.error(err);
