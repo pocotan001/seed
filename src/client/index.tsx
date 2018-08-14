@@ -99,7 +99,7 @@ const hydrate = async () => {
   log.debug("Hydrated with state: %o", initialState);
 };
 
-const onLocationChange: LocationListener = async (location, action) => {
+const onLocationChange: LocationListener = (location, action) => {
   render(location, {
     skipFetch: action === "POP" && store.history.isVisited(location.key)
   });
