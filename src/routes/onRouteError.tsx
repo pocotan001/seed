@@ -3,13 +3,12 @@ import ErrorPage from "~/components/pages/ErrorPage";
 import { normalizeError } from "~/domain/Error";
 import { IRouteErrorAction } from "~/infra/router";
 
-const onRouteError: IRouteErrorAction = (err, _, { store }) => {
+const onRouteError: IRouteErrorAction = err => {
   if (err.status === 401) {
     return { redirect: "/" };
   }
 
   err = normalizeError(err);
-  store.app.markAsError();
 
   return {
     status: err.status,

@@ -30,7 +30,7 @@ const cat: IRouteAction<{ page: string }> = (params, { store }) => {
       }
 
       const link: IRouteActionResult["link"] = [];
-      const origin = store.state.app.locationOrigin;
+      const { origin } = store.state.history;
 
       if (page > 1) {
         link.push({ rel: "prev", href: `${origin}/cat/${page - 1}` });

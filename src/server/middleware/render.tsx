@@ -17,12 +17,20 @@ import createRequest from "~/infra/request";
 import createRouter from "~/infra/router";
 import routes, { onRouteError } from "~/routes";
 import createStore from "~/store";
-import createState from "~/store/state";
+import createState, { State } from "~/store/state";
 import * as chunks from "./chunk-manifest.json";
 
 const MAIN_CHUNKS = ["vendors", "main"];
 const reNonceAttrs = / nonce=".*?"/g;
 const log = createLogger("[render]");
+
+const api = createRequest({
+  baseURL: "/api",
+  proxy: {
+    host: "127.0.0.1",
+    port: Number(process.env.PORT)
+  }
+});
 
 // Leverage a strategy called micro-caching to drastically improve
 // app's capability of handling high traffic
@@ -86,18 +94,18 @@ const render = (): RequestHandler => async (req, res, next) => {
     }
 
     const history = createHistory({ initialEntries: [url] });
-    const api = createRequest({
-      baseURL: "/api",
-      proxy: {
-        host: "127.0.0.1",
-        port: Number(process.env.PORT)
-      }
-    });
-    const state = createState({
+    const initialState: Partial<State> = {
       auth: {
         me: req.session.me
+      },
+      history: {
+        origin: `${req.protocol}://${req.get("host")}`,
+        location: history.location,
+        visited: {}
       }
-    });
+    };
+
+    const state = createState(initialState);
     const store = createStore(state, { history, api, req, res });
     const router = createRouter(routes, { store, onError: onRouteError });
     const route = await router.resolve(req.path);
@@ -119,8 +127,10 @@ const render = (): RequestHandler => async (req, res, next) => {
       renderStream = res;
     }
 
-    store.history.updateLocation(history.location);
-    store.app.setLocationOrigin(`${req.protocol}://${req.get("host")}`);
+    if (status === 200) {
+      store.history.markAsVisited();
+    }
+
     store.head.setTitle(route.title);
     store.head.setMeta(route.meta);
     store.head.setLink(route.link);
@@ -152,8 +162,13 @@ const render = (): RequestHandler => async (req, res, next) => {
 
     appStream.on("error", next);
     appStream.on("end", () => {
+      const serializedState = toJS(state);
       const scripts = ReactDOM.renderToStaticMarkup(
-        <Scripts state={toJS(state)} scripts={availableChunks} nonce={nonce} />
+        <Scripts
+          state={serializedState}
+          scripts={availableChunks}
+          nonce={nonce}
+        />
       );
 
       renderStream.end(
@@ -161,6 +176,8 @@ const render = (): RequestHandler => async (req, res, next) => {
           ElementId.MODAL_CONTAINER
         }"></div>${scripts}</body></html>`
       );
+
+      log.debug("Rendered with state: %o", serializedState);
     });
   } catch (err) {
     next(err);

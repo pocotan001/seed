@@ -38,6 +38,10 @@ const render = async (
   opts: { hydrate?: boolean; skipFetch?: boolean } = {}
 ) => {
   try {
+    if (!opts.skipFetch) {
+      store.loading.start();
+    }
+
     const route = await router.resolve(location.pathname, {
       skipFetch: opts.skipFetch
     });
@@ -60,9 +64,19 @@ const render = async (
         <App store={store}>{route.component}</App>,
         container,
         () => {
+          store.history.updateLocation(location);
+
+          if (!route.status || route.status === 200) {
+            store.history.markAsVisited();
+          } else {
+            store.history.unmarkAsVisited();
+          }
+
           store.head.setTitle(route.title);
           store.head.setMeta(route.meta);
           store.head.setLink(route.link);
+          store.loading.finish();
+          window.scrollTo(0, 0);
         }
       );
     }
@@ -79,26 +93,16 @@ const render = async (
 const hydrate = async () => {
   await render(history.location, {
     hydrate: true,
-    skipFetch: !state.app.hasError
+    skipFetch: store.history.isVisited(state.history.location.key)
   });
 
   log.debug("Hydrated with state: %o", initialState);
 };
 
 const onLocationChange: LocationListener = async (location, action) => {
-  const skipFetch = action === "POP" && store.history.isVisited(location.key);
-
-  if (!skipFetch) {
-    store.loading.start();
-  }
-
-  store.history.updateLocation(location);
-  await render(location, { skipFetch });
-
-  if (!skipFetch && location.key === history.location.key) {
-    store.loading.finish();
-    window.scrollTo(0, 0);
-  }
+  render(location, {
+    skipFetch: action === "POP" && store.history.isVisited(location.key)
+  });
 };
 
 log.info("Booting in %o mode", config.env);

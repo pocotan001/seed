@@ -9,12 +9,9 @@ export enum SessionKey {
 }
 
 export const defaultState: State = Object.freeze({
-  app: {
-    locationOrigin: "",
-    hasError: false
-  },
   auth: {},
   history: {
+    origin: "",
     location: createLocation(""),
     visited: {}
   },
@@ -40,16 +37,12 @@ export const defaultState: State = Object.freeze({
 });
 
 export class State {
-  app!: {
-    locationOrigin: string;
-    hasError: boolean;
-  };
-
   auth!: {
     me?: IUser;
   };
 
   history!: {
+    origin: string;
     location: Location;
     visited: { [key: string]: boolean };
   };

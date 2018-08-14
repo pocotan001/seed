@@ -54,8 +54,6 @@ export default class App extends React.PureComponent<IAppProps, IAppState> {
     const { children } = prevState;
 
     if (children !== nextProps.children) {
-      nextProps.store.app.unmarkAsError();
-
       return {
         children: nextProps.children,
         error: null
@@ -71,10 +69,7 @@ export default class App extends React.PureComponent<IAppProps, IAppState> {
   };
 
   componentDidCatch(err: Error) {
-    const { store } = this.props;
-
     this.setState({ error: err });
-    store.app.markAsError();
   }
 
   render() {

@@ -17,17 +17,34 @@ export default class HistoryStore extends Store {
 
   @action
   updateLocation(location: IHistory["location"]) {
-    if (location.key) {
-      this.state.history = {
-        ...this.state.history,
-        location,
-        visited: {
-          ...this.state.history.visited,
-          [location.key]: true
-        }
-      };
-    } else {
-      this.state.history.location = location;
+    this.state.history.location = location;
+  }
+
+  @action
+  markAsVisited() {
+    const { key } = this.state.history.location;
+
+    if (!key) {
+      return;
     }
+
+    this.state.history.visited = {
+      ...this.state.history.visited,
+      [key]: true
+    };
+  }
+
+  @action
+  unmarkAsVisited() {
+    const { key } = this.state.history.location;
+
+    if (!key) {
+      return;
+    }
+
+    this.state.history.visited = {
+      ...this.state.history.visited,
+      [key]: false
+    };
   }
 }
