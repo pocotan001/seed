@@ -35,18 +35,74 @@ describe("HistoryStore", () => {
   });
 
   it("#isVisited(key)", () => {
-    const store = new HistoryStore(state, ctx);
-
-    expect(store.isVisited("abcdef")).toBe(false);
-
-    store.updateLocation({
-      pathname: "/a",
-      search: "",
-      state: undefined,
-      hash: "",
-      key: "abcdef"
-    });
+    const store = new HistoryStore(
+      {
+        ...state,
+        history: {
+          origin: "",
+          location: {
+            pathname: "/a",
+            search: "",
+            state: undefined,
+            hash: "",
+            key: "abcdef"
+          },
+          visited: {
+            abcdef: true
+          }
+        }
+      },
+      ctx
+    );
 
     expect(store.isVisited("abcdef")).toBe(true);
+  });
+
+  it("#markAsVisited()", () => {
+    const store = new HistoryStore(
+      {
+        ...state,
+        history: {
+          origin: "",
+          location: {
+            pathname: "/a",
+            search: "",
+            state: undefined,
+            hash: "",
+            key: "abcdef"
+          },
+          visited: {}
+        }
+      },
+      ctx
+    );
+
+    store.markAsVisited();
+    expect(store).toHaveProperty("state.history.visited.abcdef", true);
+  });
+
+  it("#unmarkAsVisited()", () => {
+    const store = new HistoryStore(
+      {
+        ...state,
+        history: {
+          origin: "",
+          location: {
+            pathname: "/a",
+            search: "",
+            state: undefined,
+            hash: "",
+            key: "abcdef"
+          },
+          visited: {
+            abcdef: true
+          }
+        }
+      },
+      ctx
+    );
+
+    store.unmarkAsVisited();
+    expect(store).toHaveProperty("state.history.visited.abcdef", false);
   });
 });
