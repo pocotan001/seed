@@ -15,10 +15,8 @@ const clientConfig = merge(baseConfig, {
   entry: ["@babel/polyfill", "intersection-observer", "./src/client/index.tsx"],
   output: {
     path: `${DIST_DIR}/public`,
-    filename: isDebug ? "main.js" : "main.[hash].js",
-    chunkFilename: isDebug
-      ? "chunks/[name].js"
-      : "chunks/[name].[chunkhash].js",
+    filename: isDebug ? "main.js" : "[hash].js",
+    chunkFilename: isDebug ? "chunks/[name].js" : "[chunkhash].js",
     publicPath: "/"
   },
   plugins: [

@@ -36,4 +36,11 @@ const serverConfig = merge(baseConfig, {
   }
 });
 
+for (const rule of serverConfig.module!.rules) {
+  if (rule.loader === "url-loader") {
+    // https://github.com/webpack-contrib/file-loader#emitfile
+    (rule.options as any).emitFile = false;
+  }
+}
+
 export default serverConfig;

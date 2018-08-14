@@ -10,6 +10,7 @@ export default class HistoryStore extends Store {
   go = this.ctx.history.go;
   goBack = this.ctx.history.goBack;
   goForward = this.ctx.history.goForward;
+  block = this.ctx.history.block;
 
   isVisited(key?: string) {
     return Boolean(key && this.state.history.visited[key]);

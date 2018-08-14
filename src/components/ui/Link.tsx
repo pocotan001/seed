@@ -44,6 +44,10 @@ export class Link extends React.PureComponent<ILinkProps> {
   render() {
     const { href, children, block, onClick, store, ...rest } = this.props;
 
+    if (rest.target === "_blank") {
+      rest.rel = rest.rel || "noopener noreferrer";
+    }
+
     return (
       <a href={href} onClick={this.handleClick} {...rest}>
         {children}

@@ -93,7 +93,8 @@ const baseConfig: webpack.Configuration = {
         test: /\/assets\/img\/.+\.(png|jpg|gif|svg)$/,
         loader: "url-loader",
         options: {
-          name: isDebug ? "img/[name].[ext]" : "img/[name].[hash].[ext]",
+          regExp: /\/(img\/.+)$/,
+          name: isDebug ? "[1]" : "[hash].[ext]",
           limit: 4096 // 4kb
         }
       },
