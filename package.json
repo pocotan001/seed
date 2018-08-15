@@ -36,6 +36,7 @@
       "js"
     ],
     "moduleNameMapper": {
+      "^~/assets/img/(.+)": "<rootDir>/test/mocks/image",
       "^~/(.+)": "<rootDir>/src/$1"
     },
     "setupFiles": [
