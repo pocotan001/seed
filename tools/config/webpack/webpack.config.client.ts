@@ -1,7 +1,6 @@
 import { pick } from "lodash";
 import * as webpack from "webpack";
 import * as ManifestPlugin from "webpack-manifest-plugin";
-import * as merge from "webpack-merge";
 import { GenerateSW } from "workbox-webpack-plugin";
 import * as pkg from "../../../package.json";
 import { DIST_DIR } from "../paths";
@@ -9,7 +8,8 @@ import baseConfig, { isDebug } from "./webpack.config.base";
 
 const ENV_EXPORTS = ["ENV", "NODE_ENV", "DEBUG", "LOG_LEVEL"];
 
-const clientConfig = merge(baseConfig, {
+const clientConfig: webpack.Configuration = {
+  ...baseConfig,
   name: "Client",
   target: "web",
   entry: ["@babel/polyfill", "intersection-observer", "./src/client/index.tsx"],
@@ -20,30 +20,29 @@ const clientConfig = merge(baseConfig, {
     publicPath: "/"
   },
   plugins: [
-    ...[
-      new webpack.EnvironmentPlugin({
-        ...pick(process.env, ENV_EXPORTS),
-        CLIENT: "yes"
-      }),
-      // https://github.com/danethurber/webpack-manifest-plugin
-      new ManifestPlugin({
-        ...{
-          fileName: `${DIST_DIR}/chunk-manifest.json`,
-          filter: file => file.isChunk,
-          map: file => {
-            if (file.name) {
-              file.name = file.name.replace(/\.js$/, "");
-            }
-
-            return file;
+    ...baseConfig.plugins!,
+    new webpack.EnvironmentPlugin({
+      ...pick(process.env, ENV_EXPORTS),
+      CLIENT: "yes"
+    }),
+    // https://github.com/danethurber/webpack-manifest-plugin
+    new ManifestPlugin({
+      ...{
+        fileName: `${DIST_DIR}/chunk-manifest.json`,
+        filter: file => file.isChunk,
+        map: file => {
+          if (file.name) {
+            file.name = file.name.replace(/\.js$/, "");
           }
-        },
-        ...({
-          serialize: (chunks: any) =>
-            JSON.stringify(chunks, null, isDebug ? 2 : 0)
-        } as any)
-      })
-    ],
+
+          return file;
+        }
+      },
+      ...({
+        serialize: (chunks: any) =>
+          JSON.stringify(chunks, null, isDebug ? 2 : 0)
+      } as any)
+    }),
     ...(isDebug
       ? []
       : [
@@ -70,6 +69,6 @@ const clientConfig = merge(baseConfig, {
       }
     }
   }
-});
+};
 
 export default clientConfig;

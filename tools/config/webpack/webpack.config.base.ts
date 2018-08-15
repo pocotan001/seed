@@ -3,6 +3,7 @@ import * as webpack from "webpack";
 import * as pkg from "../../../package.json";
 import { SRC_DIR } from "../paths";
 
+const NODE_VERSION = "8.10.0";
 export const isDebug = process.env.NODE_ENV !== "production";
 
 const baseConfig: webpack.Configuration = {
@@ -33,9 +34,10 @@ const baseConfig: webpack.Configuration = {
                   "@babel/preset-env",
                   {
                     targets: {
-                      node: "8.10.0",
+                      node: NODE_VERSION,
                       browsers: pkg.browserslist
                     },
+                    forceAllTransforms: !isDebug,
                     modules: false
                   }
                 ],

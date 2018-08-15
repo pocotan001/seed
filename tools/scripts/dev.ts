@@ -6,51 +6,30 @@ import * as webpack from "webpack";
 import * as webpackDevMiddleware from "webpack-dev-middleware";
 import * as webpackHotMiddleware from "webpack-hot-middleware";
 import { DIST_DIR, ROOT_DIR } from "../config/paths";
-import clientConfig from "../config/webpack/webpack.config.client";
+import origClientConfig from "../config/webpack/webpack.config.client";
 import serverConfig from "../config/webpack/webpack.config.server";
 import log from "../logger";
 
 const PORT = Number(process.env.PORT) || 3000;
 
-(clientConfig.entry as string[]).unshift(
-  "webpack-hot-middleware/client?noInfo=true"
-);
-clientConfig.plugins!.push(new webpack.HotModuleReplacementPlugin());
+const clientConfig: webpack.Configuration = {
+  ...origClientConfig,
+  entry: [
+    "webpack-hot-middleware/client?noInfo=true",
+    ...(origClientConfig.entry as string[])
+  ],
+  plugins: [
+    ...origClientConfig.plugins!,
+    new webpack.HotModuleReplacementPlugin()
+  ]
+};
 
 const clientCompiler = webpack(clientConfig);
 const serverCompiler = webpack(serverConfig);
 const compilers = [clientCompiler, serverCompiler];
-const initializedCompilers: Set<string> = new Set();
-const isAllInitialized = () => initializedCompilers.size === compilers.length;
-
-for (const compiler of compilers) {
-  compiler.hooks.compile.tap(compiler.name, () => {
-    log.clear();
-    log.wait(`${compiler.name} building...`);
-  });
-
-  compiler.hooks.done.tap(compiler.name, stats => {
-    log.clear();
-    log.done(`${compiler.name} build completed\n`);
-
-    if (stats.hasErrors()) {
-      log.error(`${stats.toJson().errors}\n`);
-    }
-
-    if (!initializedCompilers.has(compiler.name)) {
-      initializedCompilers.add(compiler.name);
-
-      if (isAllInitialized()) {
-        log.info(
-          `Listening on ${chalk.green.underline(`http://localhost:${PORT}\n`)}`
-        );
-      }
-    }
-  });
-}
+const reDotfile = /(^|[\/\\])\../;
 
 const watchCopy = () => {
-  const reDotfile = /(^|[\/\\])\../;
   const watcher = chokidar.watch(`${ROOT_DIR}/static`, {
     ignored: reDotfile,
     ignoreInitial: true
@@ -77,7 +56,7 @@ const watchCopy = () => {
   });
 };
 
-const watchBuild = () => {
+const watchServerBuild = () => {
   serverCompiler.watch({ ignored: /node_modules/ }, () => {
     const deletedIds = Object.keys(require.cache)
       .filter(id => id.indexOf(`${DIST_DIR}/`) === 0)
@@ -115,14 +94,63 @@ const serve = () => {
   server.listen(PORT);
 };
 
+const waitForFirstBuild = (): Promise<void> =>
+  new Promise(resolve => {
+    const completed: Set<string> = new Set();
+    let isFirstBuildCompleted = false;
+
+    for (const compiler of compilers) {
+      compiler.hooks.done.tap(compiler.name, stats => {
+        if (isFirstBuildCompleted) {
+          return;
+        }
+
+        if (stats.hasErrors()) {
+          log.error(`${stats.toJson().errors}\n`);
+        }
+
+        completed.add(compiler.name);
+
+        if (completed.size === compilers.length) {
+          isFirstBuildCompleted = true;
+          resolve();
+        }
+      });
+    }
+  });
+
+const startLogging = () => {
+  for (const compiler of compilers) {
+    compiler.hooks.compile.tap(compiler.name, () => {
+      log.clear();
+      log.wait(`${compiler.name} building...`);
+    });
+
+    compiler.hooks.done.tap(compiler.name, stats => {
+      log.clear();
+      log.done(`${compiler.name} build completed\n`);
+
+      if (stats.hasErrors()) {
+        log.error(`${stats.toJson().errors}\n`);
+      }
+    });
+  }
+};
+
 const dev = async () => {
   if (!fs.existsSync(DIST_DIR)) {
     await require("./build").default();
   }
 
   watchCopy();
-  watchBuild();
+  watchServerBuild();
   serve();
+  await waitForFirstBuild();
+  startLogging();
+
+  log.info(
+    `Listening on ${chalk.green.underline(`http://localhost:${PORT}\n`)}`
+  );
 };
 
 export default dev;

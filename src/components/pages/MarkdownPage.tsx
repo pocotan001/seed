@@ -11,8 +11,8 @@ const MarkdownPage: React.SFC = () => (
           const marked = require("marked");
 
           module.exports = marked(
-            fs.readFileSync(require.resolve("./content.md"), "utf8"),
-            { sanitize: true }
+            fs.readFileSync(require.resolve("../../assets/md/demo.md"), "utf8"),
+            { headerIds: false, sanitize: true }
           );
         `
       }}

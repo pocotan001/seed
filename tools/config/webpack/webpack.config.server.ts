@@ -1,13 +1,13 @@
 import { pick } from "lodash";
 import * as webpack from "webpack";
-import * as merge from "webpack-merge";
 import * as nodeExternals from "webpack-node-externals";
 import { DIST_DIR } from "../paths";
 import baseConfig, { isDebug } from "./webpack.config.base";
 
 const ENV_EXPORTS = ["ENV"];
 
-const serverConfig = merge(baseConfig, {
+const serverConfig: webpack.Configuration = {
+  ...baseConfig,
   name: "Server",
   target: "node",
   entry: [
@@ -22,7 +22,10 @@ const serverConfig = merge(baseConfig, {
     libraryTarget: "commonjs2"
   },
   externals: [nodeExternals(), "./chunk-manifest.json"],
-  plugins: [new webpack.EnvironmentPlugin(pick(process.env, ENV_EXPORTS))],
+  plugins: [
+    ...baseConfig.plugins!,
+    new webpack.EnvironmentPlugin(pick(process.env, ENV_EXPORTS))
+  ],
   // Do not replace node globals with polyfills
   // https://webpack.js.org/configuration/node/
   node: {
@@ -34,12 +37,14 @@ const serverConfig = merge(baseConfig, {
     setImmediate: false,
     Buffer: false
   }
-});
+};
 
 for (const rule of serverConfig.module!.rules) {
   if (rule.loader === "url-loader") {
     // https://github.com/webpack-contrib/file-loader#emitfile
     (rule.options as any).emitFile = false;
+
+    break;
   }
 }
 

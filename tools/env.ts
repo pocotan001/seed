@@ -8,5 +8,5 @@ Object.assign(process.env, {
     process.env.NODE_ENV || env === "local" ? "development" : "production"
 });
 
-dotenv.config({ path: `.env.${process.env.ENV}` });
+dotenv.config({ path: `.env.${env}` });
 dotenv.config({ path: ".env" });
