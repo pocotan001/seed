@@ -22,6 +22,24 @@ const serverConfig: webpack.Configuration = {
     libraryTarget: "commonjs2"
   },
   externals: [nodeExternals(), "./chunk-manifest.json"],
+  module: {
+    ...baseConfig.module!,
+    rules: baseConfig.module!.rules.map(rule => {
+      if (rule.loader === "url-loader") {
+        return {
+          ...rule,
+          options: {
+            ...(rule.options as any),
+            // Add `emitFile` option
+            // https://github.com/webpack-contrib/file-loader#emitfile
+            emitFile: false
+          }
+        };
+      }
+
+      return rule;
+    })
+  },
   plugins: [
     ...baseConfig.plugins!,
     new webpack.EnvironmentPlugin(pick(process.env, ENV_EXPORTS))
@@ -38,14 +56,5 @@ const serverConfig: webpack.Configuration = {
     Buffer: false
   }
 };
-
-for (const rule of serverConfig.module!.rules) {
-  if (rule.loader === "url-loader") {
-    // https://github.com/webpack-contrib/file-loader#emitfile
-    (rule.options as any).emitFile = false;
-
-    break;
-  }
-}
 
 export default serverConfig;
