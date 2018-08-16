@@ -1,14 +1,14 @@
 import * as React from "react";
+import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import { ITheme } from "~/components/styles/theme";
-import styled from "~/components/styles/themedStyledComponents";
-import { px } from "~/infra/utils";
+import colors, { IColorKey } from "~/components/styles/theme/colors";
+import { px } from "~/utils";
 
 interface IIconProps extends IMarginProps {
   src: string;
   width?: number | string;
   height?: number | string;
-  fill?: keyof ITheme["colors"];
+  fill?: IColorKey;
   className?: string;
 }
 
@@ -21,7 +21,7 @@ const StyledIcon = styled(Icon)`
   vertical-align: middle;
   width: ${({ width }) => px(width!)};
   height: ${({ height }) => px(height!)};
-  fill: ${({ theme, fill }) => theme.colors[fill!] || "currentColor"};
+  fill: ${({ fill }) => colors[fill!] || "currentColor"};
   ${margin};
 `;
 

@@ -1,6 +1,6 @@
 import { inject } from "mobx-react";
 import * as React from "react";
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
 import { RootStore } from "~/store";
 
 type IMouseEvent = React.MouseEvent<HTMLAnchorElement>;
@@ -33,10 +33,6 @@ export class Link extends React.PureComponent<ILinkProps> {
     }
 
     e.preventDefault();
-
-    if (href === this.store.state.history.location.pathname) {
-      return;
-    }
 
     this.store.history.push(href);
   };

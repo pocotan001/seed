@@ -1,4 +1,3 @@
-import "@babel/polyfill";
 import "./env";
 
 import chalk from "chalk";

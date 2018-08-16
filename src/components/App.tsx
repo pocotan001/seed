@@ -1,12 +1,12 @@
 import { Provider } from "mobx-react";
 import * as React from "react";
-import Loading from "~/components/modules/Loading";
+import { injectGlobal } from "styled-components";
+import { Loading } from "~/components/modules";
 import ErrorPage from "~/components/pages/ErrorPage";
 import normalize from "~/components/styles/mixins/normalize";
 import reset from "~/components/styles/mixins/reset";
-import theme from "~/components/styles/theme";
+import { colors, fonts } from "~/components/styles/theme";
 import { RootStore } from "~/store";
-import { injectGlobal, ThemeProvider } from "./styles/themedStyledComponents";
 
 interface IAppProps {
   store: RootStore;
@@ -23,12 +23,12 @@ injectGlobal`
   ${reset};
 
   html {
-    font-family: ${theme.fonts.sans};
+    font-family: ${fonts.sans};
     font-size: 16px;
     line-height: 1.5;
     box-sizing: border-box;
-    color: ${theme.colors.grey800};
-    background: ${theme.colors.white};
+    color: ${colors.grey800};
+    background: ${colors.white};
   }
 
   *,
@@ -77,16 +77,14 @@ export default class App extends React.PureComponent<IAppProps, IAppState> {
 
     return (
       <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <>
-            <Loading />
-            {this.state.error ? (
-              <ErrorPage error={this.state.error!} />
-            ) : (
-              children
-            )}
-          </>
-        </ThemeProvider>
+        <>
+          <Loading />
+          {this.state.error ? (
+            <ErrorPage error={this.state.error!} />
+          ) : (
+            children
+          )}
+        </>
       </Provider>
     );
   }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
 
 interface IMainProps {
   children: React.ReactNode;

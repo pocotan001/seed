@@ -1,5 +1,6 @@
 import * as React from "react";
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
+import { colors } from "~/components/styles/theme";
 
 interface ISidebarProps {
   className?: string;
@@ -12,5 +13,5 @@ const Sidebar: React.SFC<ISidebarProps> = ({ className }) => (
 export default styled(Sidebar)`
   padding: 24px;
   text-align: center;
-  background: ${({ theme }) => theme.colors.grey100};
+  background: ${colors.grey100};
 `;

@@ -1,15 +1,12 @@
 import * as React from "react";
+import styled, { css } from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import { ITheme } from "~/components/styles/theme";
-import styled, { css } from "~/components/styles/themedStyledComponents";
+import { colors } from "~/components/styles/theme";
 import { Field, IFieldProps, IFieldRenderProps } from "./Field";
 
 type IInputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
 export type ITextFieldStyleProps = IMarginProps;
-
-interface IAdditionalProps extends ITextFieldStyleProps {
-  theme?: ITheme;
-}
+type IAdditionalProps = ITextFieldStyleProps;
 
 const TextField: React.SFC<
   IFieldRenderProps<IInputAttributes> & IAdditionalProps
@@ -26,31 +23,31 @@ export const textFieldStyles = css<ITextFieldStyleProps>`
   padding: 0.4em 0.75em;
   width: 100%;
   max-width: 100%;
-  color: ${({ theme }) => theme.colors.grey800};
-  border: 1px solid ${({ theme }) => theme.colors.grey400};
+  color: ${colors.grey800};
+  border: 1px solid ${colors.grey400};
   border-radius: 3px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${colors.white};
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.grey500};
+    border-color: ${colors.grey500};
   }
 
   &:disabled {
     cursor: default;
     opacity: 0.6;
-    border-color: ${({ theme }) => theme.colors.grey400};
+    border-color: ${colors.grey400};
   }
 
   &[aria-invalid="true"] {
-    border-color: ${({ theme }) => theme.colors.pink500};
+    border-color: ${colors.pink500};
   }
 
   &::-webkit-input-placeholder {
-    color: ${({ theme }) => theme.colors.grey400};
+    color: ${colors.grey400};
   }
 
   &::-moz-placeholder {
-    color: ${({ theme }) => theme.colors.grey400};
+    color: ${colors.grey400};
   }
 
   ${margin};

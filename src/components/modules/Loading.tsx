@@ -1,6 +1,7 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
+import { colors, zIndex } from "~/components/styles/theme";
 import { RootStore } from "~/store";
 
 interface ILoadingProps {
@@ -29,7 +30,7 @@ const InjectedLoading = inject("store")(observer(Loading));
 
 export default styled(InjectedLoading)`
   position: fixed;
-  z-index: ${({ theme }) => theme.zIndex.loading};
+  z-index: ${zIndex.loading};
   top: 0;
   left: 0;
   opacity: 1;
@@ -45,17 +46,17 @@ export default styled(InjectedLoading)`
   }
 
   &::-webkit-progress-value {
-    background: ${({ theme }) => theme.colors.pink300};
+    background: ${colors.pink300};
     transition: width 0.2s;
   }
 
   &::-moz-progress-bar {
-    background: ${({ theme }) => theme.colors.pink300};
+    background: ${colors.pink300};
     transition: width 0.2s;
   }
 
   &::-ms-fill {
-    background: ${({ theme }) => theme.colors.pink300};
+    background: ${colors.pink300};
     transition: width 0.2s;
   }
 `;

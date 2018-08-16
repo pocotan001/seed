@@ -1,4 +1,4 @@
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
 
 const Label = styled.span`
   vertical-align: middle;

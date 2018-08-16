@@ -1,22 +1,11 @@
+import { FormApi } from "final-form";
 import { omit } from "lodash";
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import Button from "~/components/ui/Button";
-import {
-  AutoSave,
-  CheckBox,
-  Form,
-  IFormOnSubmit,
-  Radio,
-  Select,
-  TextArea,
-  TextField
-} from "~/components/ui/Form";
-import Paragraph from "~/components/ui/Paragraph";
-import Space from "~/components/ui/Space";
-import { sleep } from "~/infra/utils";
+import { Button, Form, Paragraph, Space } from "~/components/ui";
 import { RootStore } from "~/store";
 import { SessionKey } from "~/store/state";
+import { sleep } from "~/utils";
 
 interface IValues {
   text: string;
@@ -31,6 +20,8 @@ interface IValues {
 interface IExampleFormState {
   initialValues: Partial<IValues>;
 }
+
+const { AutoSave, CheckBox, Radio, Select, TextArea, TextField } = Form;
 
 @inject("store")
 @observer
@@ -48,12 +39,15 @@ export default class ExampleForm extends React.Component<
     this.store.session.set(SessionKey.EXAMPLE_FORM, omit(values, ["password"]));
   };
 
-  handleSubmit: IFormOnSubmit = async (_, form) => {
+  handleSubmit = async (
+    _: IValues,
+    { reset }: FormApi
+  ): Promise<void | string> => {
     await sleep(3000);
 
     // Reset form after submit
     setTimeout(() => {
-      form.reset({});
+      reset({});
     }, 0);
   };
 

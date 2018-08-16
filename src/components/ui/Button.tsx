@@ -1,6 +1,7 @@
 import * as React from "react";
+import styled, { css } from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import styled, { css } from "~/components/styles/themedStyledComponents";
+import { colors } from "~/components/styles/theme";
 
 interface IButtonProps
   extends IButtonStyleProps,
@@ -37,21 +38,21 @@ export const buttonStyles = css<IButtonStyleProps>`
   text-decoration: none;
   text-align: center;
   vertical-align: middle;
-  color: ${({ theme }) => theme.colors.grey800};
-  border: 1px solid ${({ theme }) => theme.colors.grey400};
+  color: ${colors.grey800};
+  border: 1px solid ${colors.grey400};
   border-radius: 3px;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${colors.white};
   align-items: center;
   justify-content: center;
 
   &:hover {
-    border-color: ${({ theme }) => theme.colors.grey500};
+    border-color: ${colors.grey500};
   }
 
   &:disabled {
     cursor: default;
     opacity: 0.6;
-    border-color: ${({ theme }) => theme.colors.grey400};
+    border-color: ${colors.grey400};
   }
 
   ${margin};

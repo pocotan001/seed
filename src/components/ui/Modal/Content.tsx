@@ -1,4 +1,5 @@
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
+import { colors } from "~/components/styles/theme";
 
 interface IContentProps {
   padded?: boolean;
@@ -12,7 +13,7 @@ const Content = styled<IContentProps, "div">("div")`
   ${({ padded }) => padded && "padding: 24px"};
   max-width: calc(100% - 48px);
   max-height: calc(100% - 48px);
-  background: ${({ theme }) => theme.colors.white};
+  background: ${colors.white};
   border-radius: 5px;
   opacity: ${({ actived }) => (actived ? "1" : "0")};
   transform: ${({ actived }) => `scale(${actived ? "1" : "0.85"})`};

@@ -1,7 +1,6 @@
 import * as React from "react";
+import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import { ITheme } from "~/components/styles/theme";
-import styled from "~/components/styles/themedStyledComponents";
 import { Field, IFieldProps, IFieldRenderProps } from "../Field";
 import Input from "./Input";
 import Label from "./Label";
@@ -13,7 +12,6 @@ type IInputAttributes = Omit<
 
 interface IAdditionalProps extends IMarginProps {
   children?: React.ReactNode;
-  theme?: ITheme;
 }
 
 const Radio: React.SFC<

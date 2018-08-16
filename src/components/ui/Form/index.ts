@@ -1,11 +1,31 @@
-export { FORM_ERROR } from "final-form";
-export { default as Form, IFormOnSubmit } from "./Form";
-export { default as TextField } from "./TextField";
-export { default as TextArea } from "./TextArea";
-export { default as Select } from "./Select";
-export { default as CheckBox } from "./CheckBox";
-export { default as Radio } from "./Radio";
-export { default as AutoSave } from "./AutoSave";
-export { default as ValidationError } from "./ValidationError";
-export { default as SubmitError } from "./SubmitError";
-export * from "./validators";
+import AutoSave from "./AutoSave";
+import CheckBox from "./CheckBox";
+import _Form from "./Form";
+import Radio from "./Radio";
+import Select from "./Select";
+import SubmitError from "./SubmitError";
+import TextArea from "./TextArea";
+import TextField from "./TextField";
+import ValidationError from "./ValidationError";
+
+const Form: typeof _Form & {
+  AutoSave: typeof AutoSave;
+  CheckBox: typeof CheckBox;
+  Radio: typeof Radio;
+  Select: typeof Select;
+  SubmitError: typeof SubmitError;
+  TextArea: typeof TextArea;
+  TextField: typeof TextField;
+  ValidationError: typeof ValidationError;
+} = _Form as any;
+
+Form.AutoSave = AutoSave;
+Form.CheckBox = CheckBox;
+Form.Radio = Radio;
+Form.Select = Select;
+Form.SubmitError = SubmitError;
+Form.TextArea = TextArea;
+Form.TextField = TextField;
+Form.ValidationError = ValidationError;
+
+export default Form;

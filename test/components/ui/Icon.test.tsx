@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import theme from "~/components/styles/theme";
 import Icon from "~/components/ui/Icon";
 
 const SVG_STRING = [
@@ -12,7 +11,7 @@ const SVG_STRING = [
 describe("<Icon>", () => {
   it("renders correctly", () => {
     const tree = renderer
-      .create(<Icon src={SVG_STRING} theme={theme} />)
+      .create(<Icon src={SVG_STRING} />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

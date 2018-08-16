@@ -1,10 +1,9 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import SignInForm from "~/components/modules/SignInForm";
-import styled from "~/components/styles/themedStyledComponents";
-import Button from "~/components/ui/Button";
-import Modal from "~/components/ui/Modal";
-import NavLink from "~/components/ui/NavLink";
+import styled from "styled-components";
+import { SignInForm } from "~/components/modules";
+import { colors } from "~/components/styles/theme";
+import { Button, Modal, NavLink } from "~/components/ui";
 import { RootStore } from "~/store";
 
 interface INavProps {
@@ -101,8 +100,8 @@ export default styled(Nav)`
 
     &:hover,
     &.-actived {
-      color: ${({ theme }) => theme.colors.grey800};
-      background: ${({ theme }) => theme.colors.grey100};
+      color: ${colors.grey800};
+      background: ${colors.grey100};
     }
   }
 `;

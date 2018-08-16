@@ -1,21 +1,10 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import Button from "~/components/ui/Button";
-import {
-  composeFormValidators,
-  createFormValidator,
-  Form,
-  FORM_ERROR,
-  IFormOnSubmit,
-  SubmitError,
-  TextField,
-  ValidationError
-} from "~/components/ui/Form";
-import Paragraph from "~/components/ui/Paragraph";
-import Space from "~/components/ui/Space";
+import { Button, Form, Paragraph, Space } from "~/components/ui";
 import { ErrorCode } from "~/domain/Error";
 import { isEmail, isRequired } from "~/domain/validators";
 import { RootStore } from "~/store";
+import { buildFormValidator, composeFormValidators } from "~/utils";
 
 interface ISignInFormProps {
   onSuccess?: () => void;
@@ -26,10 +15,12 @@ interface IValues {
   password: string;
 }
 
-const required = createFormValidator(isRequired, "Required");
+const { TextField, ValidationError, SubmitError } = Form;
+
+const required = buildFormValidator(isRequired, "Required");
 const email = composeFormValidators(
   required,
-  createFormValidator(isEmail, "Must be a valid email")
+  buildFormValidator(isEmail, "Must be a valid email")
 );
 
 @inject("store")
@@ -37,7 +28,7 @@ const email = composeFormValidators(
 export default class SignInForm extends React.Component<ISignInFormProps> {
   store: RootStore = (this.props as any).store;
 
-  handleSubmit: IFormOnSubmit = async (values: IValues): Promise<any> => {
+  handleSubmit = async (values: IValues): Promise<void | string> => {
     const { onSuccess } = this.props;
 
     try {
@@ -52,7 +43,7 @@ export default class SignInForm extends React.Component<ISignInFormProps> {
           ? "Login Failed"
           : "Internal Server Error";
 
-      return { [FORM_ERROR]: message };
+      return message;
     }
   };
 

@@ -1,17 +1,21 @@
-import { Interpolation, ThemedStyledProps } from "styled-components";
-import theme, { ITheme } from "~/components/styles/theme";
-import { css } from "~/components/styles/themedStyledComponents";
-import { em } from "~/infra/utils";
+import { css, Interpolation } from "styled-components";
+import breakpoints, {
+  IBreakpointKey
+} from "~/components/styles/theme/breakpoints";
+import { em } from "~/utils";
 
-type IMediaKey = keyof ITheme["breakpoints"];
 type IMediaFunction = <P>(
   strings: TemplateStringsArray,
-  ...interpolations: Array<Interpolation<ThemedStyledProps<P, ITheme>>>
+  ...interpolations: Array<Interpolation<P>>
 ) => string;
+
+export type IMediaKey = IBreakpointKey;
 type IMedia = Record<IMediaKey, IMediaFunction>;
 
+export const mediaKeys: IMediaKey[] = Object.keys(breakpoints) as any;
+
 /**
- * A media query to target `theme.breakpoints`
+ * A media query to target breakpoints
  *
  * @example
  * styled.div`
@@ -20,13 +24,13 @@ type IMedia = Record<IMediaKey, IMediaFunction>;
  *   `};
  * `
  */
-const media: IMedia = (Object.keys(theme.breakpoints) as IMediaKey[]).reduce(
+const media: IMedia = mediaKeys.reduce(
   (acc, name) => ({
     ...acc,
     // Use em in breakpoints to work properly cross-browser and support users
     // https://zellwk.com/blog/media-query-units/
     [name]: (strings: any, ...interpolations: any[]) => css`
-      @media (max-width: ${em(theme.breakpoints[name])}) {
+      @media (max-width: ${em(breakpoints[name])}) {
         ${css(strings, ...interpolations)};
       }
     `

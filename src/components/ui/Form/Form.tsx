@@ -1,18 +1,14 @@
-import { FormApi } from "final-form";
+import { FORM_ERROR, FormApi } from "final-form";
 import createDecorator from "final-form-focus";
 import * as React from "react";
 import { Form as FinalForm, FormProps } from "react-final-form";
 
 type IFormValues = any;
 
-interface ISubmitErrors {
-  [name: string]: string;
-}
-
 export type IFormOnSubmit = (
   values: IFormValues,
   form: FormApi
-) => Promise<ISubmitErrors | void> | ISubmitErrors | void;
+) => Promise<void | string> | void | string;
 
 interface IFormProps
   extends Overwrite<
@@ -24,8 +20,26 @@ interface IFormProps
     > {}
 
 const focusOnErrors = createDecorator();
-const Form: React.SFC<IFormProps> = props => (
-  <FinalForm decorators={[focusOnErrors]} {...props} />
-);
 
-export default Form;
+export default class Form extends React.PureComponent<IFormProps> {
+  handleSubmit = async (values: IFormValues, form: FormApi): Promise<any> => {
+    const { onSubmit } = this.props;
+    const err = await onSubmit(values, form);
+
+    if (err) {
+      return { [FORM_ERROR]: err };
+    }
+  };
+
+  render() {
+    const { onSubmit, ...rest } = this.props;
+
+    return (
+      <FinalForm
+        decorators={[focusOnErrors]}
+        onSubmit={this.handleSubmit}
+        {...rest}
+      />
+    );
+  }
+}

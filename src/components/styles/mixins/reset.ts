@@ -1,6 +1,6 @@
-import { css } from "~/components/styles/themedStyledComponents";
+import { css } from "styled-components";
 
-export const reset = css`
+const reset = css`
   blockquote,
   dl,
   dd,

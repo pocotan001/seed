@@ -38,7 +38,7 @@ const render = async (
   opts: { hydrate?: boolean; skipFetch?: boolean } = {}
 ) => {
   try {
-    if (!opts.skipFetch) {
+    if (!opts.hydrate && !opts.skipFetch) {
       store.loading.start();
     }
 
@@ -75,8 +75,11 @@ const render = async (
           store.head.setTitle(route.title);
           store.head.setMeta(route.meta);
           store.head.setLink(route.link);
-          store.loading.finish();
-          window.scrollTo(0, 0);
+
+          if (!opts.skipFetch) {
+            window.scrollTo(0, 0);
+            store.loading.finish();
+          }
         }
       );
     }

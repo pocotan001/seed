@@ -1,12 +1,12 @@
-import theme, { ITheme } from "~/components/styles/theme";
-import { css } from "~/components/styles/themedStyledComponents";
+import { css } from "styled-components";
+import colors, { IColorKey } from "~/components/styles/theme/colors";
 
 export interface IColorProps {
-  c?: keyof ITheme["colors"];
+  c?: IColorKey;
 }
 
 const color = ({ c }: IColorProps) => css`
-  ${c && `color: ${theme.colors[c]}`};
+  ${c && `color: ${colors[c]}`};
 `;
 
 export default color;

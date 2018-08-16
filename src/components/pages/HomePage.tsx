@@ -1,14 +1,16 @@
 import * as React from "react";
 import Page from "~/components/layouts/Page";
-import ExampleForm from "~/components/modules/ExampleForm";
-import Button from "~/components/ui/Button";
-import ButtonLink from "~/components/ui/ButtonLink";
-import Heading from "~/components/ui/Heading";
-import Icon from "~/components/ui/Icon";
-import Image from "~/components/ui/Image";
-import Modal from "~/components/ui/Modal";
-import Paragraph from "~/components/ui/Paragraph";
-import Section from "~/components/ui/Section";
+import { ExampleForm } from "~/components/modules";
+import {
+  Button,
+  ButtonLink,
+  Heading,
+  Icon,
+  Image,
+  Modal,
+  Paragraph,
+  Section
+} from "~/components/ui";
 
 interface IHomePageProps {
   title: string;
@@ -87,7 +89,8 @@ export default class HomePage extends React.Component<
             Anchor
           </ButtonLink>
           <Button ml={12}>
-            <Icon src="~/assets/icons/star.svg" mr={4} />With icon
+            <Icon src="~/assets/icons/star.svg" mr={4} />
+            With icon
           </Button>
           <Button block mt={12}>
             Block

@@ -2,7 +2,7 @@ import { action } from "mobx";
 import { denormalize } from "normalizr";
 import { ICat } from "~/domain/Cat";
 import catSchema from "~/domain/catSchema";
-import { serializeParams } from "~/infra/utils";
+import { serializeParams } from "~/utils";
 import Store from "./Store";
 
 interface IGetCatsParams {

@@ -1,7 +1,7 @@
-import { serializeParams } from "~/infra/utils";
 import CatStore from "~/store/CatStore";
 import { defaultState, State } from "~/store/state";
 import { IStoreContext } from "~/store/Store";
+import { serializeParams } from "~/utils";
 import cats from "../mocks/data/cats";
 
 let state: State;

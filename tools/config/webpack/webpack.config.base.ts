@@ -1,9 +1,7 @@
 import * as HardSourceWebpackPlugin from "hard-source-webpack-plugin";
 import * as webpack from "webpack";
-import * as pkg from "../../../package.json";
 import { SRC_DIR } from "../paths";
 
-const NODE_VERSION = "8.10.0";
 export const isDebug = process.env.NODE_ENV !== "production";
 
 const baseConfig: webpack.Configuration = {
@@ -33,25 +31,53 @@ const baseConfig: webpack.Configuration = {
                 [
                   "@babel/preset-env",
                   {
-                    targets: {
-                      node: NODE_VERSION,
-                      browsers: pkg.browserslist
-                    },
                     forceAllTransforms: !isDebug,
-                    modules: false
+                    modules: false,
+                    useBuiltIns: "usage"
                   }
                 ],
-                ["@babel/preset-stage-2", { decoratorsLegacy: true }],
                 ["@babel/preset-react", { development: isDebug }]
               ],
               plugins: [
                 ...[
+                  // https://babeljs.io/docs/en/next/babel-plugin-syntax-dynamic-import.html
+                  "@babel/plugin-syntax-dynamic-import",
+                  // https://babeljs.io/docs/en/next/babel-plugin-proposal-class-properties.html
+                  ["@babel/plugin-proposal-class-properties", { loose: false }],
+                  // https://github.com/kentcdodds/babel-plugin-preval
                   "babel-plugin-preval",
+                  // https://github.com/styled-components/babel-plugin-styled-components
                   [
                     "babel-plugin-styled-components",
                     {
                       ssr: true,
                       displayName: isDebug
+                    }
+                  ],
+                  // https://bitbucket.org/amctheatres/babel-transform-imports
+                  [
+                    "babel-plugin-transform-imports",
+                    {
+                      lodash: {
+                        transform: "lodash/${member}",
+                        preventFullImport: true
+                      },
+                      "~/components/ui": {
+                        transform: "~/components/ui/${member}",
+                        preventFullImport: true
+                      },
+                      "~/components/modules": {
+                        transform: "~/components/modules/${member}",
+                        preventFullImport: true
+                      },
+                      "~/components/styles/theme": {
+                        transform: "~/components/styles/theme/${member}",
+                        preventFullImport: true
+                      },
+                      "~/utils": {
+                        transform: "~/utils/${member}",
+                        preventFullImport: true
+                      }
                     }
                   ]
                 ],
@@ -61,17 +87,7 @@ const baseConfig: webpack.Configuration = {
                       // https://babeljs.io/docs/en/next/babel-plugin-transform-react-constant-elements.html
                       "@babel/plugin-transform-react-constant-elements",
                       // https://babeljs.io/docs/en/next/babel-plugin-transform-react-inline-elements.html
-                      "@babel/plugin-transform-react-inline-elements",
-                      // https://bitbucket.org/amctheatres/babel-transform-imports
-                      [
-                        "babel-plugin-transform-imports",
-                        {
-                          lodash: {
-                            transform: "lodash/${member}",
-                            preventFullImport: true
-                          }
-                        }
-                      ]
+                      "@babel/plugin-transform-react-inline-elements"
                     ])
               ]
             }

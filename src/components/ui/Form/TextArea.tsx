@@ -1,14 +1,10 @@
 import * as React from "react";
-import { ITheme } from "~/components/styles/theme";
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
 import { Field, IFieldProps, IFieldRenderProps } from "./Field";
 import { ITextFieldStyleProps, textFieldStyles } from "./TextField";
 
 type ITextAreaAttributes = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
-
-interface IAdditionalProps extends ITextFieldStyleProps {
-  theme?: ITheme;
-}
+type IAdditionalProps = ITextFieldStyleProps;
 
 const TextArea: React.SFC<
   IFieldRenderProps<ITextAreaAttributes> & IAdditionalProps
@@ -19,6 +15,7 @@ const TextArea: React.SFC<
 };
 
 const StyledTextArea = styled(TextArea)`
+  resize: vertical;
   ${textFieldStyles};
 `;
 

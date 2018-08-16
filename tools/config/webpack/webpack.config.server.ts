@@ -4,6 +4,7 @@ import * as nodeExternals from "webpack-node-externals";
 import { DIST_DIR } from "../paths";
 import baseConfig, { isDebug } from "./webpack.config.base";
 
+const NODE_VERSION = "8.0.0";
 const ENV_EXPORTS = ["ENV"];
 
 const serverConfig: webpack.Configuration = {
@@ -12,7 +13,7 @@ const serverConfig: webpack.Configuration = {
   target: "node",
   entry: [
     ...(isDebug ? ["source-map-support/register"] : []),
-    ...["./tools/env.ts", "@babel/polyfill", "./src/server/index.ts"]
+    ...["./tools/env.ts", "./src/server/index.ts"]
   ],
   output: {
     path: DIST_DIR,
@@ -25,12 +26,49 @@ const serverConfig: webpack.Configuration = {
   module: {
     ...baseConfig.module!,
     rules: baseConfig.module!.rules.map(rule => {
+      if (rule.use) {
+        return {
+          ...rule,
+          use: (rule.use as webpack.RuleSetLoader[]).map(useRule => {
+            if (useRule.loader === "babel-loader") {
+              return {
+                ...useRule,
+                options: {
+                  ...(useRule as any).options,
+                  presets: (useRule as any).options.presets.map(
+                    (preset: any) => {
+                      const [name, opts] = preset;
+
+                      if (name === "@babel/preset-env") {
+                        return [
+                          name,
+                          {
+                            ...opts,
+                            targets: {
+                              node: NODE_VERSION
+                            }
+                          }
+                        ];
+                      }
+
+                      return preset;
+                    }
+                  )
+                }
+              };
+            }
+
+            return useRule;
+          })
+        };
+      }
+
       if (rule.loader === "url-loader") {
         return {
           ...rule,
           options: {
-            ...(rule.options as any),
-            // Add `emitFile` option
+            ...(rule as any).options,
+            // Disables `emitFile` option
             // https://github.com/webpack-contrib/file-loader#emitfile
             emitFile: false
           }

@@ -1,5 +1,5 @@
+import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import styled from "~/components/styles/themedStyledComponents";
 
 interface ISectionProps extends IMarginProps {
   children: React.ReactNode;

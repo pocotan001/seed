@@ -1,10 +1,17 @@
 import { CSSProperties } from "react";
+import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import styled from "~/components/styles/themedStyledComponents";
-import { px } from "~/infra/utils";
+import media, { IMediaKey, mediaKeys } from "~/components/styles/mixins/media";
+import { px } from "~/utils";
 
-interface IGridProps extends IMarginProps {
+interface IGridProps
+  extends IGridStyleProps,
+    Partial<Record<IMediaKey, IGridStyleProps>>,
+    IMarginProps {
   children: React.ReactNode;
+}
+
+interface IGridStyleProps {
   cols?: number | CSSProperties["gridTemplateColumns"];
   rows?: number | CSSProperties["gridTemplateRows"];
   flow?: CSSProperties["gridAutoFlow"];
@@ -17,14 +24,38 @@ const getColumns = (v: number | string) =>
   typeof v === "number" ? `repeat(${v}, 1fr)` : v;
 const getRows = getColumns;
 
+const buildStyles = ({
+  cols,
+  rows,
+  flow,
+  gap,
+  justify,
+  align
+}: IGridStyleProps) => `
+  ${cols && `grid-template-columns: ${getColumns(cols)}`};
+  ${rows && `grid-template-rows: ${getRows(rows)}`};
+  ${flow && `grid-auto-flow: ${flow}`};
+  ${gap && `grid-gap: ${px(gap)}`};
+  ${justify && `justify-content: ${justify}`};
+  ${align && `align-content: ${align}`};
+`;
+
+const composeMediaStyles = (props: IGridProps) =>
+  mediaKeys
+    .map(key => props[key] && media[key]`${buildStyles(props[key]!)}`)
+    .filter(Boolean);
+
+/**
+ * @example
+ * // Different gaps at different breakpoints
+ * <Grid gap={30} tablet={{ gap: 20 }} phone={{ gap: 10 }}>
+ *   ...
+ * </Grid>
+ */
 const Grid = styled<IGridProps, "div">("div")`
   display: grid;
-  ${({ cols }) => cols && `grid-template-columns: ${getColumns(cols)}`};
-  ${({ rows }) => rows && `grid-template-rows: ${getRows(rows)}`};
-  ${({ flow }) => flow && `grid-auto-flow: ${flow}`};
-  ${({ gap }) => gap && `grid-gap: ${px(gap)}`};
-  ${({ justify }) => justify && `justify-content: ${justify}`};
-  ${({ align }) => align && `align-content: ${align}`};
+  ${buildStyles};
+  ${composeMediaStyles};
   ${margin};
 `;
 

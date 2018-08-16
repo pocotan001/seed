@@ -1,6 +1,6 @@
 import * as React from "react";
 import Page from "~/components/layouts/Page";
-import Content from "~/components/ui/Content";
+import { Content } from "~/components/ui";
 
 const MarkdownPage: React.SFC = () => (
   <Page>

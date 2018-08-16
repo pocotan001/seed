@@ -1,10 +1,8 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import Page from "~/components/layouts/Page";
-import CatCard from "~/components/modules/CatCard";
-import { Grid, GridCell } from "~/components/ui/Grid";
-import Heading from "~/components/ui/Heading";
-import Pagination from "~/components/ui/Pagination";
+import { CatCard } from "~/components/modules";
+import { Grid, Heading, Pagination } from "~/components/ui";
 import { RootStore } from "~/store";
 
 interface ICatPageProps {
@@ -31,9 +29,9 @@ export default class CatPage extends React.Component<ICatPageProps> {
         <Heading mb={24}>{title}</Heading>
         <Grid cols="repeat(auto-fit, minmax(20em, 1fr))" mb={24}>
           {cats.map(cat => (
-            <GridCell key={cat.id}>
+            <Grid.Cell key={cat.id}>
               <CatCard cat={cat} />
-            </GridCell>
+            </Grid.Cell>
           ))}
         </Grid>
         <Pagination

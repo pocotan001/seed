@@ -33,7 +33,7 @@ const render = ({
  * The whole-form submission error returned by `onSubmit` under the `FORM_ERROR` key
  *
  * @example
- * const handleSubmit = () => ({ [FORM_ERROR]: "Failed" });
+ * const handleSubmit = () => "Failed";
  *
  * <Form onSubmit={handleSubmit}>
  *   <SubmitError />

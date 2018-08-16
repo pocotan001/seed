@@ -1,10 +1,7 @@
 import { inject } from "mobx-react";
 import * as React from "react";
 import Page from "~/components/layouts/Page";
-import Button from "~/components/ui/Button";
-import Heading from "~/components/ui/Heading";
-import Paragraph from "~/components/ui/Paragraph";
-import Section from "~/components/ui/Section";
+import { Button, Heading, Paragraph, Section } from "~/components/ui";
 import config from "~/config";
 import { RootStore } from "~/store";
 

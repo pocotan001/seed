@@ -1,9 +1,7 @@
 import * as React from "react";
-import styled from "~/components/styles/themedStyledComponents";
-import { Grid, GridCell } from "~/components/ui/Grid";
-import Heading from "~/components/ui/Heading";
-import Image from "~/components/ui/Image";
-import Paragraph from "~/components/ui/Paragraph";
+import styled from "styled-components";
+import { colors } from "~/components/styles/theme";
+import { Grid, Heading, Image, Paragraph } from "~/components/ui";
 import { ICat } from "~/domain/Cat";
 
 interface ICatCardProps {
@@ -14,15 +12,15 @@ interface ICatCardProps {
 const CatCard: React.SFC<ICatCardProps> = ({ cat, className }) => (
   <section className={className}>
     <Grid cols="auto 1fr" gap={16}>
-      <GridCell>
+      <Grid.Cell>
         <Image src={cat.imageUrl} width={100} height={100} alt={cat.title} />
-      </GridCell>
-      <GridCell>
+      </Grid.Cell>
+      <Grid.Cell>
         <Heading fz={20} mb={4}>
           {cat.title}
         </Heading>
         <Paragraph>{cat.text}</Paragraph>
-      </GridCell>
+      </Grid.Cell>
     </Grid>
   </section>
 );
@@ -30,5 +28,5 @@ const CatCard: React.SFC<ICatCardProps> = ({ cat, className }) => (
 export default styled(CatCard)`
   padding: 16px;
   border-radius: 5px;
-  background: ${({ theme }) => theme.colors.grey200};
+  background: ${colors.grey200};
 `;

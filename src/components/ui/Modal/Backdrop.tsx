@@ -1,4 +1,4 @@
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
 
 const Backdrop = styled.div.attrs({
   tabIndex: -1,

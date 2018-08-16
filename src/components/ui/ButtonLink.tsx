@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
 import { buttonStyles, IButtonStyleProps } from "./Button";
 import { ILinkProps, Link } from "./Link";
 

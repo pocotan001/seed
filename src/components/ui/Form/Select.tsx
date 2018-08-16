@@ -1,18 +1,17 @@
 import * as React from "react";
-import { ITheme } from "~/components/styles/theme";
-import styled from "~/components/styles/themedStyledComponents";
+import styled from "styled-components";
 import { Field, IFieldProps, IFieldRenderProps } from "./Field";
 import { ITextFieldStyleProps, textFieldStyles } from "./TextField";
 
 type ISelectAttributes = React.SelectHTMLAttributes<HTMLSelectElement>;
 
 interface IAdditionalProps extends ITextFieldStyleProps {
-  theme?: ITheme;
+  type?: string;
 }
 
 const Select: React.SFC<
   IFieldRenderProps<ISelectAttributes> & IAdditionalProps
-> = ({ input, meta, children, m, mt, mr, mb, ml, ...rest }) => {
+> = ({ input, meta, children, m, mt, mr, mb, ml, type, ...rest }) => {
   const isInvalid = Boolean(meta.touched && meta.error);
 
   if (rest.multiple) {
@@ -28,12 +27,8 @@ const Select: React.SFC<
 };
 
 const StyledSelect = styled(Select)`
+  appearance: none;
   ${textFieldStyles};
-
-  &:not([multiple]):not([size]) {
-    /* (font-size * line-height + padding) + border-width */
-    height: calc(2.3em + 2px);
-  }
 `;
 
 const AdaptedSelect: React.SFC<

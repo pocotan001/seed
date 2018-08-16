@@ -1,11 +1,9 @@
 import * as React from "react";
-import Footer from "~/components/modules/Footer";
-import Header from "~/components/modules/Header";
-import Main from "~/components/modules/Main";
-import Sidebar from "~/components/modules/Sidebar";
+import styled from "styled-components";
+import { Footer, Header, Main, Sidebar } from "~/components/modules";
 import media from "~/components/styles/mixins/media";
-import styled from "~/components/styles/themedStyledComponents";
-import { px } from "~/infra/utils";
+import { dimensions } from "~/components/styles/theme";
+import { px } from "~/utils";
 
 interface IPageProps {
   children: React.ReactNode;
@@ -25,8 +23,8 @@ export default styled(Page)`
   display: grid;
   min-height: 100vh;
   grid-template-columns:
-    calc(100% - ${({ theme }) => px(theme.dimensions.sidebarWidth)})
-    ${({ theme }) => px(theme.dimensions.sidebarWidth)};
+    calc(100% - ${px(dimensions.sidebarWidth)})
+    ${px(dimensions.sidebarWidth)};
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header"

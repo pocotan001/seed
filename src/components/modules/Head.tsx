@@ -31,7 +31,9 @@ const Head: React.SFC<IHeadProps> = ({
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
 
-    {meta.map((props, i) => <meta key={i} {...props} data-head />)}
+    {meta.map((props, i) => (
+      <meta key={i} {...props} data-head />
+    ))}
 
     <title>{title}</title>
 
@@ -39,35 +41,23 @@ const Head: React.SFC<IHeadProps> = ({
       <link key={i} rel="preload" href={src} as="script" />
     ))}
 
-    {link.map((props, i) => <link key={i} {...props} data-head />)}
+    {link.map((props, i) => (
+      <link key={i} {...props} data-head />
+    ))}
 
     {/* iOS Safari */}
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/icons/apple-touch-icon.png"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     {/* macOS Safari */}
-    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#000000" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
 
     {/* Android Chrome */}
     <link rel="manifest" href="/manifest.json" />
 
     {/* Desktop browsers */}
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/icons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/icons/favicon-16x16.png"
-    />
-    <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
   </head>
 );
 

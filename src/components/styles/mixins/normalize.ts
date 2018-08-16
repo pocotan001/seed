@@ -1,6 +1,6 @@
-import { css } from "~/components/styles/themedStyledComponents";
+import { css } from "styled-components";
 
-export const normalize = css`
+const normalize = css`
   ${preval`
     const fs = require("fs");
     module.exports = fs.readFileSync(require.resolve("normalize.css"), "utf8");

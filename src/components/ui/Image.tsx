@@ -1,6 +1,6 @@
 import * as React from "react";
+import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import styled from "~/components/styles/themedStyledComponents";
 import { isDataUri } from "~/domain/validators";
 import Observer from "./Observer";
 

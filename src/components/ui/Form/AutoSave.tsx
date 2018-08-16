@@ -55,6 +55,10 @@ class AutoSave extends React.PureComponent<IAutoSaveProps, IAutoSaveState> {
     }
   }
 
+  componentWillUnmount() {
+    (this.save as any).cancel();
+  }
+
   @debounce(1000)
   async save() {
     const { onRequestSave } = this.props;
