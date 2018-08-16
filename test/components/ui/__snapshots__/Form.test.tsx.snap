@@ -53,7 +53,7 @@ exports[`<Radio> renders correctly 1`] = `
 exports[`<Select> renders correctly 1`] = `
 <select
   aria-invalid={false}
-  className="sc-gzVnrw hCNSdy"
+  className="sc-gzVnrw kabtce"
   name="select"
   onBlur={[Function]}
   onChange={[Function]}
@@ -83,7 +83,7 @@ exports[`<SubmitError> renders correctly 1`] = `null`;
 exports[`<TextArea> renders correctly 1`] = `
 <textarea
   aria-invalid={false}
-  className="sc-iwsKbI hrhgbR"
+  className="sc-iwsKbI fZqWBp"
   name="textarea"
   onBlur={[Function]}
   onChange={[Function]}
