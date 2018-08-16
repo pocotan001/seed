@@ -41,7 +41,7 @@ jobs:
           at: dist
       - run:
           name: Test
-          command: npm test
+          command: npm run test:ci
 
 workflows:
   version: 2

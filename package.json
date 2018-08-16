@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "test": "ENV=test jest",
+    "test:ci": "ENV=test jest --maxWorkers=2",
     "dev": "ts-node tools/run dev",
     "build": "ts-node tools/run build",
     "build:development": "ENV=development npm run build",
