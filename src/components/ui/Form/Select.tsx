@@ -27,7 +27,6 @@ const Select: React.SFC<
 };
 
 const StyledSelect = styled(Select)`
-  appearance: none;
   ${textFieldStyles};
 `;
 

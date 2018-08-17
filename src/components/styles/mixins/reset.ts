@@ -32,6 +32,12 @@ const reset = css`
     border: 0;
   }
 
+  input,
+  select,
+  textarea {
+    appearance: none;
+  }
+
   ol,
   ul {
     list-style: none;
