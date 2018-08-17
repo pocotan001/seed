@@ -20,9 +20,9 @@ interface IGridStyleProps {
   align?: CSSProperties["alignContent"];
 }
 
-const getColumns = (v: number | string) =>
+const buildColumns = (v: number | string) =>
   typeof v === "number" ? `repeat(${v}, 1fr)` : v;
-const getRows = getColumns;
+const buildRows = buildColumns;
 
 const buildStyles = ({
   cols,
@@ -32,8 +32,8 @@ const buildStyles = ({
   justify,
   align
 }: IGridStyleProps) => `
-  ${cols && `grid-template-columns: ${getColumns(cols)}`};
-  ${rows && `grid-template-rows: ${getRows(rows)}`};
+  ${cols && `grid-template-columns: ${buildColumns(cols)}`};
+  ${rows && `grid-template-rows: ${buildRows(rows)}`};
   ${flow && `grid-auto-flow: ${flow}`};
   ${gap && `grid-gap: ${px(gap)}`};
   ${justify && `justify-content: ${justify}`};
