@@ -25,7 +25,7 @@ const Head: React.SFC<IHeadProps> = ({
     <meta name="format-detection" content="telephone=no" />
 
     {/* Chrome, Firefox OS and Opera */}
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#000000" />
 
     {/* Edge and IE 12 */}
     <meta name="msapplication-TileColor" content="#ffffff" />

@@ -9,7 +9,7 @@ exports[`<CheckBox> renders correctly 1`] = `
   <input
     aria-invalid={false}
     checked={false}
-    className="sc-bdVaJa hPFzLn"
+    className="sc-bdVaJa csBluA"
     name="checkbox"
     onBlur={[Function]}
     onChange={[Function]}
@@ -34,7 +34,7 @@ exports[`<Radio> renders correctly 1`] = `
   <input
     aria-invalid={false}
     checked={false}
-    className="sc-bxivhb kcGHbr"
+    className="sc-bxivhb knOhcm"
     name="radio"
     onBlur={[Function]}
     onChange={[Function]}
@@ -53,7 +53,7 @@ exports[`<Radio> renders correctly 1`] = `
 exports[`<Select> renders correctly 1`] = `
 <select
   aria-invalid={false}
-  className="sc-gzVnrw kabtce"
+  className="sc-gzVnrw cXDupl"
   name="select"
   onBlur={[Function]}
   onChange={[Function]}

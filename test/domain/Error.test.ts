@@ -3,40 +3,42 @@ import { normalizeError } from "~/domain/Error";
 describe("normalizeError(err)", () => {
   it("should return an original instance", () => {
     const err = new Error("oops!");
-    const normalizedError = normalizeError(err);
+    const normalized = normalizeError(err);
 
-    expect(normalizedError).toBeInstanceOf(Error);
+    expect(normalized).toBeInstanceOf(Error);
   });
 
   it("should normalize error with status code", () => {
     const err = new Error("oops!");
     err.status = 401;
 
-    const normalizedError = normalizeError(err);
+    const normalized = normalizeError(err);
 
-    expect(normalizedError).toHaveProperty("message", "oops!");
-    expect(normalizedError).toHaveProperty("status", 401);
+    expect(normalized).toHaveProperty("message", "oops!");
+    expect(normalized).toHaveProperty("status", 401);
   });
 
   it("should return a 500 error if `status` is undefined", () => {
     const err = new Error("oops!");
-    const normalizedError = normalizeError(err);
+    const normalized = normalizeError(err);
 
-    expect(normalizedError).toHaveProperty("message", "oops!");
-    expect(normalizedError).toHaveProperty("status", 500);
+    expect(normalized).toHaveProperty("message", "oops!");
+    expect(normalized).toHaveProperty("status", 500);
   });
 
   it("should override error message when production environment", () => {
-    const err = new Error("oops!");
+    jest.doMock("~/config", () => ({
+      default: {
+        isProd: true
+      }
+    }));
 
-    process.env.NODE_ENV = "production";
     jest.resetModules();
 
-    // tslint:disable-next-line:variable-name
-    const _normalizeError = require("~/domain/Error").normalizeError;
-    const normalizedError = _normalizeError(err);
+    const err = new Error("oops!");
+    const normalized = require("~/domain/Error").normalizeError(err);
 
-    expect(normalizedError).toHaveProperty("message", "Internal Server Error");
-    expect(normalizedError).toHaveProperty("status", 500);
+    expect(normalized).toHaveProperty("message", "Internal Server Error");
+    expect(normalized).toHaveProperty("status", 500);
   });
 });
