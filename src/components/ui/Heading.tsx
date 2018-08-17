@@ -6,7 +6,7 @@ const Heading = Text.withComponent("h1").extend`
 
 Heading.defaultProps = {
   fz: "2rem",
-  fw: 500,
+  fw: 700,
   c: "grey800"
 };
 

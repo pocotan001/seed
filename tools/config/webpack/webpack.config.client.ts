@@ -97,7 +97,24 @@ const clientConfig: webpack.Configuration = {
             cacheId: pkg.name,
             skipWaiting: true,
             clientsClaim: true,
-            runtimeCaching: []
+            runtimeCaching: [
+              // Cache all Google Fonts requests
+              {
+                urlPattern: new RegExp(
+                  "^https://fonts.(?:googleapis|gstatic).com/"
+                ),
+                handler: "cacheFirst",
+                options: {
+                  cacheName: "google-fonts",
+                  expiration: {
+                    maxEntries: 20
+                  },
+                  cacheableResponse: {
+                    statuses: [0, 200]
+                  }
+                }
+              }
+            ]
           })
         ]),
     // https://github.com/webpack-contrib/webpack-bundle-analyzer

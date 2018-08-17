@@ -45,6 +45,11 @@ const Head: React.SFC<IHeadProps> = ({
       <link key={i} {...props} data-head />
     ))}
 
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,700"
+      rel="stylesheet"
+    />
+
     {/* iOS Safari */}
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 

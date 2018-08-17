@@ -31,7 +31,7 @@ const Content = styled<IContentProps, "div">("div")`
   h4,
   h5,
   h6 {
-    font-weight: 500;
+    font-weight: 700;
     line-height: normal;
     margin: 24px 0;
     color: ${colors.grey800};
@@ -145,7 +145,7 @@ const Content = styled<IContentProps, "div">("div")`
   }
 
   table th {
-    font-weight: 500;
+    font-weight: 700;
   }
 
   table thead td,
