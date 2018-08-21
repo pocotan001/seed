@@ -12,7 +12,7 @@ describe("HeadStore", () => {
     ctx = {} as any;
   });
 
-  it("#updateTitle(title)", () => {
+  it("#setTitle(title)", () => {
     const store = new HeadStore(state, ctx);
 
     store.setTitle("alo");
@@ -23,7 +23,7 @@ describe("HeadStore", () => {
     );
   });
 
-  it("#updateMeta(meta)", () => {
+  it("#setMeta(meta)", () => {
     const store = new HeadStore(state, ctx);
 
     store.setMeta([{ charSet: "a" }]);

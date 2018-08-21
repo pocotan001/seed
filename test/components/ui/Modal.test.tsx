@@ -19,7 +19,6 @@ describe("<Modal>", () => {
     }));
 
     const Modal = require("~/components/ui/Modal").default;
-
     const tree = renderer
       .create(<Modal onRequestClose={close}>alo</Modal>)
       .toJSON();
