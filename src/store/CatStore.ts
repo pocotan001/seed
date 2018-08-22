@@ -1,14 +1,9 @@
 import { action } from "mobx";
 import { denormalize } from "normalizr";
-import { ICat } from "~/domain/Cat";
+import { ICat, IGetCatsRequest } from "~/domain/Cat";
 import catSchema from "~/domain/catSchema";
 import { serializeParams } from "~/utils";
 import Store from "./Store";
-
-interface IGetCatsParams {
-  page: number;
-  per: number;
-}
 
 export default class CatStore extends Store {
   getCatById(id: string): ICat | undefined {
@@ -19,7 +14,7 @@ export default class CatStore extends Store {
     return denormalize(ids, [catSchema], this.state.entities).filter(Boolean);
   }
 
-  getCatsByResult(params: IGetCatsParams): ICat[] {
+  getCatsByResult(params: IGetCatsRequest): ICat[] {
     const serializedParams = serializeParams(params);
     const ids = this.state.results.cats[serializedParams];
 
@@ -27,9 +22,9 @@ export default class CatStore extends Store {
   }
 
   @action
-  async fetchCats(payload: IGetCatsParams): Promise<void> {
-    const resp = await this.ctx.api.get("/cats", { params: payload });
-    const serializedParams = serializeParams(payload);
+  async fetchCats(params: IGetCatsRequest): Promise<void> {
+    const resp = await this.ctx.api.get("/cats", { params });
+    const serializedParams = serializeParams(params);
 
     this.state.entities.cats = {
       ...this.state.entities.cats,

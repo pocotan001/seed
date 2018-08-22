@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextArea> renders correctly 1`] = `
+<textarea
+  aria-invalid={false}
+  className="sc-bwzfXH eYYeVf"
+  name="textarea"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onFocus={[Function]}
+  value=""
+/>
+`;

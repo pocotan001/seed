@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Field, FieldRenderProps } from "react-final-form";
 import { IMarginProps } from "~/components/styles/extends/margin";
-import Paragraph from "../Paragraph";
+import Paragraph from "./Paragraph";
 
 interface IValidationErrorProps extends IMarginProps {
   name: string;

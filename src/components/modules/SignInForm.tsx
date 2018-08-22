@@ -1,6 +1,14 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import { Button, Form, Paragraph, Space } from "~/components/ui";
+import {
+  Button,
+  Form,
+  Paragraph,
+  Space,
+  SubmitError,
+  TextField,
+  ValidationError
+} from "~/components/ui";
 import { ErrorCode } from "~/domain/Error";
 import { isEmail, isRequired } from "~/domain/validators";
 import { RootStore } from "~/store";
@@ -14,8 +22,6 @@ interface IValues {
   email: string;
   password: string;
 }
-
-const { TextField, ValidationError, SubmitError } = Form;
 
 const required = buildFormValidator(isRequired, "Required");
 const email = composeFormValidators(

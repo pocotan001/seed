@@ -12,6 +12,11 @@ export default class SessionStore extends Store {
   }
 
   @action
+  remove(key: SessionKey): void {
+    this.state.session[key] = {};
+  }
+
+  @action
   clear(): void {
     this.state.session = {};
   }

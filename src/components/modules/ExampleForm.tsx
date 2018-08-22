@@ -2,7 +2,18 @@ import { FormApi } from "final-form";
 import { omit } from "lodash";
 import { inject, observer } from "mobx-react";
 import * as React from "react";
-import { Button, Form, Paragraph, Space } from "~/components/ui";
+import {
+  AutoSave,
+  Button,
+  CheckBox,
+  Form,
+  Paragraph,
+  Radio,
+  Select,
+  Space,
+  TextArea,
+  TextField
+} from "~/components/ui";
 import { RootStore } from "~/store";
 import { SessionKey } from "~/store/state";
 import { sleep } from "~/utils";
@@ -20,8 +31,6 @@ interface IValues {
 interface IExampleFormState {
   initialValues: Partial<IValues>;
 }
-
-const { AutoSave, CheckBox, Radio, Select, TextArea, TextField } = Form;
 
 @inject("store")
 @observer

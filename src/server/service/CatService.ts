@@ -1,10 +1,5 @@
-import { ICat } from "~/domain/Cat";
+import { ICat, IGetCatsRequest } from "~/domain/Cat";
 import Service from "./Service";
-
-interface IGetCatsParams {
-  page: number;
-  per: number;
-}
 
 const PLACEKITTEN_URL = "https://placekitten.com/200/200";
 const PLACEKITTEN_TOTAL_COUNT = 16;
@@ -15,13 +10,13 @@ export default class CatService extends Service {
     return TOTAL_COUNT;
   }
 
-  async getCats({ page, per }: IGetCatsParams): Promise<ICat[]> {
+  async getCats({ page, per }: IGetCatsRequest): Promise<ICat[]> {
     const offset = Math.min(Math.max(page - 1, 0) * per, TOTAL_COUNT);
     const limit = Math.min(per, TOTAL_COUNT - offset);
 
     return Array.from(Array(limit).keys()).map(i => {
       const id = offset + i;
-      const imageId = id % PLACEKITTEN_TOTAL_COUNT + 1;
+      const imageId = (id % PLACEKITTEN_TOTAL_COUNT) + 1;
 
       return {
         id: String(id),

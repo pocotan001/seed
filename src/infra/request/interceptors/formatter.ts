@@ -15,7 +15,7 @@ export const onRejected = (e: any): Promise<never> => {
     err.status = axiosErr.response.status;
 
     // Maybe client-side error
-    if (apiErr) {
+    if (typeof apiErr === "object") {
       err.message = apiErr.message;
       err.code = apiErr.code;
 

@@ -4,3 +4,8 @@ export interface ICat {
   text: string;
   imageUrl: string;
 }
+
+export interface IGetCatsRequest {
+  page: number;
+  per: number;
+}

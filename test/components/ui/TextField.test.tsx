@@ -1,13 +1,18 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 import Form from "~/components/ui/Form";
+import TextField from "~/components/ui/TextField";
 
 const handleSubmit = () => undefined;
 
-describe("<Form>", () => {
+describe("<TextField>", () => {
   it("renders correctly", () => {
     const tree = renderer
-      .create(<Form onSubmit={handleSubmit}>{() => "Alo"}</Form>)
+      .create(
+        <Form onSubmit={handleSubmit}>
+          {() => <TextField name="textfield" />}
+        </Form>
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();

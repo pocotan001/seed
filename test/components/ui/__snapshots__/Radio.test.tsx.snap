@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Radio> renders correctly 1`] = `
+<label
+  className="sc-htpNat cxybjL"
+>
+  <input
+    aria-invalid={false}
+    checked={false}
+    className="sc-bdVaJa eLtioX"
+    name="radio"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    type="radio"
+    value="a"
+  />
+  <span
+    className="sc-bwzfXH kpWatx"
+  >
+    A
+  </span>
+</label>
+`;
