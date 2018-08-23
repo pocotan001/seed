@@ -69,6 +69,6 @@ describe("isDataUri(value)", () => {
   it("should return false", () => {
     expect(isDataUri("data")).toBe(false);
     expect(isDataUri("base64")).toBe(false);
-    expect(isDataUri("http://example.com")).toBe(false);
+    expect(isDataUri("https://example.com")).toBe(false);
   });
 });

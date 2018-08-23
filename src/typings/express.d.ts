@@ -14,9 +14,7 @@ declare global {
 
     export interface Request {
       session: Session;
-      ctx: {
-        service?: RootService;
-      };
+      service: RootService;
     }
   }
 }

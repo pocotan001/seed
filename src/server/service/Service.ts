@@ -1,9 +1,6 @@
-import * as express from "express-serve-static-core";
 import { Request } from "~/infra/request";
 
 export interface IServiceContext {
-  req: express.Request;
-  res: express.Response;
   request: Request;
 }
 

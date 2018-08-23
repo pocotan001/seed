@@ -4,8 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import App from "~/components/App";
 import config from "~/config";
-import * as ElementId from "~/constants/ElementId";
-import * as StorageKey from "~/constants/StorageKey";
+import { ElementId } from "~/domain/Document";
 import createLogger from "~/infra/logger";
 import createRequest from "~/infra/request";
 import createRouter from "~/infra/router";
@@ -13,6 +12,7 @@ import routes, { onRouteError } from "~/routes";
 import createStore from "~/store";
 import createState, { State } from "~/store/state";
 import * as reaction from "./reaction";
+import * as StorageKey from "./StorageKey";
 import * as sw from "./sw";
 
 const initialState: State = (window as any).__STATE;

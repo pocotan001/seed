@@ -1,3 +1,5 @@
+import { schema } from "normalizr";
+
 export interface ICat {
   id: string;
   title: string;
@@ -9,3 +11,5 @@ export interface IGetCatsRequest {
   page: number;
   per: number;
 }
+
+export const catSchema = new schema.Entity("cats");

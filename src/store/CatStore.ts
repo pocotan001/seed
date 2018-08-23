@@ -1,7 +1,6 @@
 import { action } from "mobx";
 import { denormalize } from "normalizr";
-import { ICat, IGetCatsRequest } from "~/domain/Cat";
-import catSchema from "~/domain/catSchema";
+import { catSchema, ICat, IGetCatsRequest } from "~/domain/Cat";
 import { serializeParams } from "~/utils";
 import Store from "./Store";
 
@@ -23,19 +22,19 @@ export default class CatStore extends Store {
 
   @action
   async fetchCats(params: IGetCatsRequest): Promise<void> {
-    const resp = await this.ctx.api.get("/cats", { params });
+    const { data } = await this.ctx.api.get("/cats", { params });
     const serializedParams = serializeParams(params);
 
     this.state.entities.cats = {
       ...this.state.entities.cats,
-      ...resp.data.entities.cats
+      ...data.entities.cats
     };
 
     this.state.results.cats = {
       ...this.state.results.cats,
-      [serializedParams]: resp.data.result
+      [serializedParams]: data.result
     };
 
-    this.state.cats.totalCount = Number(resp.headers["x-total-count"]);
+    this.state.cats.totalCount = data.meta.totalCount;
   }
 }

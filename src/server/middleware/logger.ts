@@ -4,13 +4,15 @@ import * as morgan from "morgan";
 import createLogger from "~/infra/logger";
 
 const log = createLogger("[app]");
-const isProxy = (req: Request) => req.hostname === "null";
-const getUrlToken = (req: Request) =>
-  isProxy(req) ? req.originalUrl.split("//null").pop() : req.originalUrl;
+
+const getUrl = (req: Request) =>
+  req.hostname === "null" // From my own API
+    ? req.originalUrl.split("//null").pop()!
+    : req.originalUrl;
 
 class OutputStream {
   write(message: string) {
-    log.debug(message.replace(/\n$/, ""));
+    log.info(message.replace(/\n$/, ""));
   }
 }
 
@@ -20,7 +22,7 @@ const logger = (): RequestHandler =>
       [
         chalk.yellow(tokens.status(req, res) || "-"),
         tokens.method(req, res),
-        getUrlToken(req)
+        getUrl(req)
       ].join(" "),
     {
       stream: new OutputStream()

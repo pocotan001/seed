@@ -2,9 +2,10 @@ import * as express from "express";
 import cspReport from "./cspReport";
 import ctReport from "./ctReport";
 
-const router = express.Router();
+const routes = express.Router();
 
-router.post("/csp-report", cspReport);
-router.post("/ct-report", ctReport);
+routes.post("/csp-report", cspReport);
+routes.post("/ct-report", ctReport);
 
-export default router;
+export { default as api } from "./api";
+export default routes;

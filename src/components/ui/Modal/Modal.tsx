@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom";
 import styled from "styled-components";
 import { zIndex } from "~/components/styles/theme";
 import config from "~/config";
-import * as ElementId from "~/constants/ElementId";
+import { ElementId } from "~/domain/Document";
 import Backdrop from "./Backdrop";
 import Content from "./Content";
 
@@ -26,7 +26,7 @@ let modalContainer: Element;
 
 if (config.isClient) {
   appContainer = document.getElementById(ElementId.APP)!;
-  modalContainer = document.getElementById(ElementId.MODAL_CONTAINER)!;
+  modalContainer = document.getElementById(ElementId.MODAL)!;
 }
 
 /**

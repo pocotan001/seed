@@ -1,14 +1,14 @@
-import AuthenticationService from "./AuthenticationService";
+import AutheService from "./AuthService";
 import CatService from "./CatService";
 import { IServiceContext } from "./Service";
 
 export class RootService {
+  auth: AutheService;
   cat: CatService;
-  auth: AuthenticationService;
 
   constructor(ctx: IServiceContext) {
+    this.auth = new AutheService(ctx);
     this.cat = new CatService(ctx);
-    this.auth = new AuthenticationService(ctx);
   }
 }
 

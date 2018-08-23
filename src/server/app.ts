@@ -1,14 +1,13 @@
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as path from "path";
-import * as api from "./middleware/api";
+import config from "~/config";
 import catcher from "./middleware/catcher";
 import logger from "./middleware/logger";
 import render from "./middleware/render";
 import * as security from "./middleware/security";
 import session from "./middleware/session";
-import routes from "./routes";
-import apiRoutes from "./routes/api";
+import routes, { api } from "./routes";
 
 const app = express();
 
@@ -25,11 +24,14 @@ app.use(
   })
 );
 
-app.use(logger());
+if (config.isDev) {
+  app.use(logger());
+}
+
 app.use(security.nonce(), security.headers());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session());
-app.use("/api", api.csrf(), api.context(), apiRoutes, api.catcher());
+app.use("/api", api);
 app.use(routes);
 app.use(render());
 app.use(catcher());

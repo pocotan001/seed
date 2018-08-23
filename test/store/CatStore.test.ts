@@ -53,6 +53,8 @@ describe("CatStore", () => {
   });
 
   it("#fetchCats(payload)", async () => {
+    const keys = Object.keys(cats);
+
     ctx = {
       api: {
         get: jest.fn((url: string) => {
@@ -61,14 +63,14 @@ describe("CatStore", () => {
           }
 
           return {
-            headers: {
-              "x-total-count": "3"
-            },
             data: {
               entities: {
                 cats
               },
-              result: Object.keys(cats)
+              result: keys,
+              meta: {
+                totalCount: keys.length
+              }
             }
           };
         })
@@ -85,8 +87,8 @@ describe("CatStore", () => {
     });
     expect(store).toHaveProperty("state.entities.cats", cats);
     expect(store).toHaveProperty("state.results.cats", {
-      [serializeParams({ page: 1, per: 3 })]: Object.keys(cats)
+      [serializeParams({ page: 1, per: 3 })]: keys
     });
-    expect(store).toHaveProperty("state.cats.totalCount", 3);
+    expect(store).toHaveProperty("state.cats.totalCount", keys.length);
   });
 });

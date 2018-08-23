@@ -137,7 +137,7 @@ const createLogger = (namespace: string, opts?: ILoggerOptions): Logger => {
   const logger = cache.get(namespace) || new Logger(namespace, opts);
 
   if (cache.has(namespace)) {
-    // update options
+    // Update options
     if (opts && opts.level) {
       logger.level = LogLevel[opts.level];
     }

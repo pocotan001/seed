@@ -1,6 +1,6 @@
 import "../tools/env";
 
-import * as ElementId from "~/constants/ElementId";
+import { ElementId } from "~/domain/Document";
 import MockIntersectionObserver from "./mocks/IntersectionObserver";
 
 (global as any).IntersectionObserver = MockIntersectionObserver;
@@ -8,5 +8,5 @@ import MockIntersectionObserver from "./mocks/IntersectionObserver";
 // tslint:disable-next-line:no-inner-html
 document.body.innerHTML = [
   `<div id="${ElementId.APP}"></div>`,
-  `<div id="${ElementId.MODAL_CONTAINER}"></div>`
+  `<div id="${ElementId.MODAL}"></div>`
 ].join("");

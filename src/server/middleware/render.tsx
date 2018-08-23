@@ -10,7 +10,7 @@ import { ServerStyleSheet } from "styled-components";
 import App from "~/components/App";
 import { Head, Scripts } from "~/components/modules";
 import config from "~/config";
-import * as ElementId from "~/constants/ElementId";
+import { ElementId } from "~/domain/Document";
 import createLogger from "~/infra/logger";
 import createRequest from "~/infra/request";
 import createRouter from "~/infra/router";
@@ -105,7 +105,7 @@ const render = (): RequestHandler => async (req, res, next) => {
     };
 
     const state = createState(initialState);
-    const store = createStore(state, { history, api, req, res });
+    const store = createStore(state, { history, api });
     const router = createRouter(routes, { store, onError: onRouteError });
     const route = await router.resolve(req.path);
 
@@ -161,22 +161,13 @@ const render = (): RequestHandler => async (req, res, next) => {
 
     appStream.on("error", next);
     appStream.on("end", () => {
-      const serializedState = toJS(state);
       const scripts = ReactDOM.renderToStaticMarkup(
-        <Scripts
-          state={serializedState}
-          scripts={availableChunks}
-          nonce={nonce}
-        />
+        <Scripts state={toJS(state)} scripts={availableChunks} nonce={nonce} />
       );
 
       renderStream.end(
-        `</div><div id="${
-          ElementId.MODAL_CONTAINER
-        }"></div>${scripts}</body></html>`
+        `</div><div id="${ElementId.MODAL}"></div>${scripts}</body></html>`
       );
-
-      log.debug("Rendered with state: %o", serializedState);
     });
   } catch (err) {
     next(err);
