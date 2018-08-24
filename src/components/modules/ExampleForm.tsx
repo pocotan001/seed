@@ -82,14 +82,19 @@ export default class ExampleForm extends React.Component<
               <Paragraph mb={8}>
                 <label htmlFor="text">Text</label>
               </Paragraph>
-              <TextField id="text" name="text" />
+              <TextField id="text" name="text" autoComplete="nope" />
             </Space>
 
             <Space mb={16}>
               <Paragraph mb={8}>
                 <label htmlFor="password">Password</label>
               </Paragraph>
-              <TextField id="password" name="password" type="password" />
+              <TextField
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="new-password"
+              />
             </Space>
 
             <Space mb={16}>

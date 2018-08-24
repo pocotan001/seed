@@ -2,13 +2,9 @@ import chalk from "chalk";
 import * as debug from "debug";
 import config from "~/config";
 
-type ILogType = "error" | "warn" | "info" | "debug" | "trace";
+type ILogType = "error" | "warn" | "info" | "debug";
 type ILog = (formatter?: any, ...args: any[]) => void;
 type ILogger = Record<ILogType, ILog>;
-
-interface ILoggerOptions {
-  level?: ILogLevelKey;
-}
 
 interface ILogConfig {
   level: number;
@@ -21,8 +17,7 @@ export enum LogLevel {
   ERROR = 1,
   WARN = 2,
   INFO = 3,
-  DEBUG = 4,
-  TRACE = 5
+  DEBUG = 4
 }
 
 type ILogLevelKey = keyof typeof LogLevel;
@@ -46,11 +41,7 @@ const Types: Record<ILogType, ILogConfig> = {
   },
   debug: {
     level: LogLevel.DEBUG,
-    fn: "log"
-  },
-  trace: {
-    level: LogLevel.TRACE,
-    fn: "trace"
+    fn: config.isClient ? "debug" : "log"
   }
 };
 
@@ -65,24 +56,21 @@ export const enables: Set<string> = new Set(
 );
 
 export class Logger implements ILogger {
-  namespace: string;
-  level: LogLevel;
+  static level = LogLevel[config.logLevel as ILogLevelKey];
 
+  namespace: string;
   error: ILog;
   warn: ILog;
   info: ILog;
   debug: ILog;
-  trace: ILog;
 
-  constructor(namespace: string, opts: ILoggerOptions = {}) {
+  constructor(namespace: string) {
     this.namespace = namespace;
-    this.level = LogLevel[opts.level || (config.logLevel as ILogLevelKey)];
 
     this.error = this.createLog(Types.error);
     this.warn = this.createLog(Types.warn);
     this.info = this.createLog(Types.info);
     this.debug = this.createLog(Types.debug);
-    this.trace = this.createLog(Types.trace);
 
     if (FORBIDDEN) {
       this.disable();
@@ -113,7 +101,7 @@ export class Logger implements ILogger {
     log.log = console[fn].bind(console);
 
     return (formatter, ...args) => {
-      if (!this.isEnabled || level > this.level) {
+      if (!this.isEnabled || level > Logger.level) {
         return;
       }
 
@@ -133,19 +121,12 @@ export class Logger implements ILogger {
 
 const cache: Map<string, Logger> = new Map();
 
-const createLogger = (namespace: string, opts?: ILoggerOptions): Logger => {
-  const logger = cache.get(namespace) || new Logger(namespace, opts);
-
-  if (cache.has(namespace)) {
-    // Update options
-    if (opts && opts.level) {
-      logger.level = LogLevel[opts.level];
-    }
-  } else {
-    cache.set(namespace, logger);
+const createLogger = (namespace: string): Logger => {
+  if (!cache.has(namespace)) {
+    cache.set(namespace, new Logger(namespace));
   }
 
-  return logger;
+  return cache.get(namespace)!;
 };
 
 export default createLogger;

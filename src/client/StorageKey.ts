@@ -1,1 +1,1 @@
-export const SESSION = "__SESSION";
+export const SESSION = "uZid";

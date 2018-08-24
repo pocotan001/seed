@@ -1,18 +1,13 @@
 import * as debug from "debug";
-import createLogger, {
-  enables,
-  Logger,
-  LogLevel
-} from "~/infra/logger";
+import createLogger, { enables, Logger } from "~/infra/logger";
 
 describe("Logger", () => {
   describe("createLogger(namespace, opts)", () => {
     it("should return a `Logger` instance", () => {
-      const logger = createLogger("test", { level: "INFO" });
+      const logger = createLogger("test");
 
       expect(logger).toBeInstanceOf(Logger);
       expect(logger).toHaveProperty("namespace", "test");
-      expect(logger).toHaveProperty("level", LogLevel.INFO);
     });
 
     it("should return a function with log methods", () => {
@@ -22,7 +17,6 @@ describe("Logger", () => {
       expect(logger).toHaveProperty("warn", expect.any(Function));
       expect(logger).toHaveProperty("info", expect.any(Function));
       expect(logger).toHaveProperty("debug", expect.any(Function));
-      expect(logger).toHaveProperty("trace", expect.any(Function));
     });
 
     it("should able to cache logger", () => {

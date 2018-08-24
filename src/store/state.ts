@@ -4,8 +4,9 @@ import config from "~/config";
 import { INormalizedEntities } from "~/domain/Normalized";
 import { IUser } from "~/domain/User";
 
+// Base64 encoded keys
 export enum SessionKey {
-  EXAMPLE_FORM = "EXAMPLE_FORM"
+  EXAMPLE_FORM = "RVhBTVBMRV9GT1JN"
 }
 
 export const defaultState: State = Object.freeze({

@@ -8,7 +8,7 @@ import * as webpackHotMiddleware from "webpack-hot-middleware";
 import { DIST_DIR, ROOT_DIR } from "../config/paths";
 import origClientConfig from "../config/webpack/webpack.config.client";
 import serverConfig from "../config/webpack/webpack.config.server";
-import log from "../logger";
+import * as log from "../logger";
 
 const PORT = Number(process.env.PORT) || 3000;
 

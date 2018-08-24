@@ -4,7 +4,16 @@ import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import { colors } from "~/components/styles/theme";
 import { Field, IFieldProps, IFieldRenderProps } from "./Field";
 
-type IInputAttributes = React.InputHTMLAttributes<HTMLInputElement>;
+type IInputAttributes = Overwrite<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  {
+    // Text field should have autocomplete attribute
+    // https://www.chromium.org/developers/design-documents/create-amazing-password-forms#TOC-Use-autocomplete-attributes
+    // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
+    autoComplete: string;
+  }
+>;
+
 export type ITextFieldStyleProps = IMarginProps;
 type IAdditionalProps = ITextFieldStyleProps;
 
@@ -59,7 +68,7 @@ const StyledTextField = styled(TextField)`
 
 const AdaptedTextField: React.SFC<
   IFieldProps<IInputAttributes> & IAdditionalProps
-> = props => <Field {...props} component={StyledTextField} />;
+> = props => <Field {...props} component={StyledTextField as any} />;
 
 AdaptedTextField.defaultProps = {
   type: "text"

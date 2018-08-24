@@ -65,6 +65,7 @@ export default class SignInForm extends React.Component<ISignInFormProps> {
               <TextField
                 id="email"
                 name="email"
+                autoComplete="email"
                 placeholder="fake@example.com"
                 validate={email}
                 aria-required
@@ -80,6 +81,7 @@ export default class SignInForm extends React.Component<ISignInFormProps> {
                 id="password"
                 name="password"
                 type="password"
+                autoComplete="current-password"
                 placeholder="xxxxx"
                 validate={required}
                 aria-required

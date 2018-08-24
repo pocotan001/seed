@@ -64,8 +64,6 @@ const render = async (
         <App store={store}>{route.component}</App>,
         container,
         () => {
-          store.history.updateLocation(location);
-
           if (!route.status || route.status === 200) {
             store.history.markAsVisited();
           } else {
@@ -96,20 +94,21 @@ const render = async (
 const hydrate = async () => {
   await render(history.location, {
     hydrate: true,
-    skipFetch: store.history.isVisited(state.history.location.key)
+    skipFetch: store.history.isVisited(history.location.key)
   });
 
   log.debug("Hydrated with state: %o", initialState);
 };
 
-const onLocationChange: LocationListener = (location, action) => {
+const handleLocationChange: LocationListener = (location, action) => {
+  store.history.updateLocation(location);
   render(location, {
     skipFetch: action === "POP" && store.history.isVisited(location.key)
   });
 };
 
 log.info("Booting in %o mode", config.env);
-history.listen(onLocationChange);
+history.listen(handleLocationChange);
 reaction.start(state);
 hydrate();
 

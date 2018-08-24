@@ -19,7 +19,7 @@ import createStore from "~/store";
 import createState, { State } from "~/store/state";
 import * as chunks from "./chunk-manifest.json";
 
-const MAIN_CHUNKS = ["vendors", "main"];
+const MAIN_CHUNKS = ["vendor", "main"];
 const reNonceAttrs = / nonce=".*?"/g;
 const log = createLogger("[render]");
 

@@ -3,8 +3,9 @@
 exports[`<TextField> renders correctly 1`] = `
 <input
   aria-invalid={false}
+  autoComplete="nope"
   className="sc-bdVaJa chZRqM"
-  name="textfield"
+  name="test"
   onBlur={[Function]}
   onChange={[Function]}
   onFocus={[Function]}

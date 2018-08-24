@@ -125,8 +125,9 @@ const clientConfig: webpack.Configuration = {
       cacheGroups: {
         commons: {
           test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "initial"
+          name: "vendor",
+          chunks: "all",
+          enforce: true
         }
       }
     }
