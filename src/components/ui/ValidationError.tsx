@@ -1,34 +1,20 @@
 import * as React from "react";
 import { Field, FieldRenderProps } from "react-final-form";
 import { IMarginProps } from "~/components/styles/extends/margin";
-import Paragraph from "./Paragraph";
+import { ErrorMessage } from "~/components/ui";
 
-interface IValidationErrorProps extends IMarginProps {
+type IValidationErrorStyleProps = IMarginProps;
+
+interface IValidationErrorProps extends IValidationErrorStyleProps {
   name: string;
 }
 
 const render = ({
+  input,
   meta: { touched, error },
-  m,
-  mt,
-  mr,
-  mb,
-  ml
-}: FieldRenderProps & IMarginProps) =>
-  touched && error ? (
-    <Paragraph
-      fz={14}
-      c="pink500"
-      m={m}
-      mt={mt}
-      mr={mr}
-      mb={mb}
-      ml={ml}
-      role="alert"
-    >
-      {error}
-    </Paragraph>
-  ) : null;
+  ...rest
+}: FieldRenderProps & IValidationErrorStyleProps) =>
+  touched && error ? <ErrorMessage {...rest}>{error}</ErrorMessage> : null;
 
 /**
  * Validation error the named field

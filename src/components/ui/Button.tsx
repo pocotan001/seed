@@ -1,7 +1,11 @@
 import * as React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import { colors } from "~/components/styles/theme";
+
+export interface IButtonStyleProps extends IMarginProps {
+  block?: boolean;
+}
 
 interface IButtonProps
   extends IButtonStyleProps,
@@ -9,26 +13,9 @@ interface IButtonProps
   children: React.ReactNode;
 }
 
-export interface IButtonStyleProps extends IMarginProps {
-  block?: boolean;
-}
-
-const Button: React.SFC<IButtonProps> = ({
-  children,
-  block,
-  m,
-  mt,
-  mr,
-  mb,
-  ml,
-  ...rest
-}) => <button {...rest}>{children}</button>;
-
-Button.defaultProps = {
-  type: "button"
-};
-
-export const buttonStyles = css<IButtonStyleProps>`
+const Button = styled<IButtonProps>(({ block, m, mt, mr, mb, ml, ...rest }) => (
+  <button {...rest} />
+))`
   font-size: 1rem;
   line-height: normal;
   display: ${({ block }) => (block ? "flex" : "inline-flex")};
@@ -58,6 +45,8 @@ export const buttonStyles = css<IButtonStyleProps>`
   ${margin};
 `;
 
-export default styled(Button)`
-  ${buttonStyles};
-`;
+Button.defaultProps = {
+  type: "button"
+};
+
+export default Button;

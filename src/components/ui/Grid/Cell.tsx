@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import media, { IMediaKey, mediaKeys } from "~/components/styles/mixins/media";
 
 interface ICellProps
@@ -16,7 +16,7 @@ interface ICellStyleProps {
   order?: CSSProperties["order"];
 }
 
-const buildStyles = ({ col, row, justify, align, order }: ICellStyleProps) => `
+const styles = ({ col, row, justify, align, order }: ICellStyleProps) => css`
   ${col && `grid-column-end: span ${col}`};
   ${row && `grid-row-end: span ${row}`};
   ${justify && `justify-self: ${justify}`};
@@ -26,11 +26,11 @@ const buildStyles = ({ col, row, justify, align, order }: ICellStyleProps) => `
 
 const composeMediaStyles = (props: ICellProps) =>
   mediaKeys
-    .map(key => props[key] && media[key]`${buildStyles(props[key]!)}`)
+    .map(key => props[key] && media[key]`${styles(props[key]!)}`)
     .filter(Boolean);
 
 const Cell = styled<ICellProps, "div">("div")`
-  ${buildStyles};
+  ${styles};
   ${composeMediaStyles};
 `;
 

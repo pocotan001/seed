@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import media, { IMediaKey, mediaKeys } from "~/components/styles/mixins/media";
 import { px } from "~/utils";
@@ -24,14 +24,14 @@ const buildColumns = (v: number | string) =>
   typeof v === "number" ? `repeat(${v}, 1fr)` : v;
 const buildRows = buildColumns;
 
-const buildStyles = ({
+const styles = ({
   cols,
   rows,
   flow,
   gap,
   justify,
   align
-}: IGridStyleProps) => `
+}: IGridStyleProps) => css`
   ${cols && `grid-template-columns: ${buildColumns(cols)}`};
   ${rows && `grid-template-rows: ${buildRows(rows)}`};
   ${flow && `grid-auto-flow: ${flow}`};
@@ -42,7 +42,7 @@ const buildStyles = ({
 
 const composeMediaStyles = (props: IGridProps) =>
   mediaKeys
-    .map(key => props[key] && media[key]`${buildStyles(props[key]!)}`)
+    .map(key => props[key] && media[key]`${styles(props[key]!)}`)
     .filter(Boolean);
 
 /**
@@ -54,7 +54,7 @@ const composeMediaStyles = (props: IGridProps) =>
  */
 const Grid = styled<IGridProps, "div">("div")`
   display: grid;
-  ${buildStyles};
+  ${styles};
   ${composeMediaStyles};
   ${margin};
 `;

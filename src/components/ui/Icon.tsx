@@ -12,11 +12,9 @@ interface IIconProps extends IMarginProps {
   className?: string;
 }
 
-const Icon: React.SFC<IIconProps> = ({ src, className }) => (
+const Icon = styled<IIconProps>(({ src, className }) => (
   <span className={className} dangerouslySetInnerHTML={{ __html: src }} />
-);
-
-const StyledIcon = styled(Icon)`
+))`
   display: inline-block;
   vertical-align: middle;
   width: ${({ width }) => px(width!)};
@@ -25,9 +23,9 @@ const StyledIcon = styled(Icon)`
   ${margin};
 `;
 
-StyledIcon.defaultProps = {
+Icon.defaultProps = {
   width: "1rem",
   height: "1rem"
 };
 
-export default StyledIcon;
+export default Icon;

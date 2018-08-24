@@ -10,31 +10,31 @@ type IInputAttributes = Omit<
   "type"
 >;
 
-interface IAdditionalProps extends IMarginProps {
-  children?: React.ReactNode;
-}
+type ICheckBoxStyleProps = IMarginProps;
 
-const CheckBox: React.SFC<
-  IFieldRenderProps<IInputAttributes> & IAdditionalProps
-> = ({ input, meta, className, children, m, mt, mr, mb, ml, ...rest }) => {
-  const isInvalid = Boolean(meta.touched && meta.error);
+interface ICheckBoxProps
+  extends IFieldRenderProps<IInputAttributes>,
+    ICheckBoxStyleProps {}
 
-  return (
+const CheckBox = styled<ICheckBoxProps>(
+  ({ input, meta, className, children, m, mt, mr, mb, ml, ...rest }) => (
     <label className={className}>
-      <Input {...input} {...rest} aria-invalid={isInvalid} />
+      <Input
+        {...input}
+        {...rest}
+        aria-invalid={Boolean(meta.touched && meta.error)}
+      />
       {children && <Label>{children}</Label>}
     </label>
-  );
-};
-
-const StyledCheckBox = styled(CheckBox)`
+  )
+)`
   display: inline-block;
   vertical-align: middle;
   ${margin};
 `;
 
 const AdaptedCheckBox: React.SFC<
-  IFieldProps<IInputAttributes> & IAdditionalProps
-> = props => <Field {...props} type="checkbox" component={StyledCheckBox} />;
+  IFieldProps<IInputAttributes> & ICheckBoxStyleProps
+> = props => <Field {...props} type="checkbox" component={CheckBox} />;
 
 export default AdaptedCheckBox;

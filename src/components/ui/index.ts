@@ -4,6 +4,7 @@ export { default as Button } from "./Button";
 export { default as ButtonLink } from "./ButtonLink";
 export { default as CheckBox } from "./CheckBox";
 export { default as Content } from "./Content";
+export { default as ErrorMessage } from "./ErrorMessage";
 export { default as Form } from "./Form";
 export { default as Grid } from "./Grid";
 export { default as Heading } from "./Heading";

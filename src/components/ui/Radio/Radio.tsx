@@ -10,31 +10,31 @@ type IInputAttributes = Omit<
   "type"
 >;
 
-interface IAdditionalProps extends IMarginProps {
-  children?: React.ReactNode;
-}
+type IRadioStyleProps = IMarginProps;
 
-const Radio: React.SFC<
-  IFieldRenderProps<IInputAttributes> & IAdditionalProps
-> = ({ input, meta, className, children, m, mt, mr, mb, ml, ...rest }) => {
-  const isInvalid = Boolean(meta.touched && meta.error);
+interface IRadioProps
+  extends IFieldRenderProps<IInputAttributes>,
+    IRadioStyleProps {}
 
-  return (
+const Radio = styled<IRadioProps>(
+  ({ input, meta, className, children, m, mt, mr, mb, ml, ...rest }) => (
     <label className={className}>
-      <Input {...input} {...rest} aria-invalid={isInvalid} />
+      <Input
+        {...input}
+        {...rest}
+        aria-invalid={Boolean(meta.touched && meta.error)}
+      />
       {children && <Label>{children}</Label>}
     </label>
-  );
-};
-
-const StyledRadio = styled(Radio)`
+  )
+)`
   display: inline-block;
   vertical-align: middle;
   ${margin};
 `;
 
 const AdaptedRadio: React.SFC<
-  IFieldProps<IInputAttributes> & IAdditionalProps
-> = props => <Field {...props} type="radio" component={StyledRadio} />;
+  IFieldProps<IInputAttributes> & IRadioStyleProps
+> = props => <Field {...props} type="radio" component={Radio} />;
 
 export default AdaptedRadio;

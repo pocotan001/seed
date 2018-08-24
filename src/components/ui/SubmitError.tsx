@@ -2,32 +2,17 @@ import { FORM_ERROR } from "final-form";
 import * as React from "react";
 import { Field, FieldRenderProps } from "react-final-form";
 import { IMarginProps } from "~/components/styles/extends/margin";
-import Paragraph from "./Paragraph";
+import { ErrorMessage } from "~/components/ui";
 
-type ISubmitErrorProps = IMarginProps;
+type ISubmitErrorStyleProps = IMarginProps;
+type ISubmitErrorProps = ISubmitErrorStyleProps;
 
 const render = ({
+  input,
   meta: { submitError },
-  m,
-  mt,
-  mr,
-  mb,
-  ml
-}: FieldRenderProps & IMarginProps) =>
-  submitError ? (
-    <Paragraph
-      fz={14}
-      c="pink500"
-      m={m}
-      mt={mt}
-      mr={mr}
-      mb={mb}
-      ml={ml}
-      role="alert"
-    >
-      {submitError}
-    </Paragraph>
-  ) : null;
+  ...rest
+}: FieldRenderProps & ISubmitErrorStyleProps) =>
+  submitError ? <ErrorMessage {...rest}>{submitError}</ErrorMessage> : null;
 
 /**
  * The whole-form submission error returned by `onSubmit` under the `FORM_ERROR` key

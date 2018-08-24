@@ -1,31 +1,31 @@
 import * as React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
 import { colors } from "~/components/styles/theme";
 import { Field, IFieldProps, IFieldRenderProps } from "./Field";
 
-type IInputAttributes = Overwrite<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  {
-    // Text field should have autocomplete attribute
-    // https://www.chromium.org/developers/design-documents/create-amazing-password-forms#TOC-Use-autocomplete-attributes
-    // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
-    autoComplete: string;
-  }
->;
+interface IInputAttributes extends React.InputHTMLAttributes<HTMLInputElement> {
+  // Text field should have autocomplete attribute
+  // https://www.chromium.org/developers/design-documents/create-amazing-password-forms#TOC-Use-autocomplete-attributes
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
+  autoComplete: string;
+}
 
 export type ITextFieldStyleProps = IMarginProps;
-type IAdditionalProps = ITextFieldStyleProps;
 
-const TextField: React.SFC<
-  IFieldRenderProps<IInputAttributes> & IAdditionalProps
-> = ({ input, meta, m, mt, mr, mb, ml, ...rest }) => {
-  const isInvalid = Boolean(meta.touched && meta.error);
+interface ITextFieldProps
+  extends IFieldRenderProps<IInputAttributes>,
+    ITextFieldStyleProps {}
 
-  return <input {...input} {...rest} aria-invalid={isInvalid} />;
-};
-
-export const textFieldStyles = css<ITextFieldStyleProps>`
+export const TextField = styled<ITextFieldProps>(
+  ({ input, meta, m, mt, mr, mb, ml, ...rest }) => (
+    <input
+      {...input}
+      {...rest}
+      aria-invalid={Boolean(meta.touched && meta.error)}
+    />
+  )
+)`
   font-size: 1rem;
   line-height: 1.5;
   display: block;
@@ -62,13 +62,9 @@ export const textFieldStyles = css<ITextFieldStyleProps>`
   ${margin};
 `;
 
-const StyledTextField = styled(TextField)`
-  ${textFieldStyles};
-`;
-
 const AdaptedTextField: React.SFC<
-  IFieldProps<IInputAttributes> & IAdditionalProps
-> = props => <Field {...props} component={StyledTextField as any} />;
+  IFieldProps<IInputAttributes> & ITextFieldStyleProps
+> = props => <Field {...props} component={TextField as any} />;
 
 AdaptedTextField.defaultProps = {
   type: "text"

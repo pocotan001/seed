@@ -1,26 +1,27 @@
 import * as React from "react";
-import styled from "styled-components";
 import { Field, IFieldProps, IFieldRenderProps } from "./Field";
-import { ITextFieldStyleProps, textFieldStyles } from "./TextField";
+import { ITextFieldStyleProps, TextField } from "./TextField";
 
 type ITextAreaAttributes = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
-type IAdditionalProps = ITextFieldStyleProps;
 
-const TextArea: React.SFC<
-  IFieldRenderProps<ITextAreaAttributes> & IAdditionalProps
-> = ({ input, meta, m, mt, mr, mb, ml, ...rest }) => {
-  const isInvalid = Boolean(meta.touched && meta.error);
+interface ITextAreaProps
+  extends IFieldRenderProps<ITextAreaAttributes>,
+    ITextFieldStyleProps {}
 
-  return <textarea {...input} {...rest} aria-invalid={isInvalid} />;
-};
-
-const StyledTextArea = styled(TextArea)`
+const TextArea = TextField.withComponent<ITextAreaProps>(
+  ({ input, meta, m, mt, mr, mb, ml, ...rest }) => (
+    <textarea
+      {...input}
+      {...rest}
+      aria-invalid={Boolean(meta.touched && meta.error)}
+    />
+  )
+).extend`
   resize: vertical;
-  ${textFieldStyles};
 `;
 
 const AdaptedTextArea: React.SFC<
-  IFieldProps<ITextAreaAttributes> & IAdditionalProps
-> = props => <Field {...props} component={StyledTextArea} />;
+  IFieldProps<ITextAreaAttributes> & ITextFieldStyleProps
+> = props => <Field {...props} component={TextArea as any} />;
 
 export default AdaptedTextArea;
