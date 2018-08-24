@@ -22,7 +22,7 @@ const isCacheable = (req: Request): boolean =>
  * // Cache a route
  * api.get("/article/:id?", cache(10), getArticle);
  * // Cache all routes
- * api.use("/api", cache(10));
+ * api.use(cache(10));
  */
 const cache = (maxAgeSeconds: number): RequestHandler => (req, res, next) => {
   if (!isCacheable(req)) {
