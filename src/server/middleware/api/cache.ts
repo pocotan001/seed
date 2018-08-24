@@ -16,7 +16,7 @@ const isCacheable = (req: Request): boolean =>
   config.isProd && CACHEABLE_METHODS.includes(req.method);
 
 /**
- * API response caching middleware
+ * API response caching
  *
  * @example
  * // Cache a route
@@ -37,7 +37,7 @@ const cache = (maxAgeSeconds: number): RequestHandler => (req, res, next) => {
     return;
   }
 
-  const send = res.send;
+  const origSend = res.send;
 
   res.send = body => {
     if (res.statusCode === 200) {
@@ -48,7 +48,7 @@ const cache = (maxAgeSeconds: number): RequestHandler => (req, res, next) => {
       }
     }
 
-    return send.call(res, body);
+    return origSend.call(res, body);
   };
 
   next();
