@@ -21,7 +21,7 @@ const isPasswordValid = (password: string): boolean => {
   return password === FAKE_USER.password;
 };
 
-export default class UserService extends Service {
+export default class AuthService extends Service {
   async getToken({ email, password }: ISignInParams): Promise<string> {
     if (!isEmailValid(email) || !isPasswordValid(password)) {
       const err = new Error("Bad credentials");
