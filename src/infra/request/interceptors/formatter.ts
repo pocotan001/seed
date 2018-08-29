@@ -1,7 +1,7 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { normalizeError } from "~/domain/Error";
 
-const CODE_ECONNABORTED = "ECONNABORTED";
+const AXIOS_ECONNABORTED_CODE = "ECONNABORTED";
 
 export const onFulfilled = (resp: AxiosResponse): AxiosResponse => resp;
 
@@ -25,7 +25,8 @@ export const onRejected = (e: any): Promise<never> => {
     } else {
       err.data = axiosErr.response.data;
     }
-  } else if (axiosErr.code === CODE_ECONNABORTED) {
+  } else if (axiosErr.code === AXIOS_ECONNABORTED_CODE) {
+    // Request timeout
     err.status = 408;
     delete err.code; // Delete `ECONNABORTED`
   } else {
