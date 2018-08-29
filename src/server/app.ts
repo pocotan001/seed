@@ -3,7 +3,6 @@ import * as express from "express";
 import * as path from "path";
 import config from "~/config";
 import catcher from "./middleware/catcher";
-import logger from "./middleware/logger";
 import render from "./middleware/render";
 import * as security from "./middleware/security";
 import session from "./middleware/session";
@@ -25,7 +24,8 @@ app.use(
 );
 
 if (config.isDev) {
-  app.use(logger());
+  // tslint:disable-next-line:no-var-requires
+  app.use(require("./middleware/logger").default());
 }
 
 app.use(security.nonce(), security.headers());

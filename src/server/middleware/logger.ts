@@ -1,9 +1,21 @@
 import chalk from "chalk";
 import { Request, RequestHandler } from "express-serve-static-core";
 import * as morgan from "morgan";
+import { isNumeric } from "~/domain/validators";
 import createLogger from "~/infra/logger";
 
 const log = createLogger("[app]");
+
+const validateStatus = (status: number): boolean =>
+  status >= 200 && status < 400;
+
+const formatStatus = (status: string = "-"): string => {
+  if (isNumeric(status) && !validateStatus(Number(status))) {
+    return chalk.red(status);
+  }
+
+  return chalk.yellow(status);
+};
 
 const getUrl = (req: Request) =>
   req.hostname === "null" // From my own API
@@ -20,7 +32,7 @@ const logger = (): RequestHandler =>
   morgan(
     (tokens, req, res) =>
       [
-        chalk.yellow(tokens.status(req, res) || "-"),
+        formatStatus(tokens.status(req, res)),
         tokens.method(req, res),
         getUrl(req)
       ].join(" "),
