@@ -7,7 +7,7 @@ const CACHEABLE_METHODS = ["GET", "HEAD", "OPTIONS"];
 const log = createLogger("[api]");
 const lruCache: LRU.Cache<string, string> = new LRU(100);
 
-const getUrl = (req: Request) =>
+const getUrl = (req: Request): string =>
   req.hostname === "null" // From my own API
     ? req.originalUrl.split("//null").pop()!
     : req.originalUrl;
