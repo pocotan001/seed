@@ -2,7 +2,7 @@ import { inject } from "mobx-react";
 import * as React from "react";
 import Page from "~/components/layouts/Page";
 import { Button, Heading, Paragraph, Section } from "~/components/ui";
-import config from "~/config";
+import { ErrorCode } from "~/domain/Error";
 import { RootStore } from "~/store";
 
 interface IErrorPageProps {
@@ -26,26 +26,24 @@ export default class ErrorPage extends React.PureComponent<IErrorPageProps> {
   getErrorInfo(): IErrorInfo {
     const { error } = this.props;
 
-    if (config.isClient && !window.navigator.onLine) {
-      return {
-        message:
-          "Looks like you have an unstable network at the moment, please try again when network stabilizes.",
-        isRetryable: true
-      };
-    }
-
-    switch (error.status) {
-      case 404:
+    switch (error.code) {
+      case ErrorCode.NOT_FOUND:
         return {
           message: "The requested page cannot be found."
         };
-      case 408:
+      case ErrorCode.TIMED_OUT:
         return {
           message:
             "Looks like the server is taking to long to respond, please try again in sometime.",
           isRetryable: true
         };
-      case 503:
+      case ErrorCode.NOT_CONNECTED_TO_INTERNET:
+        return {
+          message:
+            "Looks like you have an unstable network at the moment, please try again when network stabilizes.",
+          isRetryable: true
+        };
+      case ErrorCode.UNDER_MAINTENANCE:
         return {
           message: "Sorry, we're down for maintenance."
         };

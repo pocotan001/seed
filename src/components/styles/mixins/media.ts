@@ -1,7 +1,5 @@
 import { css, Interpolation } from "styled-components";
-import breakpoints, {
-  IBreakpointKey
-} from "~/components/styles/theme/breakpoints";
+import { Breakpoint } from "~/components/styles/theme";
 import { em } from "~/utils";
 
 type IMediaFunction = <P>(
@@ -9,10 +7,10 @@ type IMediaFunction = <P>(
   ...interpolations: Array<Interpolation<P>>
 ) => string;
 
-export type IMediaKey = IBreakpointKey;
+export type IMediaKey = keyof typeof Breakpoint;
 type IMedia = Record<IMediaKey, IMediaFunction>;
 
-export const mediaKeys: IMediaKey[] = Object.keys(breakpoints) as any;
+export const mediaKeys: IMediaKey[] = Object.keys(Breakpoint) as any;
 
 /**
  * A media query to target breakpoints
@@ -30,7 +28,7 @@ const media: IMedia = mediaKeys.reduce(
     // Use em in breakpoints to work properly cross-browser and support users
     // https://zellwk.com/blog/media-query-units/
     [name]: (strings: any, ...interpolations: any[]) => css`
-      @media (max-width: ${em(breakpoints[name])}) {
+      @media (max-width: ${em(Breakpoint[name])}) {
         ${css(strings, ...interpolations)};
       }
     `

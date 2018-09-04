@@ -5,7 +5,7 @@ import { Loading } from "~/components/modules";
 import ErrorPage from "~/components/pages/ErrorPage";
 import normalize from "~/components/styles/mixins/normalize";
 import reset from "~/components/styles/mixins/reset";
-import { colors, fonts } from "~/components/styles/theme";
+import { Color, Font } from "~/components/styles/theme";
 import { RootStore } from "~/store";
 
 interface IAppProps {
@@ -23,12 +23,12 @@ injectGlobal`
   ${reset};
 
   html {
-    font-family: ${fonts.sans};
+    font-family: ${Font.sans};
     font-size: 16px;
     line-height: 1.5;
     box-sizing: border-box;
-    color: ${colors.grey800};
-    background: ${colors.white};
+    color: ${Color.grey800};
+    background: ${Color.white};
   }
 
   *,

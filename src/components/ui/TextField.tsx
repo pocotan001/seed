@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import { colors } from "~/components/styles/theme";
+import { Color } from "~/components/styles/theme";
 import { Field, IFieldProps, IFieldRenderProps } from "./Field";
 
 interface IInputAttributes extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -32,31 +32,31 @@ export const TextField = styled<ITextFieldProps>(
   padding: 0.4em 0.75em;
   width: 100%;
   max-width: 100%;
-  color: ${colors.grey800};
-  border: 1px solid ${colors.grey400};
+  color: ${Color.grey800};
+  border: 1px solid ${Color.grey400};
   border-radius: 3px;
-  background: ${colors.white};
+  background: ${Color.white};
 
   &:hover {
-    border-color: ${colors.grey500};
+    border-color: ${Color.grey500};
   }
 
   &:disabled {
     cursor: default;
     opacity: 0.6;
-    border-color: ${colors.grey400};
+    border-color: ${Color.grey400};
   }
 
   &[aria-invalid="true"] {
-    border-color: ${colors.pink500};
+    border-color: ${Color.pink500};
   }
 
   &::-webkit-input-placeholder {
-    color: ${colors.grey400};
+    color: ${Color.grey400};
   }
 
   &::-moz-placeholder {
-    color: ${colors.grey400};
+    color: ${Color.grey400};
   }
 
   ${margin};

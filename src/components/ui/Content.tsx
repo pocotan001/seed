@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import { colors } from "~/components/styles/theme";
+import { Color } from "~/components/styles/theme";
 
 interface IContentProps extends IMarginProps {
   children?: React.ReactNode;
@@ -34,7 +34,7 @@ const Content = styled<IContentProps, "div">("div")`
     font-weight: 700;
     line-height: normal;
     margin: 24px 0;
-    color: ${colors.grey800};
+    color: ${Color.grey800};
   }
 
   h1 {
@@ -63,7 +63,7 @@ const Content = styled<IContentProps, "div">("div")`
 
   a {
     text-decoration: none;
-    color: ${colors.pink300};
+    color: ${Color.pink300};
 
     &:hover {
       text-decoration: underline;
@@ -72,13 +72,13 @@ const Content = styled<IContentProps, "div">("div")`
 
   blockquote {
     padding: 0 16px;
-    border-left: 4px solid ${colors.grey300};
+    border-left: 4px solid ${Color.grey300};
   }
 
   hr {
     height: 4px;
     border: 0;
-    background: ${colors.grey300};
+    background: ${Color.grey300};
   }
 
   ol {
@@ -113,15 +113,15 @@ const Content = styled<IContentProps, "div">("div")`
     margin: 0 4px;
     padding: 0 4px;
     white-space: nowrap;
-    border: 1px solid ${colors.grey300};
+    border: 1px solid ${Color.grey300};
     border-radius: 3px;
-    background: ${colors.grey100};
+    background: ${Color.grey100};
   }
 
   pre {
     overflow: auto;
     padding: 16px;
-    background: ${colors.grey100};
+    background: ${Color.grey100};
     -webkit-overflow-scrolling: touch;
   }
 
@@ -140,7 +140,7 @@ const Content = styled<IContentProps, "div">("div")`
   table th {
     padding: 8px 12px;
     vertical-align: top;
-    border: 1px solid ${colors.grey300};
+    border: 1px solid ${Color.grey300};
     border-width: 0 0 1px;
   }
 

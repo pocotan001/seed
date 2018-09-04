@@ -2,6 +2,7 @@ import { Location } from "history";
 import { STATUS_CODES } from "http";
 import * as React from "react";
 import { match as IMatch, matchPath } from "react-router";
+import { ErrorCode } from "~/domain/Error";
 import createLogger from "~/infra/logger";
 import { RootStore } from "~/store";
 import { State } from "~/store/state";
@@ -82,7 +83,9 @@ export class Router {
 
     if (!matched) {
       const err = new Error(STATUS_CODES[404]);
+
       err.status = 404;
+      err.code = ErrorCode.NOT_FOUND;
 
       return this.ctx.onError(err, {}, this.ctx);
     }
@@ -104,8 +107,7 @@ export class Router {
 
       return action.render(...components);
     } catch (err) {
-      err.status = err.status || 500;
-      log.error(`Receive error with status %o`, err.status);
+      log.error(err.stack);
 
       return this.ctx.onError(err, match.params, this.ctx);
     }

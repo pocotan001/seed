@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import { colors } from "~/components/styles/theme";
+import { Color } from "~/components/styles/theme";
 import { NavLink } from "~/components/ui";
 
 interface IPaginationProps extends IMarginProps {
@@ -49,8 +49,8 @@ export default styled(Pagination)`
 
       &:hover,
       &.-actived {
-        color: ${colors.white};
-        background: ${colors.pink300};
+        color: ${Color.white};
+        background: ${Color.pink300};
       }
     }
   }

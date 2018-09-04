@@ -10,7 +10,7 @@ describe("<TextField>", () => {
     const tree = renderer
       .create(
         <Form onSubmit={handleSubmit}>
-          {() => <TextField name="test" autoComplete="nope" />}
+          {() => <TextField name="test" autoComplete="off" />}
         </Form>
       )
       .toJSON();

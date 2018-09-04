@@ -2,7 +2,7 @@ import createFocusTrap, { FocusTrap } from "focus-trap";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import styled from "styled-components";
-import { zIndex } from "~/components/styles/theme";
+import { ZIndex } from "~/components/styles/theme";
 import config from "~/config";
 import { ElementId } from "~/domain/Document";
 import Backdrop from "./Backdrop";
@@ -100,7 +100,7 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 
 export default styled(Modal)`
   position: fixed;
-  z-index: ${zIndex.modal};
+  z-index: ${ZIndex.modal};
   top: 0;
   left: 0;
   width: 100%;

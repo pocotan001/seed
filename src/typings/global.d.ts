@@ -2,10 +2,6 @@ import { ErrorCode } from "~/domain/Error";
 
 declare global {
   declare module "*.json";
-  declare module "*.png";
-  declare module "*.jpg";
-  declare module "*.gif";
-  declare module "*.svg";
 
   export interface Error {
     status?: number; // HTTP status code

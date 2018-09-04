@@ -1,36 +1,36 @@
 import { inject, observer } from "mobx-react";
 import * as React from "react";
 import styled from "styled-components";
-import { colors, zIndex } from "~/components/styles/theme";
+import { Color, ZIndex } from "~/components/styles/theme";
 import { RootStore } from "~/store";
 
 interface ILoadingProps {
   className?: string;
+  store?: RootStore;
 }
 
-interface IInjectedProps extends ILoadingProps {
-  store: RootStore;
+@inject("store")
+@observer
+export class Loading extends React.Component<ILoadingProps> {
+  store = this.props.store!;
+
+  render() {
+    const { className } = this.props;
+
+    return (
+      <progress
+        className={className}
+        value={this.store.state.loading.percent}
+        max={100}
+        aria-hidden={this.store.state.loading.hidden}
+      />
+    );
+  }
 }
 
-const Loading: React.SFC<ILoadingProps> = props => {
-  const { className, store } = props as IInjectedProps;
-  const { percent, hidden } = store.state.loading;
-
-  return (
-    <progress
-      className={className}
-      value={percent}
-      max={100}
-      aria-hidden={hidden}
-    />
-  );
-};
-
-const InjectedLoading = inject("store")(observer(Loading));
-
-export default styled(InjectedLoading)`
+export default styled(Loading)`
   position: fixed;
-  z-index: ${zIndex.loading};
+  z-index: ${ZIndex.loading};
   top: 0;
   left: 0;
   opacity: 1;
@@ -46,17 +46,17 @@ export default styled(InjectedLoading)`
   }
 
   &::-webkit-progress-value {
-    background: ${colors.pink300};
+    background: ${Color.pink300};
     transition: width 0.2s;
   }
 
   &::-moz-progress-bar {
-    background: ${colors.pink300};
+    background: ${Color.pink300};
     transition: width 0.2s;
   }
 
   &::-ms-fill {
-    background: ${colors.pink300};
+    background: ${Color.pink300};
     transition: width 0.2s;
   }
 `;

@@ -2,7 +2,7 @@ import { inject, observer } from "mobx-react";
 import * as React from "react";
 import styled from "styled-components";
 import { SignInForm } from "~/components/modules";
-import { colors } from "~/components/styles/theme";
+import { Color } from "~/components/styles/theme";
 import { Button, Modal, NavLink } from "~/components/ui";
 import { RootStore } from "~/store";
 
@@ -100,8 +100,8 @@ export default styled(Nav)`
 
     &:hover,
     &.-actived {
-      color: ${colors.grey800};
-      background: ${colors.grey100};
+      color: ${Color.grey800};
+      background: ${Color.grey100};
     }
   }
 `;

@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import { Footer, Header, Main, Sidebar } from "~/components/modules";
 import media from "~/components/styles/mixins/media";
-import { dimensions } from "~/components/styles/theme";
+import { Dimension } from "~/components/styles/theme";
 import { px } from "~/utils";
 
 interface IPageProps {
@@ -23,8 +23,8 @@ export default styled(Page)`
   display: grid;
   min-height: 100vh;
   grid-template-columns:
-    calc(100% - ${px(dimensions.sidebarWidth)})
-    ${px(dimensions.sidebarWidth)};
+    calc(100% - ${px(Dimension.sidebarWidth)})
+    ${px(Dimension.sidebarWidth)};
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header"

@@ -82,7 +82,7 @@ export default class ExampleForm extends React.Component<
               <Paragraph mb={8}>
                 <label htmlFor="text">Text</label>
               </Paragraph>
-              <TextField id="text" name="text" autoComplete="nope" />
+              <TextField id="text" name="text" autoComplete="off" />
             </Space>
 
             <Space mb={16}>

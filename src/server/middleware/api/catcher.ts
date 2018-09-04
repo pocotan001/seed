@@ -17,7 +17,7 @@ const catcher = (): ErrorRequestHandler => (err: Error, _, res, __) => {
     error: pick(err, ["message", "code", "data"])
   };
 
-  res.status(err.status!).json(resp);
+  res.status(err.status || 500).json(resp);
 };
 
 export default catcher;

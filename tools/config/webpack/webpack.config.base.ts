@@ -96,13 +96,32 @@ const baseConfig: webpack.Configuration = {
             loader: "ts-loader",
             options: { configFile: "tsconfig.esnext.json" }
           },
-          // e.g. `<img src="~/assets/xxx" />` -> `<img src={require("~/assets/xxx")} />`
+          // Replace assets path
           {
             loader: "string-replace-loader",
             options: {
-              search: `="(~\/assets\/.+?)"`,
-              replace: `={require("$1")}`,
-              flags: "g"
+              multiple: [
+                // for all strings except `from "..."` and `require("...")`
+                {
+                  search: `(?<! from |require\\()["'](~\/assets\/.+?)["']`,
+                  replace: 'require("$1")',
+                  flags: "g"
+                },
+                // for JSX props
+                // e.g. `<img src="~/assets/xxx" />` -> `<img src={require("~/assets/xxx")} />`
+                {
+                  search: `=(require\\("~\/assets\/.+?"\\))`,
+                  replace: "={$1}",
+                  flags: "g"
+                },
+                // for `url()` CSS function
+                // e.g. `background: url("~/assets/xxx")` -> `background: url(${require("~/assets/xxx")})`
+                {
+                  search: ` url\\((require\\("~\/assets\/.+?"\\))\\)`,
+                  replace: " url($${$1})",
+                  flags: "g"
+                }
+              ]
             }
           }
         ]

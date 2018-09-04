@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { colors } from "~/components/styles/theme";
+import { Color } from "~/components/styles/theme";
 import { Grid, Heading, Image, Paragraph } from "~/components/ui";
 import { ICat } from "~/domain/Cat";
 
@@ -28,5 +28,5 @@ const CatCard: React.SFC<ICatCardProps> = ({ cat, className }) => (
 export default styled(CatCard)`
   padding: 16px;
   border-radius: 5px;
-  background: ${colors.grey200};
+  background: ${Color.grey200};
 `;

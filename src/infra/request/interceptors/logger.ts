@@ -15,9 +15,7 @@ export const onFulfilled = (resp: AxiosResponse): AxiosResponse => {
   return resp;
 };
 
-export const onRejected = (e: any): Promise<never> => {
-  const err = e as AxiosError;
-
+export const onRejected = (err: AxiosError): Promise<never> => {
   if (err.response) {
     log.error(
       `%o ${

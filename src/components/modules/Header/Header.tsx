@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { colors } from "~/components/styles/theme";
+import { Color } from "~/components/styles/theme";
 import { Grid, Heading, Link } from "~/components/ui";
 import config from "~/config";
 import Nav from "./Nav";
@@ -26,6 +26,6 @@ const Header: React.SFC<IHeaderProps> = ({ className }) => (
 
 export default styled(Header)`
   padding: 24px;
-  border-bottom: 1px solid ${colors.grey200};
-  background: ${colors.white};
+  border-bottom: 1px solid ${Color.grey200};
+  background: ${Color.white};
 `;

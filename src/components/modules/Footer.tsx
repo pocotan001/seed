@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { colors } from "~/components/styles/theme";
+import { Color } from "~/components/styles/theme";
 
 interface IFooterProps {
   className?: string;
@@ -13,5 +13,5 @@ const Footer: React.SFC<IFooterProps> = ({ className }) => (
 export default styled(Footer)`
   padding: 24px;
   text-align: center;
-  border-top: 1px solid ${colors.grey200};
+  border-top: 1px solid ${Color.grey200};
 `;

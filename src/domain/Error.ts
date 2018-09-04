@@ -20,7 +20,11 @@ export enum ErrorCode {
   INTERNAL = 13,
   UNAVAILABLE = 14,
   DATALOSS = 15,
-  UNAUTHENTICATED = 16
+  UNAUTHENTICATED = 16,
+  // Extended codes
+  TIMED_OUT = 1000,
+  NOT_CONNECTED_TO_INTERNET = 1001,
+  UNDER_MAINTENANCE = 1002
 }
 
 const StatusCodes: { [C in ErrorCode]?: number } = {
@@ -33,14 +37,24 @@ const StatusCodes: { [C in ErrorCode]?: number } = {
   [ErrorCode.CANCELED]: 499,
   [ErrorCode.INTERNAL]: 500,
   [ErrorCode.UNAVAILABLE]: 503,
-  [ErrorCode.DEADLINE_EXCEEDED]: 504
+  [ErrorCode.DEADLINE_EXCEEDED]: 504,
+  [ErrorCode.TIMED_OUT]: 408,
+  [ErrorCode.UNDER_MAINTENANCE]: 503
 };
 
 export const normalizeError = (err: Error): Error => {
-  err.status = err.status || StatusCodes[err.code!] || 500;
+  const status = err.status || StatusCodes[err.code!];
+
+  if (status) {
+    err.status = status;
+  }
+
+  if (!err.code && config.isClient && !window.navigator.onLine) {
+    err.code = ErrorCode.NOT_CONNECTED_TO_INTERNET;
+  }
 
   if (config.isProd) {
-    err.message = STATUS_CODES[err.status] || STATUS_CODES[500]!;
+    err.message = STATUS_CODES[status!] || "Internal Error";
   }
 
   return err;

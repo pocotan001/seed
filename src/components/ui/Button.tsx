@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import { colors } from "~/components/styles/theme";
+import { Color } from "~/components/styles/theme";
 
 export interface IButtonStyleProps extends IMarginProps {
   block?: boolean;
@@ -25,21 +25,21 @@ const Button = styled<IButtonProps>(({ block, m, mt, mr, mb, ml, ...rest }) => (
   text-decoration: none;
   text-align: center;
   vertical-align: middle;
-  color: ${colors.grey800};
-  border: 1px solid ${colors.grey400};
+  color: ${Color.grey800};
+  border: 1px solid ${Color.grey400};
   border-radius: 3px;
-  background: ${colors.white};
+  background: ${Color.white};
   align-items: center;
   justify-content: center;
 
   &:hover {
-    border-color: ${colors.grey500};
+    border-color: ${Color.grey500};
   }
 
   &:disabled {
     cursor: default;
     opacity: 0.6;
-    border-color: ${colors.grey400};
+    border-color: ${Color.grey400};
   }
 
   ${margin};
