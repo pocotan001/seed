@@ -50,18 +50,18 @@ const Head: React.SFC<HeadProps> = ({
       rel="stylesheet"
     />
 
+    {/* Web App Manifest */}
+    <link rel="manifest" href="/manifest.json" />
+
     {/* iOS Safari */}
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     {/* macOS Safari */}
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
-
-    {/* Android Chrome */}
-    <link rel="manifest" href="/manifest.json" />
+    <link rel="mask-icon" href="/mask-icon.svg" color="#000000" />
 
     {/* Desktop browsers */}
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo-16x16.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
   </head>
 );
