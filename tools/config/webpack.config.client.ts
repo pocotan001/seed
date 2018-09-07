@@ -1,14 +1,14 @@
 import { pick } from "lodash";
 import * as webpack from "webpack";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import * as ManifestPlugin from "webpack-manifest-plugin";
+import ManifestPlugin from "webpack-manifest-plugin";
 import { GenerateSW } from "workbox-webpack-plugin";
-import * as pkg from "../../../package.json";
-import { DIST_DIR } from "../paths";
+import * as pkg from "../../package.json";
+import { DIST_DIR } from "./paths";
 import baseConfig, { isDebug } from "./webpack.config.base";
 
 const ENV_EXPORTS = ["ENV", "NODE_ENV", "DEBUG", "LOG_LEVEL"];
-const isAnalyze = process.env.ANALYZE === "on";
+const isAnalyze = process.argv.includes("--analyze");
 
 const clientConfig: webpack.Configuration = {
   ...baseConfig,
@@ -20,49 +20,6 @@ const clientConfig: webpack.Configuration = {
     filename: isDebug || isAnalyze ? "main.js" : "[hash].js",
     chunkFilename: isDebug || isAnalyze ? "chunks/[name].js" : "[chunkhash].js",
     publicPath: "/"
-  },
-  module: {
-    ...baseConfig.module!,
-    rules: baseConfig.module!.rules.map(rule => {
-      if (rule.use) {
-        return {
-          ...rule,
-          use: (rule.use as webpack.RuleSetLoader[]).map(useRule => {
-            if (useRule.loader === "babel-loader") {
-              return {
-                ...useRule,
-                options: {
-                  ...(useRule as any).options,
-                  presets: (useRule as any).options.presets.map(
-                    (preset: any) => {
-                      const [name, opts] = preset;
-
-                      if (name === "@babel/preset-env") {
-                        return [
-                          name,
-                          {
-                            ...opts,
-                            targets: {
-                              browsers: pkg.browserslist
-                            }
-                          }
-                        ];
-                      }
-
-                      return preset;
-                    }
-                  )
-                }
-              };
-            }
-
-            return useRule;
-          })
-        };
-      }
-
-      return rule;
-    })
   },
   plugins: [
     ...baseConfig.plugins!,

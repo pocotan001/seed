@@ -1,17 +1,22 @@
 import { CSSProperties } from "react";
 import styled, { css } from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import media, { IMediaKey, mediaKeys } from "~/components/styles/mixins/media";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
+import withMedia, {
+  MediaProps,
+  StyleFactory
+} from "~/components/styles/extends/withMedia";
 import { px } from "~/utils";
 
-interface IGridProps
-  extends IGridStyleProps,
-    Partial<Record<IMediaKey, IGridStyleProps>>,
-    IMarginProps {
+interface GridProps
+  extends GridStyleProps,
+    MediaProps<GridStyleProps>,
+    MarginProps {
   children: React.ReactNode;
 }
 
-interface IGridStyleProps {
+interface GridStyleProps {
   cols?: number | CSSProperties["gridTemplateColumns"];
   rows?: number | CSSProperties["gridTemplateRows"];
   flow?: CSSProperties["gridAutoFlow"];
@@ -20,18 +25,18 @@ interface IGridStyleProps {
   align?: CSSProperties["alignContent"];
 }
 
-const buildColumns = (v: number | string) =>
-  typeof v === "number" ? `repeat(${v}, 1fr)` : v;
+const buildColumns = (value: number | string) =>
+  typeof value === "number" ? `repeat(${value}, 1fr)` : value;
 const buildRows = buildColumns;
 
-const styles = ({
+const styles: StyleFactory<GridStyleProps> = ({
   cols,
   rows,
   flow,
   gap,
   justify,
   align
-}: IGridStyleProps) => css`
+}) => css`
   ${cols && `grid-template-columns: ${buildColumns(cols)}`};
   ${rows && `grid-template-rows: ${buildRows(rows)}`};
   ${flow && `grid-auto-flow: ${flow}`};
@@ -40,23 +45,11 @@ const styles = ({
   ${align && `align-content: ${align}`};
 `;
 
-const composeMediaStyles = (props: IGridProps) =>
-  mediaKeys
-    .map(key => props[key] && media[key]`${styles(props[key]!)}`)
-    .filter(Boolean);
-
-/**
- * @example
- * // Different gaps at different breakpoints
- * <Grid gap={30} tablet={{ gap: 20 }} phone={{ gap: 10 }}>
- *   ...
- * </Grid>
- */
-const Grid = styled<IGridProps, "div">("div")`
+const Grid = styled<GridProps, "div">("div")`
   display: grid;
   ${styles};
-  ${composeMediaStyles};
-  ${margin};
+  ${withMedia(styles)};
+  ${withMargin};
 `;
 
 Grid.defaultProps = {

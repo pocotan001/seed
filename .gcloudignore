@@ -1,5 +1,6 @@
 #!include:.gitignore
 
+.babelrc
 .circleci/
 .editorconfig
 .gcloudignore
@@ -11,9 +12,9 @@ src/
 static/
 test/
 tools/
+typings/
 
 README.md
-tsconfig.esnext.json
 tsconfig.json
 tslint.json
 

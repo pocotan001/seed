@@ -3,6 +3,7 @@ node_modules/
 
 # Compiled output
 dist/
+coverage/
 
 # Dotenv environment variables
 .env.local

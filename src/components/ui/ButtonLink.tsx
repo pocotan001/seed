@@ -1,11 +1,11 @@
 import * as React from "react";
-import Button, { IButtonStyleProps } from "./Button";
-import { ILinkProps, Link } from "./Link";
+import Button, { ButtonStyleProps } from "./Button";
+import { Link, LinkProps } from "./Link";
 
-interface IButtonLinkProps extends ILinkProps, IButtonStyleProps {}
+interface ButtonLinkProps extends LinkProps, ButtonStyleProps {}
 
-const IButtonLinkProps = Button.withComponent<IButtonLinkProps>(
+const ButtonLink = Button.withComponent<ButtonLinkProps>(
   ({ type, block, m, mt, mr, mb, ml, ...rest }) => <Link {...rest} />
 );
 
-export default IButtonLinkProps;
+export default ButtonLink;

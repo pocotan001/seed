@@ -16,9 +16,7 @@ describe("normalizeError(err)", () => {
 
   it("should override error message when production environment", () => {
     jest.doMock("~/config", () => ({
-      default: {
-        isProd: true
-      }
+      isProd: true
     }));
 
     jest.resetModules();

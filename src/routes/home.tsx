@@ -1,9 +1,9 @@
 import * as React from "react";
-import { IRouteAction } from "~/infra/router";
+import { RouteAction } from "~/infra/router";
 
 const TITLE = "Home";
 
-const home: IRouteAction = () => ({
+const home: RouteAction = () => ({
   components: () => [
     import(/* webpackChunkName: "home" */ "../components/pages/HomePage")
   ],

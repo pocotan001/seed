@@ -1,23 +1,39 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "extends": [
+    "tslint:recommended",
+    "tslint-consistent-codestyle",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
   "rulesDirectory": ["tslint-microsoft-contrib"],
   "rules": {
-    "member-access": false,
-    "no-empty": [true, "allow-empty-catch"],
+    /**
+     * Core Rules
+     * https://palantir.github.io/tslint/rules/
+     */
+    "interface-name": [true, "never-prefix"],
+    "member-access": [true, "no-public"],
+    "no-duplicate-switch-case": true,
+    "no-sparse-arrays": true,
+    "no-unnecessary-callback-wrapper": true,
     "no-unused-expression": [true, "allow-tagged-template"],
+    // Should sort in a meaningful order
     "object-literal-sort-keys": false,
+    "switch-default": true,
+    "switch-final-break": true,
 
     /**
-     * Security rules
+     * Security Rules
+     * https://github.com/Microsoft/tslint-microsoft-contrib
      */
     "insecure-random": true,
     "no-banned-terms": true,
-    "no-cookies": false,
+    // Requires type info
+    // "no-cookies": true,
     "no-delete-expression": true,
     "no-disable-auto-sanitization": true,
     "no-document-domain": true,
     "no-document-write": true,
-    "no-eval": true,
     "no-exec-script": true,
     "no-function-constructor-with-string-args": true,
     "no-http-string": [
@@ -27,7 +43,7 @@
     ],
     "no-inner-html": true,
     "no-octal-literal": true,
-    "no-reserved-keywords": false,
+    // "no-reserved-keywords": true,
     "no-string-based-set-immediate": true,
     "no-string-based-set-interval": true,
     "no-string-based-set-timeout": true,
@@ -35,11 +51,40 @@
     "possible-timing-attack": true,
     "react-anchor-blank-noopener": true,
     "react-iframe-missing-sandbox": true,
-    "react-no-dangerous-html": false,
+    // "react-no-dangerous-html": true,
 
     /**
-     * a11y rules
-     * https://github.com/Microsoft/tslint-microsoft-contrib/wiki
+     * Common Bugs and Correctness
+     * https://github.com/Microsoft/tslint-microsoft-contrib
+     */
+    "no-constant-condition": true,
+    "no-control-regex": true,
+    "no-increment-decrement": true,
+    "no-invalid-regexp": true,
+    "no-invalid-this": true,
+    "no-regex-spaces": true,
+    "no-unnecessary-bind": true,
+    "no-unnecessary-override": true,
+    "no-with-statement": true,
+    "promise-must-complete": true,
+    "react-this-binding-issue": true,
+    "react-unused-props-and-state": true,
+    "use-named-parameter": true,
+
+    /**
+     * Code Clarity
+     * https://github.com/Microsoft/tslint-microsoft-contrib
+     */
+    "no-for-in": true,
+    "no-function-expression": true,
+    "no-typeof-undefined": true,
+    "no-unnecessary-field-initialization": true,
+    "no-unnecessary-local-variable": true,
+    "no-unsupported-browser-code": true,
+
+    /**
+     * Accessibility
+     * https://github.com/Microsoft/tslint-microsoft-contrib
      */
     "react-a11y-anchors": true,
     "react-a11y-aria-unsupported-elements": true,
@@ -49,31 +94,86 @@
     "react-a11y-lang": true,
     "react-a11y-meta": true,
     "react-a11y-props": true,
-    // Conflict with `jsx-boolean-value`
-    "react-a11y-proptypes": false,
+    // Conflict with the `jsx-boolean-value` rule
+    // "react-a11y-proptypes": true,
     "react-a11y-role": true,
     // Form elements incorrectly flagged
     // https://github.com/Microsoft/tslint-microsoft-contrib/issues/409
-    "react-a11y-role-has-required-aria-props": false,
+    // "react-a11y-role-has-required-aria-props": true,
     "react-a11y-role-supports-aria-props": true,
     "react-a11y-tabindex-no-positive": true,
     "react-a11y-titles": true,
 
     /**
-     * tslint-react rules
+     * Consistent Code Style
+     * https://github.com/ajafff/tslint-consistent-codestyle
+     */
+    "naming-convention": [
+      true,
+      {
+        "type": "variable",
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"]
+      },
+      {
+        "type": "function",
+        "format": ["camelCase", "PascalCase"]
+      },
+      {
+        "type": "functionVariable",
+        "format": ["camelCase", "PascalCase"]
+      },
+      {
+        "type": "parameter",
+        "format": ["camelCase", "PascalCase"],
+        "leadingUnderscore": "allow",
+        "trailingUnderscore": "allow"
+      },
+      {
+        "type": "member",
+        "format": "camelCase"
+      },
+      {
+        "type": "type",
+        "format": "PascalCase"
+      },
+      {
+        "type": "enumMember",
+        "format": "PascalCase"
+      }
+    ],
+    "early-exit": true,
+    "no-accessor-recursion": true,
+    "no-collapsible-if": true,
+    "no-else-after-return": true,
+    "no-return-undefined": true,
+    "no-static-this": true,
+    "no-unnecessary-else": true,
+    "no-var-before-return": true,
+    "object-shorthand-properties-first": true,
+    "parameter-properties": true,
+    // `@babel/plugin-transform-typescript` does not support const enum
+    // "prefer-const-enum": true,
+    "prefer-while": true,
+
+    /**
+     * React & JSX rules
      * https://github.com/palantir/tslint-react
      */
-    "jsx-alignment": true,
+    // Conflict with the `tslint-config-prettier`
+    // "jsx-alignment": true,
     "jsx-boolean-value": [true, "never"],
-    "jsx-curly-spacing": [true, "never"],
-    "jsx-equals-spacing": [true, "never"],
+    // Conflict with the `tslint-config-prettier`
+    // "jsx-curly-spacing": [true, "never"],
+    // Conflict with the `tslint-config-prettier`
+    // "jsx-equals-spacing": [true, "never"],
     "jsx-key": true,
     "jsx-no-bind": true,
     "jsx-no-lambda": true,
     "jsx-no-multiline-js": false,
     "jsx-no-string-ref": true,
     "jsx-self-close": true,
-    "jsx-space-before-trailing-slash": true,
-    "jsx-wrap-multiline": true
+    "jsx-space-before-trailing-slash": true
+    // Conflict with the `tslint-config-prettier`
+    // "jsx-wrap-multiline": true
   }
 }

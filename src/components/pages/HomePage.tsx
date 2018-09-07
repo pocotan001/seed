@@ -1,5 +1,5 @@
 import * as React from "react";
-import Page from "~/components/layouts/Page";
+import DefaultLayout from "~/components/layouts/DefaultLayout";
 import { ExampleForm } from "~/components/modules";
 import {
   Button,
@@ -12,17 +12,17 @@ import {
   Section
 } from "~/components/ui";
 
-interface IHomePageProps {
+interface HomePageProps {
   title: string;
 }
 
-interface IHomePageState {
+interface HomePageState {
   isModalShown: boolean;
 }
 
 export default class HomePage extends React.Component<
-  IHomePageProps,
-  IHomePageState
+  HomePageProps,
+  HomePageState
 > {
   state = {
     isModalShown: false
@@ -40,7 +40,7 @@ export default class HomePage extends React.Component<
     const { title } = this.props;
 
     return (
-      <Page>
+      <DefaultLayout>
         <Heading mb={24}>{title}</Heading>
 
         <Section mb={24}>
@@ -74,7 +74,7 @@ export default class HomePage extends React.Component<
           <Heading fz={18} mb={16}>
             Icon
           </Heading>
-          <Icon src="~/assets/icons/heart.svg" fill="pink300" />
+          <Icon src="~/assets/icons/heart.svg" fill="Pink300" />
         </Section>
 
         <Section mb={24}>
@@ -125,7 +125,7 @@ export default class HomePage extends React.Component<
           </Heading>
           <ExampleForm />
         </Section>
-      </Page>
+      </DefaultLayout>
     );
   }
 }

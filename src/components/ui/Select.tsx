@@ -1,16 +1,16 @@
 import * as React from "react";
-import { Field, IFieldProps, IFieldRenderProps } from "./Field";
-import { ITextFieldStyleProps, TextField } from "./TextField";
+import { Field, FieldProps, FieldRenderProps } from "./Field";
+import { TextField, TextFieldStyleProps } from "./TextField";
 
-type ISelectAttributes = React.SelectHTMLAttributes<HTMLSelectElement>;
+type SelectAttributes = React.SelectHTMLAttributes<HTMLSelectElement>;
 
-interface ISelectProps
-  extends IFieldRenderProps<ISelectAttributes>,
-    ITextFieldStyleProps {
+interface SelectProps
+  extends FieldRenderProps<SelectAttributes>,
+    TextFieldStyleProps {
   type?: "select";
 }
 
-const Select = TextField.withComponent<ISelectProps>(
+const Select = TextField.withComponent<SelectProps>(
   ({ input, meta, children, m, mt, mr, mb, ml, type, ...rest }) => {
     const isInvalid = Boolean(meta.touched && meta.error);
 
@@ -28,7 +28,7 @@ const Select = TextField.withComponent<ISelectProps>(
 );
 
 const AdaptedSelect: React.SFC<
-  IFieldProps<ISelectAttributes> & ITextFieldStyleProps
+  FieldProps<SelectAttributes> & TextFieldStyleProps
 > = props => <Field {...props} type="select" component={Select as any} />;
 
 export default AdaptedSelect;

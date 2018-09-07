@@ -2,7 +2,7 @@ import { action } from "mobx";
 import { State } from "./state";
 import Store from "./Store";
 
-type IHistory = State["history"];
+type History = State["history"];
 
 export default class HistoryStore extends Store {
   push = this.ctx.history.push;
@@ -17,7 +17,7 @@ export default class HistoryStore extends Store {
   }
 
   @action
-  updateLocation(location: IHistory["location"]) {
+  updateLocation(location: History["location"]) {
     this.state.history.location = location;
   }
 

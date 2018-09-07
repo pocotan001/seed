@@ -1,19 +1,19 @@
 import styled from "styled-components";
 import { Color } from "~/components/styles/theme";
 
-interface IContentProps {
+interface ContentProps {
   padded?: boolean;
   actived?: boolean;
 }
 
-const Content = styled<IContentProps, "div">("div")`
+const Content = styled<ContentProps, "div">("div")`
   position: relative;
   overflow: auto;
   width: 640px;
   ${({ padded }) => padded && "padding: 24px"};
   max-width: calc(100% - 48px);
   max-height: calc(100% - 48px);
-  background: ${Color.white};
+  background: ${Color.White};
   border-radius: 5px;
   opacity: ${({ actived }) => (actived ? "1" : "0")};
   transform: ${({ actived }) => `scale(${actived ? "1" : "0.85"})`};

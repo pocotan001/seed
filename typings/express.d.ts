@@ -1,5 +1,5 @@
 import { RootService } from "~/server/service";
-import { IUser } from "~/domain/User";
+import { User } from "~/domain/User";
 
 declare global {
   namespace Express {
@@ -9,7 +9,7 @@ declare global {
           "isChanged" | "isNew" | "isPopulated"
         > {
       token?: string;
-      me?: IUser;
+      me?: User;
     }
 
     export interface Request {

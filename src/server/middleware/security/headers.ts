@@ -1,5 +1,5 @@
 import { RequestHandler } from "express-serve-static-core";
-import * as helmet from "helmet";
+import helmet from "helmet";
 
 const headers = (): RequestHandler =>
   helmet({

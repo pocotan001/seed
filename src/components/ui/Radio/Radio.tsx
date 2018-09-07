@@ -1,22 +1,24 @@
 import * as React from "react";
 import styled from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import { Field, IFieldProps, IFieldRenderProps } from "../Field";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
+import { Field, FieldProps, FieldRenderProps } from "../Field";
 import Input from "./Input";
 import Label from "./Label";
 
-type IInputAttributes = Omit<
+type InputAttributes = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   "type"
 >;
 
-type IRadioStyleProps = IMarginProps;
+type RadioStyleProps = MarginProps;
 
-interface IRadioProps
-  extends IFieldRenderProps<IInputAttributes>,
-    IRadioStyleProps {}
+interface RadioProps
+  extends FieldRenderProps<InputAttributes>,
+    RadioStyleProps {}
 
-const Radio = styled<IRadioProps>(
+const Radio = styled<RadioProps>(
   ({ input, meta, className, children, m, mt, mr, mb, ml, ...rest }) => (
     <label className={className}>
       <Input
@@ -30,11 +32,11 @@ const Radio = styled<IRadioProps>(
 )`
   display: inline-block;
   vertical-align: middle;
-  ${margin};
+  ${withMargin};
 `;
 
 const AdaptedRadio: React.SFC<
-  IFieldProps<IInputAttributes> & IRadioStyleProps
+  FieldProps<InputAttributes> & RadioStyleProps
 > = props => <Field {...props} type="radio" component={Radio} />;
 
 export default AdaptedRadio;

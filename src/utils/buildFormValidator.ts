@@ -1,6 +1,6 @@
-import { IValidator } from "~/domain/validators";
+import { Validator } from "~/domain/validators";
 
-export type IFormValidator = (value: string) => undefined | string;
+export type FormValidator = (value: string) => undefined | string;
 
 /**
  * Create a final-form validator
@@ -12,8 +12,8 @@ export type IFormValidator = (value: string) => undefined | string;
  *   ...
  */
 const buildFormValidator = (
-  validator: IValidator,
+  validator: Validator,
   error: string
-): IFormValidator => value => (validator(value) ? undefined : error);
+): FormValidator => value => (validator(value) ? undefined : error);
 
 export default buildFormValidator;

@@ -1,6 +1,6 @@
 import { Request, RequestHandler, Response } from "express-serve-static-core";
 import createHistory from "history/createMemoryHistory";
-import * as LRU from "lru-cache";
+import LRU from "lru-cache";
 import { toJS } from "mobx";
 import { useStaticRendering } from "mobx-react";
 import * as React from "react";
@@ -145,7 +145,7 @@ const render = (): RequestHandler => async (req, res, next) => {
     );
 
     renderStream.write(
-      `<!DOCTYPE html><html>${head}<body><div id="${ElementId.APP}">`
+      `<!DOCTYPE html><html>${head}<body><div id="${ElementId.App}">`
     );
 
     const sheet = new ServerStyleSheet();
@@ -166,7 +166,7 @@ const render = (): RequestHandler => async (req, res, next) => {
       );
 
       renderStream.end(
-        `</div><div id="${ElementId.MODAL}"></div>${scripts}</body></html>`
+        `</div><div id="${ElementId.Modal}"></div>${scripts}</body></html>`
       );
     });
   } catch (err) {

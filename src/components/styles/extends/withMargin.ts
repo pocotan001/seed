@@ -2,7 +2,7 @@ import { CSSProperties } from "react";
 import { css } from "styled-components";
 import { px } from "~/utils";
 
-export interface IMarginProps {
+export interface MarginProps {
   m?: CSSProperties["margin"];
   mt?: CSSProperties["marginTop"];
   mr?: CSSProperties["marginRight"];
@@ -10,7 +10,7 @@ export interface IMarginProps {
   ml?: CSSProperties["marginLeft"];
 }
 
-const margin = ({ m, mt, mr, mb, ml }: IMarginProps) => css`
+const withMargin = ({ m, mt, mr, mb, ml }: MarginProps) => css`
   ${m && `margin: ${px(m)}`};
   ${mt && `margin-top: ${px(mt)}`};
   ${mr && `margin-right: ${px(mr)}`};
@@ -18,4 +18,4 @@ const margin = ({ m, mt, mr, mb, ml }: IMarginProps) => css`
   ${ml && `margin-left: ${px(ml)}`};
 `;
 
-export default margin;
+export default withMargin;

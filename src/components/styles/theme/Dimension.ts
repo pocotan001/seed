@@ -1,5 +1,5 @@
 enum Dimension {
-  sidebarWidth = 280
+  SidebarWidth = 280
 }
 
 export default Dimension;

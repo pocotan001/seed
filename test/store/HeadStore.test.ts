@@ -1,10 +1,10 @@
 import config from "~/config";
 import HeadStore from "~/store/HeadStore";
 import { defaultState, State } from "~/store/state";
-import { IStoreContext } from "~/store/Store";
+import { StoreContext } from "~/store/Store";
 
 let state: State;
-let ctx: IStoreContext;
+let ctx: StoreContext;
 
 describe("HeadStore", () => {
   beforeEach(() => {

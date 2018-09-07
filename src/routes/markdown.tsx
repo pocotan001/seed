@@ -1,7 +1,7 @@
 import * as React from "react";
-import { IRouteAction } from "~/infra/router";
+import { RouteAction } from "~/infra/router";
 
-const markdown: IRouteAction = () => ({
+const markdown: RouteAction = () => ({
   components: () => [
     import(/* webpackChunkName: "markdown" */ "../components/pages/MarkdownPage")
   ],

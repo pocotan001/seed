@@ -1,17 +1,19 @@
 import * as React from "react";
 import styled from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
 import { Color } from "~/components/styles/theme";
 import { px } from "~/utils";
 
-interface IIconProps extends IMarginProps {
+interface IconProps extends MarginProps {
   src: string;
   size?: number | string;
   fill?: keyof typeof Color | "currentColor";
   className?: string;
 }
 
-const Icon = styled<IIconProps>(({ src, className }) => (
+const Icon = styled<IconProps>(({ src, className }) => (
   <span className={className} dangerouslySetInnerHTML={{ __html: src }} />
 ))`
   display: inline-block;
@@ -20,7 +22,7 @@ const Icon = styled<IIconProps>(({ src, className }) => (
   height: ${({ size }) => px(size!)};
   fill: ${({ fill }) =>
     fill === "currentColor" ? "currentColor" : Color[fill!]};
-  ${margin};
+  ${withMargin};
 `;
 
 Icon.defaultProps = {

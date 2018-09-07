@@ -1,6 +1,6 @@
-import { INormalizedEntities } from "~/domain/Normalized";
+import { NormalizedEntities } from "~/domain/Normalized";
 
-const cats: INormalizedEntities["cats"] = Object.freeze({
+const cats: NormalizedEntities["cats"] = Object.freeze({
   "0": {
     id: "0",
     title: "Cat 0",

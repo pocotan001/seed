@@ -5,7 +5,7 @@ import HistoryStore from "./HistoryStore";
 import LoadingStore from "./LoadingStore";
 import SessionStore from "./SessionStore";
 import { State } from "./state";
-import { IStoreContext } from "./Store";
+import { StoreContext } from "./Store";
 
 export class RootStore {
   state: State;
@@ -16,7 +16,7 @@ export class RootStore {
   session: SessionStore;
   cat: CatStore;
 
-  constructor(state: State, ctx: IStoreContext) {
+  constructor(state: State, ctx: StoreContext) {
     this.state = state;
     this.auth = new AuthStore(state, ctx);
     this.head = new HeadStore(state, ctx);
@@ -27,7 +27,7 @@ export class RootStore {
   }
 }
 
-const createStore = (state: State, ctx: IStoreContext) =>
+const createStore = (state: State, ctx: StoreContext) =>
   new RootStore(state, ctx);
 
 export default createStore;

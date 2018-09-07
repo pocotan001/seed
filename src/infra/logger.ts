@@ -1,46 +1,45 @@
 import chalk from "chalk";
-import * as debug from "debug";
+import debug from "debug";
 import config from "~/config";
 
-type ILogType = "error" | "warn" | "info" | "debug";
-type ILog = (formatter?: any, ...args: any[]) => void;
-type ILogger = Record<ILogType, ILog>;
+type LogType = "error" | "warn" | "info" | "debug";
+type Log = (formatter?: any, ...args: any[]) => void;
 
-interface ILogConfig {
+interface LogConfig {
   level: number;
   fn: keyof Console;
   icon?: string; // server only
 }
 
-export enum LogLevel {
-  SILENT = 0,
-  ERROR = 1,
-  WARN = 2,
-  INFO = 3,
-  DEBUG = 4
+enum LogLevel {
+  Silent = 0,
+  Error = 1,
+  Warn = 2,
+  Info = 3,
+  Debug = 4
 }
 
-type ILogLevelKey = keyof typeof LogLevel;
+type LogLevelKey = keyof typeof LogLevel;
 
 const FORBIDDEN = config.isProd && config.isClient;
 
-const Types: Record<ILogType, ILogConfig> = {
+const Types: Record<LogType, LogConfig> = {
   error: {
-    level: LogLevel.ERROR,
+    level: LogLevel.Error,
     fn: "error",
     icon: chalk.red("✖")
   },
   warn: {
-    level: LogLevel.WARN,
+    level: LogLevel.Warn,
     fn: "warn",
     icon: chalk.yellow("⚠")
   },
   info: {
-    level: LogLevel.INFO,
+    level: LogLevel.Info,
     fn: "info"
   },
   debug: {
-    level: LogLevel.DEBUG,
+    level: LogLevel.Debug,
     fn: config.isClient ? "debug" : "log"
   }
 };
@@ -55,14 +54,14 @@ export const enables: Set<string> = new Set(
   process.env.DEBUG ? process.env.DEBUG.split(",") : []
 );
 
-export class Logger implements ILogger {
-  static level = LogLevel[config.logLevel as ILogLevelKey];
+export class Logger implements Record<LogType, Log> {
+  static level = LogLevel[config.logLevel as LogLevelKey];
 
   namespace: string;
-  error: ILog;
-  warn: ILog;
-  info: ILog;
-  debug: ILog;
+  error: Log;
+  warn: Log;
+  info: Log;
+  debug: Log;
 
   constructor(namespace: string) {
     this.namespace = namespace;
@@ -93,7 +92,7 @@ export class Logger implements ILogger {
     debug.enable(Array.from(enables).join(","));
   }
 
-  private createLog({ level, icon, fn }: ILogConfig): ILog {
+  private createLog({ level, icon, fn }: LogConfig): Log {
     const log = debug(this.namespace);
 
     // Log via console.xxx

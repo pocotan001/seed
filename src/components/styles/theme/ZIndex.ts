@@ -1,6 +1,6 @@
 enum ZIndex {
-  modal = 100,
-  loading = 101
+  Modal = 100,
+  Loading = 101
 }
 
 export default ZIndex;

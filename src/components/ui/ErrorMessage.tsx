@@ -1,19 +1,21 @@
 import styled from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
 import { Color } from "~/components/styles/theme";
 
-interface IErrorMessageProps
+interface ErrorMessageProps
   extends React.HTMLAttributes<HTMLParagraphElement>,
-    IMarginProps {
+    MarginProps {
   children: React.ReactNode;
 }
 
-const ErrorMessage = styled<IErrorMessageProps, "p">("p").attrs({
+const ErrorMessage = styled<ErrorMessageProps, "p">("p").attrs({
   role: "alert"
 })`
-  color: ${Color.pink800};
+  color: ${Color.Pink800};
   white-space: pre;
-  ${margin};
+  ${withMargin};
 `;
 
 export default ErrorMessage;

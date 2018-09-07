@@ -1,38 +1,36 @@
 import { Location } from "history";
 import { STATUS_CODES } from "http";
 import * as React from "react";
-import { match as IMatch, matchPath } from "react-router";
+import { match as Match, matchPath } from "react-router";
 import { ErrorCode } from "~/domain/Error";
 import createLogger from "~/infra/logger";
 import { RootStore } from "~/store";
 import { State } from "~/store/state";
 
-export interface IRoute {
+export interface Route {
   path: string;
   exact?: boolean;
   strict?: boolean;
   location?: Location;
-  action: IRouteAction<any>;
+  action: RouteAction<any>;
 }
 
-export type IRouteAction<P = {}> = (
-  params: IMatch<P>["params"],
-  ctx: IRouterContext
+export type RouteAction<P = {}> = (
+  params: Match<P>["params"],
+  ctx: RouterContext
 ) => {
   components?: () => Array<Promise<{ default: React.ComponentType<any> }>>;
   fetch?: () => Promise<any>;
-  render: (
-    ...components: Array<React.ComponentType<any>>
-  ) => IRouteActionResult;
+  render: (...components: Array<React.ComponentType<any>>) => RouteActionResult;
 };
 
-export type IRouteErrorAction<P = {}> = (
+export type RouteErrorAction<P = {}> = (
   err: Error,
-  params: IMatch<P>["params"],
-  ctx: IRouterContext
-) => IRouteActionResult;
+  params: Match<P>["params"],
+  ctx: RouterContext
+) => RouteActionResult;
 
-export interface IRouteActionResult {
+export interface RouteActionResult {
   status?: number;
   redirect?: string;
   chunks?: string[];
@@ -42,28 +40,28 @@ export interface IRouteActionResult {
   link?: State["head"]["link"];
 }
 
-export interface IRouterContext {
+export interface RouterContext {
   store: RootStore;
-  onError: IRouteErrorAction;
+  onError: RouteErrorAction;
 }
 
-export interface IMatchedRoute<P> {
-  route: IRoute;
-  match: IMatch<P>;
+export interface MatchedRoute<P> {
+  route: Route;
+  match: Match<P>;
 }
 
 const log = createLogger("[router]");
 
 export class Router {
-  routes: IRoute[];
-  ctx: IRouterContext;
+  routes: Route[];
+  ctx: RouterContext;
 
-  constructor(routes: IRoute[], ctx: IRouterContext) {
+  constructor(routes: Route[], ctx: RouterContext) {
     this.routes = routes;
     this.ctx = ctx;
   }
 
-  matchRoute<P = {}>(path: string): IMatchedRoute<P> | null {
+  matchRoute<P = {}>(path: string): MatchedRoute<P> | null {
     for (const route of this.routes) {
       const match = matchPath<P>(path, route);
 
@@ -78,14 +76,14 @@ export class Router {
   async resolve<P = {}>(
     path: string,
     opts: { skipFetch?: boolean } = {}
-  ): Promise<IRouteActionResult> {
+  ): Promise<RouteActionResult> {
     const matched = this.matchRoute<P>(path);
 
     if (!matched) {
       const err = new Error(STATUS_CODES[404]);
 
       err.status = 404;
-      err.code = ErrorCode.NOT_FOUND;
+      err.code = ErrorCode.NotFound;
 
       return this.ctx.onError(err, {}, this.ctx);
     }
@@ -114,7 +112,7 @@ export class Router {
   }
 }
 
-const createRouter = (routes: IRoute[], ctx: IRouterContext) =>
+const createRouter = (routes: Route[], ctx: RouterContext) =>
   new Router(routes, ctx);
 
 export default createRouter;

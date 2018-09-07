@@ -5,12 +5,15 @@ import media from "~/components/styles/mixins/media";
 import { Dimension } from "~/components/styles/theme";
 import { px } from "~/utils";
 
-interface IPageProps {
+interface DefaultLayoutProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const Page: React.SFC<IPageProps> = ({ children, className }) => (
+const DefaultLayout: React.SFC<DefaultLayoutProps> = ({
+  children,
+  className
+}) => (
   <div className={className}>
     <Header />
     <Main>{children}</Main>
@@ -19,12 +22,12 @@ const Page: React.SFC<IPageProps> = ({ children, className }) => (
   </div>
 );
 
-export default styled(Page)`
+export default styled(DefaultLayout)`
   display: grid;
   min-height: 100vh;
   grid-template-columns:
-    calc(100% - ${px(Dimension.sidebarWidth)})
-    ${px(Dimension.sidebarWidth)};
+    calc(100% - ${px(Dimension.SidebarWidth)})
+    ${px(Dimension.SidebarWidth)};
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header"

@@ -1,4 +1,4 @@
-import { ICat, IGetCatsRequest } from "~/domain/Cat";
+import { Cat, GetCatsRequest } from "~/domain/Cat";
 import Service from "./Service";
 
 const PLACEKITTEN_URL = "https://placekitten.com/200/200";
@@ -10,7 +10,7 @@ export default class CatService extends Service {
     return TOTAL_COUNT;
   }
 
-  async getCats({ page, per }: IGetCatsRequest): Promise<ICat[]> {
+  async getCats({ page, per }: GetCatsRequest): Promise<Cat[]> {
     const offset = Math.min(Math.max(page - 1, 0) * per, TOTAL_COUNT);
     const limit = Math.min(per, TOTAL_COUNT - offset);
 

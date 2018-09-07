@@ -1,9 +1,9 @@
 import * as React from "react";
 import ErrorPage from "~/components/pages/ErrorPage";
 import { normalizeError } from "~/domain/Error";
-import { IRouteErrorAction } from "~/infra/router";
+import { RouteErrorAction } from "~/infra/router";
 
-const onRouteError: IRouteErrorAction = err => {
+const onRouteError: RouteErrorAction = err => {
   if (err.status === 401) {
     return { redirect: "/" };
   }

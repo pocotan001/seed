@@ -2,9 +2,9 @@ import { inject, observer } from "mobx-react";
 import * as React from "react";
 import { matchPath } from "react-router";
 import { RootStore } from "~/store";
-import Link, { ILinkProps } from "./Link";
+import Link, { LinkProps } from "./Link";
 
-interface INavLinkProps extends ILinkProps {
+interface NavLinkProps extends LinkProps {
   activeClassName: string;
   path?: string;
   exact?: boolean;
@@ -12,7 +12,7 @@ interface INavLinkProps extends ILinkProps {
   store?: RootStore;
 }
 
-const NavLink: React.SFC<INavLinkProps> = ({
+const NavLink: React.SFC<NavLinkProps> = ({
   href,
   activeClassName,
   className,
@@ -24,9 +24,9 @@ const NavLink: React.SFC<INavLinkProps> = ({
 }) => {
   const isActive = Boolean(
     matchPath(store!.state.history.location.pathname, {
-      path: path || href,
       exact,
-      strict
+      strict,
+      path: path || href
     })
   );
 

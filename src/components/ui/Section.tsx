@@ -1,12 +1,14 @@
 import styled from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
 
-interface ISectionProps extends IMarginProps {
+interface SectionProps extends MarginProps {
   children: React.ReactNode;
 }
 
-const Section = styled<ISectionProps, "section">("section")`
-  ${margin};
+const Section = styled<SectionProps, "section">("section")`
+  ${withMargin};
 `;
 
 export default Section;

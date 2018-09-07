@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
 
-interface IMainProps {
+interface MainProps {
   children: React.ReactNode;
 }
 
-const Main = styled<IMainProps, "main">("main")`
+const Main = styled<MainProps, "main">("main")`
   padding: 24px;
 `;
 

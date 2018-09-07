@@ -1,13 +1,13 @@
 import chalk from "chalk";
-import * as chokidar from "chokidar";
-import * as express from "express";
+import chokidar from "chokidar";
+import express from "express";
 import * as fs from "fs-extra";
-import * as webpack from "webpack";
-import * as webpackDevMiddleware from "webpack-dev-middleware";
-import * as webpackHotMiddleware from "webpack-hot-middleware";
+import webpack from "webpack";
+import webpackDevMiddleware from "webpack-dev-middleware";
+import webpackHotMiddleware from "webpack-hot-middleware";
 import { DIST_DIR, ROOT_DIR } from "../config/paths";
-import origClientConfig from "../config/webpack/webpack.config.client";
-import serverConfig from "../config/webpack/webpack.config.server";
+import origClientConfig from "../config/webpack.config.client";
+import serverConfig from "../config/webpack.config.server";
 import * as log from "../logger";
 
 const PORT = Number(process.env.PORT) || 3000;
@@ -51,7 +51,6 @@ const watchCopy = () => {
         log.info(`Removed: ${distPath}`);
         break;
       default:
-        break;
     }
   });
 };
@@ -95,7 +94,7 @@ const serve = () => {
 };
 
 const waitForFirstBuild = (): Promise<void> =>
-  new Promise(resolve => {
+  new Promise((resolve, reject) => {
     const completed: Set<string> = new Set();
     let isFirstBuildCompleted = false;
 
@@ -115,6 +114,14 @@ const waitForFirstBuild = (): Promise<void> =>
           isFirstBuildCompleted = true;
           resolve();
         }
+      });
+
+      compiler.hooks.failed.tap(compiler.name, err => {
+        if (isFirstBuildCompleted) {
+          return;
+        }
+
+        reject(err);
       });
     }
   });

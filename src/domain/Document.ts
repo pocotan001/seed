@@ -1,4 +1,4 @@
 export enum ElementId {
-  APP = "app",
-  MODAL = "modal"
+  App = "app",
+  Modal = "modal"
 }

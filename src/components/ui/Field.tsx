@@ -1,6 +1,6 @@
 import { FieldProps, FieldRenderProps } from "react-final-form";
 
-export type IFieldProps<P extends any> = Omit<P, "name" | "value"> &
+export type FieldProps<P extends any> = Omit<P, "name" | "value"> &
   Pick<
     FieldProps,
     | "allowNull"
@@ -14,7 +14,7 @@ export type IFieldProps<P extends any> = Omit<P, "name" | "value"> &
     | "value"
   >;
 
-export type IFieldRenderProps<P extends any> = FieldRenderProps &
+export type FieldRenderProps<P extends any> = FieldRenderProps &
   Omit<P, keyof FieldRenderProps["input"]>;
 
 export { Field } from "react-final-form";

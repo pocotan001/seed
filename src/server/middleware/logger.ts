@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import { Request, RequestHandler } from "express-serve-static-core";
-import * as morgan from "morgan";
+import morgan from "morgan";
 import { isNumeric } from "~/domain/validators";
 import createLogger from "~/infra/logger";
 

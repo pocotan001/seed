@@ -1,5 +1,5 @@
 enum Font {
-  sans = '"Lato", sans-serif'
+  Sans = '"Lato", sans-serif'
 }
 
 export default Font;

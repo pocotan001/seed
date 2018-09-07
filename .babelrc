@@ -1,0 +1,35 @@
+{
+  "presets": ["@babel/env", "@babel/typescript", "@babel/react"],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/proposal-object-rest-spread",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "preval",
+    [
+      "transform-imports",
+      {
+        "lodash": {
+          "transform": "lodash/${member}",
+          "preventFullImport": true
+        },
+        "~/components/ui": {
+          "transform": "~/components/ui/${member}",
+          "preventFullImport": true
+        },
+        "~/components/modules": {
+          "transform": "~/components/modules/${member}",
+          "preventFullImport": true
+        },
+        "~/components/styles/theme": {
+          "transform": "~/components/styles/theme/${member}",
+          "preventFullImport": true
+        },
+        "~/utils": {
+          "transform": "~/utils/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]
+  ]
+}

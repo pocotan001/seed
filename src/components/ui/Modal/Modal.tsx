@@ -8,7 +8,7 @@ import { ElementId } from "~/domain/Document";
 import Backdrop from "./Backdrop";
 import Content from "./Content";
 
-interface IModalProps {
+interface ModalProps {
   children: React.ReactNode;
   padded?: boolean;
   labelledBy?: string;
@@ -17,7 +17,7 @@ interface IModalProps {
   onRequestClose: () => void;
 }
 
-interface IModalState {
+interface ModalState {
   isActive: boolean;
 }
 
@@ -25,15 +25,15 @@ let appContainer: Element;
 let modalContainer: Element;
 
 if (config.isClient) {
-  appContainer = document.getElementById(ElementId.APP)!;
-  modalContainer = document.getElementById(ElementId.MODAL)!;
+  appContainer = document.getElementById(ElementId.App)!;
+  modalContainer = document.getElementById(ElementId.Modal)!;
 }
 
 /**
  * An accessible modal dialog built according WAI-ARIA authoring practices
  * https://www.w3.org/TR/wai-aria-practices/#dialog_modal
  */
-class Modal extends React.PureComponent<IModalProps, IModalState> {
+class Modal extends React.PureComponent<ModalProps, ModalState> {
   state = {
     isActive: false
   };
@@ -100,7 +100,7 @@ class Modal extends React.PureComponent<IModalProps, IModalState> {
 
 export default styled(Modal)`
   position: fixed;
-  z-index: ${ZIndex.modal};
+  z-index: ${ZIndex.Modal};
   top: 0;
   left: 0;
   width: 100%;

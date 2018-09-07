@@ -1,4 +1,4 @@
-import { IFormValidator } from "./buildFormValidator";
+import { FormValidator } from "./buildFormValidator";
 
 /**
  * @example
@@ -10,9 +10,9 @@ import { IFormValidator } from "./buildFormValidator";
  *   ...
  */
 const composeFormValidators = (
-  ...validators: IFormValidator[]
-): IFormValidator => value =>
-  validators.reduce<ReturnType<IFormValidator>>(
+  ...validators: FormValidator[]
+): FormValidator => value =>
+  validators.reduce<ReturnType<FormValidator>>(
     (err, validator) => err || validator(value),
     undefined
   );

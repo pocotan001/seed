@@ -12,10 +12,8 @@ describe("<Modal>", () => {
     }));
 
     jest.doMock("~/config", () => ({
-      default: {
-        isServer: false,
-        isClient: true
-      }
+      isServer: false,
+      isClient: true
     }));
 
     const Modal = require("~/components/ui/Modal").default;

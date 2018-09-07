@@ -1,11 +1,11 @@
 import CatStore from "~/store/CatStore";
 import { defaultState, State } from "~/store/state";
-import { IStoreContext } from "~/store/Store";
+import { StoreContext } from "~/store/Store";
 import { serializeParams } from "~/utils";
 import cats from "../mocks/data/cats";
 
 let state: State;
-let ctx: IStoreContext;
+let ctx: StoreContext;
 
 describe("CatStore", () => {
   beforeEach(() => {

@@ -2,7 +2,7 @@ import * as React from "react";
 import config from "~/config";
 import { State } from "~/store/state";
 
-interface IHeadProps {
+interface HeadProps {
   title: string;
   meta?: State["head"]["meta"];
   link?: State["head"]["link"];
@@ -13,7 +13,7 @@ if (config.isClient) {
   throw new Error("<Head> shouldn't be included in the client-side code");
 }
 
-const Head: React.SFC<IHeadProps> = ({
+const Head: React.SFC<HeadProps> = ({
   title,
   meta = [],
   link = [],

@@ -1,13 +1,13 @@
 import { Request } from "~/infra/request";
 
-export interface IServiceContext {
+export interface ServiceContext {
   request: Request;
 }
 
 export default class Service {
-  protected ctx: IServiceContext;
+  protected ctx: ServiceContext;
 
-  constructor(ctx: IServiceContext) {
+  constructor(ctx: ServiceContext) {
     this.ctx = ctx;
   }
 }

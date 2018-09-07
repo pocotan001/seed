@@ -3,7 +3,7 @@ import { ErrorCode, normalizeError } from "~/domain/Error";
 
 enum AxiosErrorCode {
   // Request timeout
-  ECONNABORTED = "ECONNABORTED"
+  Econnaborted = "ECONNABORTED"
 }
 
 export const onFulfilled = (resp: AxiosResponse): AxiosResponse => resp;
@@ -27,10 +27,10 @@ export const onRejected = (axiosErr: AxiosError): Promise<never> => {
     } else {
       err.data = axiosErr.response.data;
     }
-  } else if (axiosErr.code === AxiosErrorCode.ECONNABORTED) {
-    err.code = ErrorCode.TIMED_OUT;
+  } else if (axiosErr.code === AxiosErrorCode.Econnaborted) {
+    err.code = ErrorCode.TimedOut;
   } else {
-    err.code = ErrorCode.NOT_CONNECTED_TO_INTERNET;
+    err.code = ErrorCode.NotConnectedToInternet;
   }
 
   return Promise.reject(normalizeError(err));

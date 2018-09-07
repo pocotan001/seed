@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Field, FieldRenderProps } from "react-final-form";
-import { IMarginProps } from "~/components/styles/extends/margin";
+import { MarginProps } from "~/components/styles/extends/withMargin";
 import { ErrorMessage } from "~/components/ui";
 
-type IValidationErrorStyleProps = IMarginProps;
+type ValidationErrorStyleProps = MarginProps;
 
-interface IValidationErrorProps extends IValidationErrorStyleProps {
+interface ValidationErrorProps extends ValidationErrorStyleProps {
   name: string;
 }
 
@@ -13,7 +13,7 @@ const render = ({
   input,
   meta: { touched, error },
   ...rest
-}: FieldRenderProps & IValidationErrorStyleProps) =>
+}: FieldRenderProps & ValidationErrorStyleProps) =>
   touched && error ? <ErrorMessage {...rest}>{error}</ErrorMessage> : null;
 
 /**
@@ -23,7 +23,7 @@ const render = ({
  * <TextField name="email" validate={required} />
  * <ValidationError name="email" />
  */
-const ValidationError: React.SFC<IValidationErrorProps> = props => (
+const ValidationError: React.SFC<ValidationErrorProps> = props => (
   <Field
     {...props}
     subscription={{ touched: true, error: true }}

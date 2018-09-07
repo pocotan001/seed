@@ -1,11 +1,13 @@
 import * as React from "react";
 import styled from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
 import { isDataUri } from "~/domain/validators";
 import Observer from "./Observer";
 
-interface IImageProps
-  extends IMarginProps,
+interface ImageProps
+  extends MarginProps,
     React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
 }
@@ -17,7 +19,7 @@ const ROOT_MARGIN = "200px";
 
 const cache: Set<string> = new Set();
 
-const Image = styled<IImageProps>(
+const Image = styled<ImageProps>(
   ({ src, m, mt, mr, mb, ml, ...rest }) =>
     cache.has(src) || isDataUri(src) ? (
       <img src={src} {...rest} />
@@ -36,7 +38,7 @@ const Image = styled<IImageProps>(
 )`
   max-width: 100%;
   vertical-align: middle;
-  ${margin};
+  ${withMargin};
 `;
 
 Image.defaultProps = {

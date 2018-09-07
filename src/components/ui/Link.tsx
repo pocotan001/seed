@@ -3,9 +3,9 @@ import * as React from "react";
 import styled from "styled-components";
 import { RootStore } from "~/store";
 
-type IMouseEvent = React.MouseEvent<HTMLAnchorElement>;
+type MouseEvent = React.MouseEvent<HTMLAnchorElement>;
 
-export interface ILinkProps
+export interface LinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: React.ReactNode;
@@ -13,15 +13,15 @@ export interface ILinkProps
   store?: RootStore;
 }
 
-const isLeftClick = (e: IMouseEvent): boolean => e.button === 0;
-const isModifiedEvent = (e: IMouseEvent): boolean =>
+const isLeftClick = (e: MouseEvent): boolean => e.button === 0;
+const isModifiedEvent = (e: MouseEvent): boolean =>
   Boolean(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
 
 @inject("store")
-export class Link extends React.PureComponent<ILinkProps> {
+export class Link extends React.PureComponent<LinkProps> {
   store = this.props.store!;
 
-  handleClick = (e: IMouseEvent) => {
+  handleClick = (e: MouseEvent) => {
     const { href, target, onClick } = this.props;
 
     if (onClick) {

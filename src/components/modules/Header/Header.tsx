@@ -5,11 +5,11 @@ import { Grid, Heading, Link } from "~/components/ui";
 import config from "~/config";
 import Nav from "./Nav";
 
-interface IHeaderProps {
+interface HeaderProps {
   className?: string;
 }
 
-const Header: React.SFC<IHeaderProps> = ({ className }) => (
+const Header: React.SFC<HeaderProps> = ({ className }) => (
   <header className={className}>
     <Grid cols="auto 1fr">
       <Grid.Cell align="center">
@@ -26,6 +26,6 @@ const Header: React.SFC<IHeaderProps> = ({ className }) => (
 
 export default styled(Header)`
   padding: 24px;
-  border-bottom: 1px solid ${Color.grey200};
-  background: ${Color.white};
+  border-bottom: 1px solid ${Color.Grey200};
+  background: ${Color.White};
 `;

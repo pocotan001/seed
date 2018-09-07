@@ -1,25 +1,36 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "baseUrl": ".",
-    "experimentalDecorators": true,
-    "jsx": "react",
-    "lib": ["es2017", "dom", "dom.iterable", "scripthost"],
+    /**
+     * Basic Options
+     */
+    "target": "esnext",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
+    "jsx": "preserve",
+    "noEmit": true,
+
+    /**
+     * Type-checking Options
+     */
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "./dist",
-    "preserveConstEnums": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    "target": "es5",
-    "paths": {
-      "~/*": ["./src/*"]
-    }
+
+    /**
+     * Module Resolution Options
+     */
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": { "~/*": ["./src/*"] },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    /**
+     * Experimental Options
+     */
+    "experimentalDecorators": true
   },
   "exclude": ["node_modules"]
 }

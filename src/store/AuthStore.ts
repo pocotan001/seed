@@ -1,7 +1,7 @@
 import { action, computed } from "mobx";
 import Store from "./Store";
 
-interface ISignInParams {
+interface SignInParams {
   email: string;
   password: string;
 }
@@ -13,7 +13,7 @@ export default class AuthStore extends Store {
   }
 
   @action
-  async signIn(params: ISignInParams): Promise<void> {
+  async signIn(params: SignInParams): Promise<void> {
     const resp = await this.ctx.api.post("/signin", params);
 
     this.state.auth.me = resp.data.me;

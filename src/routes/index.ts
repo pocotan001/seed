@@ -1,9 +1,9 @@
-import { IRoute } from "~/infra/router";
+import { Route } from "~/infra/router";
 import cat from "./cat";
 import home from "./home";
 import markdown from "./markdown";
 
-const routes: IRoute[] = [
+const routes: Route[] = [
   {
     path: "/",
     exact: true,

@@ -2,14 +2,14 @@ import * as React from "react";
 import styled from "styled-components";
 import { Color } from "~/components/styles/theme";
 import { Grid, Heading, Image, Paragraph } from "~/components/ui";
-import { ICat } from "~/domain/Cat";
+import { Cat } from "~/domain/Cat";
 
-interface ICatCardProps {
-  cat: ICat;
+interface CatCardProps {
+  cat: Cat;
   className?: string;
 }
 
-const CatCard: React.SFC<ICatCardProps> = ({ cat, className }) => (
+const CatCard: React.SFC<CatCardProps> = ({ cat, className }) => (
   <section className={className}>
     <Grid cols="auto 1fr" gap={16}>
       <Grid.Cell>
@@ -28,5 +28,5 @@ const CatCard: React.SFC<ICatCardProps> = ({ cat, className }) => (
 export default styled(CatCard)`
   padding: 16px;
   border-radius: 5px;
-  background: ${Color.grey200};
+  background: ${Color.Grey200};
 `;

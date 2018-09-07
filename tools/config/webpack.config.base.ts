@@ -1,6 +1,6 @@
-import * as HardSourceWebpackPlugin from "hard-source-webpack-plugin";
+import HardSourceWebpackPlugin from "hard-source-webpack-plugin";
 import * as webpack from "webpack";
-import { SRC_DIR } from "../paths";
+import { SRC_DIR } from "./paths";
 
 export const isDebug = process.env.NODE_ENV !== "production";
 
@@ -26,60 +26,23 @@ const baseConfig: webpack.Configuration = {
             loader: "babel-loader",
             options: {
               cacheDirectory: isDebug,
-              babelrc: false,
               presets: [
                 [
-                  "@babel/preset-env",
+                  "@babel/env",
                   {
                     forceAllTransforms: !isDebug,
                     modules: false,
                     useBuiltIns: "usage"
                   }
-                ],
-                ["@babel/preset-react", { development: isDebug }]
+                ]
               ],
               plugins: [
-                ...[
-                  // https://babeljs.io/docs/en/next/babel-plugin-syntax-dynamic-import.html
-                  "@babel/plugin-syntax-dynamic-import",
-                  // https://babeljs.io/docs/en/next/babel-plugin-proposal-class-properties.html
-                  ["@babel/plugin-proposal-class-properties", { loose: false }],
-                  // https://github.com/kentcdodds/babel-plugin-preval
-                  "babel-plugin-preval",
-                  // https://github.com/styled-components/babel-plugin-styled-components
-                  [
-                    "babel-plugin-styled-components",
-                    {
-                      ssr: true,
-                      displayName: isDebug
-                    }
-                  ],
-                  // https://bitbucket.org/amctheatres/babel-transform-imports
-                  [
-                    "babel-plugin-transform-imports",
-                    {
-                      lodash: {
-                        transform: "lodash/${member}",
-                        preventFullImport: true
-                      },
-                      "~/components/ui": {
-                        transform: "~/components/ui/${member}",
-                        preventFullImport: true
-                      },
-                      "~/components/modules": {
-                        transform: "~/components/modules/${member}",
-                        preventFullImport: true
-                      },
-                      "~/components/styles/theme": {
-                        transform: "~/components/styles/theme/${member}",
-                        preventFullImport: true
-                      },
-                      "~/utils": {
-                        transform: "~/utils/${member}",
-                        preventFullImport: true
-                      }
-                    }
-                  ]
+                // https://github.com/styled-components/babel-plugin-styled-components
+                [
+                  "babel-plugin-styled-components",
+                  {
+                    displayName: isDebug
+                  }
                 ],
                 ...(isDebug
                   ? []
@@ -91,10 +54,6 @@ const baseConfig: webpack.Configuration = {
                     ])
               ]
             }
-          },
-          {
-            loader: "ts-loader",
-            options: { configFile: "tsconfig.esnext.json" }
           },
           // Replace assets path
           {
@@ -132,7 +91,7 @@ const baseConfig: webpack.Configuration = {
         options: {
           regExp: /\/(img\/.+)$/,
           name: isDebug ? "[1]" : "[hash].[ext]",
-          limit: 4096 // 4kb
+          limit: 4096 // 4KB
         }
       },
       {

@@ -1,10 +1,10 @@
 import { pick } from "lodash";
 import * as React from "react";
 
-type IRenderNode = (isIntersecting: boolean) => React.ReactNode;
+type RenderNode = (isIntersecting: boolean) => React.ReactNode;
 
-interface IObserverProps extends IntersectionObserverInit {
-  children: IRenderNode | React.ReactNode;
+interface ObserverProps extends IntersectionObserverInit {
+  children: RenderNode | React.ReactNode;
   once?: boolean;
   onEnter?: (
     entry: IntersectionObserverEntry,
@@ -16,7 +16,7 @@ interface IObserverProps extends IntersectionObserverInit {
   ) => void;
 }
 
-interface IObserverState {
+interface ObserverState {
   isIntersecting: boolean;
 }
 
@@ -24,8 +24,8 @@ interface IObserverState {
  * Acting as a wrapper for the `IntersectionObserver` API
  */
 export default class Observer extends React.PureComponent<
-  IObserverProps,
-  IObserverState
+  ObserverProps,
+  ObserverState
 > {
   state = {
     isIntersecting: false

@@ -14,11 +14,11 @@ import { isEmail, isRequired } from "~/domain/validators";
 import { RootStore } from "~/store";
 import { buildFormValidator, composeFormValidators } from "~/utils";
 
-interface ISignInFormProps {
+interface SignInFormProps {
   onSuccess?: () => void;
 }
 
-interface IValues {
+interface Values {
   email: string;
   password: string;
 }
@@ -31,10 +31,10 @@ const email = composeFormValidators(
 
 @inject("store")
 @observer
-export default class SignInForm extends React.Component<ISignInFormProps> {
+export default class SignInForm extends React.Component<SignInFormProps> {
   store: RootStore = (this.props as any).store;
 
-  handleSubmit = async (values: IValues): Promise<void | string> => {
+  handleSubmit = async (values: Values): Promise<void | string> => {
     const { onSuccess } = this.props;
 
     try {
@@ -44,12 +44,9 @@ export default class SignInForm extends React.Component<ISignInFormProps> {
         onSuccess();
       }
     } catch (err) {
-      const message =
-        err.code === ErrorCode.UNAUTHENTICATED
-          ? "Login Failed"
-          : "Internal Server Error";
-
-      return message;
+      return err.code === ErrorCode.Unauthenticated
+        ? "Login Failed"
+        : "Internal Server Error";
     }
   };
 

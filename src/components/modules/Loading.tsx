@@ -4,14 +4,14 @@ import styled from "styled-components";
 import { Color, ZIndex } from "~/components/styles/theme";
 import { RootStore } from "~/store";
 
-interface ILoadingProps {
+interface LoadingProps {
   className?: string;
   store?: RootStore;
 }
 
 @inject("store")
 @observer
-export class Loading extends React.Component<ILoadingProps> {
+export class Loading extends React.Component<LoadingProps> {
   store = this.props.store!;
 
   render() {
@@ -30,7 +30,7 @@ export class Loading extends React.Component<ILoadingProps> {
 
 export default styled(Loading)`
   position: fixed;
-  z-index: ${ZIndex.loading};
+  z-index: ${ZIndex.Loading};
   top: 0;
   left: 0;
   opacity: 1;
@@ -46,17 +46,17 @@ export default styled(Loading)`
   }
 
   &::-webkit-progress-value {
-    background: ${Color.pink300};
+    background: ${Color.Pink300};
     transition: width 0.2s;
   }
 
   &::-moz-progress-bar {
-    background: ${Color.pink300};
+    background: ${Color.Pink300};
     transition: width 0.2s;
   }
 
   &::-ms-fill {
-    background: ${Color.pink300};
+    background: ${Color.Pink300};
     transition: width 0.2s;
   }
 `;

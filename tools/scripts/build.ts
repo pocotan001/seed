@@ -1,9 +1,9 @@
 import * as fs from "fs-extra";
 import { promisify } from "util";
-import * as webpack from "webpack";
+import webpack from "webpack";
 import { DIST_DIR, ROOT_DIR } from "../config/paths";
-import clientConfig from "../config/webpack/webpack.config.client";
-import serverConfig from "../config/webpack/webpack.config.server";
+import clientConfig from "../config/webpack.config.client";
+import serverConfig from "../config/webpack.config.server";
 import * as log from "../logger";
 
 const compiler = webpack([clientConfig, serverConfig]);

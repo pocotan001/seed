@@ -1,15 +1,46 @@
 import { createLocation, Location } from "history";
 import { extendObservable, observable } from "mobx";
 import config from "~/config";
-import { INormalizedEntities } from "~/domain/Normalized";
-import { IUser } from "~/domain/User";
+import { NormalizedEntities } from "~/domain/Normalized";
+import { User } from "~/domain/User";
+
+export interface State {
+  auth: {
+    me?: User;
+  };
+  history: {
+    origin: string;
+    location: Location;
+    visited: { [key: string]: boolean };
+  };
+  head: {
+    title: string;
+    meta: Array<React.MetaHTMLAttributes<HTMLMetaElement>>;
+    link: Array<React.LinkHTMLAttributes<HTMLLinkElement>>;
+  };
+  loading: {
+    percent: number;
+    hidden: boolean;
+  };
+  session: { [K in SessionKey]?: any };
+  entities: NormalizedEntities;
+  results: Record<
+    "cats",
+    {
+      [serializedParams: string]: string[];
+    }
+  >;
+  cats: {
+    totalCount: number;
+  };
+}
 
 // Base64 encoded keys
 export enum SessionKey {
-  EXAMPLE_FORM = "RVhBTVBMRV9GT1JN"
+  ExampleForm = "RVhBTVBMRV9GT1JN"
 }
 
-export const defaultState: State = Object.freeze({
+export const defaultState: Readonly<State> = {
   auth: {},
   history: {
     origin: "",
@@ -35,45 +66,9 @@ export const defaultState: State = Object.freeze({
   cats: {
     totalCount: 0
   }
-});
+};
 
 export class State {
-  auth!: {
-    me?: IUser;
-  };
-
-  history!: {
-    origin: string;
-    location: Location;
-    visited: { [key: string]: boolean };
-  };
-
-  head!: {
-    title: string;
-    meta: Array<React.MetaHTMLAttributes<HTMLMetaElement>>;
-    link: Array<React.LinkHTMLAttributes<HTMLLinkElement>>;
-  };
-
-  loading!: {
-    percent: number;
-    hidden: boolean;
-  };
-
-  session!: { [K in SessionKey]?: any };
-
-  entities!: INormalizedEntities;
-
-  results!: Record<
-    "cats",
-    {
-      [serializedParams: string]: string[];
-    }
-  >;
-
-  cats!: {
-    totalCount: number;
-  };
-
   constructor(initialState?: Partial<State>) {
     extendObservable(
       this,

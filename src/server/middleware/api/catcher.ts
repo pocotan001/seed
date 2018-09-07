@@ -3,7 +3,7 @@ import { pick } from "lodash";
 import { normalizeError } from "~/domain/Error";
 import createLogger from "~/infra/logger";
 
-interface IApiErrorResponse {
+interface ApiErrorResponse {
   error: Pick<Error, "message" | "code" | "data">;
 }
 
@@ -13,7 +13,7 @@ const catcher = (): ErrorRequestHandler => (err: Error, _, res, __) => {
   log.error(err.stack);
   err = normalizeError(err);
 
-  const resp: IApiErrorResponse = {
+  const resp: ApiErrorResponse = {
     error: pick(err, ["message", "code", "data"])
   };
 

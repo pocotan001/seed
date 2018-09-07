@@ -1,7 +1,7 @@
 import "./env";
 
 import chalk from "chalk";
-import * as debug from "debug";
+import debug from "debug";
 import * as log from "./logger";
 
 const { humanize } = debug as any;

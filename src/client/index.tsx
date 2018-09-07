@@ -31,7 +31,7 @@ const api = createRequest({ baseURL: "/api" });
 const state = createState(initialState);
 const store = createStore(state, { history, api });
 const router = createRouter(routes, { store, onError: onRouteError });
-const container = document.getElementById(ElementId.APP);
+const container = document.getElementById(ElementId.App);
 
 const render = async (
   location: Location,

@@ -1,9 +1,9 @@
 import HistoryStore from "~/store/HistoryStore";
 import { defaultState, State } from "~/store/state";
-import { IStoreContext } from "~/store/Store";
+import { StoreContext } from "~/store/Store";
 
 let state: State;
-let ctx: IStoreContext;
+let ctx: StoreContext;
 
 describe("HistoryStore", () => {
   beforeEach(() => {

@@ -6,17 +6,17 @@ import { Color } from "~/components/styles/theme";
 import { Button, Modal, NavLink } from "~/components/ui";
 import { RootStore } from "~/store";
 
-interface INavProps {
+interface NavProps {
   className?: string;
 }
 
-interface INavState {
+interface NavState {
   isSignInModalShown: boolean;
 }
 
 @inject("store")
 @observer
-class Nav extends React.Component<INavProps, INavState> {
+class Nav extends React.Component<NavProps, NavState> {
   store: RootStore = (this.props as any).store;
 
   state = {
@@ -100,8 +100,8 @@ export default styled(Nav)`
 
     &:hover,
     &.-actived {
-      color: ${Color.grey800};
-      background: ${Color.grey100};
+      color: ${Color.Grey800};
+      background: ${Color.Grey100};
     }
   }
 `;

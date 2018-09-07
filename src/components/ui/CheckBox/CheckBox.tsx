@@ -1,22 +1,24 @@
 import * as React from "react";
 import styled from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
-import { Field, IFieldProps, IFieldRenderProps } from "../Field";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
+import { Field, FieldProps, FieldRenderProps } from "../Field";
 import Input from "./Input";
 import Label from "./Label";
 
-type IInputAttributes = Omit<
+type InputAttributes = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   "type"
 >;
 
-type ICheckBoxStyleProps = IMarginProps;
+type CheckBoxStyleProps = MarginProps;
 
-interface ICheckBoxProps
-  extends IFieldRenderProps<IInputAttributes>,
-    ICheckBoxStyleProps {}
+interface CheckBoxProps
+  extends FieldRenderProps<InputAttributes>,
+    CheckBoxStyleProps {}
 
-const CheckBox = styled<ICheckBoxProps>(
+const CheckBox = styled<CheckBoxProps>(
   ({ input, meta, className, children, m, mt, mr, mb, ml, ...rest }) => (
     <label className={className}>
       <Input
@@ -30,11 +32,11 @@ const CheckBox = styled<ICheckBoxProps>(
 )`
   display: inline-block;
   vertical-align: middle;
-  ${margin};
+  ${withMargin};
 `;
 
 const AdaptedCheckBox: React.SFC<
-  IFieldProps<IInputAttributes> & ICheckBoxStyleProps
+  FieldProps<InputAttributes> & CheckBoxStyleProps
 > = props => <Field {...props} type="checkbox" component={CheckBox} />;
 
 export default AdaptedCheckBox;

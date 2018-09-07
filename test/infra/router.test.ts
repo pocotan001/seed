@@ -1,14 +1,10 @@
-import createRouter, {
-  IRoute,
-  IRouterContext,
-  Router
-} from "~/infra/router";
+import createRouter, { Route, Router, RouterContext } from "~/infra/router";
 
 describe("Router", () => {
   describe("createRouter(routes, ctx)", () => {
     it("should return a `Router` instance", () => {
-      const routes: IRoute[] = [];
-      const ctx: IRouterContext = {} as any;
+      const routes: Route[] = [];
+      const ctx: RouterContext = {} as any;
       const router = createRouter(routes, ctx);
 
       expect(router).toBeInstanceOf(Router);
@@ -19,7 +15,7 @@ describe("Router", () => {
 
   describe("#matchRoute(path)", () => {
     it("should match the route", () => {
-      const route: IRoute = {
+      const route: Route = {
         path: "/a/:id",
         action: () => ({ render: () => ({}) })
       };
@@ -36,7 +32,7 @@ describe("Router", () => {
     });
 
     it("should not match the route", () => {
-      const route: IRoute = {
+      const route: Route = {
         path: "/a/:id",
         action: () => ({ render: () => ({}) })
       };
@@ -51,7 +47,7 @@ describe("Router", () => {
   describe("#resolve(path, opts)", () => {
     it("should execute the matching route action and return its result", async () => {
       const fetch = jest.fn(() => true);
-      const route: IRoute = {
+      const route: Route = {
         path: "/a/:id",
         action: jest.fn(() => ({
           fetch,
@@ -63,7 +59,7 @@ describe("Router", () => {
         }))
       };
 
-      const ctx: IRouterContext = { a: true } as any;
+      const ctx: RouterContext = { a: true } as any;
       const router = createRouter([route], ctx);
       const result = await router.resolve("/a/1");
 
@@ -74,7 +70,7 @@ describe("Router", () => {
     });
 
     it("should handle action errors", async () => {
-      const route: IRoute = {
+      const route: Route = {
         path: "/a/:id",
         action: () => {
           throw new Error("oops!");
@@ -82,7 +78,7 @@ describe("Router", () => {
       };
 
       const onError = jest.fn(err => err.message);
-      const ctx: IRouterContext = { onError } as any;
+      const ctx: RouterContext = { onError } as any;
       const router = createRouter([route], ctx);
       const result = await router.resolve("/a/1");
 
@@ -92,7 +88,7 @@ describe("Router", () => {
     });
 
     it("should handle components errors", async () => {
-      const route: IRoute = {
+      const route: Route = {
         path: "/a/:id",
         action: jest.fn(() => ({
           components: () => [Promise.reject(new Error("oops!"))],
@@ -101,7 +97,7 @@ describe("Router", () => {
       };
 
       const onError = jest.fn(err => err.message);
-      const ctx: IRouterContext = { onError } as any;
+      const ctx: RouterContext = { onError } as any;
       const router = createRouter([route], ctx);
       const result = await router.resolve("/a/1");
 
@@ -111,7 +107,7 @@ describe("Router", () => {
     });
 
     it("should handle fetch errors", async () => {
-      const route: IRoute = {
+      const route: Route = {
         path: "/a/:id",
         action: jest.fn(() => ({
           fetch: () => Promise.reject(new Error("oops!")),
@@ -120,7 +116,7 @@ describe("Router", () => {
       };
 
       const onError = jest.fn(err => err.message);
-      const ctx: IRouterContext = { onError } as any;
+      const ctx: RouterContext = { onError } as any;
       const router = createRouter([route], ctx);
       const result = await router.resolve("/a/1");
 
@@ -130,13 +126,13 @@ describe("Router", () => {
     });
 
     it("should handle 404 error", async () => {
-      const route: IRoute = {
+      const route: Route = {
         path: "/a/:id",
         action: () => ({ render: () => ({}) })
       };
 
       const onError = jest.fn(() => "oops!");
-      const ctx: IRouterContext = { onError } as any;
+      const ctx: RouterContext = { onError } as any;
       const router = createRouter([route], ctx);
       const result = await router.resolve("/none");
 
@@ -147,7 +143,7 @@ describe("Router", () => {
 
     it("should support `skipFetch` option", async () => {
       const fetch = jest.fn(() => true);
-      const route: IRoute = {
+      const route: Route = {
         path: "/a/:id",
         action: jest.fn(() => ({
           fetch,

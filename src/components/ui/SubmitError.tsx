@@ -1,17 +1,17 @@
 import { FORM_ERROR } from "final-form";
 import * as React from "react";
 import { Field, FieldRenderProps } from "react-final-form";
-import { IMarginProps } from "~/components/styles/extends/margin";
+import { MarginProps } from "~/components/styles/extends/withMargin";
 import { ErrorMessage } from "~/components/ui";
 
-type ISubmitErrorStyleProps = IMarginProps;
-type ISubmitErrorProps = ISubmitErrorStyleProps;
+type SubmitErrorStyleProps = MarginProps;
+type SubmitErrorProps = SubmitErrorStyleProps;
 
 const render = ({
   input,
   meta: { submitError },
   ...rest
-}: FieldRenderProps & ISubmitErrorStyleProps) =>
+}: FieldRenderProps & SubmitErrorStyleProps) =>
   submitError ? <ErrorMessage {...rest}>{submitError}</ErrorMessage> : null;
 
 /**
@@ -24,7 +24,7 @@ const render = ({
  *   <SubmitError />
  * </Form>
  */
-const SubmitError: React.SFC<ISubmitErrorProps> = props => (
+const SubmitError: React.SFC<SubmitErrorProps> = props => (
   <Field
     {...props}
     name={FORM_ERROR}

@@ -18,7 +18,7 @@ import { RootStore } from "~/store";
 import { SessionKey } from "~/store/state";
 import { sleep } from "~/utils";
 
-interface IValues {
+interface Values {
   text: string;
   password: string;
   select: string;
@@ -28,28 +28,25 @@ interface IValues {
   textarea: string;
 }
 
-interface IExampleFormState {
-  initialValues: Partial<IValues>;
+interface ExampleFormState {
+  initialValues: Partial<Values>;
 }
 
 @inject("store")
 @observer
-export default class ExampleForm extends React.Component<
-  {},
-  IExampleFormState
-> {
+export default class ExampleForm extends React.Component<{}, ExampleFormState> {
   store: RootStore = (this.props as any).store;
 
   state = {
     initialValues: {}
   };
 
-  save = (values: IValues) => {
-    this.store.session.set(SessionKey.EXAMPLE_FORM, omit(values, ["password"]));
+  save = (values: Values) => {
+    this.store.session.set(SessionKey.ExampleForm, omit(values, ["password"]));
   };
 
   handleSubmit = async (
-    _: IValues,
+    _: Values,
     { reset }: FormApi
   ): Promise<void | string> => {
     await sleep(3000);
@@ -61,7 +58,7 @@ export default class ExampleForm extends React.Component<
   };
 
   componentDidMount() {
-    const initialValues = this.store.state.session[SessionKey.EXAMPLE_FORM];
+    const initialValues = this.store.state.session[SessionKey.ExampleForm];
 
     if (initialValues) {
       this.setState({ initialValues });
@@ -157,7 +154,7 @@ export default class ExampleForm extends React.Component<
               <Button type="submit" disabled={pristine || submitting}>
                 {submitting ? "Submitting..." : "Submit"}
               </Button>
-              <Button ml={12} onClick={form.reset.bind(form, {})}>
+              <Button ml={12} onClick={form.reset}>
                 Reset
               </Button>
             </div>

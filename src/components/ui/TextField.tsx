@@ -1,23 +1,25 @@
 import * as React from "react";
 import styled from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
 import { Color } from "~/components/styles/theme";
-import { Field, IFieldProps, IFieldRenderProps } from "./Field";
+import { Field, FieldProps, FieldRenderProps } from "./Field";
 
-interface IInputAttributes extends React.InputHTMLAttributes<HTMLInputElement> {
+interface InputAttributes extends React.InputHTMLAttributes<HTMLInputElement> {
   // Text field should have autocomplete attribute
   // https://www.chromium.org/developers/design-documents/create-amazing-password-forms#TOC-Use-autocomplete-attributes
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values
   autoComplete: string;
 }
 
-export type ITextFieldStyleProps = IMarginProps;
+export type TextFieldStyleProps = MarginProps;
 
-interface ITextFieldProps
-  extends IFieldRenderProps<IInputAttributes>,
-    ITextFieldStyleProps {}
+interface TextFieldProps
+  extends FieldRenderProps<InputAttributes>,
+    TextFieldStyleProps {}
 
-export const TextField = styled<ITextFieldProps>(
+export const TextField = styled<TextFieldProps>(
   ({ input, meta, m, mt, mr, mb, ml, ...rest }) => (
     <input
       {...input}
@@ -32,38 +34,38 @@ export const TextField = styled<ITextFieldProps>(
   padding: 0.4em 0.75em;
   width: 100%;
   max-width: 100%;
-  color: ${Color.grey800};
-  border: 1px solid ${Color.grey400};
+  color: ${Color.Grey800};
+  border: 1px solid ${Color.Grey400};
   border-radius: 3px;
-  background: ${Color.white};
+  background: ${Color.White};
 
   &:hover {
-    border-color: ${Color.grey500};
+    border-color: ${Color.Grey500};
   }
 
   &:disabled {
     cursor: default;
     opacity: 0.6;
-    border-color: ${Color.grey400};
+    border-color: ${Color.Grey400};
   }
 
   &[aria-invalid="true"] {
-    border-color: ${Color.pink500};
+    border-color: ${Color.Pink500};
   }
 
   &::-webkit-input-placeholder {
-    color: ${Color.grey400};
+    color: ${Color.Grey400};
   }
 
   &::-moz-placeholder {
-    color: ${Color.grey400};
+    color: ${Color.Grey400};
   }
 
-  ${margin};
+  ${withMargin};
 `;
 
 const AdaptedTextField: React.SFC<
-  IFieldProps<IInputAttributes> & ITextFieldStyleProps
+  FieldProps<InputAttributes> & TextFieldStyleProps
 > = props => <Field {...props} component={TextField as any} />;
 
 AdaptedTextField.defaultProps = {

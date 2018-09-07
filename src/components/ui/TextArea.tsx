@@ -1,14 +1,14 @@
 import * as React from "react";
-import { Field, IFieldProps, IFieldRenderProps } from "./Field";
-import { ITextFieldStyleProps, TextField } from "./TextField";
+import { Field, FieldProps, FieldRenderProps } from "./Field";
+import { TextField, TextFieldStyleProps } from "./TextField";
 
-type ITextAreaAttributes = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+type TextAreaAttributes = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
-interface ITextAreaProps
-  extends IFieldRenderProps<ITextAreaAttributes>,
-    ITextFieldStyleProps {}
+interface TextAreaProps
+  extends FieldRenderProps<TextAreaAttributes>,
+    TextFieldStyleProps {}
 
-const TextArea = TextField.withComponent<ITextAreaProps>(
+const TextArea = TextField.withComponent<TextAreaProps>(
   ({ input, meta, m, mt, mr, mb, ml, ...rest }) => (
     <textarea
       {...input}
@@ -21,7 +21,7 @@ const TextArea = TextField.withComponent<ITextAreaProps>(
 `;
 
 const AdaptedTextArea: React.SFC<
-  IFieldProps<ITextAreaAttributes> & ITextFieldStyleProps
+  FieldProps<TextAreaAttributes> & TextFieldStyleProps
 > = props => <Field {...props} component={TextArea as any} />;
 
 export default AdaptedTextArea;

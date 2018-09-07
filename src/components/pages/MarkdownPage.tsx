@@ -1,9 +1,9 @@
 import * as React from "react";
-import Page from "~/components/layouts/Page";
+import DefaultLayout from "~/components/layouts/DefaultLayout";
 import { Content } from "~/components/ui";
 
 const MarkdownPage: React.SFC = () => (
-  <Page>
+  <DefaultLayout>
     <Content
       dangerouslySetInnerHTML={{
         __html: preval`
@@ -17,7 +17,7 @@ const MarkdownPage: React.SFC = () => (
         `
       }}
     />
-  </Page>
+  </DefaultLayout>
 );
 
 export default MarkdownPage;

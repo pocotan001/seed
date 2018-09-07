@@ -1,9 +1,9 @@
-import { ICat } from "./Cat";
+import { Cat } from "./Cat";
 
-export interface INormalizedEntity<E> {
+export interface NormalizedEntity<E> {
   [id: string]: E;
 }
 
-export interface INormalizedEntities {
-  cats: INormalizedEntity<ICat>;
+export interface NormalizedEntities {
+  cats: NormalizedEntity<Cat>;
 }

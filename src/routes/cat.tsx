@@ -1,10 +1,10 @@
 import * as React from "react";
-import { IRouteAction, IRouteActionResult } from "~/infra/router";
+import { RouteAction, RouteActionResult } from "~/infra/router";
 
 const TITLE = "Cat";
 const CATS_PER_PAGE = 10;
 
-const cat: IRouteAction<{ page: string }> = (params, { store }) => {
+const cat: RouteAction<{ page: string }> = (params, { store }) => {
   const page = Number(params.page);
 
   if (isNaN(page)) {
@@ -29,7 +29,7 @@ const cat: IRouteAction<{ page: string }> = (params, { store }) => {
         };
       }
 
-      const link: IRouteActionResult["link"] = [];
+      const link: RouteActionResult["link"] = [];
       const { origin } = store.state.history;
 
       if (page > 1) {
@@ -41,11 +41,11 @@ const cat: IRouteAction<{ page: string }> = (params, { store }) => {
       }
 
       return {
+        link,
         chunks: ["cat"],
         component: (
           <CatPage title={TITLE} params={params} catsPerPage={CATS_PER_PAGE} />
         ),
-        link,
         title: TITLE,
         meta: [{ name: "description", content: "cat description" }]
       };

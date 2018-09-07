@@ -1,5 +1,5 @@
 import { Request, RequestHandler } from "express-serve-static-core";
-import * as LRU from "lru-cache";
+import LRU from "lru-cache";
 import config from "~/config";
 import createLogger from "~/infra/logger";
 

@@ -8,12 +8,12 @@ import reset from "~/components/styles/mixins/reset";
 import { Color, Font } from "~/components/styles/theme";
 import { RootStore } from "~/store";
 
-interface IAppProps {
+interface AppProps {
   store: RootStore;
   children: React.ReactNode;
 }
 
-interface IAppState {
+interface AppState {
   children: React.ReactNode;
   error: Error | null;
 }
@@ -23,12 +23,12 @@ injectGlobal`
   ${reset};
 
   html {
-    font-family: ${Font.sans};
+    font-family: ${Font.Sans};
     font-size: 16px;
     line-height: 1.5;
     box-sizing: border-box;
-    color: ${Color.grey800};
-    background: ${Color.white};
+    color: ${Color.Grey800};
+    background: ${Color.White};
   }
 
   *,
@@ -46,11 +46,11 @@ injectGlobal`
   }
 `;
 
-export default class App extends React.PureComponent<IAppProps, IAppState> {
+export default class App extends React.PureComponent<AppProps, AppState> {
   static getDerivedStateFromProps(
-    nextProps: IAppProps,
-    prevState: IAppState
-  ): Partial<IAppState> | null {
+    nextProps: AppProps,
+    prevState: AppState
+  ): Partial<AppState> | null {
     const { children } = prevState;
 
     if (children !== nextProps.children) {

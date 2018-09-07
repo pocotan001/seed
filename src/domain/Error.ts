@@ -4,42 +4,42 @@ import config from "~/config";
 // Error codes
 // https://godoc.org/google.golang.org/grpc/codes
 export enum ErrorCode {
-  OK = 0,
-  CANCELED = 1,
-  UNKNOWN = 2,
-  INVALID_ARGUMENT = 3,
-  DEADLINE_EXCEEDED = 4,
-  NOT_FOUND = 5,
-  ALREADY_EXISTS = 6,
-  PERMISSION_DENIED = 7,
-  RESOURCE_EXHAUSTED = 8,
-  FAILED_PRECONDITION = 9,
-  ABORTED = 10,
-  OUT_OF_RANGE = 11,
-  UNIMPLEMENTED = 12,
-  INTERNAL = 13,
-  UNAVAILABLE = 14,
-  DATALOSS = 15,
-  UNAUTHENTICATED = 16,
+  Ok = 0,
+  Canceled = 1,
+  Unknown = 2,
+  InvalidArgument = 3,
+  DeadlineExceeded = 4,
+  NotFound = 5,
+  AlreadyExists = 6,
+  PermissionDenied = 7,
+  ResourceExhausted = 8,
+  FailedPrecondition = 9,
+  Aborted = 10,
+  OutOfRange = 11,
+  Unimplemented = 12,
+  Internal = 13,
+  Unavailable = 14,
+  Dataloss = 15,
+  Unauthenticated = 16,
   // Extended codes
-  TIMED_OUT = 1000,
-  NOT_CONNECTED_TO_INTERNET = 1001,
-  UNDER_MAINTENANCE = 1002
+  TimedOut = 1000,
+  NotConnectedToInternet = 1001,
+  UnderMaintenance = 1002
 }
 
-const StatusCodes: { [C in ErrorCode]?: number } = {
-  [ErrorCode.INVALID_ARGUMENT]: 400,
-  [ErrorCode.UNAUTHENTICATED]: 401,
-  [ErrorCode.PERMISSION_DENIED]: 403,
-  [ErrorCode.NOT_FOUND]: 404,
-  [ErrorCode.ALREADY_EXISTS]: 409,
-  [ErrorCode.RESOURCE_EXHAUSTED]: 429,
-  [ErrorCode.CANCELED]: 499,
-  [ErrorCode.INTERNAL]: 500,
-  [ErrorCode.UNAVAILABLE]: 503,
-  [ErrorCode.DEADLINE_EXCEEDED]: 504,
-  [ErrorCode.TIMED_OUT]: 408,
-  [ErrorCode.UNDER_MAINTENANCE]: 503
+const StatusCodes: { [T in ErrorCode]?: number } = {
+  [ErrorCode.InvalidArgument]: 400,
+  [ErrorCode.Unauthenticated]: 401,
+  [ErrorCode.PermissionDenied]: 403,
+  [ErrorCode.NotFound]: 404,
+  [ErrorCode.AlreadyExists]: 409,
+  [ErrorCode.ResourceExhausted]: 429,
+  [ErrorCode.Canceled]: 499,
+  [ErrorCode.Internal]: 500,
+  [ErrorCode.Unavailable]: 503,
+  [ErrorCode.DeadlineExceeded]: 504,
+  [ErrorCode.TimedOut]: 408,
+  [ErrorCode.UnderMaintenance]: 503
 };
 
 export const normalizeError = (err: Error): Error => {
@@ -50,7 +50,7 @@ export const normalizeError = (err: Error): Error => {
   }
 
   if (!err.code && config.isClient && !window.navigator.onLine) {
-    err.code = ErrorCode.NOT_CONNECTED_TO_INTERNET;
+    err.code = ErrorCode.NotConnectedToInternet;
   }
 
   if (config.isProd) {

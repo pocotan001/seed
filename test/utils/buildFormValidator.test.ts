@@ -2,7 +2,7 @@ import buildFormValidator from "~/utils/buildFormValidator";
 
 describe("buildFormValidator(validator, error)", () => {
   it("should return undefined for valid value", () => {
-    const isRequired = jest.fn(value => Boolean(value));
+    const isRequired = jest.fn(value => !!value);
     const validator = buildFormValidator(isRequired, "required");
 
     expect(validator("alo")).toBe(undefined);
@@ -11,7 +11,7 @@ describe("buildFormValidator(validator, error)", () => {
   });
 
   it("should return error message for invalid value", () => {
-    const isRequired = jest.fn(value => Boolean(value));
+    const isRequired = jest.fn(value => !!value);
     const validator = buildFormValidator(isRequired, "required");
 
     expect(validator("")).toBe("required");

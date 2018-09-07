@@ -1,49 +1,49 @@
 import { inject } from "mobx-react";
 import * as React from "react";
-import Page from "~/components/layouts/Page";
+import DefaultLayout from "~/components/layouts/DefaultLayout";
 import { Button, Heading, Paragraph, Section } from "~/components/ui";
 import { ErrorCode } from "~/domain/Error";
 import { RootStore } from "~/store";
 
-interface IErrorPageProps {
+interface ErrorPageProps {
   error: Error;
   store?: RootStore;
 }
 
-interface IErrorInfo {
+interface ErrorInfo {
   message: string;
   isRetryable?: boolean;
 }
 
 @inject("store")
-export default class ErrorPage extends React.PureComponent<IErrorPageProps> {
+export default class ErrorPage extends React.PureComponent<ErrorPageProps> {
   store = this.props.store!;
 
   reload = () => {
     this.store.history.replace(this.store.state.history.location.pathname);
   };
 
-  getErrorInfo(): IErrorInfo {
+  getErrorInfo(): ErrorInfo {
     const { error } = this.props;
 
     switch (error.code) {
-      case ErrorCode.NOT_FOUND:
+      case ErrorCode.NotFound:
         return {
           message: "The requested page cannot be found."
         };
-      case ErrorCode.TIMED_OUT:
+      case ErrorCode.TimedOut:
         return {
           message:
             "Looks like the server is taking to long to respond, please try again in sometime.",
           isRetryable: true
         };
-      case ErrorCode.NOT_CONNECTED_TO_INTERNET:
+      case ErrorCode.NotConnectedToInternet:
         return {
           message:
             "Looks like you have an unstable network at the moment, please try again when network stabilizes.",
           isRetryable: true
         };
-      case ErrorCode.UNDER_MAINTENANCE:
+      case ErrorCode.UnderMaintenance:
         return {
           message: "Sorry, we're down for maintenance."
         };
@@ -58,7 +58,7 @@ export default class ErrorPage extends React.PureComponent<IErrorPageProps> {
     const { message, isRetryable } = this.getErrorInfo();
 
     return (
-      <Page>
+      <DefaultLayout>
         <Section>
           <Heading mb={24}>Error</Heading>
           <Paragraph>{message}</Paragraph>
@@ -68,7 +68,7 @@ export default class ErrorPage extends React.PureComponent<IErrorPageProps> {
             </Paragraph>
           )}
         </Section>
-      </Page>
+      </DefaultLayout>
     );
   }
 }

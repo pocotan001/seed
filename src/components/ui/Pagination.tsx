@@ -1,17 +1,19 @@
 import * as React from "react";
 import styled from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
 import { Color } from "~/components/styles/theme";
 import { NavLink } from "~/components/ui";
 
-interface IPaginationProps extends IMarginProps {
+interface PaginationProps extends MarginProps {
   total: number;
   per: number;
   href: (page: number) => string;
   className?: string;
 }
 
-const Pagination: React.SFC<IPaginationProps> = ({
+const Pagination: React.SFC<PaginationProps> = ({
   total,
   per,
   href,
@@ -34,7 +36,7 @@ const Pagination: React.SFC<IPaginationProps> = ({
 
 export default styled(Pagination)`
   text-align: center;
-  ${margin};
+  ${withMargin};
 
   li {
     display: inline-block;
@@ -49,8 +51,8 @@ export default styled(Pagination)`
 
       &:hover,
       &.-actived {
-        color: ${Color.white};
-        background: ${Color.pink300};
+        color: ${Color.White};
+        background: ${Color.Pink300};
       }
     }
   }

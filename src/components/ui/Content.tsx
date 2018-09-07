@@ -1,12 +1,14 @@
 import styled from "styled-components";
-import margin, { IMarginProps } from "~/components/styles/extends/margin";
+import withMargin, {
+  MarginProps
+} from "~/components/styles/extends/withMargin";
 import { Color } from "~/components/styles/theme";
 
-interface IContentProps extends IMarginProps {
+interface ContentProps extends MarginProps {
   children?: React.ReactNode;
 }
 
-const Content = styled<IContentProps, "div">("div")`
+const Content = styled<ContentProps, "div">("div")`
   > *:first-child {
     margin-top: 0 !important;
   }
@@ -34,7 +36,7 @@ const Content = styled<IContentProps, "div">("div")`
     font-weight: 700;
     line-height: normal;
     margin: 24px 0;
-    color: ${Color.grey800};
+    color: ${Color.Grey800};
   }
 
   h1 {
@@ -63,7 +65,7 @@ const Content = styled<IContentProps, "div">("div")`
 
   a {
     text-decoration: none;
-    color: ${Color.pink300};
+    color: ${Color.Pink300};
 
     &:hover {
       text-decoration: underline;
@@ -72,13 +74,13 @@ const Content = styled<IContentProps, "div">("div")`
 
   blockquote {
     padding: 0 16px;
-    border-left: 4px solid ${Color.grey300};
+    border-left: 4px solid ${Color.Grey300};
   }
 
   hr {
     height: 4px;
     border: 0;
-    background: ${Color.grey300};
+    background: ${Color.Grey300};
   }
 
   ol {
@@ -113,15 +115,15 @@ const Content = styled<IContentProps, "div">("div")`
     margin: 0 4px;
     padding: 0 4px;
     white-space: nowrap;
-    border: 1px solid ${Color.grey300};
+    border: 1px solid ${Color.Grey300};
     border-radius: 3px;
-    background: ${Color.grey100};
+    background: ${Color.Grey100};
   }
 
   pre {
     overflow: auto;
     padding: 16px;
-    background: ${Color.grey100};
+    background: ${Color.Grey100};
     -webkit-overflow-scrolling: touch;
   }
 
@@ -140,7 +142,7 @@ const Content = styled<IContentProps, "div">("div")`
   table th {
     padding: 8px 12px;
     vertical-align: top;
-    border: 1px solid ${Color.grey300};
+    border: 1px solid ${Color.Grey300};
     border-width: 0 0 1px;
   }
 
@@ -163,7 +165,7 @@ const Content = styled<IContentProps, "div">("div")`
     border-bottom-width: 0;
   }
 
-  ${margin};
+  ${withMargin};
 `;
 
 export default Content;
