@@ -3,7 +3,7 @@ import styled from "styled-components";
 import withMargin, {
   MarginProps
 } from "~/components/styles/extends/withMargin";
-import { isDataUri } from "~/domain/validators";
+import { isDataUri } from "~/domain/Validator";
 import Observer from "./Observer";
 
 interface ImageProps

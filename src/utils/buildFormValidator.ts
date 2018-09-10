@@ -1,4 +1,4 @@
-import { Validator } from "~/domain/validators";
+import { Validator } from "~/domain/Validator";
 
 export type FormValidator = (value: string) => undefined | string;
 

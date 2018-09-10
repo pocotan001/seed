@@ -34,6 +34,10 @@ export class Link extends React.PureComponent<LinkProps> {
 
     e.preventDefault();
 
+    if (href === this.store.state.history.location.pathname) {
+      return;
+    }
+
     this.store.history.push(href);
   };
 

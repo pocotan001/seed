@@ -4,7 +4,7 @@ import {
   isLength,
   isNumeric,
   isRequired
-} from "~/domain/validators";
+} from "~/domain/Validator";
 
 describe("isRequired(value)", () => {
   it("should return true", () => {

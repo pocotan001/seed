@@ -10,7 +10,7 @@ import {
   ValidationError
 } from "~/components/ui";
 import { ErrorCode } from "~/domain/Error";
-import { isEmail, isRequired } from "~/domain/validators";
+import { isEmail, isRequired } from "~/domain/Validator";
 import { RootStore } from "~/store";
 import { buildFormValidator, composeFormValidators } from "~/utils";
 

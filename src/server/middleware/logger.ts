@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { Request, RequestHandler } from "express-serve-static-core";
 import morgan from "morgan";
-import { isNumeric } from "~/domain/validators";
+import { isNumeric } from "~/domain/Validator";
 import createLogger from "~/infra/logger";
 
 const log = createLogger("[app]");
