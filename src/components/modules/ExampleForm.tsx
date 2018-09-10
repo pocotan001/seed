@@ -79,7 +79,12 @@ export default class ExampleForm extends React.Component<{}, ExampleFormState> {
               <Paragraph mb={8}>
                 <label htmlFor="text">Text</label>
               </Paragraph>
-              <TextField id="text" name="text" autoComplete="off" />
+              <TextField
+                id="text"
+                name="text"
+                placeholder="text"
+                autoComplete="off"
+              />
             </Space>
 
             <Space mb={16}>
@@ -90,6 +95,7 @@ export default class ExampleForm extends React.Component<{}, ExampleFormState> {
                 id="password"
                 name="password"
                 type="password"
+                placeholder="password"
                 autoComplete="new-password"
               />
             </Space>
@@ -98,8 +104,7 @@ export default class ExampleForm extends React.Component<{}, ExampleFormState> {
               <Paragraph mb={8}>
                 <label htmlFor="select">Select</label>
               </Paragraph>
-              <Select id="select" name="select">
-                <option disabled />
+              <Select id="select" name="select" placeholder="-">
                 <option value="red">Red</option>
                 <option value="green">Green</option>
                 <option value="blue">Blue</option>

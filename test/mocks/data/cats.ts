@@ -1,6 +1,6 @@
 import { NormalizedEntities } from "~/domain/Normalized";
 
-const cats: NormalizedEntities["cats"] = Object.freeze({
+const cats: Readonly<NormalizedEntities["cats"]> = {
   "0": {
     id: "0",
     title: "Cat 0",
@@ -19,6 +19,6 @@ const cats: NormalizedEntities["cats"] = Object.freeze({
     text: "Lorem ipsum dolor sit amet",
     imageUrl: "https://example.com/2"
   }
-});
+};
 
 export default cats;

@@ -1,3 +1,4 @@
+export { default as Aligner } from "./Aligner";
 export { default as Article } from "./Article";
 export { default as AutoSave } from "./AutoSave";
 export { default as Button } from "./Button";
