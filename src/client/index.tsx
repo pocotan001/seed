@@ -101,9 +101,18 @@ const hydrate = async () => {
 };
 
 const handleLocationChange: LocationListener = (location, action) => {
+  const isPop = action === "POP";
+  const isHashChange =
+    isPop && location.pathname === state.history.location.pathname;
+
   store.history.updateLocation(location);
+
+  if (isHashChange) {
+    return;
+  }
+
   render(location, {
-    skipFetch: action === "POP" && store.history.isVisited(location.key)
+    skipFetch: isPop && store.history.isVisited(location.key)
   });
 };
 

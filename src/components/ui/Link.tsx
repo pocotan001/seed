@@ -13,6 +13,7 @@ export interface LinkProps
   store?: RootStore;
 }
 
+const isAnchorLink = (href: string): boolean => href.indexOf("#") === 0;
 const isLeftClick = (e: MouseEvent): boolean => e.button === 0;
 const isModifiedEvent = (e: MouseEvent): boolean =>
   Boolean(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
@@ -28,7 +29,13 @@ export class Link extends React.PureComponent<LinkProps> {
       onClick(e);
     }
 
-    if (target || e.defaultPrevented || !isLeftClick(e) || isModifiedEvent(e)) {
+    if (
+      target ||
+      e.defaultPrevented ||
+      isAnchorLink(href) ||
+      !isLeftClick(e) ||
+      isModifiedEvent(e)
+    ) {
       return;
     }
 
