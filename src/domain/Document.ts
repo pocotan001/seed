@@ -27,7 +27,7 @@ export const createBasicMetadata = ({
   { property: "og:image:height", content: "628" },
   { property: "og:type", content: "website" },
   { name: "twitter:card", content: "summary" },
-  { name: "twitter:site", content: "@cointap_jp" },
+  { name: "twitter:site", content: "@pocotan001" },
   { name: "twitter:title", content: title },
   { name: "twitter:description", content: description },
   { name: "twitter:image", content: `${config.origin}/og-image.png` }
