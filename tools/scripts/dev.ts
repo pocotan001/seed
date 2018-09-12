@@ -10,6 +10,7 @@ import origClientConfig from "../config/webpack.config.client";
 import serverConfig from "../config/webpack.config.server";
 import * as log from "../logger";
 
+const ORIGIN = process.env.ORIGIN;
 const PORT = Number(process.env.PORT) || 3000;
 
 const clientConfig: webpack.Configuration = {
@@ -154,10 +155,7 @@ const dev = async () => {
   serve();
   await waitForFirstBuild();
   startLogging();
-
-  log.info(
-    `Listening on ${chalk.green.underline(`http://localhost:${PORT}\n`)}`
-  );
+  log.info(`Listening on ${chalk.green.underline(`${ORIGIN}\n`)}`);
 };
 
 export default dev;
