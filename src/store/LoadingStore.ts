@@ -2,7 +2,7 @@ import { action } from "mobx";
 import { sleep } from "~/utils";
 import Store from "./Store";
 
-const DURATION = 5000;
+const DURATION = 3000;
 const CUT = 10000 / Math.floor(DURATION);
 const PROGRESS_MAX = 90;
 
