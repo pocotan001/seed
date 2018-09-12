@@ -1,10 +1,11 @@
 import * as React from "react";
-import { RouteAction, RouteActionResult } from "~/infra/router";
+import config from "~/config";
+import { createBasicMetadata, createTitle } from "~/domain/Document";
+import { RouteAction } from "~/infra/router";
 
-const TITLE = "Cat";
 const CATS_PER_PAGE = 10;
 
-const cat: RouteAction<{ page: string }> = (params, { store }) => {
+const cat: RouteAction<{ page: string }> = (path, params, { store }) => {
   const page = Number(params.page);
 
   if (isNaN(page)) {
@@ -29,25 +30,24 @@ const cat: RouteAction<{ page: string }> = (params, { store }) => {
         };
       }
 
-      const link: RouteActionResult["link"] = [];
-      const { origin } = store.state.history;
-
-      if (page > 1) {
-        link.push({ rel: "prev", href: `${origin}/cat/${page - 1}` });
-      }
-
-      if (page < totalPages) {
-        link.push({ rel: "next", href: `${origin}/cat/${page + 1}` });
-      }
+      const title = `Cat ${page}`;
+      const description = `cat ${page} description`;
 
       return {
-        link,
         chunks: ["cat"],
         component: (
-          <CatPage title={TITLE} params={params} catsPerPage={CATS_PER_PAGE} />
+          <CatPage title={title} params={params} catsPerPage={CATS_PER_PAGE} />
         ),
-        title: TITLE,
-        meta: [{ name: "description", content: "cat description" }]
+        title: createTitle(title),
+        meta: createBasicMetadata({ title, description, path }),
+        link: [
+          ...(page > 1
+            ? [{ rel: "prev", href: `${config.origin}/cat/${page - 1}` }]
+            : []),
+          ...(page < totalPages
+            ? [{ rel: "next", href: `${config.origin}/cat/${page + 1}` }]
+            : [])
+        ]
       };
     }
   };

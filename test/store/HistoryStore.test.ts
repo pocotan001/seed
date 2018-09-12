@@ -39,7 +39,6 @@ describe("HistoryStore", () => {
       {
         ...state,
         history: {
-          origin: "",
           location: {
             pathname: "/a",
             search: "",
@@ -63,7 +62,6 @@ describe("HistoryStore", () => {
       {
         ...state,
         history: {
-          origin: "",
           location: {
             pathname: "/a",
             search: "",
@@ -86,7 +84,6 @@ describe("HistoryStore", () => {
       {
         ...state,
         history: {
-          origin: "",
           location: {
             pathname: "/a",
             search: "",

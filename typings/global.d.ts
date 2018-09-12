@@ -13,9 +13,10 @@ declare global {
     export interface ProcessEnv {
       ENV: "test" | "local" | "development" | "staging" | "production";
       NODE_ENV: "test" | "development" | "production";
+      ORIGIN: string;
+      CLIENT?: "yes";
       DEBUG?: string;
       LOG_LEVEL?: string;
-      CLIENT?: "yes";
       PORT?: string; // server only
       TRUST_PROXY?: string; // server only
       SESSION_NAME?: string; // server only

@@ -64,7 +64,7 @@ describe("Router", () => {
       const result = await router.resolve("/a/1");
 
       expect(route.action).toHaveBeenCalledTimes(1);
-      expect(route.action).toHaveBeenCalledWith({ id: "1" }, ctx);
+      expect(route.action).toHaveBeenCalledWith("/a/1", { id: "1" }, ctx);
       expect(fetch).toHaveBeenCalledTimes(1);
       expect(result).toBe("A and B");
     });
@@ -83,7 +83,12 @@ describe("Router", () => {
       const result = await router.resolve("/a/1");
 
       expect(onError).toHaveBeenCalledTimes(1);
-      expect(onError).toHaveBeenCalledWith(expect.any(Error), { id: "1" }, ctx);
+      expect(onError).toHaveBeenCalledWith(
+        expect.any(Error),
+        "/a/1",
+        { id: "1" },
+        ctx
+      );
       expect(result).toBe("oops!");
     });
 
@@ -102,7 +107,12 @@ describe("Router", () => {
       const result = await router.resolve("/a/1");
 
       expect(onError).toHaveBeenCalledTimes(1);
-      expect(onError).toHaveBeenCalledWith(expect.any(Error), { id: "1" }, ctx);
+      expect(onError).toHaveBeenCalledWith(
+        expect.any(Error),
+        "/a/1",
+        { id: "1" },
+        ctx
+      );
       expect(result).toBe("oops!");
     });
 
@@ -121,7 +131,12 @@ describe("Router", () => {
       const result = await router.resolve("/a/1");
 
       expect(onError).toHaveBeenCalledTimes(1);
-      expect(onError).toHaveBeenCalledWith(expect.any(Error), { id: "1" }, ctx);
+      expect(onError).toHaveBeenCalledWith(
+        expect.any(Error),
+        "/a/1",
+        { id: "1" },
+        ctx
+      );
       expect(result).toBe("oops!");
     });
 
@@ -137,7 +152,7 @@ describe("Router", () => {
       const result = await router.resolve("/none");
 
       expect(onError).toHaveBeenCalledTimes(1);
-      expect(onError).toHaveBeenCalledWith(expect.any(Error), {}, ctx);
+      expect(onError).toHaveBeenCalledWith(expect.any(Error), "/none", {}, ctx);
       expect(result).toBe("oops!");
     });
 

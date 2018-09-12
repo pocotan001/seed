@@ -5,22 +5,19 @@ import Store from "./Store";
 
 type Head = State["head"];
 
-const createTitle = (title?: string) =>
-  title ? `${title} - ${config.siteName}` : config.siteName;
-
 export default class HeadStore extends Store {
   @action
-  setTitle(title?: string): void {
-    this.state.head.title = createTitle(title);
+  updateTitle(title: string = config.siteName): void {
+    this.state.head.title = title;
   }
 
   @action
-  setMeta(meta: Head["meta"] = []): void {
+  updateMeta(meta: Head["meta"] = []): void {
     this.state.head.meta = meta;
   }
 
   @action
-  setLink(link: Head["link"] = []): void {
+  updateLink(link: Head["link"] = []): void {
     this.state.head.link = link;
   }
 }

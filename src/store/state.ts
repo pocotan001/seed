@@ -9,7 +9,6 @@ export interface State {
     me?: User;
   };
   history: {
-    origin: string;
     location: Location;
     visited: { [key: string]: boolean };
   };
@@ -43,7 +42,6 @@ export enum SessionKey {
 export const defaultState: Readonly<State> = {
   auth: {},
   history: {
-    origin: "",
     location: createLocation(""),
     visited: {}
   },

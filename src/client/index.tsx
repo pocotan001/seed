@@ -70,9 +70,9 @@ const render = async (
             store.history.unmarkAsVisited();
           }
 
-          store.head.setTitle(route.title);
-          store.head.setMeta(route.meta);
-          store.head.setLink(route.link);
+          store.head.updateTitle(route.title);
+          store.head.updateMeta(route.meta);
+          store.head.updateLink(route.link);
 
           if (!opts.skipFetch) {
             window.scrollTo(0, 0);

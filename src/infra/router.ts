@@ -16,6 +16,7 @@ export interface Route {
 }
 
 export type RouteAction<P = {}> = (
+  path: string,
   params: Match<P>["params"],
   ctx: RouterContext
 ) => {
@@ -26,6 +27,7 @@ export type RouteAction<P = {}> = (
 
 export type RouteErrorAction<P = {}> = (
   err: Error,
+  path: string,
   params: Match<P>["params"],
   ctx: RouterContext
 ) => RouteActionResult;
@@ -85,13 +87,13 @@ export class Router {
       err.status = 404;
       err.code = ErrorCode.NotFound;
 
-      return this.ctx.onError(err, {}, this.ctx);
+      return this.ctx.onError(err, path, {}, this.ctx);
     }
 
     const { route, match } = matched;
 
     try {
-      const action = route.action(match.params, this.ctx);
+      const action = route.action(path, match.params, this.ctx);
       const [, ...components] = await Promise.all([
         action.fetch && !opts.skipFetch ? action.fetch() : null,
         ...(action.components
@@ -107,7 +109,7 @@ export class Router {
     } catch (err) {
       log.error(err.stack);
 
-      return this.ctx.onError(err, match.params, this.ctx);
+      return this.ctx.onError(err, path, match.params, this.ctx);
     }
   }
 }

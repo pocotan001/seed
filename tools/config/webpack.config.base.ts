@@ -62,21 +62,21 @@ const baseConfig: webpack.Configuration = {
               multiple: [
                 // for all strings except `from "..."` and `require("...")`
                 {
-                  search: `(?<! from |require\\()["'](~\/assets\/.+?)["']`,
+                  search: `(?<! from |require\\()["'](~\\/assets\\/.+?)["']`,
                   replace: 'require("$1")',
                   flags: "g"
                 },
                 // for JSX props
                 // e.g. `<img src="~/assets/xxx" />` -> `<img src={require("~/assets/xxx")} />`
                 {
-                  search: `=(require\\("~\/assets\/.+?"\\))`,
+                  search: `=(require\\("~\\/assets\\/.+?"\\))`,
                   replace: "={$1}",
                   flags: "g"
                 },
                 // for `url()` CSS function
                 // e.g. `background: url("~/assets/xxx")` -> `background: url(${require("~/assets/xxx")})`
                 {
-                  search: ` url\\((require\\("~\/assets\/.+?"\\))\\)`,
+                  search: ` url\\((require\\("~\\/assets\\/.+?"\\))\\)`,
                   replace: " url($${$1})",
                   flags: "g"
                 }

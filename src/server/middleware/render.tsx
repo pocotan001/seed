@@ -98,7 +98,6 @@ const render = (): RequestHandler => async (req, res, next) => {
         me: req.session.me
       },
       history: {
-        origin: `${req.protocol}://${req.get("host")}`,
         location: history.location,
         visited: {}
       }
@@ -130,9 +129,9 @@ const render = (): RequestHandler => async (req, res, next) => {
       store.history.markAsVisited();
     }
 
-    store.head.setTitle(route.title);
-    store.head.setMeta(route.meta);
-    store.head.setLink(route.link);
+    store.head.updateTitle(route.title);
+    store.head.updateMeta(route.meta);
+    store.head.updateLink(route.link);
 
     const availableChunks = getAvailableChunks(route.chunks);
     const head = ReactDOM.renderToStaticMarkup(

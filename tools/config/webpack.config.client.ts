@@ -7,7 +7,7 @@ import * as pkg from "../../package.json";
 import { DIST_DIR } from "./paths";
 import baseConfig, { isDebug } from "./webpack.config.base";
 
-const ENV_EXPORTS = ["ENV", "NODE_ENV", "DEBUG", "LOG_LEVEL"];
+const ENV_EXPORTS = ["ENV", "NODE_ENV", "ORIGIN", "DEBUG", "LOG_LEVEL"];
 const isAnalyze = process.argv.includes("--analyze");
 
 const clientConfig: webpack.Configuration = {

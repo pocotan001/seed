@@ -4,7 +4,7 @@
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "minimal-ui",
-  "start_url": "./?utm_source=homescreen",
+  "start_url": "/?utm_source=homescreen",
   "icons": [
     {
       "src": "/logo-192x192.png",
