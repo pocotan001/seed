@@ -11,13 +11,13 @@ interface HeaderProps {
 
 const Header: React.SFC<HeaderProps> = ({ className }) => (
   <header className={className}>
-    <Grid cols="auto 1fr">
-      <Grid.Cell align="center">
+    <Grid cols="auto 1fr" phone={{ cols: "auto" }}>
+      <Grid.Cell>
         <Heading>
           <Link href="/">{config.siteName}</Link>
         </Heading>
       </Grid.Cell>
-      <Grid.Cell justify="right" align="center">
+      <Grid.Cell justify="right">
         <Nav />
       </Grid.Cell>
     </Grid>

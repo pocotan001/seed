@@ -22,7 +22,7 @@ interface GridStyleProps {
   flow?: CSSProperties["gridAutoFlow"];
   gap?: CSSProperties["gridGap"];
   justify?: CSSProperties["justifyContent"];
-  align?: CSSProperties["alignContent"];
+  align?: CSSProperties["alignItems"];
 }
 
 const buildColumns = (value: number | string) =>
@@ -42,7 +42,7 @@ const styles: StyleFactory<GridStyleProps> = ({
   ${flow && `grid-auto-flow: ${flow}`};
   ${gap && `grid-gap: ${px(gap)}`};
   ${justify && `justify-content: ${justify}`};
-  ${align && `align-content: ${align}`};
+  ${align && `align-items: ${align}`};
 `;
 
 const Grid = styled<GridProps, "div">("div")`
