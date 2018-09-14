@@ -1,6 +1,7 @@
 import { inject } from "mobx-react";
 import * as React from "react";
 import styled from "styled-components";
+import { Color } from "~/components/styles/theme";
 import { RootStore } from "~/store";
 
 type MouseEvent = React.MouseEvent<HTMLAnchorElement>;
@@ -9,7 +10,7 @@ export interface LinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: React.ReactNode;
-  block?: boolean;
+  asText?: boolean;
   store?: RootStore;
 }
 
@@ -49,7 +50,7 @@ export class Link extends React.PureComponent<LinkProps> {
   };
 
   render() {
-    const { href, children, block, onClick, store, ...rest } = this.props;
+    const { href, children, asText, onClick, store, ...rest } = this.props;
 
     if (rest.target === "_blank") {
       rest.rel = rest.rel || "noopener noreferrer";
@@ -68,5 +69,14 @@ export default styled(Link)`
   max-width: 100%;
   text-decoration: none;
   color: currentColor;
-  ${({ block }) => block && "display: block;"};
+
+  ${({ asText }) =>
+    asText &&
+    `
+    color: ${Color.Pink500};
+
+    &:hover {
+      text-decoration: underline;
+    }
+  `};
 `;

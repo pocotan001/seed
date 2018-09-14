@@ -3,10 +3,12 @@ import * as React from "react";
 import DefaultLayout from "~/components/layouts/DefaultLayout";
 import { CatCard } from "~/components/modules";
 import { Grid, Heading, Pagination } from "~/components/ui";
+import { Breadcrumb } from "~/domain/Document";
 import { RootStore } from "~/store";
 
 interface CatPageProps {
   title: string;
+  breadcrumb: Breadcrumb[];
   params: { page: string };
   catsPerPage: number;
 }
@@ -19,13 +21,13 @@ export default class CatPage extends React.Component<CatPageProps> {
   store: RootStore = (this.props as any).store;
 
   render() {
-    const { title } = this.props;
+    const { title, breadcrumb } = this.props;
     const page = Number(this.props.params.page);
     const per = this.props.catsPerPage;
     const cats = this.store.cat.getCatsByResult({ page, per });
 
     return (
-      <DefaultLayout>
+      <DefaultLayout breadcrumb={breadcrumb}>
         <Heading mb={24}>{title}</Heading>
         <Grid cols="repeat(auto-fit, minmax(20em, 1fr))" mb={24}>
           {cats.map(cat => (

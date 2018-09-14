@@ -2,6 +2,7 @@ import { Location } from "history";
 import { STATUS_CODES } from "http";
 import * as React from "react";
 import { match as Match, matchPath } from "react-router";
+import { JsonLd } from "~/domain/Document";
 import { ErrorCode } from "~/domain/Error";
 import createLogger from "~/infra/logger";
 import { RootStore } from "~/store";
@@ -40,6 +41,7 @@ export interface RouteActionResult {
   title?: string;
   meta?: State["head"]["meta"];
   link?: State["head"]["link"];
+  jsonLd?: JsonLd[];
 }
 
 export interface RouterContext {

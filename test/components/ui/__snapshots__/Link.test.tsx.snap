@@ -2,7 +2,7 @@
 
 exports[`<Link> renders correctly 1`] = `
 <a
-  className="sc-bdVaJa lcNCvQ"
+  className="sc-bdVaJa kSKvLH"
   href="/a"
   onClick={[Function]}
 >
@@ -12,7 +12,7 @@ exports[`<Link> renders correctly 1`] = `
 
 exports[`<Link> should call \`history.push\` if clicked 1`] = `
 <a
-  className="sc-bdVaJa lcNCvQ"
+  className="sc-bdVaJa kSKvLH"
   href="/a"
   onClick={[Function]}
 >

@@ -2,7 +2,7 @@ import * as React from "react";
 import { createBasicMetadata, createTitle } from "~/domain/Document";
 import { RouteAction } from "~/infra/router";
 
-const title = "Home";
+const title = createTitle();
 const description = "home description";
 
 const home: RouteAction = path => ({
@@ -10,9 +10,9 @@ const home: RouteAction = path => ({
     import(/* webpackChunkName: "home" */ "../components/pages/HomePage")
   ],
   render: HomePage => ({
+    title,
     chunks: ["home"],
-    component: <HomePage title={title} />,
-    title: createTitle(title),
+    component: <HomePage />,
     meta: createBasicMetadata({ title, description, path })
   })
 });

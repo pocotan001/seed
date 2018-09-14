@@ -1,5 +1,17 @@
 import config from "~/config";
 
+export interface Breadcrumb {
+  title: string;
+  path: string;
+}
+
+export interface JsonLd {
+  // tslint:disable-next-line:no-http-string
+  "@context": "http://schema.org";
+  "@type": string;
+  [key: string]: any;
+}
+
 export enum ElementId {
   App = "app",
   Modal = "modal"
@@ -32,3 +44,19 @@ export const createBasicMetadata = ({
   { name: "twitter:description", content: description },
   { name: "twitter:image", content: `${config.origin}/og-image.png` }
 ];
+
+/**
+ * Enable breadcrumb in google search results
+ * https://developers.google.com/search/docs/data-types/breadcrumb
+ */
+export const createBreadcrumbListAsJsonLd = (data: Breadcrumb[]): JsonLd => ({
+  // tslint:disable-next-line:no-http-string
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: data.map(({ title, path }, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: title,
+    item: `${config.origin}${path}`
+  }))
+});

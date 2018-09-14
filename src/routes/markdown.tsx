@@ -1,5 +1,10 @@
 import * as React from "react";
-import { createBasicMetadata, createTitle } from "~/domain/Document";
+import {
+  Breadcrumb,
+  createBasicMetadata,
+  createBreadcrumbListAsJsonLd,
+  createTitle
+} from "~/domain/Document";
 import { RouteAction } from "~/infra/router";
 
 const title = "Markdown";
@@ -9,12 +14,17 @@ const markdown: RouteAction = path => ({
   components: () => [
     import(/* webpackChunkName: "markdown" */ "../components/pages/MarkdownPage")
   ],
-  render: MarkdownPage => ({
-    chunks: ["markdown"],
-    component: <MarkdownPage />,
-    title: createTitle(title),
-    meta: createBasicMetadata({ title, description, path })
-  })
+  render: MarkdownPage => {
+    const breadcrumb: Breadcrumb[] = [{ title, path }];
+
+    return {
+      chunks: ["markdown"],
+      component: <MarkdownPage title={title} breadcrumb={breadcrumb} />,
+      title: createTitle(title),
+      meta: createBasicMetadata({ title, description, path }),
+      jsonLd: [createBreadcrumbListAsJsonLd(breadcrumb)]
+    };
+  }
 });
 
 export default markdown;

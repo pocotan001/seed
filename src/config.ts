@@ -1,5 +1,7 @@
 const config = Object.freeze({
   siteName: "Seed",
+  twitterId: "pocotan001",
+  facebookId: "pocotan001",
   env: process.env.NODE_ENV,
   origin: process.env.ORIGIN,
   logLevel: process.env.LOG_LEVEL || "DEBUG",

@@ -1,22 +1,34 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Footer, Header, Main, Sidebar } from "~/components/modules";
+import {
+  Breadcrumb,
+  Footer,
+  Header,
+  Main,
+  Sidebar
+} from "~/components/modules";
 import media from "~/components/styles/mixins/media";
 import { Dimension } from "~/components/styles/theme";
+import { Breadcrumb as IBreadcrumb } from "~/domain/Document";
 import { px } from "~/utils";
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
+  breadcrumb?: IBreadcrumb[];
   className?: string;
 }
 
 const DefaultLayout: React.SFC<DefaultLayoutProps> = ({
   children,
+  breadcrumb,
   className
 }) => (
   <div className={className}>
     <Header />
-    <Main>{children}</Main>
+    <Main>
+      {breadcrumb && <Breadcrumb data={breadcrumb} />}
+      {children}
+    </Main>
     <Sidebar />
     <Footer />
   </div>
@@ -48,6 +60,10 @@ export default styled(DefaultLayout)`
 
   ${Footer} {
     grid-area: footer;
+  }
+
+  ${Breadcrumb} {
+    margin-bottom: 24px;
   }
 
   ${media.tablet`

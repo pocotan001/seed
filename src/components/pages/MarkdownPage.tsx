@@ -1,9 +1,16 @@
 import * as React from "react";
 import DefaultLayout from "~/components/layouts/DefaultLayout";
-import { Content } from "~/components/ui";
+import { Content, Heading } from "~/components/ui";
+import { Breadcrumb } from "~/domain/Document";
 
-const MarkdownPage: React.SFC = () => (
-  <DefaultLayout>
+interface MarkdownPageProps {
+  title: string;
+  breadcrumb: Breadcrumb[];
+}
+
+const MarkdownPage: React.SFC<MarkdownPageProps> = ({ title, breadcrumb }) => (
+  <DefaultLayout breadcrumb={breadcrumb}>
+    <Heading mb={24}>{title}</Heading>
     <Content
       dangerouslySetInnerHTML={{
         __html: preval`

@@ -1,5 +1,3 @@
-# Markdown
-
 Paragraph
 text `Inline Code` text
 ~~Mistaken text.~~

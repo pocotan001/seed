@@ -8,7 +8,7 @@ import * as ReactDOM from "react-dom/server";
 import { Transform } from "stream";
 import { ServerStyleSheet } from "styled-components";
 import App from "~/components/App";
-import { Head, Scripts } from "~/components/modules";
+import { Head, JsonLd, Scripts } from "~/components/modules";
 import config from "~/config";
 import { ElementId } from "~/domain/Document";
 import createLogger from "~/infra/logger";
@@ -16,7 +16,7 @@ import createRequest from "~/infra/request";
 import createRouter from "~/infra/router";
 import routes, { onRouteError } from "~/routes";
 import createStore from "~/store";
-import createState, { State } from "~/store/state";
+import createState from "~/store/state";
 import * as chunks from "./chunk-manifest.json";
 
 const MAIN_CHUNKS = ["vendor", "main"];
@@ -93,7 +93,7 @@ const render = (): RequestHandler => async (req, res, next) => {
     }
 
     const history = createHistory({ initialEntries: [url] });
-    const initialState: Partial<State> = {
+    const state = createState({
       auth: {
         me: req.session.me
       },
@@ -101,9 +101,7 @@ const render = (): RequestHandler => async (req, res, next) => {
         location: history.location,
         visited: {}
       }
-    };
-
-    const state = createState(initialState);
+    });
     const store = createStore(state, { history, api });
     const router = createRouter(routes, { store, onError: onRouteError });
     const route = await router.resolve(req.path);
@@ -133,13 +131,13 @@ const render = (): RequestHandler => async (req, res, next) => {
     store.head.updateMeta(route.meta);
     store.head.updateLink(route.link);
 
-    const availableChunks = getAvailableChunks(route.chunks);
+    const scripts = getAvailableChunks(route.chunks);
     const head = ReactDOM.renderToStaticMarkup(
       <Head
         title={state.head.title}
         meta={state.head.meta}
         link={state.head.link}
-        scripts={availableChunks}
+        scripts={scripts}
       />
     );
 
@@ -160,12 +158,15 @@ const render = (): RequestHandler => async (req, res, next) => {
 
     appStream.on("error", next);
     appStream.on("end", () => {
-      const scripts = ReactDOM.renderToStaticMarkup(
-        <Scripts state={toJS(state)} scripts={availableChunks} nonce={nonce} />
+      const foot = ReactDOM.renderToStaticMarkup(
+        <>
+          <Scripts state={toJS(state)} scripts={scripts} nonce={nonce} />
+          <JsonLd data={route.jsonLd} />
+        </>
       );
 
       renderStream.end(
-        `</div><div id="${ElementId.Modal}"></div>${scripts}</body></html>`
+        `</div><div id="${ElementId.Modal}"></div>${foot}</body></html>`
       );
     });
   } catch (err) {

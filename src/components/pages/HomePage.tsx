@@ -12,18 +12,11 @@ import {
   Section
 } from "~/components/ui";
 
-interface HomePageProps {
-  title: string;
-}
-
 interface HomePageState {
   isModalShown: boolean;
 }
 
-export default class HomePage extends React.Component<
-  HomePageProps,
-  HomePageState
-> {
+export default class HomePage extends React.Component<{}, HomePageState> {
   state = {
     isModalShown: false
   };
@@ -37,11 +30,9 @@ export default class HomePage extends React.Component<
   };
 
   render() {
-    const { title } = this.props;
-
     return (
       <DefaultLayout>
-        <Heading mb={24}>{title}</Heading>
+        <Heading mb={24}>Home</Heading>
 
         <Section mb={24}>
           <Heading fz={18} mb={16}>
