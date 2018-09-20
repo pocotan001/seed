@@ -21,6 +21,10 @@
           "transform": "~/components/modules/${member}",
           "preventFullImport": true
         },
+        "~/components/styles/animations": {
+          "transform": "~/components/styles/animations/${member}",
+          "preventFullImport": true
+        },
         "~/components/styles/theme": {
           "transform": "~/components/styles/theme/${member}",
           "preventFullImport": true

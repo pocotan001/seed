@@ -31,18 +31,10 @@ const Head: React.SFC<HeadProps> = ({
     <meta name="msapplication-TileColor" content="#ffffff" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
 
-    {meta.map((props, i) => (
-      <meta key={i} {...props} data-head />
-    ))}
-
     <title>{title}</title>
 
     {scripts.map((src, i) => (
       <link key={i} rel="preload" href={src} as="script" />
-    ))}
-
-    {link.map((props, i) => (
-      <link key={i} {...props} data-head />
     ))}
 
     <link
@@ -63,6 +55,14 @@ const Head: React.SFC<HeadProps> = ({
     <link rel="icon" type="image/png" sizes="32x32" href="/logo-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/logo-16x16.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
+
+    {meta.map((props, i) => (
+      <meta key={i} {...props} data-from-state />
+    ))}
+
+    {link.map((props, i) => (
+      <link key={i} {...props} data-from-state />
+    ))}
   </head>
 );
 

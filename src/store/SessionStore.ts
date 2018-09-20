@@ -13,7 +13,9 @@ export default class SessionStore extends Store {
 
   @action
   remove(key: SessionKey): void {
-    this.state.session[key] = {};
+    const { [key]: value, ...omitted }: any = this.state.session;
+
+    this.state.session = omitted;
   }
 
   @action

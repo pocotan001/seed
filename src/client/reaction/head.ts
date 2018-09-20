@@ -8,7 +8,7 @@ const updateTags = <T = React.HTMLAttributes<Element>>(
   type: "meta" | "link"
 ) => (attrsList: T[]) => {
   const oldTags: Node[] = toArray(
-    document.head.querySelectorAll(`${type}[data-head="true"]`)
+    document.head.querySelectorAll(`${type}[data-from-state="true"]`)
   );
   const newTags: Node[] = [];
 
@@ -19,7 +19,7 @@ const updateTags = <T = React.HTMLAttributes<Element>>(
       newTag.setAttribute(name, (attrs as any)[name])
     );
 
-    newTag.setAttribute("data-head", "true");
+    newTag.setAttribute("data-from-state", "true");
 
     const existingTag = oldTags.find(oldTag => oldTag.isEqualNode(newTag));
 
