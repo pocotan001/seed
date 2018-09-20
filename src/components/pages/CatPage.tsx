@@ -3,12 +3,12 @@ import * as React from "react";
 import DefaultLayout from "~/components/layouts/DefaultLayout";
 import { CatCard } from "~/components/modules";
 import { Grid, Heading, Pagination } from "~/components/ui";
-import { Breadcrumb } from "~/domain/Document";
+import { BreadcrumbItem } from "~/domain/Document";
 import { RootStore } from "~/store";
 
 interface CatPageProps {
   title: string;
-  breadcrumb: Breadcrumb[];
+  breadcrumb: BreadcrumbItem[];
   params: { page: string };
   catsPerPage: number;
 }

@@ -9,12 +9,12 @@ import {
 } from "~/components/modules";
 import media from "~/components/styles/mixins/media";
 import { Dimension } from "~/components/styles/theme";
-import { Breadcrumb as IBreadcrumb } from "~/domain/Document";
+import { BreadcrumbItem } from "~/domain/Document";
 import { px } from "~/utils";
 
 interface DefaultLayoutProps {
   children: React.ReactNode;
-  breadcrumb?: IBreadcrumb[];
+  breadcrumb?: BreadcrumbItem[];
   className?: string;
 }
 
@@ -26,7 +26,7 @@ const DefaultLayout: React.SFC<DefaultLayoutProps> = ({
   <div className={className}>
     <Header />
     <Main>
-      {breadcrumb && <Breadcrumb data={breadcrumb} />}
+      {breadcrumb && <Breadcrumb items={breadcrumb} />}
       {children}
     </Main>
     <Sidebar />

@@ -2,28 +2,28 @@ import * as React from "react";
 import styled from "styled-components";
 import { Color } from "~/components/styles/theme";
 import { Link } from "~/components/ui";
-import { Breadcrumb as IBreadcrumb } from "~/domain/Document";
+import { BreadcrumbItem } from "~/domain/Document";
 
 interface BreadcrumbProps {
-  data: IBreadcrumb[];
+  items: BreadcrumbItem[];
   className?: string;
 }
 
-const baseData: ReadonlyArray<IBreadcrumb> = [
+const baseItems: ReadonlyArray<BreadcrumbItem> = [
   {
     title: "Home",
     path: "/"
   }
 ];
 
-const Breadcrumb: React.SFC<BreadcrumbProps> = ({ data, className }) => {
-  data = [...baseData, ...data];
-  const lastIndex = data.length - 1;
+const Breadcrumb: React.SFC<BreadcrumbProps> = ({ items, className }) => {
+  items = [...baseItems, ...items];
+  const lastIndex = items.length - 1;
 
   return (
     <nav className={className} aria-label="breadcrumb">
       <ol>
-        {data.map(
+        {items.map(
           ({ title, path }, i) =>
             i === lastIndex ? (
               <li key={title} aria-current="page">

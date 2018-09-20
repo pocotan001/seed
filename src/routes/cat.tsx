@@ -1,7 +1,7 @@
 import * as React from "react";
 import config from "~/config";
 import {
-  Breadcrumb,
+  BreadcrumbItem,
   createBasicMetadata,
   createBreadcrumbListAsJsonLd,
   createTitle
@@ -37,7 +37,7 @@ const cat: RouteAction<{ page: string }> = (path, params, { store }) => {
 
       const title = `Cat ${page}`;
       const description = `cat ${page} description`;
-      const breadcrumb: Breadcrumb[] = [{ title, path }];
+      const breadcrumb: BreadcrumbItem[] = [{ title, path }];
 
       return {
         chunks: ["cat"],

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {
-  Breadcrumb,
+  BreadcrumbItem,
   createBasicMetadata,
   createBreadcrumbListAsJsonLd,
   createTitle
@@ -15,7 +15,7 @@ const markdown: RouteAction = path => ({
     import(/* webpackChunkName: "markdown" */ "../components/pages/MarkdownPage")
   ],
   render: MarkdownPage => {
-    const breadcrumb: Breadcrumb[] = [{ title, path }];
+    const breadcrumb: BreadcrumbItem[] = [{ title, path }];
 
     return {
       chunks: ["markdown"],

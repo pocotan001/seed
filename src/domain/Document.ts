@@ -1,6 +1,6 @@
 import config from "~/config";
 
-export interface Breadcrumb {
+export interface BreadcrumbItem {
   title: string;
   path: string;
 }
@@ -49,11 +49,13 @@ export const createBasicMetadata = ({
  * Enable breadcrumb in google search results
  * https://developers.google.com/search/docs/data-types/breadcrumb
  */
-export const createBreadcrumbListAsJsonLd = (data: Breadcrumb[]): JsonLd => ({
+export const createBreadcrumbListAsJsonLd = (
+  items: BreadcrumbItem[]
+): JsonLd => ({
   // tslint:disable-next-line:no-http-string
   "@context": "http://schema.org",
   "@type": "BreadcrumbList",
-  itemListElement: data.map(({ title, path }, i) => ({
+  itemListElement: items.map(({ title, path }, i) => ({
     "@type": "ListItem",
     position: i + 1,
     name: title,

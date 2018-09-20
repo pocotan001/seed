@@ -1,11 +1,11 @@
 import * as React from "react";
 import DefaultLayout from "~/components/layouts/DefaultLayout";
 import { Content, Heading } from "~/components/ui";
-import { Breadcrumb } from "~/domain/Document";
+import { BreadcrumbItem } from "~/domain/Document";
 
 interface MarkdownPageProps {
   title: string;
-  breadcrumb: Breadcrumb[];
+  breadcrumb: BreadcrumbItem[];
 }
 
 const MarkdownPage: React.SFC<MarkdownPageProps> = ({ title, breadcrumb }) => (
