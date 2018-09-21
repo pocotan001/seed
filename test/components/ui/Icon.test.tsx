@@ -9,10 +9,8 @@ const SVG_STRING = [
 ].join("");
 
 describe("<Icon>", () => {
-  it("renders correctly", () => {
-    const tree = renderer
-      .create(<Icon src={SVG_STRING} />)
-      .toJSON();
+  it("should render correctly", () => {
+    const tree = renderer.create(<Icon src={SVG_STRING} />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

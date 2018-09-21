@@ -3,7 +3,7 @@ import * as renderer from "react-test-renderer";
 import Image from "~/components/ui/Image";
 
 describe("<Image>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer.create(<Image src="/alo" />).toJSON();
 
     expect(tree).toMatchSnapshot();

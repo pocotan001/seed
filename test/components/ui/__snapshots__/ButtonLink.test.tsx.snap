@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ButtonLink> renders correctly 1`] = `
+exports[`<ButtonLink> should render correctly 1`] = `
 <a
   className="sc-htpNat tBSFr"
   href="/a"

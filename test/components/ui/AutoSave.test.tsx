@@ -7,7 +7,7 @@ const handleSubmit = () => undefined;
 const save = () => undefined;
 
 describe("<AutoSave>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <Form onSubmit={handleSubmit}>

@@ -10,7 +10,7 @@ exports[`<NavLink> changes the class name when actived 1`] = `
 </a>
 `;
 
-exports[`<NavLink> renders correctly 1`] = `
+exports[`<NavLink> should render correctly 1`] = `
 <a
   className="sc-bdVaJa kSKvLH"
   href="/a"

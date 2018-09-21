@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Select> renders correctly 1`] = `
+exports[`<Select> should render correctly 1`] = `
 <select
   aria-invalid={false}
   className="sc-bxivhb hylhnp"

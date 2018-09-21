@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Radio> renders correctly 1`] = `
+exports[`<Radio> should render correctly 1`] = `
 <label
   className="sc-htpNat cxybjL"
 >

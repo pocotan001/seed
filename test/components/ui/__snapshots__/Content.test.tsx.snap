@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Content> renders correctly 1`] = `
+exports[`<Content> should render correctly 1`] = `
 <div
   className="sc-bdVaJa ezoWbH"
 >

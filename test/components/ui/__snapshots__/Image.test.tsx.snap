@@ -8,7 +8,7 @@ exports[`<Image> renders as it is when data uri is set 1`] = `
 />
 `;
 
-exports[`<Image> renders correctly 1`] = `
+exports[`<Image> should render correctly 1`] = `
 <img
   alt=""
   className="sc-bdVaJa eFtYDj"

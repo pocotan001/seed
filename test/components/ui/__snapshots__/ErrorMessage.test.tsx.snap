@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ErrorMessage> renders correctly 1`] = `
+exports[`<ErrorMessage> should render correctly 1`] = `
 <p
   className="sc-bdVaJa oxfiO"
   role="alert"

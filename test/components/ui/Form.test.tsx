@@ -5,7 +5,7 @@ import Form from "~/components/ui/Form";
 const handleSubmit = () => undefined;
 
 describe("<Form>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(<Form onSubmit={handleSubmit}>{() => "Alo"}</Form>)
       .toJSON();

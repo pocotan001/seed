@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Observer> renders correctly 1`] = `
+exports[`<Observer> should render correctly 1`] = `
 <div>
   alo
 </div>

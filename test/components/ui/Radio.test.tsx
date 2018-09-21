@@ -6,7 +6,7 @@ import Radio from "~/components/ui/Radio";
 const handleSubmit = () => undefined;
 
 describe("<Radio>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <Form onSubmit={handleSubmit}>

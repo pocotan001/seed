@@ -6,7 +6,7 @@ import Form from "~/components/ui/Form";
 const handleSubmit = () => undefined;
 
 describe("<CheckBox>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <Form onSubmit={handleSubmit}>

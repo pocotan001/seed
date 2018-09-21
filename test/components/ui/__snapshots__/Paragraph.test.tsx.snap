@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Paragraph> renders correctly 1`] = `
+exports[`<Paragraph> should render correctly 1`] = `
 <p
   className="sc-bwzfXH iDojdA"
 >

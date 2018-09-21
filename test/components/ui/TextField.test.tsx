@@ -6,7 +6,7 @@ import TextField from "~/components/ui/TextField";
 const handleSubmit = () => undefined;
 
 describe("<TextField>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <Form onSubmit={handleSubmit}>

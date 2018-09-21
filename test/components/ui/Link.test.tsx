@@ -16,7 +16,7 @@ describe("<Link>", () => {
     } as any;
   });
 
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <Link href="/a" store={store}>

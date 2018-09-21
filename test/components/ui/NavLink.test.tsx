@@ -16,7 +16,7 @@ describe("<NavLink>", () => {
     } as any;
   });
 
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <NavLink href="/a" activeClassName="a" store={store}>

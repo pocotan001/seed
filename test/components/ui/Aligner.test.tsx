@@ -3,7 +3,7 @@ import * as renderer from "react-test-renderer";
 import Aligner from "~/components/ui/Aligner";
 
 describe("<Aligner>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer.create(<Aligner>alo</Aligner>).toJSON();
 
     expect(tree).toMatchSnapshot();

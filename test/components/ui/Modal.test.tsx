@@ -6,7 +6,7 @@ jest.mock("focus-trap", () => require("../../mocks/focus-trap"));
 const close = () => undefined;
 
 describe("<Modal>", () => {
-  it("renders correctly on client", () => {
+  it("should render correctly on client", () => {
     jest.doMock("react-dom", () => ({
       createPortal: (node: React.ReactNode) => node
     }));

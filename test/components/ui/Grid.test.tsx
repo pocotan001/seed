@@ -3,7 +3,7 @@ import * as renderer from "react-test-renderer";
 import Grid from "~/components/ui/Grid";
 
 describe("<Grid>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <Grid>

@@ -16,7 +16,7 @@ describe("<ButtonLink>", () => {
     } as any;
   });
 
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <ButtonLink href="/a" store={store}>

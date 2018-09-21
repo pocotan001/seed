@@ -45,7 +45,7 @@ describe("Router", () => {
   });
 
   describe("#resolve(path, opts)", () => {
-    it("should execute the matching route action and return its result", async () => {
+    it("should execute the matching route action and return the result", async () => {
       const fetch = jest.fn(() => true);
       const route: Route = {
         path: "/a/:id",

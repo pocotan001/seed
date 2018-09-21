@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Grid> renders correctly 1`] = `
+exports[`<Grid> should render correctly 1`] = `
 <div
   className="sc-bwzfXH jaMHjs"
   cols={12}

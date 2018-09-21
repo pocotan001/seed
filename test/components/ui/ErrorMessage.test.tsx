@@ -3,7 +3,7 @@ import * as renderer from "react-test-renderer";
 import ErrorMessage from "~/components/ui/ErrorMessage";
 
 describe("<ErrorMessage>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer.create(<ErrorMessage>alo</ErrorMessage>).toJSON();
 
     expect(tree).toMatchSnapshot();

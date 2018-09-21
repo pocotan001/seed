@@ -6,7 +6,7 @@ import SubmitError from "~/components/ui/SubmitError";
 const handleSubmit = () => undefined;
 
 describe("<SubmitError>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(<Form onSubmit={handleSubmit}>{() => <SubmitError />}</Form>)
       .toJSON();

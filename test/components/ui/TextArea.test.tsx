@@ -6,7 +6,7 @@ import TextArea from "~/components/ui/TextArea";
 const handleSubmit = () => undefined;
 
 describe("<TextArea>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <Form onSubmit={handleSubmit}>

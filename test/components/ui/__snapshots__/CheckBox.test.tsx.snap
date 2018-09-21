@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<CheckBox> renders correctly 1`] = `
+exports[`<CheckBox> should render correctly 1`] = `
 <label
   className="sc-htpNat cxybjL"
 >

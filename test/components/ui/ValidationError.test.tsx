@@ -6,7 +6,7 @@ import ValidationError from "~/components/ui/ValidationError";
 const handleSubmit = () => undefined;
 
 describe("<ValidationError>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <Form onSubmit={handleSubmit}>

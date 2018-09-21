@@ -6,7 +6,7 @@ import Select from "~/components/ui/Select";
 const handleSubmit = () => undefined;
 
 describe("<Select>", () => {
-  it("renders correctly", () => {
+  it("should render correctly", () => {
     const tree = renderer
       .create(
         <Form onSubmit={handleSubmit}>
