@@ -8,7 +8,7 @@ import {
 } from "~/domain/Document";
 import { RouteAction } from "~/infra/router";
 
-const CATS_PER_PAGE = 10;
+export const CATS_PER_PAGE = 10;
 
 const cat: RouteAction<{ page: string }> = (path, params, { store }) => {
   const page = Number(params.page);
@@ -28,8 +28,9 @@ const cat: RouteAction<{ page: string }> = (path, params, { store }) => {
     fetch: () => store.cat.fetchCats({ page, per: CATS_PER_PAGE }),
     render: CatPage => {
       const totalPages = store.state.cats.totalCount / CATS_PER_PAGE;
+      const pageExists = page >= 1 && page <= totalPages;
 
-      if (page > totalPages) {
+      if (!pageExists) {
         return {
           redirect: "/cat/1"
         };
