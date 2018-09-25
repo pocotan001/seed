@@ -2,7 +2,7 @@
 
 exports[`<ErrorMessage> should render correctly 1`] = `
 <p
-  className="sc-bdVaJa oxfiO"
+  className="ErrorMessage-sc-1sbtlgz-0 BOdCN"
   role="alert"
 >
   alo

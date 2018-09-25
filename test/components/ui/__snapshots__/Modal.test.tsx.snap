@@ -3,17 +3,17 @@
 exports[`<Modal> should render correctly on client 1`] = `
 <div
   aria-modal={true}
-  className="sc-htpNat YvQfP"
+  className="Modal-ipxda4-0 cyrGqr"
   role="dialog"
 >
   <div
-    className="sc-bdVaJa bwMdiZ"
+    className="Backdrop-sc-15fcf5i-0 kvqEGH"
     onClick={[Function]}
     role="presentation"
     tabIndex={-1}
   />
   <div
-    className="sc-bwzfXH dsSxso"
+    className="Content-sc-49c9z3-0 ihSytA"
   >
     alo
   </div>

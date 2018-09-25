@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Link> should render correctly 1`] = `
+exports[`<Link> should call \`history.push\` if clicked 1`] = `
 <a
-  className="sc-bdVaJa kSKvLH"
+  className="Link-lydjp6-0 ieobzK"
   href="/a"
   onClick={[Function]}
 >
@@ -10,9 +10,9 @@ exports[`<Link> should render correctly 1`] = `
 </a>
 `;
 
-exports[`<Link> should call \`history.push\` if clicked 1`] = `
+exports[`<Link> should render correctly 1`] = `
 <a
-  className="sc-bdVaJa kSKvLH"
+  className="Link-lydjp6-0 ieobzK"
   href="/a"
   onClick={[Function]}
 >

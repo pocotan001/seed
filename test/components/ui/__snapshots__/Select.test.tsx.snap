@@ -3,7 +3,7 @@
 exports[`<Select> should render correctly 1`] = `
 <select
   aria-invalid={false}
-  className="sc-bxivhb hylhnp"
+  className="x39jbp-0-Component-TextField-kcxcOU jEPPaP"
   name="select"
   onBlur={[Function]}
   onChange={[Function]}

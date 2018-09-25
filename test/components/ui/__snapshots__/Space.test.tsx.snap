@@ -2,7 +2,7 @@
 
 exports[`<Space> should render correctly 1`] = `
 <div
-  className="sc-bdVaJa iTpXYV"
+  className="Space-sc-9fq1rg-0 kOMwYl"
 >
   alo
 </div>

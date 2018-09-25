@@ -4,7 +4,7 @@ exports[`<TextField> should render correctly 1`] = `
 <input
   aria-invalid={false}
   autoComplete="off"
-  className="sc-bdVaJa dPkZnb"
+  className="TextField-x39jbp-0 INLhL"
   name="test"
   onBlur={[Function]}
   onChange={[Function]}

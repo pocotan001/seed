@@ -2,12 +2,12 @@
 
 exports[`<Radio> should render correctly 1`] = `
 <label
-  className="sc-htpNat cxybjL"
+  className="Radio-sc-8k4dv7-0 gyPNIo"
 >
   <input
     aria-invalid={false}
     checked={false}
-    className="sc-bdVaJa eLtioX"
+    className="Input-sc-1suizrc-0 eGLUDD"
     name="radio"
     onBlur={[Function]}
     onChange={[Function]}
@@ -16,7 +16,7 @@ exports[`<Radio> should render correctly 1`] = `
     value="a"
   />
   <span
-    className="sc-bwzfXH kpWatx"
+    className="Label-sc-38bv2k-0 ClrwZ"
   >
     A
   </span>

@@ -3,7 +3,7 @@
 exports[`<TextArea> should render correctly 1`] = `
 <textarea
   aria-invalid={false}
-  className="sc-htpNat cpiQuN"
+  className="x39jbp-0-Component-TextField-kcxcOU dgQOCW"
   name="textarea"
   onBlur={[Function]}
   onChange={[Function]}

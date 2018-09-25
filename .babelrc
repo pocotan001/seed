@@ -2,10 +2,11 @@
   "presets": ["@babel/env", "@babel/typescript", "@babel/react"],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/proposal-object-rest-spread",
+    "@babel/plugin-proposal-object-rest-spread",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     "preval",
+    "babel-plugin-styled-components",
     [
       "transform-imports",
       {
@@ -35,5 +36,22 @@
         }
       }
     ]
-  ]
+  ],
+  "env": {
+    "test": {
+      "plugins": ["dynamic-import-node"]
+    },
+    "production": {
+      "plugins": [
+        "@babel/plugin-transform-react-constant-elements",
+        "@babel/plugin-transform-react-inline-elements",
+        [
+          "babel-plugin-styled-components",
+          {
+            "displayName": false
+          }
+        ]
+      ]
+    }
+  }
 }

@@ -2,12 +2,12 @@
 
 exports[`<CheckBox> should render correctly 1`] = `
 <label
-  className="sc-htpNat cxybjL"
+  className="CheckBox-vabi55-0 iWcCjg"
 >
   <input
     aria-invalid={false}
     checked={false}
-    className="sc-bdVaJa csBluA"
+    className="Input-sc-5hru7g-0 fSdOwe"
     name="checkbox"
     onBlur={[Function]}
     onChange={[Function]}
@@ -16,7 +16,7 @@ exports[`<CheckBox> should render correctly 1`] = `
     value="a"
   />
   <span
-    className="sc-bwzfXH kpWatx"
+    className="Label-f2dhaq-0 fesqLs"
   >
     A
   </span>

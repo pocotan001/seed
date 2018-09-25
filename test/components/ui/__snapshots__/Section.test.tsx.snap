@@ -2,7 +2,7 @@
 
 exports[`<Section> should render correctly 1`] = `
 <section
-  className="sc-bdVaJa iTpXYV"
+  className="Section-sa1b69-0 lfoNbn"
 >
   alo
 </section>

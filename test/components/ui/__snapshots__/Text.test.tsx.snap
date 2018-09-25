@@ -2,7 +2,7 @@
 
 exports[`<Text> should render correctly 1`] = `
 <span
-  className="sc-bdVaJa hXSkgu"
+  className="Text-sc-18djoaj-0 iqcgzk"
 >
   alo
 </span>

@@ -2,7 +2,7 @@
 
 exports[`<NavLink> changes the class name when actived 1`] = `
 <a
-  className="a sc-bdVaJa kSKvLH"
+  className="a Link-lydjp6-0 ieobzK"
   href="/a"
   onClick={[Function]}
 >
@@ -12,7 +12,7 @@ exports[`<NavLink> changes the class name when actived 1`] = `
 
 exports[`<NavLink> should render correctly 1`] = `
 <a
-  className="sc-bdVaJa kSKvLH"
+  className="Link-lydjp6-0 ieobzK"
   href="/a"
   onClick={[Function]}
 >

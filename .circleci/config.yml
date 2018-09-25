@@ -3,51 +3,56 @@ version: 2
 references:
   container_config: &container_config
     docker:
-    - image: circleci/node:8.11.3
-
-  restore_npm: &restore_npm
-    restore_cache:
-      key: node-{{ checksum "package.json" }}
-      paths:
-        - node_modules
+      - image: circleci/node:8.12.0
 
 jobs:
+  setup:
+    <<: *container_config
+    steps:
+      - checkout
+      - run:
+          name: Update npm
+          command: "sudo npm install -g npm@latest"
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+
   build:
     <<: *container_config
     steps:
       - checkout
-      - *restore_npm
-      - run:
-          name: Install Dependencies
-          command: npm install
-      - save_cache:
-          key: node-{{ checksum "package.json" }}
-          paths:
-            - node_modules
+      - attach_workspace:
+          at: .
       - run:
           name: Build
           command: npm run build
-      - persist_to_workspace:
-          root: dist
-          paths:
-            - .
 
   test:
     <<: *container_config
     steps:
       - checkout
-      - *restore_npm
       - attach_workspace:
-          at: dist
+          at: .
       - run:
           name: Test
           command: npm run test:ci
 
 workflows:
   version: 2
-  build_and_deploy:
+
+  test:
     jobs:
-      - build
+      - setup
       - test:
           requires:
-            - build
+            - setup

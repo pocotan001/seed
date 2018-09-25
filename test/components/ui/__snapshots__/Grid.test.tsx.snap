@@ -2,16 +2,16 @@
 
 exports[`<Grid> should render correctly 1`] = `
 <div
-  className="sc-bwzfXH jaMHjs"
+  className="Grid-pvesk6-0 dRvszr"
   cols={12}
 >
   <div
-    className="sc-bdVaJa gVfgtr"
+    className="Cell-f9knfu-0 sFYOr"
   >
     A
   </div>
   <div
-    className="sc-bdVaJa gVfgtr"
+    className="Cell-f9knfu-0 sFYOr"
   >
     B
   </div>

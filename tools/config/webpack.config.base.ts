@@ -35,23 +35,6 @@ const baseConfig: webpack.Configuration = {
                     useBuiltIns: "usage"
                   }
                 ]
-              ],
-              plugins: [
-                // https://github.com/styled-components/babel-plugin-styled-components
-                [
-                  "babel-plugin-styled-components",
-                  {
-                    displayName: isDebug
-                  }
-                ],
-                ...(isDebug
-                  ? []
-                  : [
-                      // https://babeljs.io/docs/en/next/babel-plugin-transform-react-constant-elements.html
-                      "@babel/plugin-transform-react-constant-elements",
-                      // https://babeljs.io/docs/en/next/babel-plugin-transform-react-inline-elements.html
-                      "@babel/plugin-transform-react-inline-elements"
-                    ])
               ]
             }
           },

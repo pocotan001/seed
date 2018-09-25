@@ -2,7 +2,7 @@
 
 exports[`<Article> should render correctly 1`] = `
 <article
-  className="sc-bdVaJa iTpXYV"
+  className="Article-b90o5v-0 hLUBpI"
 >
   alo
 </article>
