@@ -11,14 +11,14 @@ references:
     google/cloud-sdk
 
   persist_to_workspace: &persist_to_workspace
-    - persist_to_workspace:
-        root: ~/project
-        paths:
-          - seed
+    persist_to_workspace:
+      root: ~/project
+      paths:
+        - seed
 
   attach_workspace: &attach_workspace
-    - attach_workspace:
-          at: ~/project
+    attach_workspace:
+      at: ~/project
 
 jobs:
   install:
