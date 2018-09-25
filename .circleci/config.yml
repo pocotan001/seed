@@ -26,25 +26,13 @@ jobs:
           paths:
             - seed
 
-  lint:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - run: npm run lint
-
-  typecheck:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - run: npm run typecheck
-
   test:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/project
+      - run: npm run typecheck
+      - run: npm run lint
       - run: npm run test:ci
 
 workflows:
@@ -53,12 +41,6 @@ workflows:
   install_and_test:
     jobs:
       - install
-      - lint:
-          requires:
-            - install
-      - typecheck:
-          requires:
-            - install
       - test:
           requires:
             - install
