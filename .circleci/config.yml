@@ -3,12 +3,18 @@ version: 2
 references:
   defaults: &defaults
     working_directory: ~/project/seed
-    docker:
-      - image: circleci/node:8-browsers
+
+  node_image: &node_image
+    circleci/node:8-browsers
+
+  gcloud_image: &gcloud_image
+    google/cloud-sdk
 
 jobs:
   install:
     <<: *defaults
+    docker:
+      - image: *node_image
     steps:
       - checkout
       - restore_cache:
@@ -16,7 +22,9 @@ jobs:
             - v1-npm-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
             - v1-npm-deps-{{ .Branch }}-
             - v1-npm-deps-
-      - run: npm install
+      - run:
+          name: Install Depependencies
+          command: npm install
       - save_cache:
           key: v1-npm-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
@@ -28,19 +36,71 @@ jobs:
 
   test:
     <<: *defaults
+    docker:
+      - image: *node_image
     steps:
       - attach_workspace:
           at: ~/project
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run test:ci
+      - run:
+          name: Type Check
+          command: npm run typecheck
+      - run:
+          name: Lint
+          command: npm run lint
+      - run:
+          name: Test
+          command: npm run test:ci
+
+  build:
+    <<: *defaults
+    docker:
+      - image: *node_image
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Build Production
+          command: npm run build:production
+
+  deploy:
+    <<: *defaults
+    docker:
+      - image: *gcloud_image
+    steps:
+      - run:
+          name: Store Service Account
+          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+      - run:
+          name: Authorize the Google Cloud SDK
+          command: sudo gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+      - run:
+          name: Set Several Default Settings
+          command: |
+            sudo gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
+            sudo gcloud --quiet config set compute/zone ${GCLOUD_COMPUTE_ZONE}
+      - run:
+          name: Deploy to App Engine
+          command: gcloud app deploy
 
 workflows:
   version: 2
 
-  install_and_test:
+  test_and_deploy:
     jobs:
       - install
       - test:
           requires:
             - install
+      - build:
+          requires:
+            - install
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - test
+            - build
+          filters:
+            branches:
+              only: master
