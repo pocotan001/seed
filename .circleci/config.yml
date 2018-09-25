@@ -10,6 +10,16 @@ references:
   gcloud_image: &gcloud_image
     google/cloud-sdk
 
+  persist_to_workspace: &persist_to_workspace
+    - persist_to_workspace:
+        root: ~/project
+        paths:
+          - seed
+
+  attach_workspace: &attach_workspace
+    - attach_workspace:
+          at: ~/project
+
 jobs:
   install:
     <<: *defaults
@@ -29,18 +39,14 @@ jobs:
           key: v1-npm-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - seed
+      - *persist_to_workspace
 
   test:
     <<: *defaults
     docker:
       - image: *node_image
     steps:
-      - attach_workspace:
-          at: ~/project
+      - *attach_workspace
       - run:
           name: Type Check
           command: npm run typecheck
@@ -56,19 +62,18 @@ jobs:
     docker:
       - image: *node_image
     steps:
-      - attach_workspace:
-          at: ~/project
+      - *attach_workspace
       - run:
           name: Build Production
           command: npm run build:production
+      - *persist_to_workspace
 
   deploy:
     <<: *defaults
     docker:
       - image: *gcloud_image
     steps:
-      - attach_workspace:
-          at: ~/project
+      - *attach_workspace
       - run:
           name: Activate Service Account
           command: |
@@ -81,7 +86,7 @@ jobs:
             gcloud --quiet config set compute/zone ${GCLOUD_COMPUTE_ZONE}
       - run:
           name: Deploy to App Engine
-          command: gcloud app deploy
+          command: gcloud app deploy --quiet
 
 workflows:
   version: 2
