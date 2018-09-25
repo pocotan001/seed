@@ -1,58 +1,64 @@
 version: 2
 
 references:
-  container_config: &container_config
+  defaults: &defaults
+    working_directory: ~/project/seed
     docker:
-      - image: circleci/node:8.12.0
+      - image: circleci/node:8-browsers
 
 jobs:
-  setup:
-    <<: *container_config
+  install:
+    <<: *defaults
     steps:
       - checkout
-      - run:
-          name: Update npm
-          command: "sudo npm install -g npm@latest"
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Install dependencies
-          command: npm install
+          keys:
+            - v1-npm-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v1-npm-deps-{{ .Branch }}-
+            - v1-npm-deps-
+      - run: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-npm-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
           paths:
             - node_modules
       - persist_to_workspace:
-          root: .
+          root: ~/project
           paths:
-            - node_modules
+            - seed
 
-  build:
-    <<: *container_config
+  lint:
+    <<: *defaults
     steps:
-      - checkout
       - attach_workspace:
-          at: .
-      - run:
-          name: Build
-          command: npm run build
+          at: ~/project
+      - run: npm run lint
+
+  typecheck:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: npm run typecheck
 
   test:
-    <<: *container_config
+    <<: *defaults
     steps:
-      - checkout
       - attach_workspace:
-          at: .
-      - run:
-          name: Test
-          command: npm run test:ci
+          at: ~/project
+      - run: npm run test:ci
 
 workflows:
   version: 2
 
-  test:
+  install_and_test:
     jobs:
-      - setup
+      - install
+      - lint:
+          requires:
+            - install
+      - typecheck:
+          requires:
+            - install
       - test:
           requires:
-            - setup
+            - install
