@@ -72,12 +72,12 @@ jobs:
           command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
       - run:
           name: Authorize the Google Cloud SDK
-          command: sudo gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
+          command: gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
       - run:
           name: Set Several Default Settings
           command: |
-            sudo gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
-            sudo gcloud --quiet config set compute/zone ${GCLOUD_COMPUTE_ZONE}
+            gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
+            gcloud --quiet config set compute/zone ${GCLOUD_COMPUTE_ZONE}
       - run:
           name: Deploy to App Engine
           command: gcloud app deploy
