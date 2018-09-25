@@ -67,14 +67,15 @@ jobs:
     docker:
       - image: *gcloud_image
     steps:
+      - attach_workspace:
+          at: ~/project
       - run:
-          name: Store Service Account
-          command: echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+          name: Activate Service Account
+          command: |
+            echo $GCLOUD_SERVICE_KEY > ${HOME}/gcloud-service-key.json
+            gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
       - run:
-          name: Authorize the Google Cloud SDK
-          command: gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json
-      - run:
-          name: Set Several Default Settings
+          name: Configure the Google Cloud SDK
           command: |
             gcloud --quiet config set project ${GCLOUD_PROJECT_ID}
             gcloud --quiet config set compute/zone ${GCLOUD_COMPUTE_ZONE}
