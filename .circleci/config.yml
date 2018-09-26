@@ -54,7 +54,7 @@ jobs:
     steps:
       - *attach_workspace
       - run:
-          name: Build (${ENV})
+          name: Build
           command: ENV=${ENV} npm run build
       - *persist_to_workspace
 
