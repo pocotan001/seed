@@ -3,12 +3,8 @@ version: 2
 references:
   defaults: &defaults
     working_directory: ~/project/seed
-
-  node_image: &node_image
-    circleci/node:8-browsers
-
-  gcloud_image: &gcloud_image
-    google/cloud-sdk
+    docker:
+      - image: circleci/node:8-browsers
 
   persist_to_workspace: &persist_to_workspace
     persist_to_workspace:
@@ -23,8 +19,6 @@ references:
 jobs:
   install:
     <<: *defaults
-    docker:
-      - image: *node_image
     steps:
       - checkout
       - restore_cache:
@@ -43,8 +37,6 @@ jobs:
 
   test:
     <<: *defaults
-    docker:
-      - image: *node_image
     steps:
       - *attach_workspace
       - run:
@@ -55,23 +47,21 @@ jobs:
           command: npm run lint
       - run:
           name: Test
-          command: npm run test:ci
+          command: npm test -- --maxWorkers=2
 
   build:
     <<: *defaults
-    docker:
-      - image: *node_image
     steps:
       - *attach_workspace
       - run:
-          name: Build Production
-          command: npm run build:production
+          name: Build (${ENV})
+          command: ENV=${ENV} npm run build
       - *persist_to_workspace
 
   deploy:
     <<: *defaults
     docker:
-      - image: *gcloud_image
+      - image: google/cloud-sdk
     steps:
       - *attach_workspace
       - run:
@@ -98,12 +88,14 @@ workflows:
           requires:
             - install
       - build:
+          context: seed-production
           requires:
             - install
           filters:
             branches:
               only: master
       - deploy:
+          context: seed-production
           requires:
             - test
             - build

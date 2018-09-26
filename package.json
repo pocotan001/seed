@@ -12,17 +12,13 @@
     "test:watch": "npm test -- --watch --notify",
     "test:update": "npm test -- --updateSnapshot",
     "test:cover": "npm test -- --coverage",
-    "test:ci": "npm test -- --maxWorkers=2",
     "script": "babel-node --extensions .ts tools/run",
     "dev": "npm run script -- dev",
     "build": "npm run script -- build",
-    "build:development": "ENV=development npm run build",
-    "build:staging": "ENV=staging npm run build",
-    "build:production": "ENV=production npm run build",
     "build:stats": "ENV=production npm run build -- --analyze",
     "format": "prettier --parser typescript --write '{,!(node_modules)/**/}!(*.d.){ts,tsx}'",
-    "lint": "tslint '{,!(node_modules)/**/}!(*.d.){ts,tsx}'",
     "typecheck": "tsc",
+    "lint": "tslint '{,!(node_modules)/**/}!(*.d.){ts,tsx}'",
     "precommit": "lint-staged && tsc --project ."
   },
   "browserslist": [
