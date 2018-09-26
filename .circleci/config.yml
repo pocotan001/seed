@@ -81,15 +81,12 @@ jobs:
 workflows:
   version: 2
 
-  install_and_test:
+  test_and_deploy:
     jobs:
       - install
       - test:
           requires:
             - install
-
-  deploy_production:
-    jobs:
       - build:
           context: seed-production
           requires:
@@ -98,7 +95,6 @@ workflows:
             branches:
               only: master
       - deploy:
-          context: seed-production
           requires:
             - test
             - build
