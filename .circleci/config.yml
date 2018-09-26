@@ -95,6 +95,10 @@ workflows:
             branches:
               only: master
       - deploy:
+          context: seed-production
           requires:
             - test
             - build
+          filters:
+            branches:
+              only: master
