@@ -86,17 +86,57 @@ workflows:
       - install:
           filters:
             branches:
-              ignore: master
+              ignore:
+                - master
+                - /^release\/.*/
       - test:
           requires:
             - install
+
+  deploy_development:
+    jobs:
+      - install:
+          filters:
+            branches:
+              only: master
+      - test:
+          requires:
+            - install
+      - build:
+          context: seed-development
+          requires:
+            - install
+      - deploy:
+          context: seed-development
+          requires:
+            - test
+            - build
+
+  deploy_staging:
+    jobs:
+      - install:
+          filters:
+            branches:
+              only: release/staging
+      - test:
+          requires:
+            - install
+      - build:
+          context: seed-staging
+          requires:
+            - install
+      - deploy:
+          context: seed-staging
+          requires:
+            - test
+            - build
 
   deploy_production:
     jobs:
       - install:
           filters:
             branches:
-              only: master
+              only: release/production
       - test:
           requires:
             - install
