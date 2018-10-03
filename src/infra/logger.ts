@@ -7,7 +7,7 @@ type Log = (formatter?: any, ...args: any[]) => void;
 
 interface LogConfig {
   level: number;
-  fn: keyof Console;
+  method: keyof Console;
   icon?: string; // server only
 }
 
@@ -26,21 +26,21 @@ const FORBIDDEN = config.isProd && config.isClient;
 const Types: Record<LogType, LogConfig> = {
   error: {
     level: LogLevel.Error,
-    fn: "error",
+    method: "error",
     icon: chalk.red("✖")
   },
   warn: {
     level: LogLevel.Warn,
-    fn: "warn",
+    method: "warn",
     icon: chalk.yellow("⚠")
   },
   info: {
     level: LogLevel.Info,
-    fn: "info"
+    method: "info"
   },
   debug: {
     level: LogLevel.Debug,
-    fn: config.isClient ? "debug" : "log"
+    method: config.isClient ? "debug" : "log"
   }
 };
 
@@ -92,12 +92,12 @@ export class Logger implements Record<LogType, Log> {
     debug.enable(Array.from(enables).join(","));
   }
 
-  private createLog({ level, icon, fn }: LogConfig): Log {
+  private createLog({ level, method, icon }: LogConfig): Log {
     const log = debug(this.namespace);
 
     // Log via console.xxx
     // https://github.com/visionmedia/debug#output-streams
-    log.log = console[fn].bind(console);
+    log.log = console[method].bind(console);
 
     return (formatter, ...args) => {
       if (!this.isEnabled || level > Logger.level) {

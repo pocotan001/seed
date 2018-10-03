@@ -1,8 +1,10 @@
 runtime: nodejs8
+
 handlers:
-- url: /.*
-  secure: always
-  redirect_http_response_code: 301
-  script: auto
-- url: /
-  static_dir: dist/public
+  - url: /.*
+    script: auto
+    secure: always
+    redirect_http_response_code: 301
+
+  - url: /
+    static_dir: dist/public

@@ -5,7 +5,7 @@ const config = Object.freeze({
   env: process.env.NODE_ENV,
   origin: process.env.ORIGIN,
   logLevel: process.env.LOG_LEVEL || "DEBUG",
-  isDev: process.env.NODE_ENV === "development",
+  isDev: process.env.NODE_ENV !== "production",
   isProd: process.env.NODE_ENV === "production",
   isServer: process.env.CLIENT !== "yes",
   isClient: process.env.CLIENT === "yes"
