@@ -1,4 +1,5 @@
 import * as React from "react";
+import serialize from "serialize-javascript";
 import config from "~/config";
 import { State } from "~/store/state";
 
@@ -17,7 +18,7 @@ const Scripts: React.SFC<ScriptsProps> = ({ state, scripts, nonce }) => (
     <script
       nonce={nonce}
       dangerouslySetInnerHTML={{
-        __html: `window.__STATE=${JSON.stringify(state)};`
+        __html: `window.__STATE=${serialize(state, { isJSON: true })};`
       }}
     />
     {scripts.map((src, i) => (
