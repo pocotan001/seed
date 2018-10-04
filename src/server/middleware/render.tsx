@@ -1,6 +1,7 @@
 import { Request, RequestHandler, Response } from "express-serve-static-core";
 import createHistory from "history/createMemoryHistory";
 import LRU from "lru-cache";
+import { toJS } from "mobx";
 import { useStaticRendering } from "mobx-react";
 import * as React from "react";
 import * as ReactDOM from "react-dom/server";
@@ -159,7 +160,7 @@ const render = (): RequestHandler => async (req, res, next) => {
     appStream.on("end", () => {
       const foot = ReactDOM.renderToStaticMarkup(
         <>
-          <Scripts state={state} scripts={scripts} nonce={nonce} />
+          <Scripts state={toJS(state)} scripts={scripts} nonce={nonce} />
           <JsonLd data={route.jsonLd} />
         </>
       );
