@@ -13,13 +13,13 @@ const defaultConfig: AxiosRequestConfig = {
   }
 };
 
-const createRequest = (opts: AxiosRequestConfig = {}): Request => {
+const createRequest = (givenConfig: AxiosRequestConfig = {}): Request => {
   const request = axios.create({
     ...defaultConfig,
-    ...opts,
+    ...givenConfig,
     headers: {
       ...defaultConfig.headers,
-      ...opts.headers
+      ...givenConfig.headers
     }
   });
 

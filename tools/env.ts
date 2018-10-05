@@ -1,12 +1,10 @@
 import * as dotenv from "dotenv";
 
-const env = process.env.ENV || "local";
+const ENV = process.env.ENV || "local";
+const NODE_ENV =
+  process.env.NODE_ENV || (ENV === "local" ? "development" : "production");
 
-Object.assign(process.env, {
-  ENV: env,
-  NODE_ENV:
-    process.env.NODE_ENV || env === "local" ? "development" : "production"
-});
+Object.assign(process.env, { ENV, NODE_ENV });
 
-dotenv.config({ path: `.env.${env}` });
+dotenv.config({ path: `.env.${ENV}` });
 dotenv.config({ path: ".env" });

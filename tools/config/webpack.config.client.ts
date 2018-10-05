@@ -14,6 +14,7 @@ const clientConfig: webpack.Configuration = {
   ...baseConfig,
   name: "Client",
   target: "web",
+  devtool: isDebug ? ("inline-cheap-module-source-map" as any) : false,
   entry: ["intersection-observer", "./src/client/index.tsx"],
   output: {
     path: `${DIST_DIR}/public`,

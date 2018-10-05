@@ -10,9 +10,11 @@ const serverConfig: webpack.Configuration = {
   ...baseConfig,
   name: "Server",
   target: "node",
+  devtool: isDebug ? ("inline-cheap-module-source-map" as any) : "source-map",
   entry: [
-    ...(isDebug ? ["source-map-support/register"] : []),
-    ...["./tools/env.ts", "./src/server/index.ts"]
+    "source-map-support/register",
+    "./tools/env.ts",
+    "./src/server/index.ts"
   ],
   output: {
     path: DIST_DIR,

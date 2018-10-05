@@ -8,7 +8,6 @@ const baseConfig: webpack.Configuration = {
   mode: isDebug ? "development" : "production",
   bail: !isDebug,
   cache: isDebug,
-  devtool: isDebug && ("inline-cheap-module-source-map" as any),
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
     alias: { "~": SRC_DIR }
