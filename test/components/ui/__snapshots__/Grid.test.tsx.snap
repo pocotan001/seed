@@ -6,12 +6,12 @@ exports[`<Grid> should render correctly 1`] = `
   cols={12}
 >
   <div
-    className="Cell-f9knfu-0 sFYOr"
+    className="Cell-f9knfu-0 bvKviF"
   >
     A
   </div>
   <div
-    className="Cell-f9knfu-0 sFYOr"
+    className="Cell-f9knfu-0 bvKviF"
   >
     B
   </div>

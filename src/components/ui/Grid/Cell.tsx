@@ -15,6 +15,7 @@ interface CellStyleProps {
   justify?: CSSProperties["justifySelf"];
   align?: CSSProperties["alignSelf"];
   order?: CSSProperties["order"];
+  hidden?: boolean;
 }
 
 const styles: StyleFactory<CellStyleProps> = ({
@@ -22,8 +23,10 @@ const styles: StyleFactory<CellStyleProps> = ({
   row,
   justify,
   align,
-  order
+  order,
+  hidden
 }) => css`
+  ${hidden && "display: none"};
   ${col && `grid-column-end: span ${col}`};
   ${row && `grid-row-end: span ${row}`};
   ${justify && `justify-self: ${justify}`};

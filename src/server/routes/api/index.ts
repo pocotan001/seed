@@ -14,11 +14,10 @@ api.use(service());
 api.get("/cats", cache(3600), cat.getCats);
 api.post("/signin", auth.signIn);
 api.delete("/signout", auth.signOut);
+api.use(catcher());
 
 if (config.isProd) {
   api.use(errorReporting());
 }
-
-api.use(catcher());
 
 export default api;

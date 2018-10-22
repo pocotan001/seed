@@ -23,7 +23,7 @@ const isModifiedEvent = (e: MouseEvent): boolean =>
 export class Link extends React.PureComponent<LinkProps> {
   store = this.props.store!;
 
-  handleClick = (e: MouseEvent) => {
+  handleClick: React.MouseEventHandler<HTMLAnchorElement> = e => {
     const { href, target, onClick } = this.props;
 
     if (onClick) {

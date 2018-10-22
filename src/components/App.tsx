@@ -51,9 +51,7 @@ export default class App extends React.PureComponent<AppProps, AppState> {
     nextProps: AppProps,
     prevState: AppState
   ): Partial<AppState> | null {
-    const { children } = prevState;
-
-    if (children !== nextProps.children) {
+    if (prevState.children !== nextProps.children) {
       return {
         children: nextProps.children,
         error: null

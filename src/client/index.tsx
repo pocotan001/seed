@@ -85,7 +85,7 @@ const render = async (
     // Probably fatal error
     log.error(err);
 
-    if (!hydrate && location.key === history.location.key) {
+    if (!opts.hydrate && location.key === history.location.key) {
       window.location.reload();
     }
   }
