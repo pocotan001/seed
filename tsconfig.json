@@ -3,34 +3,26 @@
     /**
      * Basic Options
      */
-    "target": "esnext",
-    "module": "commonjs",
     "jsx": "preserve",
-    "noEmit": true,
+    "module": "commonjs",
+    "target": "esnext",
 
     /**
      * Type-checking Options
      */
-    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
+    "strict": true,
 
     /**
      * Module Resolution Options
      */
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": { "~/*": ["./src/*"] },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-
-    /**
-     * Experimental Options
-     */
-    "experimentalDecorators": true
+    "moduleResolution": "node"
   },
   "exclude": ["node_modules"]
 }

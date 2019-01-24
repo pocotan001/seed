@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Heading> should render correctly 1`] = `
-<h1
-  className="sc-18djoaj-0-h1-Text-bbIbrg hBLYRb"
->
-  alo
-</h1>
-`;

@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Article> should render correctly 1`] = `
-<article
-  className="Article-b90o5v-0 hLUBpI"
->
-  alo
-</article>
-`;

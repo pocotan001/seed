@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Space> should render correctly 1`] = `
-<div
-  className="Space-sc-9fq1rg-0 kOMwYl"
->
-  alo
-</div>
-`;

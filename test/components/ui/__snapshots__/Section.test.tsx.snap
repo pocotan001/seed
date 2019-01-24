@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Section> should render correctly 1`] = `
-<section
-  className="Section-sa1b69-0 lfoNbn"
->
-  alo
-</section>
-`;

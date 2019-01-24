@@ -1,4 +1,9 @@
 /**
+ * Include null and undefined to T
+ */
+type Nullable<T> = T | null | undefined;
+
+/**
  * From T omit a set of properties K
  */
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;

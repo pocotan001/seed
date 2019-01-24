@@ -1,50 +1,17 @@
 {
-  "presets": ["@babel/env", "@babel/typescript", "@babel/react"],
+  "presets": ["@babel/typescript", "@babel/react"],
   "plugins": [
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-object-rest-spread",
-    ["@babel/plugin-proposal-decorators", { "legacy": true }],
-    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/syntax-dynamic-import",
+    ["@babel/proposal-class-properties", { "loose": true }],
+    "@babel/proposal-object-rest-spread",
     "preval",
-    "babel-plugin-styled-components",
-    [
-      "transform-imports",
-      {
-        "lodash": {
-          "transform": "lodash/${member}",
-          "preventFullImport": true
-        },
-        "~/components/ui": {
-          "transform": "~/components/ui/${member}",
-          "preventFullImport": true
-        },
-        "~/components/modules": {
-          "transform": "~/components/modules/${member}",
-          "preventFullImport": true
-        },
-        "~/components/styles/animations": {
-          "transform": "~/components/styles/animations/${member}",
-          "preventFullImport": true
-        },
-        "~/components/styles/theme": {
-          "transform": "~/components/styles/theme/${member}",
-          "preventFullImport": true
-        },
-        "~/utils": {
-          "transform": "~/utils/${member}",
-          "preventFullImport": true
-        }
-      }
-    ]
+    "babel-plugin-styled-components"
   ],
   "env": {
-    "test": {
-      "plugins": ["dynamic-import-node"]
-    },
     "production": {
       "plugins": [
-        "@babel/plugin-transform-react-constant-elements",
-        "@babel/plugin-transform-react-inline-elements",
+        "@babel/transform-react-constant-elements",
+        "@babel/transform-react-inline-elements",
         [
           "babel-plugin-styled-components",
           {
@@ -52,6 +19,9 @@
           }
         ]
       ]
+    },
+    "test": {
+      "presets": ["@babel/env"]
     }
   }
 }

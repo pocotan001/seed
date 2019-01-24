@@ -28,8 +28,6 @@
      */
     "insecure-random": true,
     "no-banned-terms": true,
-    // Requires type info
-    // "no-cookies": true,
     "no-delete-expression": true,
     "no-disable-auto-sanitization": true,
     "no-document-domain": true,
@@ -43,7 +41,6 @@
     ],
     "no-inner-html": true,
     "no-octal-literal": true,
-    // "no-reserved-keywords": true,
     "no-string-based-set-immediate": true,
     "no-string-based-set-interval": true,
     "no-string-based-set-timeout": true,
@@ -51,7 +48,10 @@
     "possible-timing-attack": true,
     "react-anchor-blank-noopener": true,
     "react-iframe-missing-sandbox": true,
-    // "react-no-dangerous-html": true,
+    "react-no-dangerous-html": true,
+    // "no-reserved-keywords": true,
+    // Requires type info
+    // "no-cookies": true,
 
     /**
      * Common Bugs and Correctness
@@ -61,7 +61,6 @@
     "no-control-regex": true,
     "no-increment-decrement": true,
     "no-invalid-regexp": true,
-    "no-invalid-this": true,
     "no-regex-spaces": true,
     "no-unnecessary-bind": true,
     "no-unnecessary-override": true,
@@ -70,6 +69,7 @@
     "react-this-binding-issue": true,
     "react-unused-props-and-state": true,
     "use-named-parameter": true,
+    // "no-invalid-this": true,
 
     /**
      * Code Clarity
@@ -94,15 +94,16 @@
     "react-a11y-lang": true,
     "react-a11y-meta": true,
     "react-a11y-props": true,
+    "react-a11y-role": true,
+    "react-a11y-role-supports-aria-props": true,
+    "react-a11y-tabindex-no-positive": true,
+    // Not useful in Japanese
+    // "react-a11y-titles": true,
     // Conflict with the `jsx-boolean-value` rule
     // "react-a11y-proptypes": true,
-    "react-a11y-role": true,
     // Form elements incorrectly flagged
     // https://github.com/Microsoft/tslint-microsoft-contrib/issues/409
     // "react-a11y-role-has-required-aria-props": true,
-    "react-a11y-role-supports-aria-props": true,
-    "react-a11y-tabindex-no-positive": true,
-    "react-a11y-titles": true,
 
     /**
      * Consistent Code Style
@@ -124,9 +125,12 @@
       },
       {
         "type": "parameter",
-        "format": ["camelCase", "PascalCase"],
-        "leadingUnderscore": "allow",
-        "trailingUnderscore": "allow"
+        "format": ["camelCase", "PascalCase"]
+      },
+      {
+        "type": "parameter",
+        "modifiers": "unused",
+        "format": null
       },
       {
         "type": "member",
@@ -151,21 +155,15 @@
     "no-var-before-return": true,
     "object-shorthand-properties-first": true,
     "parameter-properties": true,
+    "prefer-while": true,
     // `@babel/plugin-transform-typescript` does not support const enum
     // "prefer-const-enum": true,
-    "prefer-while": true,
 
     /**
      * React & JSX rules
      * https://github.com/palantir/tslint-react
      */
-    // Conflict with the `tslint-config-prettier`
-    // "jsx-alignment": true,
     "jsx-boolean-value": [true, "never"],
-    // Conflict with the `tslint-config-prettier`
-    // "jsx-curly-spacing": [true, "never"],
-    // Conflict with the `tslint-config-prettier`
-    // "jsx-equals-spacing": [true, "never"],
     "jsx-key": true,
     "jsx-no-bind": true,
     "jsx-no-lambda": true,
@@ -174,6 +172,9 @@
     "jsx-self-close": true,
     "jsx-space-before-trailing-slash": true
     // Conflict with the `tslint-config-prettier`
-    // "jsx-wrap-multiline": true
+    // "jsx-alignment": true,
+    // "jsx-curly-spacing": [true, "never"],
+    // "jsx-equals-spacing": [true, "never"],
+    // "jsx-wrap-multiline": true,
   }
 }

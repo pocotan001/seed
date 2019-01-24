@@ -1,24 +1,34 @@
-import * as fs from "fs-extra";
+import rimraf from "rimraf";
 import { promisify } from "util";
 import webpack from "webpack";
-import { DIST_DIR, ROOT_DIR } from "../config/paths";
-import clientConfig from "../config/webpack.config.client";
-import serverConfig from "../config/webpack.config.server";
-import * as log from "../logger";
+import log from "../lib/logger";
+import createClientConfig from "../webpack/ClientConfig";
+import createServerConfig from "../webpack/ServerConfig";
+import { Script } from "./Script";
 
-const compiler = webpack([clientConfig, serverConfig]);
-const compile = promisify<webpack.Stats>(compiler.run.bind(compiler));
-const statsOpts = clientConfig.stats;
+const remove = promisify(rimraf);
+const statsOption: webpack.Options.Stats = {
+  colors: true,
+  errors: true,
+  warnings: true,
+  builtAt: false,
+  hash: false,
+  timings: false,
+  version: false,
+  entrypoints: false,
+  modules: false
+};
 
-const build = async () => {
-  await fs.remove(DIST_DIR);
+const build: Script = async config => {
+  const clientConfig = createClientConfig(config);
+  const serverConfig = createServerConfig(config);
+  const compiler = webpack([clientConfig, serverConfig]);
+  const compile = promisify<webpack.Stats>(compiler.run.bind(compiler));
 
-  const [stats] = await Promise.all([
-    compile(),
-    fs.copy(`${ROOT_DIR}/static`, `${DIST_DIR}/public`)
-  ]);
+  await remove(config.paths.dist);
+  const stats = await compile();
 
-  log.info(`${stats.toString(statsOpts)}\n`);
+  log.info(`${stats.toString(statsOption)}\n`);
 };
 
 export default build;

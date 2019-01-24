@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Aligner> should render correctly 1`] = `
-<div
-  className="Aligner-sc-2t9170-0 htGQhV"
->
-  alo
-</div>
-`;
