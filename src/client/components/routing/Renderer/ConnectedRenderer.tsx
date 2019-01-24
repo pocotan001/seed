@@ -82,30 +82,14 @@ class ConnectedRenderer extends React.Component<
     this.setState({ Component });
   }
 
-  shouldComponentUpdate(
-    nextProps: ConnectedRendererProps,
-    nextState: ConnectedRendererState
-  ): boolean {
-    const { routes, location } = this.props;
-    const { Component } = this.state;
+  async componentDidUpdate(prevProps: ConnectedRendererProps): Promise<void> {
+    const { operations, routes, location, history, routerAction } = this.props;
+    const isNavigated = prevProps.location !== location;
+    const isRoutesChanged = prevProps.routes !== routes;
 
-    if (location !== nextProps.location) {
-      return true;
+    if (!isNavigated && !isRoutesChanged) {
+      return;
     }
-
-    if (Component !== nextState.Component) {
-      return true;
-    }
-
-    if (routes !== nextProps.routes) {
-      return true;
-    }
-
-    return false;
-  }
-
-  async componentDidUpdate(): Promise<void> {
-    const { operations, location, history, routerAction } = this.props;
 
     const isVisited =
       routerAction === "POP" && location.key && visited.has(location.key);
