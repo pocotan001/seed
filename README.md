@@ -1,1 +1,1 @@
-A starter boilerplate for a universal web app using express, react, mobx, webpack, and typescript
+A starter skeleton for frontend projects using express, react, redux, webpack, and typescript
