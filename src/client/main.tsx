@@ -12,8 +12,8 @@ import createAPIClient from "./infra/client/APIClient";
 import createRepositories from "./infra/repositories";
 import createServiceWorker from "./infra/ServiceWorker";
 import routes from "./routes";
+import createReducer from "./state";
 import createOperations from "./state/Operations";
-import createReducer from "./state/Reducer";
 
 const config = createConfig();
 const history = createBrowserHistory();

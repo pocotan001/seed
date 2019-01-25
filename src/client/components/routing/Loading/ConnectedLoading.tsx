@@ -1,7 +1,7 @@
 import React from "react";
 import { connect, MapStateToProps } from "react-redux";
 import sleep from "../../../../lib/sleep";
-import { State } from "../../../state/State";
+import { State } from "../../../state";
 import Loading from "./Loading";
 
 interface StateProps {

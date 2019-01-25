@@ -3,8 +3,8 @@ import { connect, MapStateToProps } from "react-redux";
 import { Redirect } from "react-router";
 import { SubmissionError } from "redux-form";
 import { LoginFormSubmitHandler } from "../../../components/modules/LoginForm";
+import { State } from "../../../state";
 import createAuthGetters from "../../../state/auth/AuthGetters";
-import { State } from "../../../state/State";
 import { RouteComponentProps } from "../../routing/RouteComponent";
 import LoginPage from "./LoginPage";
 

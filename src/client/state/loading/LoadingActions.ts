@@ -1,17 +1,17 @@
 import { Action } from "../Action";
 import { LoadingActionType } from "./LoadingActionType";
 
-type StartLoadingAction = Action<LoadingActionType.Start>;
-type FinishLoadingAction = Action<LoadingActionType.Finish>;
+type StartAction = Action<LoadingActionType.Start>;
+type FinishAction = Action<LoadingActionType.Finish>;
 
-export type LoadingAction = StartLoadingAction | FinishLoadingAction;
+export type LoadingAction = StartAction | FinishAction;
 
-export const start = (): StartLoadingAction => ({
+export const start = (): StartAction => ({
   type: LoadingActionType.Start,
   payload: null
 });
 
-export const finish = (): FinishLoadingAction => ({
+export const finish = (): FinishAction => ({
   type: LoadingActionType.Finish,
   payload: null
 });

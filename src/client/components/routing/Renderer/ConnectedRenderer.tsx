@@ -6,8 +6,8 @@ import { match as Match } from "react-router";
 import { matchRoutes } from "react-router-config";
 import { RouteComponent } from "../../../components/routing/RouteComponent";
 import { RouteConfig } from "../../../routes";
+import { State } from "../../../state";
 import { Operations } from "../../../state/Operations";
-import { State } from "../../../state/State";
 import Renderer from "./Renderer";
 
 interface StateProps {

@@ -5,6 +5,7 @@ import {
   LoginResponse,
   LogoutResponse
 } from "../../infra/repositories/AuthRepository";
+import { reset } from "../root/RootActions";
 import {
   loginFailure,
   loginRequest,
@@ -45,6 +46,7 @@ const createAuthOperations = (
       const resp = await authRepo.logout();
 
       await persistor.purge();
+      dispatch(reset());
       dispatch(logoutSuccess());
 
       return resp;
