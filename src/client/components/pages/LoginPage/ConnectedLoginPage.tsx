@@ -2,10 +2,10 @@ import React from "react";
 import { connect, MapStateToProps } from "react-redux";
 import { Redirect } from "react-router";
 import { SubmissionError } from "redux-form";
-import { LoginFormSubmitHandler } from "../../../components/modules/LoginForm";
 import { State } from "../../../state";
 import createAuthGetters from "../../../state/auth/AuthGetters";
 import { RouteComponentProps } from "../../routing/RouteComponent";
+import { LoginFormSubmitHandler } from "./LoginForm";
 import LoginPage from "./LoginPage";
 
 interface StateProps {

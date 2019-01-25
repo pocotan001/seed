@@ -1,20 +1,13 @@
 import React from "react";
-import styled from "styled-components";
+import DefaultLayout from "../layouts/DefaultLayout";
+import Aligner from "../ui/Aligner";
 
-interface FallbackProps {
-  className?: string;
-}
-
-const Fallback: React.FC<FallbackProps> = ({ className }) => (
-  <div className={className}>
-    <p>Loading ...</p>
-  </div>
+const Fallback: React.FC = () => (
+  <DefaultLayout>
+    <Aligner height="100%" justify="center" align="center">
+      <p>Loading ...</p>
+    </Aligner>
+  </DefaultLayout>
 );
 
-export default styled(Fallback)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-`;
+export default Fallback;

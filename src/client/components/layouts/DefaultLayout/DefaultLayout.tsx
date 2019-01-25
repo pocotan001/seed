@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { AuthOperations } from "../../state/auth/AuthOperations";
-import Footer from "../modules/Footer";
-import Header from "../modules/Header";
-import Main from "../modules/Main";
+import { AuthOperations } from "../../../state/auth/AuthOperations";
+import Footer from "./Footer";
+import Header from "./Header";
+import Main from "./Main";
 
 interface DefaultLayoutProps {
   logout?: AuthOperations["logout"];

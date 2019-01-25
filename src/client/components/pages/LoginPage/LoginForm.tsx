@@ -7,10 +7,10 @@ import {
   reduxForm
 } from "redux-form";
 import styled from "styled-components";
-import { isEmail, isRequired } from "../../../lib/Validators";
-import Aligner from "../ui/Aligner";
-import Button from "../ui/Button";
-import TextField from "../ui/TextField";
+import { isEmail, isRequired } from "../../../../lib/Validators";
+import Aligner from "../../ui/Aligner";
+import Button from "../../ui/Button";
+import TextField from "../../ui/TextField";
 
 interface FormData {
   email?: string;

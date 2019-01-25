@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Color } from "../styles/enums";
+import { Color } from "../../styles/enums";
 
 interface FooterProps {
   className?: string;

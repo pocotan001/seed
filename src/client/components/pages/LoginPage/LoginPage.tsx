@@ -1,8 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import DefaultLayout from "../../layouts/DefaultLayout";
-import LoginForm, { LoginFormSubmitHandler } from "../../modules/LoginForm";
 import Aligner from "../../ui/Aligner";
+import LoginForm, { LoginFormSubmitHandler } from "./LoginForm";
 
 interface LoginPageProps {
   onSubmit: LoginFormSubmitHandler;

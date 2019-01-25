@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { AuthOperations } from "../../../state/auth/AuthOperations";
-import { Color } from "../../styles/enums";
-import Grid from "../../ui/Grid";
-import Text from "../../ui/Text";
+import { AuthOperations } from "../../../../state/auth/AuthOperations";
+import { Color } from "../../../styles/enums";
+import Grid from "../../../ui/Grid";
+import Text from "../../../ui/Text";
 import Logout from "./Logout";
 
 interface HeaderProps {

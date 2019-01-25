@@ -62,8 +62,8 @@ if (module.hot) {
     render(NextApp, nextRoutes);
   });
 
-  module.hot.accept("./state/Reducer", () => {
-    const createNextReducer = require("./state/Reducer").default;
+  module.hot.accept("./state", () => {
+    const createNextReducer = require("./state").default;
     store.replaceReducer(createNextReducer(history));
   });
 }
