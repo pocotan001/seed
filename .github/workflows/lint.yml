@@ -1,0 +1,20 @@
+name: Lint
+
+on: push
+
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "package.json"
+          cache: "npm"
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Lint
+        run: npm run lint

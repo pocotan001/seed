@@ -1,0 +1,29 @@
+export const colors = {
+  // Gray
+  "gray.50": "#fafafa",
+  "gray.100": "#f5f5f5",
+  "gray.200": "#eeeeee",
+  "gray.300": "#e0e0e0",
+  "gray.400": "#bdbdbd",
+  "gray.500": "#9e9e9e",
+  "gray.600": "#757575",
+  "gray.700": "#616161",
+  "gray.800": "#424242",
+  "gray.900": "#212121",
+  // Pink
+  "pink.50": "#fce4ec",
+  "pink.100": "#f8bbd0",
+  "pink.200": "#f48fb1",
+  "pink.300": "#f06292",
+  "pink.400": "#ec407a",
+  "pink.500": "#e91e63",
+  "pink.600": "#d81b60",
+  "pink.700": "#c2185b",
+  "pink.800": "#ad1457",
+  "pink.900": "#880e4f",
+  // Misc
+  white: "#ffffff",
+  black: "#000000",
+  transparent: "transparent",
+  currentColor: "currentColor",
+} satisfies Record<string, string>;
