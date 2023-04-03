@@ -16,13 +16,11 @@ const meta: Meta<typeof Container> = {
 
 export const Basic: Story = {
   args: {
-    bg: "pink.500",
-    color: "white",
     maxW: 640,
     p: 24,
   },
   render: (args) => (
-    <Container {...args}>
+    <Container bg="pink.500" color="white" {...args}>
       まだ会ったことのない仲間に呼びかけます。
       <br />
       まだ会ったことのないわたし達の仲間に呼びかけます！

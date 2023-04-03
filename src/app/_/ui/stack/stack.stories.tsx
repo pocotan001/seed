@@ -127,12 +127,11 @@ export const Centering: Story = {
     layout: "fullscreen",
   },
   args: {
-    h: "screenY",
     justify: "center",
     items: "center",
   },
   render: (args) => (
-    <Stack {...args}>
+    <Stack h="screenY" {...args}>
       <Item fontSize={24} w={128} h={128}>
         🥺
       </Item>
@@ -171,11 +170,10 @@ export const HolyGrailLayout: Story = {
     layout: "fullscreen",
   },
   args: {
-    h: "screenY",
     gap: 16,
   },
   render: (args) => (
-    <Stack {...args}>
+    <Stack h="screenY" {...args}>
       <Item as="header">Header</Item>
       <Stack direction="row" grow={1} gap={16}>
         <Item as="main" order={2} grow={1}>
