@@ -16,7 +16,6 @@ const meta: Meta<typeof Slide> = {
   component: Slide,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: [],
     forward: ["direction"],
   }),
   args: {

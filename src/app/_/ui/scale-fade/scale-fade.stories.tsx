@@ -14,9 +14,7 @@ const meta: Meta<typeof ScaleFade> = {
   title: "UI / Utils / ScaleFade",
   component: ScaleFade,
   tags: ["autodocs"],
-  argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: [],
-  }),
+  argTypes: createArgTypesBySprinkleProps(systemProps),
   args: {
     in: false,
     mountOnEnter: false,

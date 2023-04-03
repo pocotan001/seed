@@ -15,7 +15,7 @@ const meta: Meta<typeof Icon> = {
   component: Icon,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: ["color"],
+    alwaysShow: ["color"],
   }),
 };
 

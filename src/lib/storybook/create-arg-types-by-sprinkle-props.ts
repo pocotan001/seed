@@ -5,8 +5,8 @@ type SprinkleProps = {
 };
 
 type Options<P extends SprinkleProps> = {
-  include?: (keyof P["styles"])[];
   forward?: (keyof P["styles"])[];
+  alwaysShow?: boolean | (keyof P["styles"])[];
 };
 
 /**
@@ -20,15 +20,12 @@ export const createArgTypesBySprinkleProps = <P extends SprinkleProps>(
     Object.entries(sprinkleProps.styles)
       .filter(([key]) => !options.forward?.includes(key))
       .map(([key, prop]) => {
-        if (options.include && !options.include.includes(key)) {
-          const inputType: InputType = {
-            table: {
-              disable: true,
-            },
-          };
-
-          return [key, inputType];
-        }
+        const ifConditional: InputType["if"] =
+          options.alwaysShow === true ||
+          (Array.isArray(options.alwaysShow) &&
+            options.alwaysShow.includes(key))
+            ? undefined
+            : { arg: "showAll" };
 
         // in shorthand case
         if (prop.mappings) {
@@ -40,6 +37,7 @@ export const createArgTypesBySprinkleProps = <P extends SprinkleProps>(
                 sprinkleProps.styles[prop.mappings[0]].values
               ).map((key) => (Number.isNaN(Number(key)) ? key : Number(key))),
             },
+            if: ifConditional,
           };
 
           return [key, inputType];
@@ -52,17 +50,19 @@ export const createArgTypesBySprinkleProps = <P extends SprinkleProps>(
               Number.isNaN(Number(key)) ? key : Number(key)
             ),
           },
+          if: ifConditional,
         };
 
         return [key, inputType];
       })
   ),
-  ...(options.include && {
-    other: {
-      name:
-        options.include.length === 0
-          ? "It also supports all system props"
-          : "All other system props",
+  ...(options.alwaysShow !== true && {
+    showAll: {
+      name: "Show all system props",
+      type: "boolean",
+      // FIXME: Displaying as blank in preview
+      //        https://github.com/storybookjs/storybook/issues/11983
+      defaultValue: false,
     },
   }),
 });

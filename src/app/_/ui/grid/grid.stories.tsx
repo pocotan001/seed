@@ -12,7 +12,7 @@ const meta: Meta<typeof Grid> = {
   component: Grid,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: [
+    alwaysShow: [
       "cols",
       "rows",
       "flow",

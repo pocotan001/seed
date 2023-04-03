@@ -11,7 +11,7 @@ const meta: Meta<typeof Skeleton> = {
   component: Skeleton,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: ["w", "maxW", "h", "maxH", "rounded"],
+    alwaysShow: ["w", "maxW", "h", "maxH", "rounded"],
   }),
 };
 

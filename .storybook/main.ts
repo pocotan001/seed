@@ -4,7 +4,6 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { RuleSetRule } from "webpack";
 
 const config: StorybookConfig = {
-  typescript: { reactDocgen: false },
   stories: ["../src/**/*.stories.@(ts|tsx)"],
   staticDirs: ["./public", "../public"],
   addons: [

@@ -13,14 +13,14 @@ import {
 } from "react-transition-group/Transition";
 import { cx } from "~/app/_/styles/utils/cx";
 import { Box } from "~/app/_/ui/box";
-import { Merge } from "~/lib/types";
+import { Overwrite } from "~/lib/types";
 import { TransitionVariants, transitionRecipe } from "./transition.css";
 
 const DEFAULT_ELEMENT = "div" satisfies ElementType;
 
 type SimplifiedTransitionStatus = "enter" | "exit" | undefined;
 
-type Props<E extends ElementType> = Merge<
+type Props<E extends ElementType> = Overwrite<
   ComponentProps<typeof Box<E>>,
   Pick<
     TransitionProps,

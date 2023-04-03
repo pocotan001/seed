@@ -17,7 +17,15 @@ const meta: Meta<typeof Stack> = {
   component: Stack,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: ["direction", "wrap", "justify", "items", "gap", "gapX", "gapY"],
+    alwaysShow: [
+      "direction",
+      "wrap",
+      "justify",
+      "items",
+      "gap",
+      "gapX",
+      "gapY",
+    ],
   }),
 };
 

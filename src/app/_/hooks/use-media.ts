@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
+import { Entries } from "type-fest";
 import { media as mediaToken } from "~/app/_/styles/theme/tokens";
-import { Entries } from "~/lib/types/entries";
 
 type Key = keyof typeof mediaToken;
 type MediaMatches = Record<Key, boolean>;

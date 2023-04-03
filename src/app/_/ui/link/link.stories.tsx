@@ -10,7 +10,7 @@ const meta: Meta<typeof Link> = {
   component: Link,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: [
+    alwaysShow: [
       "fontFamily",
       "fontSize",
       "fontStyle",

@@ -12,7 +12,7 @@ const meta: Meta<typeof AspectRatio> = {
   component: AspectRatio,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: ["ratio", "w", "maxW"],
+    alwaysShow: ["ratio", "w", "maxW"],
   }),
 };
 

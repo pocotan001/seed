@@ -12,7 +12,6 @@ const meta: Meta<typeof Button> = {
   component: Button,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: [],
     forward: ["color"],
   }),
 };

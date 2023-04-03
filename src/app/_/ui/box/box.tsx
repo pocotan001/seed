@@ -6,34 +6,35 @@ import {
   PropsWithRef,
   ReactElement,
 } from "react";
+import { Entries } from "type-fest";
 import { system, SystemProps } from "~/app/_/styles/system.css";
 import { cx } from "~/app/_/styles/utils/cx";
-import { Merge } from "~/lib/types";
+import { Overwrite } from "~/lib/types";
 
 const DEFAULT_ELEMENT = "div" satisfies ElementType;
 
-type Props<E extends ElementType> = Merge<
+type Props<E extends ElementType> = Overwrite<
   E extends keyof JSX.IntrinsicElements
     ? PropsWithRef<JSX.IntrinsicElements[E]>
     : ComponentPropsWithRef<E>,
   SystemProps & { as?: E }
 >;
 
-const extractSprinkleProps = <P extends SystemProps>(
+const extractSystemProps = <P extends SystemProps>(
   props: P
-): [SystemProps, Record<string, unknown>] => {
-  const sprinkleProps: Record<string, unknown> = {};
+): [Partial<SystemProps>, Record<string, unknown>] => {
+  const systemProps: Record<string, unknown> = {};
   const rest: Record<string, unknown> = {};
 
-  for (const key in props) {
-    if (system.properties.has(key as keyof SystemProps)) {
-      sprinkleProps[key] = props[key];
+  for (const [key, value] of Object.entries(props) as Entries<SystemProps>) {
+    if (system.properties.has(key)) {
+      systemProps[key] = value;
     } else {
-      rest[key] = props[key];
+      rest[key] = value;
     }
   }
 
-  return [sprinkleProps, rest];
+  return [systemProps, rest];
 };
 
 export const Box: <E extends ElementType = typeof DEFAULT_ELEMENT>(
@@ -42,8 +43,8 @@ export const Box: <E extends ElementType = typeof DEFAULT_ELEMENT>(
   E extends ElementType = typeof DEFAULT_ELEMENT
 >({ as, className, ...props }: Props<E>, ref: ForwardedRef<Element>) {
   const Element: ElementType = as ?? DEFAULT_ELEMENT;
-  const [sprinkleProps, rest] = extractSprinkleProps(props);
-  const classes = cx(system(sprinkleProps), className);
+  const [systemProps, rest] = extractSystemProps(props);
+  const classes = cx(system(systemProps), className);
 
   return <Element ref={ref} className={classes} {...rest} />;
 });

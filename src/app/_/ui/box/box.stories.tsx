@@ -9,7 +9,7 @@ const meta: Meta<typeof Box> = {
   title: "UI / Layout / Box",
   component: Box,
   tags: ["autodocs"],
-  argTypes: createArgTypesBySprinkleProps(systemProps),
+  argTypes: createArgTypesBySprinkleProps(systemProps, { alwaysShow: true }),
 };
 
 export const Basic: Story = {

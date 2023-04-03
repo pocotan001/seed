@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { Entries } from "type-fest";
 import { colors } from "./colors";
 
 type Story = StoryObj;
@@ -25,7 +26,7 @@ type ColorPalette = Record<string, Record<string, string>>;
 const colorPalette: ColorPalette = (() => {
   let palette: ColorPalette = {};
 
-  for (const [key, value] of Object.entries(colors)) {
+  for (const [key, value] of Object.entries(colors) as Entries<typeof colors>) {
     const [hue, shade] = key.split(".");
 
     palette = {

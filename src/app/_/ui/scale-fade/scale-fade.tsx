@@ -1,11 +1,11 @@
 import { ComponentProps, ElementType, ReactElement } from "react";
 import { Transition } from "~/app/_/ui/transition";
-import { Merge } from "~/lib/types";
+import { Overwrite } from "~/lib/types";
 import { scaleFadeRecipe } from "./scale-fade.css";
 
 const DEFAULT_ELEMENT = "div" satisfies ElementType;
 
-type Props<E extends ElementType> = Merge<
+type Props<E extends ElementType> = Overwrite<
   Omit<ComponentProps<typeof Transition<E>>, "getTransitionClassName">,
   { as?: E }
 >;

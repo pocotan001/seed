@@ -10,7 +10,7 @@ const meta: Meta<typeof Container> = {
   component: Container,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: ["maxW", "p"],
+    alwaysShow: ["maxW", "p"],
   }),
 };
 

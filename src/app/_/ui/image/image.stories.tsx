@@ -12,7 +12,7 @@ const meta: Meta<typeof Image> = {
   component: Image,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: ["objectFit", "objectPosition", "rounded"],
+    alwaysShow: ["objectFit", "objectPosition", "rounded"],
   }),
 };
 

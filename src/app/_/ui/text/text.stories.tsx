@@ -13,7 +13,7 @@ const meta: Meta<typeof Text> = {
   component: Text,
   tags: ["autodocs"],
   argTypes: createArgTypesBySprinkleProps(systemProps, {
-    include: [
+    alwaysShow: [
       "fontFamily",
       "fontSize",
       "fontStyle",
