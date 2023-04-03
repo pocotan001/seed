@@ -2,7 +2,7 @@ import { globalStyle } from "@vanilla-extract/css";
 import { vars } from "~/app/_/styles/theme/theme.css";
 
 globalStyle("body", {
-  backgroundColor: vars.colors.white,
+  backgroundColor: vars.colors["gray.50"],
   color: vars.colors["gray.800"],
   fontFamily: vars.fonts.sans,
   lineHeight: 1.5,

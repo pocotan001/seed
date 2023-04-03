@@ -5,6 +5,11 @@ import "../src/app/_/styles/globals.css";
 
 const preview: Preview = {
   parameters: {
+    options: {
+      storySort: {
+        order: ["Theme", "UI", "Features", "Colocation", "*"],
+      },
+    },
     backgrounds: {
       default: "Light",
       values: [
