@@ -1,0 +1,116 @@
+.ntv53q0 {
+  display: inline-flex;
+  border: 1px solid transparent;
+  cursor: pointer;
+  align-items: center;
+  border-radius: var(--_1t0e9g225);
+  font-weight: normal;
+  justify-content: center;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+}
+.ntv53q0:disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+.ntv53q6 {
+  padding: var(--_1t0e9g23o) var(--_1t0e9g23q);
+  font-size: var(--_1t0e9g2x);
+}
+.ntv53q7 {
+  padding: var(--_1t0e9g23o) var(--_1t0e9g23r);
+  font-size: var(--_1t0e9g2z);
+}
+.ntv53q8 {
+  padding: var(--_1t0e9g23p) var(--_1t0e9g23s);
+  font-size: var(--_1t0e9g210);
+}
+.ntv53q9 {
+  color: var(--_1t0e9g2t);
+  background-color: var(--_1t0e9g2o);
+}
+.ntv53q9:hover {
+  background-color: var(--_1t0e9g2p);
+}
+.ntv53qa {
+  color: var(--_1t0e9g2o);
+  border-color: var(--_1t0e9g2o);
+}
+.ntv53qa:hover {
+  background-color: var(--_1t0e9g2j);
+}
+.ntv53qb {
+  color: var(--_1t0e9g2o);
+}
+.ntv53qb:hover {
+  background-color: var(--_1t0e9g2j);
+}
+.ntv53qc {
+  color: var(--_1t0e9g2t);
+  background-color: var(--_1t0e9g2e);
+}
+.ntv53qc:hover {
+  background-color: var(--_1t0e9g2f);
+}
+.ntv53qd {
+  color: var(--_1t0e9g2e);
+  border-color: var(--_1t0e9g2e);
+}
+.ntv53qd:hover {
+  background-color: var(--_1t0e9g29);
+}
+.ntv53qe {
+  color: var(--_1t0e9g2e);
+}
+.ntv53qe:hover {
+  background-color: var(--_1t0e9g29);
+}
+._1gzoqvq0 {
+  transition-duration: 75ms;
+}
+._1gzoqvq1 {
+  transition-duration: 100ms;
+}
+._1gzoqvq2 {
+  transition-duration: 150ms;
+}
+._1gzoqvq3 {
+  transition-duration: 200ms;
+}
+._1gzoqvq4 {
+  transition-duration: 300ms;
+}
+._1gzoqvq5 {
+  transition-duration: 500ms;
+}
+._1gzoqvq6 {
+  transition-duration: 700ms;
+}
+._1gzoqvq7 {
+  transition-duration: 1000ms;
+}
+._1gzoqvq8 {
+  transition-timing-function: linear;
+}
+._1gzoqvq9 {
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+._1gzoqvqa {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+._1gzoqvqb {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+._1odkx5j0 {
+  transition-property: opacity;
+}
+._1odkx5j1 {
+  opacity: 1;
+}
+._1odkx5j2 {
+  opacity: 0;
+}
+
+/*# sourceMappingURL=app-_-ui-fade-fade-stories.css.map*/
